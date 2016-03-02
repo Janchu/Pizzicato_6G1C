@@ -1,4 +1,4 @@
-package pizzicato;
+package pizzicato.control;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
