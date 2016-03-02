@@ -21,7 +21,7 @@ public class Mausteet {
 		
 	}
 
-	//getterit ja setterit alkaa
+	//getterit ja setterit
 
 	public int getId() {
 		return id;
@@ -42,7 +42,7 @@ public class Mausteet {
 		this.mausteet = mausteet;
 	}
 	
-	//to string alkaa
+	//to string
 
 	@Override
 	public String toString() {
