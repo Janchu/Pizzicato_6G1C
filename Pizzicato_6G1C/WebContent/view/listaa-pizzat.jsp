@@ -13,6 +13,14 @@
 <body>
 <h1>Pizzat</h1>
 
+<nav id="Paavalikko">
+
+<ul>
+					<li><a class="tamanhetkinen" href="index.html">Kotisivu</a>
+					<li><a href="yhteystiedot.html">Yhteystiedot</a>
+</ul>
+
+
 
 <div id="pizzalistataulukko">
 
@@ -23,10 +31,14 @@
 <th>Hinta</th>
 </tr>
 
+<%
+			for (int i = 0; i < pizzat.size(); i++) {
+		%>
+
 <tr>
-<td>Julia</td>
-<td>Kinkku, katkarapu, aurajuusto, ananas</td>
-<td>7,90€</td>
+<td><%=pizzat.get(i).getNimi()%></td>
+<td><%=pizzat.get(i).getTayte()%></td>
+<td><%=pizzat.get(i).getHinta()%></td>
 </tr>
 
 </table>
@@ -34,7 +46,7 @@
 
 
 <div id="nappulat">
- <input type="submit" value="Muokkaa pizzalistaa">
+ <input type="submit" value="Muokkaa pizzalistaa"><a href="MuokkaaPizzaListaaServlet">
  </div>
 </body>
 </html>

@@ -8,3 +8,12 @@ body {
 	border: 1px solid black;}
 	
 	td {padding: 5px;}
+	
+	 #Paavalikko li {display:inline-block;
+     			width:20em;
+     			text-align:center;
+     			font-weight: bold;
+     			background-color:#edac46;
+     			border:solid 2px #100000;
+				padding:10px 0px 10px 0px;
+				}
