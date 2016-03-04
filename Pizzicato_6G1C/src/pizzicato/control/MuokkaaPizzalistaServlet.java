@@ -14,9 +14,9 @@ import pizzicato.model.Pizza;
 import pizzicato.model.dao.PizzaDAO;
 
 /**
- * Servlet implementation class MuokkaaPizzalistaaServlet
+ * Servlet implementation class MuokkaaPizzalistaServlet
  */
-@WebServlet("/MuokkaaPizzalistaaServlet")
+@WebServlet("/MuokkaaPizzalistaServlet")
 public class MuokkaaPizzalistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

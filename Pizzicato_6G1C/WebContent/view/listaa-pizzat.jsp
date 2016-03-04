@@ -67,12 +67,13 @@ Täytteet:</b> Pekoni</td>
 
 
 <div id="nappulat">
- <input type="submit" value="Muokkaa pizzalistaa">
+ <a href="MuokkaaPizzalistaServlet" class="nappula">Siirry muokkaustilaan</a>
  </div>
 </div>
  <div id="footer">
 
 <p>Pizzeria Pizzicato<br>
 Puhelin: 01245678 Sähköpostiosoite: pizzicato@xxx.fi</p>
+</div>
 </body>
 </html>
