@@ -5,7 +5,7 @@ public class Tayte {
 	// Attribuutit
 	
 	private int id;
-	private int nimi;
+	private String nimi;
 	private double hinta;
 		
 
@@ -16,7 +16,7 @@ public class Tayte {
 	}
 
 
-	public Tayte(int id, int nimi, double hinta) {
+	public Tayte(int id, String nimi, double hinta) {
 		this.id = id;
 		this.nimi = nimi;
 		this.hinta = hinta;
@@ -34,12 +34,12 @@ public class Tayte {
 	}
 
 
-	public int getNimi() {
+	public String getNimi() {
 		return nimi;
 	}
 
 
-	public void setNimi(int nimi) {
+	public void setNimi(String nimi) {
 		this.nimi = nimi;
 	}
 
