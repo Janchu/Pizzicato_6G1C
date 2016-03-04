@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import pizzicato.model.Pizza;
+import pizzicato.model.dao.DataAccessObject;
 
 
 public class PizzaDAO extends DataAccessObject {

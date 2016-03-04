@@ -14,14 +14,13 @@ import pizzicato.model.Pizza;
 import pizzicato.model.dao.PizzaDAO;
 
 /**
- * Servlet implementation class ListaaPizzatServlet
+ * Servlet implementation class MuokkaaPizzalistaaServlet
  */
-@WebServlet("/ListaaPizzatServlet")
-public class ListaaPizzatServlet extends HttpServlet {
+@WebServlet("/MuokkaaPizzalistaaServlet")
+public class MuokkaaPizzalistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		// Luodaan PizzaDAO
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
@@ -29,17 +28,12 @@ public class ListaaPizzatServlet extends HttpServlet {
 		//ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("pizzat", pizzat);
 		
-		for (int i = 0; i < pizzat.size(); i++) {
-			System.out.println(pizzat.get(i));			
-		}
-
-		
 		//Lähetetään jsp:lle
-		String jsp = "/view/listaa-pizzat.jsp";
+		String jsp = "/view/muokkaa-pizzalista.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
-		
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
