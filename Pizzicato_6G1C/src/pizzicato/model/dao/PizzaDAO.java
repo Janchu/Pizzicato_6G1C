@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import pizzicato.model.Pizza;
 
+
 public class PizzaDAO extends DataAccessObject {
 	
 	public ArrayList<Pizza> findAll() {
@@ -25,6 +26,7 @@ public class PizzaDAO extends DataAccessObject {
 			
 			while (rs.next()) {
 				pizza = readPizza(rs);
+				System.out.println(pizza);
 				pizzalista.add(pizza);
 			}
 		} catch (SQLException e) {
@@ -39,12 +41,17 @@ public class PizzaDAO extends DataAccessObject {
 		try {
 			// Haetaan yhden pizzan tiedot
 			int id = rs.getInt("id");
+			System.out.println(id);
 			String tyyppi = rs.getString("tyyppi");
+			System.out.println(tyyppi);
 			String nimi = rs.getString("nimi");
-			Double hinta = rs.getDouble("hinta");
+			System.out.println(nimi);
+			double hinta = rs.getDouble("hinta");
+			System.out.println(hinta);
 			int nakyvyys = rs.getInt("nakyvyys");
+			System.out.println(nakyvyys);
 			String pohja = rs.getString("pohja");
-			
+			System.out.println(pohja);		
 			
 			// Palautetaan pizza
 			return new Pizza(id, tyyppi, nimi, hinta, nakyvyys, pohja);

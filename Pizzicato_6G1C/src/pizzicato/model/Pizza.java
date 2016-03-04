@@ -4,17 +4,33 @@ public class Pizza extends Tuote {
 	private int nakyvyys;
 	private String pohja;
 	
-	// Konstruktorit
-	public Pizza(int id, String tyyppi, String nimi, double hinta,
-			int nakyvyys, String pohja) {
-		this.nakyvyys = nakyvyys;
-		this.pohja = pohja;
-	}
-
+	// Oletuskonstruktori
 	public Pizza() {
 		this.nakyvyys = 0;
 		this.pohja = null;
 	}
+	
+	// Parametrillinen konstruktori
+	public Pizza(int id, String tyyppi, String nimi, double hinta,
+			int nakyvyys, String pohja) {
+		setId(id);
+		setTyyppi(tyyppi);
+		setNimi(nimi);
+		setHinta(hinta);
+		this.nakyvyys = nakyvyys;
+		this.pohja = pohja;
+	}
+	
+	// Oliokonstruktori
+	public Pizza(Pizza pizza) {
+		setId(pizza.getId());
+		setTyyppi(pizza.getTyyppi());
+		setNimi(pizza.getNimi());
+		setHinta(pizza.getHinta());
+		this.nakyvyys = pizza.getNakyvyys();
+		this.pohja = pizza.getPohja();
+	}
+
 
 	
 	// Getterit ja setterit

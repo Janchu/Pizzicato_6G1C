@@ -29,6 +29,8 @@ public class ListaaPizzatServlet extends HttpServlet {
 		//ArrayList tallennetaan request-olioon jsp:lle viet‰v‰ksi
 		request.setAttribute("pizzat", pizzat);
 		
+		System.out.println(pizzat);
+		
 		//L‰hetet‰‰n jsp:lle
 		String jsp = "/view/listaa-pizzat.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);

@@ -9,7 +9,15 @@ public class Tuote {
 	private double hinta;
 	
 	
-	// Konstruktorit
+	// Oletuskonstruktori
+	public Tuote() {		
+		this.id = 0;
+		this.tyyppi = null;
+		this.nimi = null;
+		this.hinta = 0;	
+	}
+	
+	// Parametrillinen konstruktori
 	public Tuote(int id, String tyyppi, String nimi, double hinta) {
 		this.id = id;
 		this.tyyppi = tyyppi;
@@ -17,14 +25,15 @@ public class Tuote {
 		this.hinta = hinta;
 	}
 	
-	public Tuote() {
-		
-		this.id = 0;
-		this.tyyppi = null;
-		this.nimi = null;
-		this.hinta = 0;
-		
+	// Oliokonstruktori
+	public Tuote(Tuote tuote) {
+		this.id = tuote.getId();
+		this.tyyppi = tuote.getTyyppi();
+		this.nimi = tuote.getNimi();
+		this.hinta = tuote.getHinta();
 	}
+	
+
 
 	// Getterit ja setterit
 	public int getId() {
