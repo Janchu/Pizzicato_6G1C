@@ -19,7 +19,7 @@ public class PizzaDAO extends DataAccessObject {
 		
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT tuote.id, tyyppi, tuote.nimi, tuote.hinta, pizza.nakyvyys, pohja FROM tuote JOIN pizza USING (id);"; // <------ Tähän kunnon select, jossa joinit
+			String sqlSelect = "SELECT id, tyyppi, nimi, hinta, nakyvyys, pohja FROM tuote JOIN pizza USING (id);"; // <------ Tähän kunnon select, jossa joinit
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 			

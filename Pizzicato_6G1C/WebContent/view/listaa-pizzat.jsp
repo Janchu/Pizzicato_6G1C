@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Pizza"%>
+<%@ page import="pizzicato.model.Tuote"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
 	scope="request" />
 <html>
@@ -26,21 +27,24 @@
 
 <table>
 <tr>
-<th>Pizza</th>
-<th>Täytteet</th>
+<th>Numero</th>
+<th>Nimi</th>
 <th>Hinta</th>
 </tr>
 
 <%
+			int pizzanumero = 0;
 			for (int i = 0; i < pizzat.size(); i++) {
+				pizzanumero++;
 		%>
 
 <tr>
+
+<td><%=pizzanumero%></td>
 <td><%=pizzat.get(i).getNimi()%></td>
-<td><%=pizzat.get(i).getTayte()%></td>
 <td><%=pizzat.get(i).getHinta()%></td>
 </tr>
-
+<%  } %>
 </table>
 </div>
 
