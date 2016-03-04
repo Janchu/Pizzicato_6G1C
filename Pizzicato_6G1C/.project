@@ -33,11 +33,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>WebContent/WEB-INF/lib/mariadb-java-client-1.1.4.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Ohjelmistokehitys/mariadb-java-client-1.1.4.jar</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
