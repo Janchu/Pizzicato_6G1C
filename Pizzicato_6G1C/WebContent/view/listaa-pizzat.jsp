@@ -12,20 +12,31 @@
 <title>Pizzalista</title>
 </head>
 <body>
-<h1>Pizzat</h1>
-
-<nav id="Paavalikko">
-
-<ul>
-					<li><a class="tamanhetkinen" href="index.html">Kotisivu</a>
-					<li><a href="yhteystiedot.html">Yhteystiedot</a>
-</ul>
 
 
+<nav id="navigaatio">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Pizzeria Pizzicato</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Etusivu</a></li>
+      <li><a href="#">:3</a></li>
+      <li><a href="#">Yhteystiedot</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
 
+
+<div id="loota1">
 <div id="pizzalistataulukko">
 
-<table>
+<table cellspacing="10">
+ 
 <tr>
 <th>Numero</th>
 <th>Nimi</th>
@@ -39,9 +50,29 @@
 		%>
 
 <tr>
-
 <td><%=pizzanumero%></td>
-<td><%=pizzat.get(i).getNimi()%></td>
+<td><b><%=pizzat.get(i).getNimi()%><br>
+Täytteet:</b> Pekoni</td>
+<td><%=pizzat.get(i).getHinta()%></td>
+</tr>
+
+<tr>
+<td><%=pizzanumero%></td>
+<td><b><%=pizzat.get(i).getNimi()%><br>
+Täytteet:</b> Pekoni</td>
+<td><%=pizzat.get(i).getHinta()%></td>
+</tr>
+
+<tr>
+<td><%=pizzanumero%></td>
+<td><b><%=pizzat.get(i).getNimi()%><br>
+Täytteet:</b> Pekoni</td>
+<td><%=pizzat.get(i).getHinta()%></td>
+</tr>
+<tr>
+<td><%=pizzanumero%></td>
+<td><b><%=pizzat.get(i).getNimi()%><br>
+Täytteet:</b> Pekoni</td>
 <td><%=pizzat.get(i).getHinta()%></td>
 </tr>
 <%  } %>
@@ -50,7 +81,12 @@
 
 
 <div id="nappulat">
- <input type="submit" value="Muokkaa pizzalistaa"><a href="MuokkaaPizzaListaaServlet">
+ <input type="submit" value="Muokkaa pizzalistaa">
  </div>
+</div>
+ <div id="footer">
+
+<p>Pizzeria Pizzicato<br>
+Puhelin: 01245678 Sähköpostiosoite: pizzicato@xxx.fi</p>
 </body>
 </html>
