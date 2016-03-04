@@ -26,7 +26,6 @@ public class PizzaDAO extends DataAccessObject {
 			
 			while (rs.next()) {
 				pizza = readPizza(rs);
-				System.out.println(pizza);
 				pizzalista.add(pizza);
 			}
 		} catch (SQLException e) {

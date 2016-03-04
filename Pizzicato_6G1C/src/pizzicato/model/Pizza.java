@@ -21,7 +21,7 @@ public class Pizza extends Tuote {
 		this.pohja = pohja;
 	}
 	
-	// Oliokonstruktori
+	// Oliokonstruktori huehue
 	public Pizza(Pizza pizza) {
 		setId(pizza.getId());
 		setTyyppi(pizza.getTyyppi());
