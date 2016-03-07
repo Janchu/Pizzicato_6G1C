@@ -53,8 +53,9 @@
 		</table>
 	</div>
 	<div id="nappulat">
-		<a href="LisaaPizzaServlet" class="nappula">Lis‰‰ pizza</a>
-		<a href="ListaaPizzatServlet" class="nappula">Siirry pois muokkaustilasta</a>
+		<a href="LisaaPizzaServlet" class="nappula">Lis‰‰ pizza</a> <a
+			href="ListaaPizzatServlet" class="nappula">Siirry pois
+			muokkaustilasta</a>
 	</div>
 </body>
 </html>

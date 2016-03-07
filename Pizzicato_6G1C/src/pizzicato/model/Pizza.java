@@ -3,13 +3,13 @@ package pizzicato.model;
 public class Pizza extends Tuote {
 	private int nakyvyys;
 	private String pohja;
-	
+
 	// Oletuskonstruktori
 	public Pizza() {
 		this.nakyvyys = 0;
 		this.pohja = null;
 	}
-	
+
 	// Parametrillinen konstruktori
 	public Pizza(int id, String tyyppi, String nimi, double hinta,
 			int nakyvyys, String pohja) {
@@ -20,7 +20,7 @@ public class Pizza extends Tuote {
 		this.nakyvyys = nakyvyys;
 		this.pohja = pohja;
 	}
-	
+
 	// Oliokonstruktori huehue
 	public Pizza(Pizza pizza) {
 		setId(pizza.getId());
@@ -31,8 +31,6 @@ public class Pizza extends Tuote {
 		this.pohja = pizza.getPohja();
 	}
 
-
-	
 	// Getterit ja setterit
 	public int getNakyvyys() {
 		return nakyvyys;
@@ -50,19 +48,10 @@ public class Pizza extends Tuote {
 		this.pohja = pohja;
 	}
 
-	
 	// toString
 	@Override
 	public String toString() {
 		return "Pizza [nakyvyys=" + nakyvyys + ", pohja=" + pohja + "]";
 	}
-	
-	
-	
-	
-	
 
-	
-	
-	
 }

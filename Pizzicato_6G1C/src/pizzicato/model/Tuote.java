@@ -7,16 +7,15 @@ public class Tuote {
 	private String tyyppi;
 	private String nimi;
 	private double hinta;
-	
-	
+
 	// Oletuskonstruktori
-	public Tuote() {		
+	public Tuote() {
 		this.id = 0;
 		this.tyyppi = null;
 		this.nimi = null;
-		this.hinta = 0;	
+		this.hinta = 0;
 	}
-	
+
 	// Parametrillinen konstruktori
 	public Tuote(int id, String tyyppi, String nimi, double hinta) {
 		this.id = id;
@@ -24,7 +23,7 @@ public class Tuote {
 		this.nimi = nimi;
 		this.hinta = hinta;
 	}
-	
+
 	// Oliokonstruktori hyuehuehue
 	public Tuote(Tuote tuote) {
 		this.id = tuote.getId();
@@ -32,8 +31,6 @@ public class Tuote {
 		this.nimi = tuote.getNimi();
 		this.hinta = tuote.getHinta();
 	}
-	
-
 
 	// Getterit ja setterit
 	public int getId() {
@@ -43,16 +40,14 @@ public class Tuote {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 
 	public String getTyyppi() {
 		return tyyppi;
 	}
-	
+
 	public void setTyyppi(String tyyppi) {
 		this.tyyppi = tyyppi;
 	}
-	
 
 	public String getNimi() {
 		return nimi;
@@ -61,7 +56,6 @@ public class Tuote {
 	public void setNimi(String nimi) {
 		this.nimi = nimi;
 	}
-	
 
 	public double getHinta() {
 		return hinta;
@@ -71,15 +65,11 @@ public class Tuote {
 		this.hinta = hinta;
 	}
 
-
 	// toString
 	@Override
 	public String toString() {
 		return "Tuote [id=" + id + ", tyyppi=" + tyyppi + ", nimi=" + nimi
 				+ ", hinta=" + hinta + "]";
 	}
-	
-	
-	
-	
+
 }
