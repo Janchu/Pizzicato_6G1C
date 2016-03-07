@@ -59,18 +59,18 @@
 				<td width="50px"><%=pizzanumero%></td>
 				<td><%=pizzat.get(i).getNimi()%></td>
 				<td width="100px"><%=pizzat.get(i).getHinta()%></td>
-				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Muokkaa<br>pizzaa">
-				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Piilota/<br>näytä">
-				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Poista<br>pizza">
+				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Muokkaa pizzaa">
+				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Piilota / näytä">
+				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Poista pizza">
 			</tr>
-			<tr>
+			
+			<%
+				}
+			%><tr>
 <td></td>
 <td><a href="LisaaPizzaServlet" class="nappula">Lisää pizza</a></td>
 
 </tr>
-			<%
-				}
-			%>
 		</table>
 	</div>
 	<div id="nappula">
