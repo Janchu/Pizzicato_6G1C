@@ -10,7 +10,7 @@ import pizzicato.model.Tayte;
 
 public class TayteDAO extends DataAccessObject {
 
-	public ArrayList<Tayte> findAllTaytteet(int id) {
+	public ArrayList<Tayte> findAll() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
