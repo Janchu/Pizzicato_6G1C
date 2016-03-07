@@ -20,7 +20,7 @@ public class TayteDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT pizza.id, tayte.id, tayte.nimi, tayte.hinta AS tayte FROM tuote JOIN pizza ON tuote.id = pizza.id JOIN pizzatayte ON pizza.id = pizzatayte.pizza_id JOIN tayte ON pizzatayte.tayte_id = tayte.id;";
+			String sqlSelect = "SELECT id, nimi, hinta from tayte;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 

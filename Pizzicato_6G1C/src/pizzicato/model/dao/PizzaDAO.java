@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import pizzicato.model.Pizza;
 import pizzicato.model.Tayte;
 import pizzicato.model.dao.DataAccessObject;
-import pizzicato.model.dao.TayteDAO;
 
 public class PizzaDAO extends DataAccessObject {
 

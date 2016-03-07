@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pizzicato.model.Pizza;
+import pizzicato.model.Tayte;
 import pizzicato.model.dao.PizzaDAO;
+import pizzicato.model.dao.TayteDAO;
 
 /**
  * Servlet implementation class LisaaPizzaServlet
@@ -25,9 +27,12 @@ public class LisaaPizzaServlet extends HttpServlet {
 		// Luodaan PizzaDAO
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
+		TayteDAO taytedao = new TayteDAO();
+		ArrayList<Tayte> taytteet = taytedao.findAll();
 
 		// ArrayList tallennetaan request-olioon jsp:lle viet‰v‰ksi
 		request.setAttribute("pizzat", pizzat);
+		request.setAttribute("taytteet", taytteet);
 
 		// L‰hetet‰‰n jsp:lle
 		String jsp = "/view/lisaa-pizza.jsp";
