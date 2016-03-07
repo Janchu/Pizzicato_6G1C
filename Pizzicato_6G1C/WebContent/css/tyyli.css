@@ -1,5 +1,5 @@
-body {background: url("/Img/italolib.jpg");
-background-size:100%
+body {
+background-image: url("../images/italolib.jpg");
 }
 
 caption {
@@ -73,6 +73,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 	#footer {
 	
 	background-color:black;
+	width:100%;
    	color:white;
    	text-align:left;
 	height:120px;
