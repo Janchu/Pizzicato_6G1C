@@ -1,24 +1,29 @@
 package pizzicato.model;
 
+import java.util.ArrayList;
+
 public class Pizza extends Tuote {
 	private int nakyvyys;
 	private String pohja;
+	private ArrayList<Tayte> taytelista;
 
 	// Oletuskonstruktori
 	public Pizza() {
 		this.nakyvyys = 0;
 		this.pohja = null;
+		this.taytelista = null;
 	}
 
 	// Parametrillinen konstruktori
 	public Pizza(int id, String tyyppi, String nimi, double hinta,
-			int nakyvyys, String pohja) {
+			int nakyvyys, String pohja, ArrayList<Tayte> taytelista) {
 		setId(id);
 		setTyyppi(tyyppi);
 		setNimi(nimi);
 		setHinta(hinta);
 		this.nakyvyys = nakyvyys;
 		this.pohja = pohja;
+		this.taytelista = taytelista;
 	}
 
 	// Oliokonstruktori huehue
@@ -29,6 +34,7 @@ public class Pizza extends Tuote {
 		setHinta(pizza.getHinta());
 		this.nakyvyys = pizza.getNakyvyys();
 		this.pohja = pizza.getPohja();
+		this.taytelista = new ArrayList<Tayte>();
 	}
 
 	// Getterit ja setterit
@@ -46,6 +52,14 @@ public class Pizza extends Tuote {
 
 	public void setPohja(String pohja) {
 		this.pohja = pohja;
+	}
+	
+	public ArrayList<Tayte> getTaytelista() {
+		return taytelista;
+	}
+	
+	public void addTayte (Tayte uusiTayte) {
+		this.taytelista.add(uusiTayte);
 	}
 
 	// toString

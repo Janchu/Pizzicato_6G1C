@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
+<%@ page import="pizzicato.model.Tayte"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
 	scope="request" />
 <html>
@@ -57,13 +58,18 @@
 					int pizzanumero = 0;
 					for (int i = 0; i < pizzat.size(); i++) {
 						pizzanumero++;
+						
+												
 				%>
 
 
 				<tr>
 					<td><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%><br> Täytteet:</b>
-						Pekoni</td>
+						<% for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { %>
+							<%=pizzat.get(i).getTaytelista().get(j).getNimi()%>
+						<% }%>
+						</td>
 					<td><%=decimal.format(pizzat.get(i).getHinta())%></td>
 				</tr>
 				<%

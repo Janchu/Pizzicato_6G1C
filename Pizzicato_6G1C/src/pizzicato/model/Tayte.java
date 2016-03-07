@@ -4,7 +4,6 @@ public class Tayte {
 
 	// Attribuutit
 
-	private int pizzaId;
 	private int id;
 	private String nimi;
 	private double hinta;
@@ -15,8 +14,8 @@ public class Tayte {
 
 	}
 
-	public Tayte(int pizzaId, int id, String nimi, double hinta) {
-		this.pizzaId = pizzaId;
+	public Tayte(int id, String nimi, double hinta) {
+
 		this.id = id;
 		this.nimi = nimi;
 		this.hinta = hinta;
@@ -24,13 +23,6 @@ public class Tayte {
 
 	// Getterit & Setterit
 	
-	public int getPizzaId() {
-		return pizzaId;
-	}
-	
-	public void setPizzaId(int pizzaId) {
-		this.pizzaId = pizzaId;
-	}
 
 	public int getId() {
 		return id;

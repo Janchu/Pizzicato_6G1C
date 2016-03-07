@@ -27,13 +27,10 @@ public class ListaaPizzatServlet extends HttpServlet {
 
 		// Luodaan PizzaDAO
 		PizzaDAO pizzadao = new PizzaDAO();
-		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
-		ArrayList<Tayte> taytteet = taytedao.findAll();
 
 		// ArrayList tallennetaan request-olioon jsp:lle viet‰v‰ksi
 		request.setAttribute("pizzat", pizzat);
-		request.setAttribute("taytteet", taytteet);
 
 		// L‰hetet‰‰n jsp:lle
 		String jsp = "/view/listaa-pizzat.jsp";

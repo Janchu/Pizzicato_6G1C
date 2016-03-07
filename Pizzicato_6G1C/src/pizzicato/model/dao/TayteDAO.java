@@ -40,12 +40,11 @@ public class TayteDAO extends DataAccessObject {
 	private Tayte readTayte(ResultSet rs) {
 		try {
 			// Haetaan yhden täytteen tiedot
-			int pizzaId = rs.getInt("pizzaId");
 			int id = rs.getInt("id");
 			String nimi = rs.getString("nimi");
 			double hinta = rs.getDouble("hinta");
 
-			return new Tayte(pizzaId, id, nimi, hinta);
+			return new Tayte(id, nimi, hinta);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
