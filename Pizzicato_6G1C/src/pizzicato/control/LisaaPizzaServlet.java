@@ -1,6 +1,7 @@
 package pizzicato.control;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -24,7 +25,7 @@ public class LisaaPizzaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// Luodaan PizzaDAO
+		// Luodaan PizzaDAO ja TayteDAO
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
 		TayteDAO taytedao = new TayteDAO();
@@ -43,7 +44,62 @@ public class LisaaPizzaServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		// Luodaan PizzaDAO ja TayteDAO (ja decimalformat)
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzat = pizzadao.findAll();
+		TayteDAO taytedao = new TayteDAO();
+		ArrayList<Tayte> taytteet = taytedao.findAll();
+		DecimalFormat formatter = new DecimalFormat("#0.00");
+		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
+		
+		// Haetaan käyttäjän syöttämät pizzan nimi ja hinta. Muutetaan hinta oikeaan muotoon.
+		String nimi = request.getParameter("pizzaNimi");
+		String hintaStr = request.getParameter("pizzaHinta");		
+		double hinta = new Double(hintaStr);
+		formatter.format(hinta);
+		
+		// Selvitetään seuraava vapaa id pizzalle
+		pizzat = pizzadao.findAll();		
+		int nykyinenSuurinId = 0;		
+		for (int i = 0; i < pizzat.size(); i++) {
+			System.out.println(pizzat.get(i).getId());
+			nykyinenSuurinId = pizzat.get(i).getId();
+		}		
+		int id = nykyinenSuurinId + 1;
+		System.out.println("Uusi id: " + id);
+		
+		
+		// Nämä arvot ovat pelkästään futureproofia varten.
+		String tyyppi = "pizza";
+		int nakyvyys = 1;
+		String pohja = "normaali";
+		
+		for (int i = 1; i < taytteet.size()+1; i++) {
+			String tayte = request.getParameter("tayte"+i);
+				if (tayte != null) {
+					int tayteId = new Integer(tayte);
+					tayteId = tayteId - 1;
+					String tayteNimi = taytteet.get(tayteId).getNimi();
+					System.out.println(tayteNimi);
+					Double tayteHinta = 0.00;
+					
+					Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteHinta);
+					taytelista.add(uusiTayte);
+				}
+			System.out.println(tayte);
 
+		}
+		
+		try {
+			// Luodaan uusi pizza olio kantaan vietäväksi
+		Pizza uusiPizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys, pohja, taytelista);
+		
+		pizzadao.addPizza(uusiPizza);
+
+		} catch (Exception e) {
+			System.out.println("LisaaPizzaServletissä virhe");
+		}
 	}
 
 }

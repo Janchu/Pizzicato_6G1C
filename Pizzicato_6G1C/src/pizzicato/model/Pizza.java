@@ -62,10 +62,12 @@ public class Pizza extends Tuote {
 		this.taytelista.add(uusiTayte);
 	}
 
-	// toString
 	@Override
 	public String toString() {
-		return "Pizza [nakyvyys=" + nakyvyys + ", pohja=" + pohja + "]";
+		return "Pizza [nakyvyys=" + nakyvyys + ", pohja=" + pohja
+				+ ", taytelista=" + taytelista + "]";
 	}
+
+
 
 }
