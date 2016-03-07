@@ -14,9 +14,9 @@
 </head>
 <body>
 <h1>ebin</h1>
-	<%  %>
+	
 	<form method="post">
-		Pizzan nimi: 	<input type="text" name="vastausteksti"><br>
+		Pizzan nimi: 	<input type="text" name="pizzaNimi"><br>
 		Täytteet:<br> 		<% for (int i = 0; i < taytteet.size(); i++) { %>
 							<input type="checkbox" name="tayte" value="<%=taytteet.get(i).getId()%>"><%=taytteet.get(i).getNimi()%><br>
 						<% } %>
