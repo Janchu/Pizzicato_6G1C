@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -52,7 +53,7 @@
 					<th>Hinta</th>
 				</tr>
 
-				<%
+				<%DecimalFormat decimal = new DecimalFormat("0.00");
 					int pizzanumero = 0;
 					for (int i = 0; i < pizzat.size(); i++) {
 						pizzanumero++;
@@ -63,7 +64,7 @@
 					<td><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%><br> Täytteet:</b>
 						Pekoni</td>
-					<td><%=pizzat.get(i).getHinta()%></td>
+					<td><%=decimal.format(pizzat.get(i).getHinta())%></td>
 				</tr>
 				<%
 					}
