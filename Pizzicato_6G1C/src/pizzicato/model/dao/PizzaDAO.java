@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import pizzicato.model.Pizza;
+import pizzicato.model.Tayte;
 import pizzicato.model.dao.DataAccessObject;
+import pizzicato.model.dao.TayteDAO;
 
 public class PizzaDAO extends DataAccessObject {
 
@@ -40,17 +42,12 @@ public class PizzaDAO extends DataAccessObject {
 		try {
 			// Haetaan yhden pizzan tiedot
 			int id = rs.getInt("id");
-			System.out.println(id);
 			String tyyppi = rs.getString("tyyppi");
-			System.out.println(tyyppi);
 			String nimi = rs.getString("nimi");
-			System.out.println(nimi);
 			double hinta = rs.getDouble("hinta");
-			System.out.println(hinta);
 			int nakyvyys = rs.getInt("nakyvyys");
-			System.out.println(nakyvyys);
 			String pohja = rs.getString("pohja");
-			System.out.println(pohja);
+
 
 			// Palautetaan pizza
 			return new Pizza(id, tyyppi, nimi, hinta, nakyvyys, pohja);
@@ -58,6 +55,6 @@ public class PizzaDAO extends DataAccessObject {
 			throw new RuntimeException(e);
 		}
 
-	}
+	}	
 
 }
