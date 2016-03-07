@@ -29,7 +29,7 @@
 			<a class="navbar-brand" href="#">Pizzeria Pizzicato</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">Etusivu</a></li>
+			<li><a href="" class="current">Etusivu</a></li>
 			<li><a href="#">:3</a></li>
 			<li><a href="#">Yhteystiedot</a></li>
 		</ul>
@@ -46,7 +46,8 @@
 	<div id="loota1">
 		<div id="pizzalistataulukko">
 
-			<table cellspacing="10">
+			<table>
+			<caption>Pizzalista</caption>
 
 				<tr>
 					<th>Numero</th>
@@ -64,13 +65,13 @@
 
 
 				<tr>
-					<td><%=pizzanumero%></td>
+					<td width="100px"><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%><br> Täytteet:</b>
 						<% for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { %>
 							<%=pizzat.get(i).getTaytelista().get(j).getNimi()%>
 						<% }%>
 						</td>
-					<td><%=decimal.format(pizzat.get(i).getHinta())%></td>
+					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
 				</tr>
 				<%
 					}
@@ -85,11 +86,18 @@
 		</div>
 	</div>
 	<div id="footer">
+<div id ="footer_sisältö">
 
-		<p>
-			Pizzeria Pizzicato<br> Puhelin: 01245678 Sähköpostiosoite:
-			pizzicato@xxx.fi
-		</p>
-	</div>
+<p>Pizzeria Pizzicato<br>
+Puhelin: 01245678<br>
+Sähköpostiosoite: pizzicato@xxx.fi<br>
+Osoite: katu2 <br>
+Postitoimipaikka: Helsinki, 010101 <br>
+ </p>
+</div>
+<div id ="footer_kartta">
+ <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28579.973371261083!2d10.97612!3d63.40367899999999!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x466d16fb3ae6fd6d%3A0x1596b57897c52a6b!2sHell%2C+Norway!5e0!3m2!1sen!2sfi!4v1431377337059" width="100" height="100" style="float:right;" ></iframe>
+</div>
+</div>
 </body>
 </html>

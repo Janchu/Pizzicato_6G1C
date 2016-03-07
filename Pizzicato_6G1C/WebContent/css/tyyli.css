@@ -1,74 +1,86 @@
-body {
-	
+body {background: url("/Img/italolib.jpg");
+background-size:100%
 }
 
+caption {
+font-size:170%;
+font-weight:bold;}
+
+
+
 #pizzalistataulukko  table {
-	width: 80%;
-	margin-left: 10%;
-	padding: 20px;
+	width:80%;
+	margin-left:10%;
+	padding:20px;
+  
 }
 
 #pizzalistataulukko	td {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	padding-right: 20px;
-	padding-left: 20px;
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:20px;   
+  padding-left:20px;
 }
-
 #pizzalistataulukko th, td {
-	text-align: left;
-	padding-left: 20px;
+    text-align: left;
+	padding-left:20px;
+	
+   
 }
 
-tr:nth-child(even) {
-	background-color: #f2f2f2
-}
+tr:nth-child(even){background-color: #f2f2f2}
 
 #pizzalistataulukko th {
-	background-color: #4CAF50;
-	color: white;
+    background-color: #4CAF50;
+    color: white;
 }
 
-#navigaatio {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	background-color: black;
-}
+	
 
+	
+     	
+ #navigaatio {
+ position:fixed;
+ top:0;
+ width:100%;
+ background-color: black;
+ }
+ 
+ #navigaatio li a.current{
+   color: black;
+   background:white;
+}
+ 
+				
 #loota1 {
-	background-color: white;
-	width: 72%;
-	height: auto;
-	border: solid 3px black;
-	border-radius: 20px;
-	padding: 15px;
-	float: left;
-	margin-top: 5%;
-	margin-bottom: 20px;
-	margin-left: 15%;
-}
-
-#nappulat {
-	margin-top: 20px;
-	margin-left: 15%;
-}
-
-a.nappula {
-	color: red;
-}
-
-#footer {
-	position: fixed;
-	bottom: 0;
-	background-color: white;
-	border: solid 3px black;
-	width: 105%;
-	color: black;
-	text-align: center;
-	height: auto;
-	padding: 15px;
-	margin-bottom: 10px;
-	margin-left: -5px;
-	clear: both;
-}
+		background-color: white;
+    	width:72%;
+    	height:auto;
+		border-radius:20px;
+      	padding:15px;
+		margin-top:5%;
+		margin-bottom:20px;
+		margin-left:15%;
+		}
+		
+	#nappula   {margin-bottom: 50px;
+	margin-left: 150px;
+	padding-top:20px;
+	position: relative;}
+	
+	
+				
+	#footer {
+	
+	background-color:black;
+   	color:white;
+   	text-align:left;
+	height:120px;
+	padding:5px;
+	clear:both;
+	position:bottom;
+	}
+	
+	#footer_sisältö {float:left;}
+	#footer_kartta {float:right;}
+	
