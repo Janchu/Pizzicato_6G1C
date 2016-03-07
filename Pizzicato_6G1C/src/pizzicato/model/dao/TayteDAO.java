@@ -19,7 +19,7 @@ public class TayteDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "Select..."; // täytteiden hakulause
+			String sqlSelect = "SELECT * FROM tayte;"; // täytteiden hakulause
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
