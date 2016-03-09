@@ -13,39 +13,48 @@ import pizzicato.model.dao.DataAccessObject;
 public class PizzaDAO extends DataAccessObject {
 	
 	public void addPizza(Pizza pizza) throws SQLException {
-		Connection connection = null;
-		PreparedStatement stmtInsert = null;
+			Connection connection = null;
+			PreparedStatement stmtInsert = null;
+		
 
 		
 		try {
 			connection = getConnection();
-			String sqlInsert = "INSERT INTO tuote(id, tyyppi, nimi, hinta) VALUES (?, ?, ?, ?);";   // <----- Insert lause
-			stmtInsert = connection.prepareStatement(sqlInsert);
-			stmtInsert.setInt(1, pizza.getId());
-			stmtInsert.setString(2, pizza.getTyyppi());
-			stmtInsert.setString(3, pizza.getNimi());
-			stmtInsert.setDouble(4, pizza.getHinta());
+			stmtInsert = connection.prepareStatement("INSERT INTO tuote(tyyppi, nimi, hinta) VALUES (?, ?, ?);");   // <----- Insert lause
+			
+			
+			stmtInsert.setString(1, pizza.getTyyppi());
+			stmtInsert.setString(2, pizza.getNimi());
+			stmtInsert.setDouble(3, pizza.getHinta());
 			stmtInsert.executeUpdate();
+			stmtInsert.close();
 			
 			
 			
-			sqlInsert = "INSERT INTO pizza(id, nakyvyys, pohja) VALUES (?, ?, ?);";   // <----- Insert lause
-			stmtInsert.setInt(1, pizza.getId());
-			stmtInsert.setInt(2, pizza.getNakyvyys());
-			stmtInsert.setString(3, pizza.getPohja());
+			stmtInsert = connection.prepareStatement("INSERT INTO pizza(id, nakyvyys, pohja) VALUES (last_insert_id(), ?, ?);");   // <----- Insert lause
+			
+			stmtInsert.setInt(1, pizza.getNakyvyys());
+			stmtInsert.setString(2, pizza.getPohja());
 			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			System.out.println(pizza.getTaytelista());
+			
 			
 			for (int i = 0; i < pizza.getTaytelista().size(); i++) {
-				sqlInsert = "INSERT INTO pizzatayte(pizza_id, tayte_id) VALUES (?, ?);";
-				stmtInsert.setInt(1, pizza.getId());
-				stmtInsert.setInt(2, pizza.getTaytelista().get(i).getId());
-				stmtInsert.executeUpdate();
-			}
+				stmtInsert = connection.prepareStatement("INSERT INTO pizzatayte(pizza_id, tayte_id) VALUES (last_insert_id(), ?);");
+						
+						
+						stmtInsert.setInt(1, pizza.getTaytelista().get(i).getId());
+						stmtInsert.executeUpdate();
+						stmtInsert.close();
+				}
+				
+			
 			
 
 			
 		} catch (SQLException e) {
-			System.out.println("PizzaDAO -> addPizza ei onnistunut.");
+			System.out.println(e.getMessage());
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtInsert, connection);
