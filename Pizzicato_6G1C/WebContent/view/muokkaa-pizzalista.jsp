@@ -50,7 +50,7 @@
 
 			<%
 				int pizzanumero = 0;
-				for (int i = 0; i < pizzat.size(); i++) {
+				for (int i = 0; i < pizzat.size(); i++) { //kukkuu
 					pizzanumero++;
 			%>
 

@@ -16,7 +16,7 @@
 
 	<%
 	int poistaId = 0;
-	for (int i = 0; i < pizzat.size(); i++) {
+	for (int i = 0; i < pizzat.size(); i++) { //kukkuu
 			int id = pizzat.get(i).getId();
 			if (id == poistettavapizzaid) {
 				poistaId = id;%>

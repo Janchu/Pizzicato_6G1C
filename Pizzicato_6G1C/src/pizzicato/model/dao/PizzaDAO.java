@@ -130,7 +130,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	public void deletePizza(Pizza poistettavapizza) throws SQLException {
 
-		Connection connection = null;
+		Connection connection = null; // kukkuu
 		PreparedStatement stmtInsert = null;
 		poistettavapizza.getId();
 		System.out.println(poistettavapizza.getId());

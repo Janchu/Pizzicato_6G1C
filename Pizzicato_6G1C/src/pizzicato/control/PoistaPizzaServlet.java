@@ -48,7 +48,7 @@ public class PoistaPizzaServlet extends HttpServlet {
 		double hinta = 0;
 		int nakyvyys = 0;
 		String pohja = "";
-		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
+		ArrayList<Tayte> taytelista = new ArrayList<Tayte>(); //kukkuu
 		
 		try {
 			Pizza poistettavapizza = new Pizza(pid, tyyppi, nimi, hinta, nakyvyys, pohja,taytelista);

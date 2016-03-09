@@ -31,7 +31,7 @@ public class MuokkaaPizzalistaServlet extends HttpServlet {
 
 		// L‰hetet‰‰n jsp:lle
 		String jsp = "/view/muokkaa-pizzalista.jsp";
-		RequestDispatcher dispatcher = getServletContext()
+		RequestDispatcher dispatcher = getServletContext() //kukkuu
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
 	}
