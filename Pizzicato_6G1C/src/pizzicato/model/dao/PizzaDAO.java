@@ -158,7 +158,7 @@ public class PizzaDAO extends DataAccessObject {
 		
 		for (int i = 0; i < pizza.getTaytelista().size(); i++) {
 			sqlInsert = "INSERT INTO pizzatayte WHERE pizza_id = ?;"; // DELETE lause
-			stmtInsert.setInt(1, pizza.getId());
+			stmtInsert.setInt(1, pizza.getId()); //kukkuu
 			stmtInsert.executeUpdate();
 		}
 			
