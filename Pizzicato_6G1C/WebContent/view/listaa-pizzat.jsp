@@ -92,7 +92,7 @@
 <p>Pizzeria Pizzicato<br>
 Puhelin: 01245678<br>
 Sähköpostiosoite: pizzicato@xxx.fi<br>
-Osoite: katu2 <br>
+Osoite: katu21 <br>
 Postitoimipaikka: Helsinki, 010101 <br>
  </p>
 </div>
