@@ -80,20 +80,7 @@
  
  </div>
  
- <div id="footer">
-<div id ="footer_sisältö">
-
-<p>Pizzeria Pizzicato<br>
-Puhelin: 01245678<br>
-Sähköpostiosoite: pizzicato@xxx.fi<br>
-Osoite: katu2 <br>
-Postitoimipaikka: Helsinki, 010101 <br>
- </p>
-</div>
-<div id ="footer_kartta">
- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28579.973371261083!2d10.97612!3d63.40367899999999!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x466d16fb3ae6fd6d%3A0x1596b57897c52a6b!2sHell%2C+Norway!5e0!3m2!1sen!2sfi!4v1431377337059" width="200" height="200" style="float:right;" ></iframe>
-</div>
-</div>
+ 
 		
 </body>
 </html>
