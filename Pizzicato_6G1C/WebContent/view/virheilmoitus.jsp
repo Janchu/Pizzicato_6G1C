@@ -13,7 +13,7 @@
 		Korjaa paskasi!</h1>
 		
 		<div id="nappula">
-		<a href="/view/listaa-pizzat.jsp">Etusivulle</a>
+		<a href="/view/listaa-pizzat.jsp">Etusivulle </a>
 		</div>
 
 </body>
