@@ -45,9 +45,12 @@
 		Täytteet:<br> 		<% for (int i = 0; i < taytteet.size(); i++) {  //kuku%>
 							<input type="checkbox" name="tayte" value="<%=taytteet.get(i).getId()%>"><%=taytteet.get(i).getNimi()%><br>
 						<% } %>
-						<input type="submit" value="Pizza valmis!">
-						<a href="ListaaPizzatServlet" class="nappula">Peruuta</a>
+						
+						<input type="submit" class="button" value="Pizza valmis!">
+						<a href="ListaaPizzatServlet" class="button">Peruuta</a>
 		
 	</form>
+	
+	</div>
 </body>
 </html>
