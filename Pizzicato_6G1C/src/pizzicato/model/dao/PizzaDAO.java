@@ -162,5 +162,31 @@ public class PizzaDAO extends DataAccessObject {
 		}
 
 	}
-
+	
+	public void hidePizza (Pizza pizza) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+		try {
+			connection = getConnection();
+			if(pizza.getNakyvyys() == 1) {
+			stmtInsert = connection
+					.prepareStatement("UPDATE pizza SET nakyvyys = 0 WHERE id = (?);");
+			stmtInsert.setInt(1, pizza.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			}else if (pizza.getNakyvyys() == 0) {
+				stmtInsert = connection
+						.prepareStatement("UPDATE pizza SET nakyvyys = 1 WHERE id = (?);");
+				stmtInsert.setInt(1, pizza.getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
+			}
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			close(stmtInsert, connection);
+		}
+		
+	}
 }
