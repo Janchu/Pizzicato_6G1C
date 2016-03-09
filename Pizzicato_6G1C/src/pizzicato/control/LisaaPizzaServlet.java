@@ -98,7 +98,7 @@ public class LisaaPizzaServlet extends HttpServlet {
 		pizzadao.addPizza(uusiPizza);
 
 		} catch (Exception e) {
-			System.out.println("LisaaPizzaServletissä virhe");
+			response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp");
 		}
 	}
 
