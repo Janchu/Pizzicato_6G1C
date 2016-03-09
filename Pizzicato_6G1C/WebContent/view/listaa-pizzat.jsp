@@ -35,8 +35,10 @@
 			<li><a href="#">Yhteystiedot</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><span class="glyphicon glyphicon-user"></span> Rekisteröidy</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Kirjaudu sisään</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+					Rekisteröidy</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					Kirjaudu sisään</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -46,7 +48,7 @@
 		<div id="pizzalistataulukko">
 
 			<table>
-			<caption>Pizzalista</caption>
+				<caption>Pizzalista</caption>
 
 				<tr>
 					<th>Numero</th>
@@ -54,45 +56,49 @@
 					<th>Hinta</th>
 				</tr>
 
-				<%DecimalFormat decimal = new DecimalFormat("0.00");
+				<%
+					DecimalFormat decimal = new DecimalFormat("0.00");
 					int pizzanumero = 0;
 					for (int i = 0; i < pizzat.size(); i++) {
-						pizzanumero++;
 						
-												
+
+						if (pizzat.get(i).getNakyvyys() == 1) {
+							pizzanumero++;
 				%>
 
 
 				<tr>
-					<td width="100px"><%=pizzanumero%></td> 
-					<td><b><%=pizzat.get(i).getNimi()%><br> Täytteet:</b>
-						<% for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu %>
-							<%=pizzat.get(i).getTaytelista().get(j).getNimi()%>
-						<% }%>
-						</td>
+					<td width="100px"><%=pizzanumero%></td>
+					<td><b><%=pizzat.get(i).getNimi()%><br> Täytteet:</b> <%
+ 	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu
+ %>
+						<%=pizzat.get(i).getTaytelista().get(j)
+								.getNimi()%> <%
+ 	}
+ %></td>
 					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
 				</tr>
 				<%
+					}
 					}
 				%>
 			</table>
 		</div>
 
-		<a href="MuokkaaPizzalistaServlet" class="button">Siirry pizzalistan muokkaukseen</a>
-		<a href="ListaaPizzatServlet" class="button">Etusivulle</a>
-		
+		<a href="MuokkaaPizzalistaServlet" class="button">Siirry
+			pizzalistan muokkaukseen</a> <a href="ListaaPizzatServlet" class="button">Etusivulle</a>
+
 	</div>
 	<div id="footer">
-<div id ="footer_sisältö">
+		<div id="footer_sisältö">
 
-<p>Pizzeria Pizzicato<br>
-Puhelin: 01245678<br>
-Sähköpostiosoite: pizzicato@xxx.fi<br>
-Osoite: katu21 <br>
-Postitoimipaikka: Helsinki, 010101 <br>
- </p>
-</div>
+			<p>
+				Pizzeria Pizzicato<br> Puhelin: 01245678<br>
+				Sähköpostiosoite: pizzicato@xxx.fi<br> Osoite: katu21 <br>
+				Postitoimipaikka: Helsinki, 010101 <br>
+			</p>
+		</div>
 
-</div>
+	</div>
 </body>
 </html>
