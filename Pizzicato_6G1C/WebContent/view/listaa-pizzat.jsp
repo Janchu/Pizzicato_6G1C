@@ -78,11 +78,9 @@
 			</table>
 		</div>
 
-
-		<div id="nappulat">
-			<a href="MuokkaaPizzalistaServlet" class="nappula">Siirry
-				muokkaustilaan</a>
-		</div>
+		<a href="MuokkaaPizzalistaServlet" class="button">Siirry pizzalistan muokkaukseen</a>
+		<a href="ListaaPizzatServlet" class="button">Etusivulle</a>
+		
 	</div>
 	<div id="footer">
 <div id ="footer_sisältö">

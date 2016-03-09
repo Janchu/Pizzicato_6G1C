@@ -68,18 +68,15 @@
 				}
 			%><tr>
 <td></td>
-<td><a href="LisaaPizzaServlet" class="nappula">Lisää pizza</a></td>
+<td><a href="LisaaPizzaServlet" class="nappula"><h2>Lisää pizza</a></td>
 
 </tr>
 		</table>
 	</div>
-	<div id="nappula">
 	
-	<a href="ListaaPizzatServlet" class="nappula">Tallenna</a>
- 	<a href="ListaaPizzatServlet" class="nappula">Peruuta</a>
- 
+	<input type="submit" class="button" value="Tallenna">
+	<a href="ListaaPizzatServlet" class="button">Peruuta</a>
  </div>
- 
  
 		
 </body>
