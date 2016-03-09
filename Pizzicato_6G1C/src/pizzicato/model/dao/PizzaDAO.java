@@ -128,5 +128,35 @@ public class PizzaDAO extends DataAccessObject {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void deletePizza(Pizza pizza) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+		
+		try {
+		connection = getConnection();
+		String sqlInsert = "DELETE FROM tuote WHERE id = ?";   // <----- DELETE lause
+		stmtInsert = connection.prepareStatement(sqlInsert);
+		stmtInsert.setInt(1, pizza.getId());
+		stmtInsert.executeUpdate();
+		
+		
+		
+		sqlInsert = "DELETE FROM pizza WHERE id = ?;";   // <----- DELETE lause
+		stmtInsert.setInt(1, pizza.getId());
+		stmtInsert.executeUpdate();
+		
+		for (int i = 0; i < pizza.getTaytelista().size(); i++) {
+			sqlInsert = "INSERT INTO pizzatayte WHERE pizza_id = ?;"; // DELETE lause
+			stmtInsert.setInt(1, pizza.getId());
+			stmtInsert.executeUpdate();
+		}
+			
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
 
 }
