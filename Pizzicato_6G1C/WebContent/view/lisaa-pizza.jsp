@@ -37,12 +37,27 @@
 </nav>
 
 <div id="loota1">
-	
-	<h1>Syötä pizzan tiedot</h1>
-	<form method="post">
-		Pizzan nimi: 	<input type="text" name="pizzaNimi"><br>
-		Hinta:			<input type="text" name="pizzaHinta"><br>
-		Täytteet:<br> 		<% for (int i = 0; i < taytteet.size(); i++) {  %>
+
+
+<form>
+
+ 
+  <legend>Syötä pizzan tiedot:</legend>
+  <table>
+  <tr>
+  <td><label>Pizzan nimi:
+  <span class="pakollinen">*</span></label></td>
+  <td><input type="text" name="pizzaNimi" required><br><td></tr>
+  <tr>
+ <td><label>Hinta:
+  <span class="pakollinen">*</span></label></td>
+  <td><input type="text" name="pizzaHinta" required><br></td></tr>
+ </table>
+ 
+</form>
+		
+		
+		<h3>Täytteet:</h3><br> 		<% for (int i = 0; i < taytteet.size(); i++) {  %>
 							<input type="checkbox" name="tayte" value="<%=taytteet.get(i).getId()%>"> <%=taytteet.get(i).getNimi()%><br>
 						<% } %>
 						

@@ -92,4 +92,9 @@ font-weight:bold;}
     cursor: pointer;
 	border-radius:10px;
 }
+
+#pizzantietojensyotto fieldset 
+  {display:inline-block;
+           width:100px;}
+	.pakollinen {color:red}
 	
