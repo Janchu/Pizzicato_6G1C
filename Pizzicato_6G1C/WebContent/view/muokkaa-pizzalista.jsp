@@ -23,7 +23,7 @@
       <a class="navbar-brand" href="#">Pizzeria Pizzicato</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Etusivu</a></li>
+      <li class="active"><a href="ListaaPizzatServlet">Etusivu</a></li>
       <li><a href="#">:3</a></li>
       <li><a href="#">Yhteystiedot</a></li>
     </ul>
