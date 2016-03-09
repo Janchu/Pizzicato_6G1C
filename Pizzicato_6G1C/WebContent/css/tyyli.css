@@ -29,7 +29,7 @@ font-weight:bold;}
    
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+#pizzalistataulukko tr:nth-child(even){background-color: #f2f2f2}
 
 #pizzalistataulukko th {
     background-color: #4CAF50;
