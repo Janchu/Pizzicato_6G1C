@@ -61,7 +61,7 @@
 				<td width="100px"><%=pizzat.get(i).getHinta()%></td>
 				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Muokkaa pizzaa">
 				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Piilota / näytä">
-				<td width="50px"><a href="MuokkaaPizzaServlet"></a><input type="submit" value="Poista pizza">
+				<td width="50px"><a href="PoistaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><input type="submit" value="Poista pizza"></a>
 			</tr>
 			
 			<%
