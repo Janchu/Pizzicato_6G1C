@@ -42,7 +42,7 @@
 	<form method="post">
 		Pizzan nimi: 	<input type="text" name="pizzaNimi"><br>
 		Hinta:			<input type="text" name="pizzaHinta"><br>
-		Täytteet:<br> 		<% for (int i = 0; i < taytteet.size(); i++) { %>
+		Täytteet:<br> 		<% for (int i = 0; i < taytteet.size(); i++) {  //kuku%>
 							<input type="checkbox" name="tayte" value="<%=taytteet.get(i).getId()%>"><%=taytteet.get(i).getNimi()%><br>
 						<% } %>
 						<input type="submit" value="Pizza valmis!">

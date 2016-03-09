@@ -84,7 +84,7 @@ public class LisaaPizzaServlet extends HttpServlet {
 			String tayteNimi = taytteet.get(i).getNimi();
 			System.out.println(tayteNimi);
 			Double tayteHinta = 0.00;
-
+			//
 			Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteHinta);
 			taytelista.add(uusiTayte);
 		}
