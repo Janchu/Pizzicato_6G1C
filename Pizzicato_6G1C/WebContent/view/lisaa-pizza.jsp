@@ -65,7 +65,7 @@
 						
 						<input type="submit" class="button" value="Pizza valmis!">
 						<a href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
-		
+		</form>
 	</div>
 </body>
 </html>

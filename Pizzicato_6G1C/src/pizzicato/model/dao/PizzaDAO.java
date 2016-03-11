@@ -210,6 +210,18 @@ public class PizzaDAO extends DataAccessObject {
 			stmtInsert.setInt(2,pizza.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
+
+			for (int i = 0; i < pizza.getTaytelista().size(); i++) {
+				stmtInsert = connection
+						.prepareStatement("UPDATE pizzatayte SET tayte_id = (?) WHERE pizza_id = (?);");
+
+				stmtInsert.setInt(1, pizza.getTaytelista().get(i).getId());
+				stmtInsert.setInt(2, pizza.getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
+			}
+			
+			
 			
 		}catch (SQLException e) {
 			throw new RuntimeException(e);

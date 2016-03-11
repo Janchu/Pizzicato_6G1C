@@ -86,33 +86,7 @@
 
 
 
-			<h3>Täytteet:</h3>
-			<br>
-			<%
-				for (int i = 0; i < taytteet.size(); i++) {
-					for (int j = 0; j < vanhatTaytteet.size(); j++) { //
-						
-						if (taytteet.get(i).getId() == vanhatTaytteet.get(j).getId()) {
-							%>
-							<input type="checkbox" name="tayte" checked="checked"
-							value="<%=taytteet.get(i).getId()%>">
-						<%=taytteet.get(i).getNimi()%><br>
-							<%
-						}  %>						
-						
-						<%
-						}
-					
-					
-					%>
-					
-					<input type="checkbox" name="tayte"
-							value="<%=taytteet.get(i).getId()%>">
-						<%=taytteet.get(i).getNimi()%><br><%
-					}
 
-				
-			%>
 			<input type="hidden" name="pizzaId" value="<%=id %>">
 			<input type="submit" class="button" value="Pizza valmis!"> <a
 				href="ListaaPizzatServlet" class="button">Peruuta</a>
