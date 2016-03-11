@@ -47,25 +47,25 @@
   <tr>
   <td><label>Pizzan nimi:
   <span class="pakollinen">*</span></label></td>
-  <td><input type="text" name="pizzaNimi" required><br><td></tr>
+  <td><input type="text" name="pizzaNimi" required></td>
+  <td> Max 20 merkkiä</td>
+  </tr>
+  
   <tr>
  <td><label>Hinta:
   <span class="pakollinen">*</span></label></td>
-  <td><input type="text" name="pizzaHinta" required><br></td></tr>
+  <td><input type="text" name="pizzaHinta" required></td>
+  <td>Hinta muotoa 0.00</td>
+  </tr>
  </table>
  
-
-		
-		
 		<h3>Täytteet:</h3><br> 		<% for (int i = 0; i < taytteet.size(); i++) {  %>
 							<input type="checkbox" name="tayte" value="<%=taytteet.get(i).getId()%>"> <%=taytteet.get(i).getNimi()%><br>
 						<% } %>
 						
 						<input type="submit" class="button" value="Pizza valmis!">
-						<a href="ListaaPizzatServlet" class="button">Peruuta</a>
+						<a href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
 		
-	</form>
-	
 	</div>
 </body>
 </html>

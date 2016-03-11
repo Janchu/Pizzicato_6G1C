@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -40,16 +41,17 @@
 		<table>
 		<caption>Pizzalista</caption>
 			<tr>
+				<th>Näkyvillä</th>
 				<th>Numero</th>
 				<th>Nimi</th>
 				<th>Hinta</th>
-				<th>Näkyvyys</th>
 				<th>Muokkaa</th>
 				<th>Piilota</th>
 				<th>Poista</th>
 			</tr>
 
 			<%
+				DecimalFormat decimal = new DecimalFormat("0.00");
 				int pizzanumero = 0;
 				for (int i = 0; i < pizzat.size(); i++) { //kukkuu
 					pizzanumero++;
@@ -77,15 +79,17 @@
 			<%
 				}
 			%><tr>
-<td></td>
-<td><a href="LisaaPizzaServlet" class="nappula"><h2>Lisää pizza</a></td>
+
+
+<td width="100px"><a href="LisaaPizzaServlet" class="button">Lisää pizza</a></td>
+<td></td><td></td><td></td><td></td><td></td><td></td>
 
 </tr>
 		</table>
 	</div>
 	
-	<input type="submit" class="button" value="Tallenna">
-	<a href="ListaaPizzatServlet" class="button">Peruuta</a>
+	
+	<a href="ListaaPizzatServlet" class="button">Poistu muokkaustilasta</a>
  </div>
  
 		

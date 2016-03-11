@@ -90,7 +90,7 @@
 			<br>
 			<%
 				for (int i = 0; i < taytteet.size(); i++) {
-					for (int j = 0; j < vanhatTaytteet.size(); j++) {
+					for (int j = 0; j < vanhatTaytteet.size(); j++) { //
 						
 						if (taytteet.get(i).getId() == vanhatTaytteet.get(j).getId()) {
 							%>

@@ -86,7 +86,7 @@
 		</div>
 
 		<a href="MuokkaaPizzalistaServlet" class="button">Siirry
-			pizzalistan muokkaukseen</a> <a href="ListaaPizzatServlet" class="button">Etusivulle</a>
+			pizzalistan muokkaukseen</a> 
 
 	</div>
 	<div id="footer">

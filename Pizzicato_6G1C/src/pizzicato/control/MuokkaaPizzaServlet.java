@@ -69,7 +69,7 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 				String idStr = request.getParameter("pizzaId");
 				int id = new Integer(idStr);
 		
-		// N‰m‰ arvot ovat pelk‰st‰‰n futureproofia varten.
+		// N‰m‰ arvot ovat pelk‰st‰‰n futureproofia varten. /
 				String tyyppi = "pizza";
 				int nakyvyys = 1;
 				String pohja = "normaali";
