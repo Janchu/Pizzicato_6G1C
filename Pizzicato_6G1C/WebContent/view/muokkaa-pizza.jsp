@@ -90,7 +90,7 @@
 
 			<input type="hidden" name="pizzaId" value="<%=id %>">
 			<input type="submit" class="button" value="Pizza valmis!"> <a
-				href="ListaaPizzatServlet" class="button">Peruuta</a>
+				href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
 
 		</form>
 	</div>
