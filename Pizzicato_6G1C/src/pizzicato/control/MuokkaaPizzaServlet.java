@@ -30,10 +30,16 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
+		
+		String muokattavapizzaid = request.getParameter("PizId");		
+		int PId = new Integer (muokattavapizzaid);		
+		request.setAttribute("muokattavapizzaid", PId);
 
 		// ArrayList tallennetaan request-olioon jsp:lle viet‰v‰ksi
 		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("taytteet", taytteet);
+		
+
 
 		// L‰hetet‰‰n jsp:lle
 		String jsp = "/view/muokkaa-pizza.jsp";
@@ -60,7 +66,8 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 				double hinta = new Double(hintaStr);
 				formatter.format(hinta);
 				
-				int id = 0;
+				String idStr = request.getParameter("pizzaId");
+				int id = new Integer(idStr);
 		
 		// N‰m‰ arvot ovat pelk‰st‰‰n futureproofia varten.
 				String tyyppi = "pizza";
@@ -81,10 +88,10 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 				
 				try {
 					// Luodaan uusi pizza olio kantaan viet‰v‰ksi
-					Pizza uusiPizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys,
+					Pizza muokattuPizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys,
 							pohja, taytelista);
 
-					pizzadao.addPizza(uusiPizza);
+					pizzadao.updatePizza(muokattuPizza);
 
 				} catch (Exception e) {
 					response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp"); // 

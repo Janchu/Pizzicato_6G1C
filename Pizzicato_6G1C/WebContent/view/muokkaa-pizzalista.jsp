@@ -63,11 +63,11 @@
 			%>
 
 			<tr>
-				<td width="50px"><%=nakyvyys %></td>
+				
 				<td width="50px"><%=pizzanumero%></td>
 				<td><%=pizzat.get(i).getNimi()%></td>
 				<td width="100px"><%=pizzat.get(i).getHinta()%></td>
-
+				<td width="50px"><%=nakyvyys %></td>
 				<td width="50px"><a href="MuokkaaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><input type="submit" value="Muokkaa pizzaa"></a></td>
 				<td width="50px"><a href="PiilotaPizzaServlet?Nakyvyys=<%=pizzat.get(i).getNakyvyys()%>&Id=<%=pizzat.get(i).getId()%>"><input type="submit" value="Piilota / näytä"></a></td>
 				<td width="50px"><a href="PoistaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><input type="submit" value="Poista pizza"></a></td>
