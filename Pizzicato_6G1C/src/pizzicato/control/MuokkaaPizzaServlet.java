@@ -69,22 +69,21 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 				String idStr = request.getParameter("pizzaId");
 				int id = new Integer(idStr);
 		
-		// N‰m‰ arvot ovat pelk‰st‰‰n futureproofia varten. /
+		// N‰m‰ arvot ovat pelk‰st‰‰n futureproofia varten. 
 				String tyyppi = "pizza";
 				int nakyvyys = 1;
 				String pohja = "normaali";
 				
-				String[] tayte = request.getParameterValues("tayte");
-				for (int i = 0; i < tayte.length; i++) {
+				
+				
 
-					int tayteId = new Integer(tayte[i]);
-					String tayteNimi = taytteet.get(i).getNimi();
-					System.out.println(tayteNimi);
+					int tayteId = 0;
+					String tayteNimi = "";
 					Double tayteHinta = 0.00;
-					//
+					
 					Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteHinta);
 					taytelista.add(uusiTayte);
-				}
+				
 				
 				try {
 					// Luodaan uusi pizza olio kantaan viet‰v‰ksi
