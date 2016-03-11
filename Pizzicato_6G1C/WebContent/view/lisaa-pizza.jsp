@@ -39,7 +39,7 @@
 <div id="loota1">
 
 
-<form>
+<form method="post">
 
  
   <legend>Syötä pizzan tiedot:</legend>
@@ -54,7 +54,7 @@
   <td><input type="text" name="pizzaHinta" required><br></td></tr>
  </table>
  
-</form>
+
 		
 		
 		<h3>Täytteet:</h3><br> 		<% for (int i = 0; i < taytteet.size(); i++) {  %>

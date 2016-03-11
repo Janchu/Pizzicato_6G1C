@@ -43,6 +43,7 @@
 				<th>Numero</th>
 				<th>Nimi</th>
 				<th>Hinta</th>
+				<th>Näkyvyys</th>
 				<th>Muokkaa</th>
 				<th>Piilota</th>
 				<th>Poista</th>
@@ -52,16 +53,25 @@
 				int pizzanumero = 0;
 				for (int i = 0; i < pizzat.size(); i++) { //kukkuu
 					pizzanumero++;
+					int nakyvyysInt = pizzat.get(i).getNakyvyys();
+					String nakyvyys = "";
+					if (nakyvyysInt == 1) {
+						nakyvyys = "Näkyvillä";
+					} else {
+						nakyvyys = "Piilossa";
+					}
 			%>
 
 			<tr>
-
+				<td width="50px"><%=nakyvyys %></td>
 				<td width="50px"><%=pizzanumero%></td>
 				<td><%=pizzat.get(i).getNimi()%></td>
 				<td width="100px"><%=pizzat.get(i).getHinta()%></td>
+
 				<td width="50px"><a href="MuokkaaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><input type="submit" value="Muokkaa pizzaa"></a></td>
 				<td width="50px"><a href="PiilotaPizzaServlet?Nakyvyys=<%=pizzat.get(i).getNakyvyys()%>&Id=<%=pizzat.get(i).getId()%>"><input type="submit" value="Piilota / näytä"></a></td>
 				<td width="50px"><a href="PoistaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><input type="submit" value="Poista pizza"></a></td>
+
 			</tr>
 			
 			<%
