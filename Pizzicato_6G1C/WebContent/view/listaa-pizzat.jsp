@@ -84,10 +84,9 @@
 				%>
 			</table>
 		</div>
-
-		<a href="MuokkaaPizzalistaServlet" class="button">Siirry
-			pizzalistan muokkaukseen</a> 
-
+<div id="nappulasijainti">
+<a href="MuokkaaPizzalistaServlet" class="button">Siirry pizzalistan muokkaukseen</a> 
+</div>
 	</div>
 	<div id="footer">
 		<div id="footer_sisältö">
