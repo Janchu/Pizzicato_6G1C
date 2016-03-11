@@ -73,13 +73,14 @@
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>"
-						required><br>
-					<td>
+						required></td>
+						<td>Max 20 merkkiä</td>
 				</tr>
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaHinta"
-						value="<%=pizzaHinta%>" required><br></td>
+						value="<%=pizzaHinta%>" required></td>
+						<td>Hinta muotoa 0.00</td>
 				</tr>
 			</table>
 
