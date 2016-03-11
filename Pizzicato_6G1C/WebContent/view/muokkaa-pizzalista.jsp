@@ -48,7 +48,7 @@
 				<th>Näkyvillä</th>
 				<th>Muokkaa</th>
 				<th>Piilota</th>
-				<th>Poista</th>
+				<th>Poista</th> 
 			</tr>
 
 			<%
@@ -59,7 +59,7 @@
 					int nakyvyysInt = pizzat.get(i).getNakyvyys();
 					String nakyvyys = "";
 					if (nakyvyysInt == 1) {
-						nakyvyys = "Näkyvillä";
+						nakyvyys = "Näkyvillä"; //
 					} else {
 						nakyvyys = "Piilossa";
 					}
@@ -82,15 +82,15 @@
 			%><tr>
 
 
-<td width="100px"><a href="LisaaPizzaServlet" class="button">Lisää pizza</a></td>
-<td></td><td></td><td></td><td></td><td></td><td></td>
 
-</tr>
+
 		</table>
 	</div>
 	
-	
+	<div id="nappulasijainti">
+	<a href="LisaaPizzaServlet" class="button">Lisää pizza</a>
 	<a href="ListaaPizzatServlet" class="button">Poistu muokkaustilasta</a>
+	</div>
  </div>
  
 		
