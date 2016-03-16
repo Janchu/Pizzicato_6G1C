@@ -43,8 +43,12 @@
 	</div>
 	</nav>
 
+<!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
 
 	<div id="loota1">
+	
+<!-- pizzalista on toteutettu taulukkona -->
+	
 		<div id="pizzalistataulukko">
 
 			<table>
@@ -82,11 +86,15 @@
 				%>
 			</table>
 		</div>
+		
 		<div id="nappulasijainti">
 			<a href="MuokkaaPizzalistaServlet" class="button">Siirry
 				pizzalistan muokkaukseen</a>
 		</div>
 	</div>
+	
+<!-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. -->
+
 	<div id="footer">
 		<div id="footer_sisältö">
 
