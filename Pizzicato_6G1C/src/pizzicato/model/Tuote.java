@@ -24,7 +24,7 @@ public class Tuote {
 		this.hinta = hinta;
 	}
 
-	// Oliokonstruktori hyuehuehue
+	// Oliokonstruktori
 	public Tuote(Tuote tuote) {
 		this.id = tuote.getId();
 		this.tyyppi = tuote.getTyyppi();
