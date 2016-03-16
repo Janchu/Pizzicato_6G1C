@@ -11,10 +11,17 @@ import pizzicato.model.Tayte;
 import pizzicato.model.dao.DataAccessObject;
 
 public class PizzaDAO extends DataAccessObject {
-	
+
+	/**
+	 * Kaivaa kannasta pizzat ja niiden tiedot. Luo jokaisesta kannassa olevasta
+	 * pizzasta Pizza-olion. Tekee luoduista Pizza-olioista ArrayListin.
+	 * 
+	 * @return Palauttaa valmiin pizzalista-ArrayListin
+	 */
 	public ArrayList<Pizza> findAll() {
-		
-		// Alustetaan Connection-, PreparedStatement-, ResultSet-,  nulleiksi ennen try-catchia
+
+		// Alustetaan Connection-, PreparedStatement-, ResultSet-, nulleiksi
+		// ennen try-catchia
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -51,16 +58,25 @@ public class PizzaDAO extends DataAccessObject {
 		return pizzalista;
 	}
 
+	/**
+	 * Tuodaan lisattavaPizza-olio addPizza-metodille. Vied‰‰n kantaan tiedot
+	 * tuote-, pizza- ja pizzatayte-tauluihin.
+	 * 
+	 * @param lisattavaPizza
+	 *            Mukana tuotava Pizza-olio
+	 * @throws SQLException
+	 */
 	public void addPizza(Pizza lisattavaPizza) throws SQLException {
 
-		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen try-catchia
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
 
 		try {
 			connection = getConnection();
 			stmtInsert = connection
-					.prepareStatement("INSERT INTO tuote(tyyppi, nimi, hinta) VALUES (?, ?, ?);"); 
+					.prepareStatement("INSERT INTO tuote(tyyppi, nimi, hinta) VALUES (?, ?, ?);");
 
 			stmtInsert.setString(1, lisattavaPizza.getTyyppi());
 			stmtInsert.setString(2, lisattavaPizza.getNimi());
@@ -69,7 +85,7 @@ public class PizzaDAO extends DataAccessObject {
 			stmtInsert.close();
 
 			stmtInsert = connection
-					.prepareStatement("INSERT INTO pizza(id, nakyvyys, pohja) VALUES (last_insert_id(), ?, ?);"); 
+					.prepareStatement("INSERT INTO pizza(id, nakyvyys, pohja) VALUES (last_insert_id(), ?, ?);");
 
 			stmtInsert.setInt(1, lisattavaPizza.getNakyvyys());
 			stmtInsert.setString(2, lisattavaPizza.getPohja());
@@ -81,7 +97,8 @@ public class PizzaDAO extends DataAccessObject {
 				stmtInsert = connection
 						.prepareStatement("INSERT INTO pizzatayte(pizza_id, tayte_id) VALUES (last_insert_id(), ?);");
 
-				stmtInsert.setInt(1, lisattavaPizza.getTaytelista().get(i).getId());
+				stmtInsert.setInt(1, lisattavaPizza.getTaytelista().get(i)
+						.getId());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
 			}
@@ -95,42 +112,18 @@ public class PizzaDAO extends DataAccessObject {
 
 	}
 
-	private Pizza readPizza(ResultSet rs) {
-		try {
-			// Haetaan yhden pizzan tiedot
-			int id = rs.getInt("pizza.id");
-			String tyyppi = rs.getString("tuote.tyyppi");
-			String nimi = rs.getString("tuote.nimi");
-			double hinta = rs.getDouble("tuote.hinta");
-			int nakyvyys = rs.getInt("pizza.nakyvyys");
-			String pohja = rs.getString("pizza.pohja");
-			ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
-
-			// Palautetaan pizza
-			return new Pizza(id, tyyppi, nimi, hinta, nakyvyys, pohja,
-					taytelista);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-
-	}
-
-	private Tayte readTayte(ResultSet rs) {
-		try {
-			// Haetaan yhden t‰ytteen tiedot
-			int id = rs.getInt("tayte.id");
-			String nimi = rs.getString("tayte");
-			double hinta = rs.getDouble("tayte.hinta");
-
-			return new Tayte(id, nimi, hinta);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
+	/**
+	 * Metodiin tuodaan poistettavaPizza-olio, jonka id:n perusteella kannasta
+	 * poistetaan tietty pizza ja sen yhteydet t‰ytteisiin.
+	 * 
+	 * @param poistettavaPizza
+	 *            Mukana tuotava Pizza-olio
+	 * @throws SQLException
+	 */
 	public void deletePizza(Pizza poistettavaPizza) throws SQLException {
 
-		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen try-catchia
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
 		poistettavaPizza.getId();
@@ -164,9 +157,18 @@ public class PizzaDAO extends DataAccessObject {
 
 	}
 
+	/**
+	 * Tuodaan mukana piilotettavaPizza-olio, jonka id:n perusteella kannasta
+	 * muutetaan kyseisen pizzan nakyvyys-ominaisuutta.
+	 * 
+	 * @param piilotettavaPizza
+	 *            Mukana tuotava Pizza-olio
+	 * @throws SQLException
+	 */
 	public void hidePizza(Pizza piilotettavaPizza) throws SQLException {
 
-		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen try-catchia
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
 		try {
@@ -192,9 +194,18 @@ public class PizzaDAO extends DataAccessObject {
 
 	}
 
+	/**
+	 * Tuodaan mukana paivitettavaPizza-olio, jonka id:n perusteella kannassa
+	 * tehd‰‰n muutokset pizza-, tuote- ja pizzatayte-tauluihin.
+	 * 
+	 * @param paivitettavaPizza
+	 *            Mukana tuotava Pizza-olio
+	 * @throws SQLException
+	 */
 	public void updatePizza(Pizza paivitettavaPizza) throws SQLException {
-		
-		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen try-catchia
+
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
 
@@ -220,4 +231,39 @@ public class PizzaDAO extends DataAccessObject {
 			close(stmtInsert, connection);
 		}
 	}
+	
+	private Pizza readPizza(ResultSet rs) {
+		try {
+			// Haetaan yhden pizzan tiedot
+			int id = rs.getInt("pizza.id");
+			String tyyppi = rs.getString("tuote.tyyppi");
+			String nimi = rs.getString("tuote.nimi");
+			double hinta = rs.getDouble("tuote.hinta");
+			int nakyvyys = rs.getInt("pizza.nakyvyys");
+			String pohja = rs.getString("pizza.pohja");
+			ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
+
+			// Palautetaan pizza
+			return new Pizza(id, tyyppi, nimi, hinta, nakyvyys, pohja,
+					taytelista);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	private Tayte readTayte(ResultSet rs) {
+		try {
+			// Haetaan yhden t‰ytteen tiedot
+			int id = rs.getInt("tayte.id");
+			String nimi = rs.getString("tayte");
+			double hinta = rs.getDouble("tayte.hinta");
+
+			return new Tayte(id, nimi, hinta);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
 }

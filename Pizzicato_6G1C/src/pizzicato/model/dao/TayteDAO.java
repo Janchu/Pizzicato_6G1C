@@ -10,6 +10,12 @@ import pizzicato.model.Tayte;
 
 public class TayteDAO extends DataAccessObject {
 
+	/**
+	 * Kaivaa kannasta kaikki täytteet ja niiden tiedot. Luo jokaisesta
+	 * täytteestä Tayte-olion. Tekee Luoduista Tayte-olioista ArrayListin.
+	 * 
+	 * @return Palauttaa valmiin taytelista-ArrayListin
+	 */
 	public ArrayList<Tayte> findAll() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -35,6 +41,7 @@ public class TayteDAO extends DataAccessObject {
 		}
 		return taytelista;
 	}
+
 
 	private Tayte readTayte(ResultSet rs) {
 		try {
