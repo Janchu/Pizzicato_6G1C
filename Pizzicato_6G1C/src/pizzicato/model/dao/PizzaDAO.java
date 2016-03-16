@@ -11,54 +11,10 @@ import pizzicato.model.Tayte;
 import pizzicato.model.dao.DataAccessObject;
 
 public class PizzaDAO extends DataAccessObject {
-
-	public void addPizza(Pizza pizza) throws SQLException {
-		Connection connection = null;
-		PreparedStatement stmtInsert = null;
-
-		try {
-			connection = getConnection();
-			stmtInsert = connection
-					.prepareStatement("INSERT INTO tuote(tyyppi, nimi, hinta) VALUES (?, ?, ?);"); // <-----
-																									// Insert
-																									// lause
-
-			stmtInsert.setString(1, pizza.getTyyppi());
-			stmtInsert.setString(2, pizza.getNimi());
-			stmtInsert.setDouble(3, pizza.getHinta());
-			stmtInsert.executeUpdate();
-			stmtInsert.close();
-
-			stmtInsert = connection
-					.prepareStatement("INSERT INTO pizza(id, nakyvyys, pohja) VALUES (last_insert_id(), ?, ?);"); // <-----
-																													// Insert
-																													// lause
-
-			stmtInsert.setInt(1, pizza.getNakyvyys());
-			stmtInsert.setString(2, pizza.getPohja());
-			stmtInsert.executeUpdate();
-			stmtInsert.close();
-			System.out.println(pizza.getTaytelista());
-
-			for (int i = 0; i < pizza.getTaytelista().size(); i++) {
-				stmtInsert = connection
-						.prepareStatement("INSERT INTO pizzatayte(pizza_id, tayte_id) VALUES (last_insert_id(), ?);");
-
-				stmtInsert.setInt(1, pizza.getTaytelista().get(i).getId());
-				stmtInsert.executeUpdate();
-				stmtInsert.close();
-			}
-
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException(e);
-		} finally {
-			close(stmtInsert, connection);
-		}
-
-	}
-
+	
 	public ArrayList<Pizza> findAll() {
+		
+		// Alustetaan Connection-, PreparedStatement-, ResultSet-,  nulleiksi ennen try-catchia
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -95,6 +51,50 @@ public class PizzaDAO extends DataAccessObject {
 		return pizzalista;
 	}
 
+	public void addPizza(Pizza lisattavaPizza) throws SQLException {
+
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen try-catchia
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+
+		try {
+			connection = getConnection();
+			stmtInsert = connection
+					.prepareStatement("INSERT INTO tuote(tyyppi, nimi, hinta) VALUES (?, ?, ?);"); 
+
+			stmtInsert.setString(1, lisattavaPizza.getTyyppi());
+			stmtInsert.setString(2, lisattavaPizza.getNimi());
+			stmtInsert.setDouble(3, lisattavaPizza.getHinta());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+
+			stmtInsert = connection
+					.prepareStatement("INSERT INTO pizza(id, nakyvyys, pohja) VALUES (last_insert_id(), ?, ?);"); 
+
+			stmtInsert.setInt(1, lisattavaPizza.getNakyvyys());
+			stmtInsert.setString(2, lisattavaPizza.getPohja());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			System.out.println(lisattavaPizza.getTaytelista());
+
+			for (int i = 0; i < lisattavaPizza.getTaytelista().size(); i++) {
+				stmtInsert = connection
+						.prepareStatement("INSERT INTO pizzatayte(pizza_id, tayte_id) VALUES (last_insert_id(), ?);");
+
+				stmtInsert.setInt(1, lisattavaPizza.getTaytelista().get(i).getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtInsert, connection);
+		}
+
+	}
+
 	private Pizza readPizza(ResultSet rs) {
 		try {
 			// Haetaan yhden pizzan tiedot
@@ -128,30 +128,31 @@ public class PizzaDAO extends DataAccessObject {
 		}
 	}
 
-	public void deletePizza(Pizza poistettavapizza) throws SQLException {
+	public void deletePizza(Pizza poistettavaPizza) throws SQLException {
 
-		Connection connection = null; // kukkuu
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen try-catchia
+		Connection connection = null;
 		PreparedStatement stmtInsert = null;
-		poistettavapizza.getId();
-		System.out.println(poistettavapizza.getId());
+		poistettavaPizza.getId();
+		System.out.println(poistettavaPizza.getId());
 		try {
 			connection = getConnection();
 
 			stmtInsert = connection
 					.prepareStatement("DELETE FROM pizzatayte WHERE pizza_id = (?);");
-			stmtInsert.setInt(1, poistettavapizza.getId());
+			stmtInsert.setInt(1, poistettavaPizza.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
 			stmtInsert = connection
 					.prepareStatement("DELETE FROM pizza WHERE id = (?);");
-			stmtInsert.setInt(1, poistettavapizza.getId());// <----- DELETE
+			stmtInsert.setInt(1, poistettavaPizza.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
 			stmtInsert = connection
 					.prepareStatement("DELETE FROM tuote WHERE id = (?);");
-			stmtInsert.setInt(1, poistettavapizza.getId());
+			stmtInsert.setInt(1, poistettavaPizza.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
@@ -163,22 +164,23 @@ public class PizzaDAO extends DataAccessObject {
 
 	}
 
-	public void hidePizza(Pizza pizza) throws SQLException {
+	public void hidePizza(Pizza piilotettavaPizza) throws SQLException {
 
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
 		try {
 			connection = getConnection();
-			if (pizza.getNakyvyys() == 1) {
+			if (piilotettavaPizza.getNakyvyys() == 1) {
 				stmtInsert = connection
 						.prepareStatement("UPDATE pizza SET nakyvyys = 0 WHERE id = (?);");
-				stmtInsert.setInt(1, pizza.getId());
+				stmtInsert.setInt(1, piilotettavaPizza.getId());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
-			} else if (pizza.getNakyvyys() == 0) {
+			} else if (piilotettavaPizza.getNakyvyys() == 0) {
 				stmtInsert = connection
 						.prepareStatement("UPDATE pizza SET nakyvyys = 1 WHERE id = (?);");
-				stmtInsert.setInt(1, pizza.getId());
+				stmtInsert.setInt(1, piilotettavaPizza.getId());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
 			}
@@ -190,7 +192,9 @@ public class PizzaDAO extends DataAccessObject {
 
 	}
 
-	public void updatePizza(Pizza pizza) throws SQLException {
+	public void updatePizza(Pizza paivitettavaPizza) throws SQLException {
+		
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
 
@@ -198,15 +202,15 @@ public class PizzaDAO extends DataAccessObject {
 			connection = getConnection();
 			stmtInsert = connection
 					.prepareStatement("UPDATE tuote SET nimi = (?) WHERE id = (?)");
-			stmtInsert.setString(1, pizza.getNimi());
-			stmtInsert.setInt(2, pizza.getId());
+			stmtInsert.setString(1, paivitettavaPizza.getNimi());
+			stmtInsert.setInt(2, paivitettavaPizza.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
 			stmtInsert = connection
 					.prepareStatement("UPDATE tuote SET hinta = (?) WHERE id = (?)");
-			stmtInsert.setDouble(1, pizza.getHinta());
-			stmtInsert.setInt(2, pizza.getId());
+			stmtInsert.setDouble(1, paivitettavaPizza.getHinta());
+			stmtInsert.setInt(2, paivitettavaPizza.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 

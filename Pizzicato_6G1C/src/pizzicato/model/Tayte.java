@@ -47,7 +47,7 @@ public class Tayte {
 		this.hinta = hinta;
 	}
 
-	// To-String
+	// toString
 
 	@Override
 	public String toString() {

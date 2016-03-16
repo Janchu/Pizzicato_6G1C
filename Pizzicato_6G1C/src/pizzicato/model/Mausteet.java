@@ -37,7 +37,7 @@ public class Mausteet {
 		this.mausteet = mausteet;
 	}
 
-	// to string
+	// toString
 
 	@Override
 	public String toString() {
