@@ -3,43 +3,48 @@ background-image: url("../images/italolib.jpg");
 background-size: 100% 100%;
 }
 
+/* caption muokkaa taulukon otsikon kokoa */
 caption {
 font-size:170%;
-font-weight:bold;}
+font-weight:bold;
+}
 
 
-
+/* pizzalistataulukko muokkaa taulukon leveytt‰, ym */
 #pizzalistataulukko  table {
 	width:80%;
 	margin-left:10%;
 	padding:20px;
-  
 }
 
+/* td padding lis‰‰ tilaa taulukon vaakasolun ymp‰rill‰ */
 #pizzalistataulukko	td {
 padding:20px;
 }
+
+/* th padding-left siirt‰‰ taulukon otsikkosolua samalle tasolle muun tekstin kanssa*/
 #pizzalistataulukko th, td {
     text-align: left;
 	padding-left:20px;  
 }
 
-
+/* TƒRKEƒ, tekee PIZZALISTATAULUKON joka toisen vaakarivin eriv‰riseksi*/
 #pizzalistataulukko tr:nth-child(even){background-color: #f2f2f2}
 
+/* th:n background-color tekee otsikkosolusta vihre‰n ja color otsikoiden v‰rist‰ valkoisen */
 #pizzalistataulukko th {
     background-color: #4CAF50;
     color: white;
 }
 
+/* Sijoittaa nappulat loota1:n sis‰ll‰ haluttuun sijaintiin */
 #nappulasijainti {
 margin-top:20px;
-margin-left:10%
-
+margin-left:10%;
 }
 
 
-     	
+ /* m‰‰ritt‰‰ navigaatiopalkin pysym‰‰n aina ylh‰‰ll‰, sen v‰rin ja leveyden */    	
  #navigaatio {
  position:fixed;
  top:0;
@@ -52,7 +57,7 @@ margin-left:10%
    background:white;
 }
  
-				
+/* M‰‰ritt‰‰ lootan leveyden, v‰rin, korkeuden, sijainnin ja kaiken */			
 #loota1 {
 		background-color: white;
     	width:72%;
@@ -63,7 +68,8 @@ margin-left:10%
 		margin-bottom:20px;
 		margin-left:15%;
 		}
-			
+		
+/* M‰‰ritt‰‰ footerin v‰rin, leveyden, sijainnin ja tekstin ominaisuudet */			
 	#footer {
 	
 	background-color:black;
@@ -79,6 +85,8 @@ margin-left:10%
 	#footer_sis‰ltˆ {float:left;}
 	#footer_kartta {float:right;}
 	
+/* Vihre‰n nappulan class, joka m‰‰ritt‰‰ sen ominaisuudet */
+	
 	.button {
     background-color: #4CAF50;
     border: none;
@@ -93,8 +101,7 @@ margin-left:10%
 	border-radius:10px;
 }
 
-#pizzantietojensyotto fieldset 
-  {display:inline-block;
-           width:100px;}
+/* lisaa-pizza.jsp syˆttˆkent‰n * pakollinen merkin t‰hti punaiseksi */
+
 	.pakollinen {color:red}
 	
