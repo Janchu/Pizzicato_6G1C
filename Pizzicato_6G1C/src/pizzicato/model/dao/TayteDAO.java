@@ -12,7 +12,7 @@ public class TayteDAO extends DataAccessObject {
 
 	/**
 	 * Kaivaa kannasta kaikki täytteet ja niiden tiedot. Luo jokaisesta
-	 * täytteestä Tayte-olion. Tekee Luoduista Tayte-olioista ArrayListin.
+	 * täytteestä Tayte-olion ja tekee luoduista Tayte-olioista ArrayListin.
 	 * 
 	 * @return Palauttaa valmiin taytelista-ArrayListin
 	 */

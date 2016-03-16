@@ -14,7 +14,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	/**
 	 * Kaivaa kannasta pizzat ja niiden tiedot. Luo jokaisesta kannassa olevasta
-	 * pizzasta Pizza-olion. Tekee luoduista Pizza-olioista ArrayListin.
+	 * pizzasta Pizza-olion ja tekee luoduista Pizza-olioista ArrayListin.
 	 * 
 	 * @return Palauttaa valmiin pizzalista-ArrayListin
 	 */
