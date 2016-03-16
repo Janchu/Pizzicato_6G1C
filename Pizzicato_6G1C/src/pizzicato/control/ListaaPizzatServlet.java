@@ -37,7 +37,6 @@ public class ListaaPizzatServlet extends HttpServlet {
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request,

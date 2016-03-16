@@ -5,7 +5,7 @@
 <%@page import="pizzicato.model.Pizza"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
 	scope="request" />
-<jsp:useBean id="poistettavapizzaid" scope="request"
+<jsp:useBean id="poistettavaPizzaId" scope="request"
 	type="java.lang.Integer" />
 <html>
 <head>
@@ -15,19 +15,25 @@
 <body>
 
 	<%
-	int poistaId = 0;
-	for (int i = 0; i < pizzat.size(); i++) { //kukkuu
+		int poistaId = 0;
+		for (int i = 0; i < pizzat.size(); i++) { //kukkuu
 			int id = pizzat.get(i).getId();
-			if (id == poistettavapizzaid) {
-				poistaId = id;%>
-				<%=pizzat.get(i).getNimi()%>
-			<% } %>
-			
-		<%}%>
-	
+			if (id == poistettavaPizzaId) {
+				poistaId = id;
+	%>
+	<%=pizzat.get(i).getNimi()%>
+	<%
+		}
+	%>
+
+	<%
+		}
+	%>
+
 	<form method="post">
-	<input type="hidden" name="pid" value="<%=poistaId %>">
-	<input type="submit" value="Poista"></form>
+		<input type="hidden" name="pid" value="<%=poistaId%>"> <input
+			type="submit" value="Poista">
+	</form>
 
 </body>
 </html>

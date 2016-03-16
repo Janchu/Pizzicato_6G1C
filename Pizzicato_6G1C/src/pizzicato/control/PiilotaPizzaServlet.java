@@ -19,32 +19,41 @@ import pizzicato.model.dao.PizzaDAO;
 @WebServlet("/PiilotaPizzaServlet")
 public class PiilotaPizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		PizzaDAO pizzadao = new PizzaDAO();
-		
+
+		// Pyydet‰‰n muokkaa-pizzalista.jsp:lt‰ pizzan id ja nykyinen n‰kyvyys
+		// ja muutetaan ne oikeaan muotoon.
 		String idStr = request.getParameter("Id");
 		int id = new Integer(idStr);
 		String nakyvyysStr = request.getParameter("Nakyvyys");
-		int nakyvyys = new Integer (nakyvyysStr);
+		int nakyvyys = new Integer(nakyvyysStr);
+
+		// Alustetaan muut pizza-oliolle viet‰v‰t arvot nolliksi ja tyhjiksi,
+		// koska vain n‰kyvyytt‰ halutaan muuttaa.
 		String tyyppi = "";
 		String nimi = "";
 		double hinta = 0;
 		String pohja = "";
 		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
-		
-		try {
-		Pizza pizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys, pohja, taytelista);
-		pizzadao.hidePizza(pizza);
 
-	}catch (Exception e) {
-		System.out.println(e.getMessage());
-	}
+		try {
+			// Luodaan pizza-olio, jolle annetaan uusi n‰kyvyys ja tyhj‰t arvot.
+			Pizza pizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys, pohja,
+					taytelista);
+			pizzadao.hidePizza(pizza);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		response.sendRedirect("MuokkaaPizzalistaServlet");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 	}
 
 }

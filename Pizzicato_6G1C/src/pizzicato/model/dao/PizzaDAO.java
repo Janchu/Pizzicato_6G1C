@@ -162,61 +162,57 @@ public class PizzaDAO extends DataAccessObject {
 		}
 
 	}
-	
-	public void hidePizza (Pizza pizza) throws SQLException {
-		
+
+	public void hidePizza(Pizza pizza) throws SQLException {
+
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
 		try {
 			connection = getConnection();
-			if(pizza.getNakyvyys() == 1) {
-			stmtInsert = connection
-					.prepareStatement("UPDATE pizza SET nakyvyys = 0 WHERE id = (?);");
-			stmtInsert.setInt(1, pizza.getId());
-			stmtInsert.executeUpdate();
-			stmtInsert.close();
-			}else if (pizza.getNakyvyys() == 0) {
+			if (pizza.getNakyvyys() == 1) {
+				stmtInsert = connection
+						.prepareStatement("UPDATE pizza SET nakyvyys = 0 WHERE id = (?);");
+				stmtInsert.setInt(1, pizza.getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
+			} else if (pizza.getNakyvyys() == 0) {
 				stmtInsert = connection
 						.prepareStatement("UPDATE pizza SET nakyvyys = 1 WHERE id = (?);");
 				stmtInsert.setInt(1, pizza.getId());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(stmtInsert, connection);
 		}
-		
+
 	}
-	
-	public void updatePizza (Pizza pizza) throws SQLException {
+
+	public void updatePizza(Pizza pizza) throws SQLException {
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
-		
-		try{
+
+		try {
 			connection = getConnection();
-				stmtInsert = connection
-						.prepareStatement("UPDATE tuote SET nimi = (?) WHERE id = (?)");
-				stmtInsert.setString(1, pizza.getNimi());
-				stmtInsert.setInt(2, pizza.getId());
-				stmtInsert.executeUpdate();
-				stmtInsert.close();
-				
-			
 			stmtInsert = connection
-				.prepareStatement("UPDATE tuote SET hinta = (?) WHERE id = (?)");
-			stmtInsert.setDouble(1, pizza.getHinta());
-			stmtInsert.setInt(2,pizza.getId());
+					.prepareStatement("UPDATE tuote SET nimi = (?) WHERE id = (?)");
+			stmtInsert.setString(1, pizza.getNimi());
+			stmtInsert.setInt(2, pizza.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
+			stmtInsert = connection
+					.prepareStatement("UPDATE tuote SET hinta = (?) WHERE id = (?)");
+			stmtInsert.setDouble(1, pizza.getHinta());
+			stmtInsert.setInt(2, pizza.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
 
-			
-			
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(stmtInsert, connection);
 		}
 	}

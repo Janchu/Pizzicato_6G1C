@@ -22,7 +22,6 @@ public class Tayte {
 	}
 
 	// Getterit & Setterit
-	
 
 	public int getId() {
 		return id;

@@ -60,7 +60,6 @@
 					DecimalFormat decimal = new DecimalFormat("0.00");
 					int pizzanumero = 0;
 					for (int i = 0; i < pizzat.size(); i++) {
-						
 
 						if (pizzat.get(i).getNakyvyys() == 1) {
 							pizzanumero++;
@@ -71,8 +70,7 @@
 					<td width="100px"><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%><br> Täytteet:</b> <%
  	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu
- %>
-						<%=pizzat.get(i).getTaytelista().get(j)
+ %> <%=pizzat.get(i).getTaytelista().get(j)
 								.getNimi()%> <%
  	}
  %></td>
@@ -84,9 +82,10 @@
 				%>
 			</table>
 		</div>
-<div id="nappulasijainti">
-<a href="MuokkaaPizzalistaServlet" class="button">Siirry pizzalistan muokkaukseen</a> 
-</div>
+		<div id="nappulasijainti">
+			<a href="MuokkaaPizzalistaServlet" class="button">Siirry
+				pizzalistan muokkaukseen</a>
+		</div>
 	</div>
 	<div id="footer">
 		<div id="footer_sisältö">

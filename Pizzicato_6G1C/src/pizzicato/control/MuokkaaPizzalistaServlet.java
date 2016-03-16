@@ -22,6 +22,7 @@ public class MuokkaaPizzalistaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		// Luodaan PizzaDAO
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
@@ -31,7 +32,7 @@ public class MuokkaaPizzalistaServlet extends HttpServlet {
 
 		// L‰hetet‰‰n jsp:lle
 		String jsp = "/view/muokkaa-pizzalista.jsp";
-		RequestDispatcher dispatcher = getServletContext() //kukkuu
+		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
 	}

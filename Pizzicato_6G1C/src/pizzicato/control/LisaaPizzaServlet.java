@@ -25,7 +25,7 @@ public class LisaaPizzaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// Luodaan PizzaDAO ja TayteDAO
+		// Luodaan PizzaDAO ja TayteDAO, ja molemmille ArrayListit
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
 		TayteDAO taytedao = new TayteDAO();
@@ -47,13 +47,10 @@ public class LisaaPizzaServlet extends HttpServlet {
 
 		// Luodaan PizzaDAO ja TayteDAO (ja decimalformat)
 		PizzaDAO pizzadao = new PizzaDAO();
-		ArrayList<Pizza> pizzat = pizzadao.findAll();
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
-
-		System.out.println(taytteet);
 
 		// Haetaan käyttäjän syöttämät pizzan nimi ja hinta. Muutetaan hinta
 		// oikeaan muotoon.
@@ -62,21 +59,15 @@ public class LisaaPizzaServlet extends HttpServlet {
 		double hinta = new Double(hintaStr);
 		formatter.format(hinta);
 
-		// Selvitetään seuraava vapaa id pizzalle
-		// pizzat = pizzadao.findAll();
-		// int nykyinenSuurinId = 0;
-		// for (int i = 0; i < pizzat.size(); i++) {
-		// System.out.println(pizzat.get(i).getId());
-		// nykyinenSuurinId = pizzat.get(i).getId();
-		// }
+		// Alustetaan ID nollaksi, koska ID generoituu kannassa automaattisesti
 		int id = 0;
-		// System.out.println("Uusi id: " + id);
 
 		// Nämä arvot ovat pelkästään futureproofia varten.
 		String tyyppi = "pizza";
 		int nakyvyys = 1;
 		String pohja = "normaali";
 
+		// Laitetaan käyttäjän valitsemat täytteet listaan
 		String[] tayte = request.getParameterValues("tayte");
 		for (int i = 0; i < tayte.length; i++) {
 
@@ -84,12 +75,11 @@ public class LisaaPizzaServlet extends HttpServlet {
 			String tayteNimi = taytteet.get(i).getNimi();
 			System.out.println(tayteNimi);
 			Double tayteHinta = 0.00;
-			//
+
+			// Luodaan uusi Tayte-olio taytelistaan lisättäväksi
 			Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteHinta);
 			taytelista.add(uusiTayte);
 		}
-
-		System.out.println(tayte);
 
 		try {
 			// Luodaan uusi pizza olio kantaan vietäväksi
@@ -100,7 +90,7 @@ public class LisaaPizzaServlet extends HttpServlet {
 			response.sendRedirect("MuokkaaPizzalistaServlet");
 
 		} catch (Exception e) {
-			response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp"); // 
+			response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp"); //
 		}
 	}
 

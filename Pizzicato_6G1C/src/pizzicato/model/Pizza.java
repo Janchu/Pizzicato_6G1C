@@ -53,12 +53,12 @@ public class Pizza extends Tuote {
 	public void setPohja(String pohja) {
 		this.pohja = pohja;
 	}
-	
+
 	public ArrayList<Tayte> getTaytelista() {
 		return taytelista;
 	}
-	
-	public void addTayte (Tayte uusiTayte) {
+
+	public void addTayte(Tayte uusiTayte) {
 		this.taytelista.add(uusiTayte);
 	}
 
@@ -67,7 +67,5 @@ public class Pizza extends Tuote {
 		return "Pizza [nakyvyys=" + nakyvyys + ", pohja=" + pohja
 				+ ", taytelista=" + taytelista + "]";
 	}
-
-
 
 }

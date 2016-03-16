@@ -10,7 +10,7 @@
 	scope="request" />
 <jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte>"
 	scope="request" />
-<jsp:useBean id="muokattavapizzaid" scope="request"
+<jsp:useBean id="muokattavaPizzaId" scope="request"
 	type="java.lang.Integer" />
 <html>
 <head>
@@ -52,11 +52,11 @@
 
 
 		<%
-			int id = muokattavapizzaid;
+			int id = muokattavaPizzaId;
 			double pizzaHinta = 0;
 			String pizzaNimi = "";
 			ArrayList<Tayte> vanhatTaytteet = new ArrayList<Tayte>();
-		
+
 			for (int i = 0; i < pizzat.size(); i++) {
 				if (id == pizzat.get(i).getId()) {
 					pizzaNimi = pizzat.get(i).getNimi();
@@ -66,7 +66,7 @@
 			}
 		%>
 		<form method="post">
-		
+
 
 			<legend>Syötä pizzan tiedot:</legend>
 			<table>
@@ -74,13 +74,13 @@
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>"
 						required></td>
-						<td>Max 20 merkkiä</td>
+					<td>Max 20 merkkiä</td>
 				</tr>
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaHinta"
 						value="<%=pizzaHinta%>" required></td>
-						<td>Hinta muotoa 0.00</td>
+					<td>Hinta muotoa 0.00</td>
 				</tr>
 			</table>
 
@@ -88,8 +88,8 @@
 
 
 
-			<input type="hidden" name="pizzaId" value="<%=id %>">
-			<input type="submit" class="button" value="Pizza valmis!"> <a
+			<input type="hidden" name="pizzaId" value="<%=id%>"> <input
+				type="submit" class="button" value="Pizza valmis!"> <a
 				href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
 
 		</form>

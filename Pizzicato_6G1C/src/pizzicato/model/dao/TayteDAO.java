@@ -16,7 +16,6 @@ public class TayteDAO extends DataAccessObject {
 		ResultSet rs = null;
 		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 		Tayte tayte = null;
-		
 
 		try {
 			conn = getConnection();
@@ -49,7 +48,5 @@ public class TayteDAO extends DataAccessObject {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
 
 }
