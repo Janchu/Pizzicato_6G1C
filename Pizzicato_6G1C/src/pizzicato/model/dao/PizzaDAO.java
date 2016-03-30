@@ -32,7 +32,7 @@ public class PizzaDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT pizza.id, tuote.tyyppi, pizza.nakyvyys, pizza.pohja, tuote.nimi, tuote.hinta, tayte.id, tayte.nimi AS tayte, tayte.nimi_eng AS tayte_eng, tayte.hinta, tayte.kilohinta FROM tuote JOIN pizza ON tuote.id = pizza.id JOIN pizzatayte ON pizza.id = pizzatayte.pizza_id JOIN tayte ON pizzatayte.tayte_id = tayte.id;";
+			String sqlSelect = "SELECT pizza.id, tuote.tyyppi, pizza.nakyvyys, pizza.pohja, tuote.nimi, tuote.hinta, tayte.id, tayte.nimi AS tayte, tayte.nimi_eng AS tayte_eng, tayte.hinta, tayte.kilohinta FROM tuote JOIN pizza ON tuote.id = pizza.id JOIN pizzatayte ON pizza.id = pizzatayte.pizza_id JOIN tayte ON pizzatayte.tayte_id = tayte.id ORDER BY tuote.hinta DESC;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
@@ -260,7 +260,7 @@ public class PizzaDAO extends DataAccessObject {
 			String nimi_eng = rs.getString("tayte_eng");
 			double hinta = rs.getDouble("tayte.hinta");
 			double kilohinta = rs.getDouble("tayte.kilohinta");
-
+			
 			return new Tayte(id, nimi, nimi_eng, hinta, kilohinta);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
