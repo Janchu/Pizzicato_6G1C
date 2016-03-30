@@ -89,7 +89,7 @@ margin-left:10%;
 #nappulasijainti {
 position:fixed;
 top: 180px;
-right:245px;
+right:240px;
 }
 	
 /* Vihreän nappulan class, joka määrittää sen ominaisuudet */
@@ -106,6 +106,10 @@ right:245px;
     margin: 4px 2px;
     cursor: pointer;
 	border-radius:10px;
+}
+
+.uksijainti {
+	top: 20px;
 }
 
 /* lisaa-pizza.jsp syöttökentän * pakollinen merkin tähti punaiseksi */

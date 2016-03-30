@@ -1,7 +1,18 @@
-<%@page import="java.text.DecimalFormat"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html><%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
@@ -19,7 +30,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<title>Pizzalista</title>
+<title>Pizzamenu</title>
 </head>
 <body>
 
@@ -30,16 +41,15 @@
 			<a class="navbar-brand" href="#">Pizzeria Pizzicato</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a href="" class="current">Etusivu</a></li>
+			<li><a href="" class="current">Front Page</a></li>
 			<li><a href="#">:3</a></li>
-			<li><a href="#">Yhteystiedot</a></li>
+			<li><a href="#">Contact Info</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-		<li><span><a href="eng-listaa-pizzat.jsp"><class="uksijainti"><img alt="lib" src="images/UKlib.jpg" width="32" height="32"></a></span></li>
 			<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-					Rekisteröidy</a></li>
+					Sign up</a></li>
 			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-					Kirjaudu sisään</a></li>
+					Log in</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -51,16 +61,14 @@
 <!-- pizzalista on toteutettu taulukkona -->
 	
 		<div id="pizzalistataulukko">
-		
-	
 
 			<table>
-				<caption>Pizzalista</caption>
+				<caption>Pizza menu</caption>
 
 				<tr>
-					<th>Numero</th>
-					<th>Nimi</th>
-					<th>Hinta</th>
+					<th>Number</th>
+					<th>Name</th>
+					<th>Price</th>
 				</tr>
 
 				<%
@@ -75,7 +83,7 @@
 
 				<tr>
 					<td width="100px"><%=pizzanumero%></td>
-					<td><b><%=pizzat.get(i).getNimi()%><br> Täytteet:</b> <%
+					<td><b><%=pizzat.get(i).getNimi()%><br> Toppings:</b> <%
  	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu
  %> <%=pizzat.get(i).getTaytelista().get(j)
 								.getNimi()%> <%
@@ -105,9 +113,9 @@
 		<div id="footer_sisältö">
 
 			<p>
-				Pizzeria Pizzicato<br> Puhelin: 01245678<br>
-				Sähköpostiosoite: pizzicato@xxx.fi<br> Osoite: katu21 <br>
-				Postitoimipaikka: Helsinki, 010101 <br>
+				Pizzeria Pizzicato<br> Phone: 01245678<br>
+				Email: pizzicato@xxx.fi<br> Address: katu21 <br>
+				City: Helsinki, Zip Code: 010101 <br>
 			</p>
 		</div>
 
