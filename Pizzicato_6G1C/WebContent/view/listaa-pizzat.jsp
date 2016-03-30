@@ -91,7 +91,7 @@
 			<a href="MuokkaaPizzalistaServlet" class="button">Siirry
 				pizzalistan <br> muokkaukseen</a>
 				<br>
-			<a href="MuokkaaTayteListaServlet" class="button">Siirry
+			<a href="MuokkaaTaytelistaServlet" class="button">Siirry
 				täytelistan <br> muokkaukseen</a>	
 		</div>
 	</div>
