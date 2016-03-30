@@ -64,7 +64,8 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		// oikeaan muotoon.
 		String nimi = request.getParameter("pizzaNimi");
 		String hintaStr = request.getParameter("pizzaHinta");
-		double hinta = new Double(hintaStr);
+		String uusiHintaStr = hintaStr.replace(',', '.');
+		double hinta = new Double(uusiHintaStr);
 		formatter.format(hinta);
 		String idStr = request.getParameter("pizzaId");
 		int id = new Integer(idStr);

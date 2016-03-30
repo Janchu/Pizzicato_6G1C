@@ -7,6 +7,7 @@
 	type="java.util.ArrayList<pizzicato.model.Tayte>" scope="request" />
 <jsp:useBean id="pizzat"
 	type="java.util.ArrayList<pizzicato.model.Pizza>" scope="request" />
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -51,13 +52,23 @@
 			<table>
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
-					<td text-transform: capitalize><input type="text" name="pizzaNimi" placeholder="Pizzan nimi" maxlength="20" title="Pizzan nimi saa olla max 20 merkkiä pitkä" required ></td>
-					
+					<td><input type="text" name="pizzaNimi" placeholder="Pizzan nimi" maxlength="20" title="Pizzan nimi saa olla max 20 merkkiä pitkä" required value="${uusiPizza.nimi}">
+					 <%
+               if (errors.containsKey("nimi")) {
+                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
+               }
+            %></td>
+					<td>Max 20 merkkiä</td>
 				</tr>
 
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="number" name="pizzaHinta" placeholder="Pizzan hinta" maxlength="5" step="any" min="6" max="99.99" required></td>
+					<td><input type="text" name="pizzaHinta" placeholder="Pizzan hinta" maxlength="5" step="any" min="6" max="99.99" required value="${uusiPizza.hinta}">
+					<%
+               if (errors.containsKey("hinta")) {
+                  out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
+               }
+            %></td>
 					<td>Hinnan pitää olla 6,00 - 99,99</td>
 				</tr>
 			</table>

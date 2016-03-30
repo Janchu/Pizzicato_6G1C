@@ -260,7 +260,7 @@ public class PizzaDAO extends DataAccessObject {
 			String nimi_eng = rs.getString("tayte_eng");
 			double hinta = rs.getDouble("tayte.hinta");
 			double kilohinta = rs.getDouble("tayte.kilohinta");
-
+			
 			return new Tayte(id, nimi, nimi_eng, hinta, kilohinta);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
