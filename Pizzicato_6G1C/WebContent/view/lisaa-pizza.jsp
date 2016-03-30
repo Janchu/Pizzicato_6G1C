@@ -52,7 +52,7 @@
 			<table>
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaNimi" required value="${uusiPizza.nimi}">
+					<td><input type="text" name="pizzaNimi" placeholder="Pizzan nimi" maxlength="20" title="Pizzan nimi saa olla max 20 merkkiä pitkä" required value="${uusiPizza.nimi}">
 					 <%
                if (errors.containsKey("nimi")) {
                   out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
@@ -63,13 +63,13 @@
 
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaHinta" required value="${uusiPizza.hinta}">
+					<td><input type="text" name="pizzaHinta" placeholder="Pizzan hinta" maxlength="5" step="any" min="6" max="99.99" required value="${uusiPizza.hinta}">
 					<%
                if (errors.containsKey("hinta")) {
                   out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
                }
             %></td>
-					<td>Hinta muotoa 0.00</td>
+					<td>Hinnan pitää olla 6,00 - 99,99</td>
 				</tr>
 			</table>
 

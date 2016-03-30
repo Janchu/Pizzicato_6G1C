@@ -89,7 +89,10 @@
 		
 		<div id="nappulasijainti">
 			<a href="MuokkaaPizzalistaServlet" class="button">Siirry
-				pizzalistan muokkaukseen</a>
+				pizzalistan <br> muokkaukseen</a>
+				<br>
+			<a href="MuokkaaTaytelistaServlet" class="button">Siirry
+				täytelistan <br> muokkaukseen</a>	
 		</div>
 	</div>
 	

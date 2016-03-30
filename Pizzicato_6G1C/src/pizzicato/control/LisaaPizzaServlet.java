@@ -85,12 +85,14 @@ public class LisaaPizzaServlet extends HttpServlet {
 			for (int i = 0; i < tayte.length; i++) {
 
 				int tayteId = new Integer(tayte[i]);
-				String tayteNimi = taytteet.get(i).getNimi();
-				System.out.println(tayteNimi);
-				Double tayteHinta = 0.00;
+			String tayteNimi = taytteet.get(i).getNimi();
+			System.out.println(tayteNimi);
+			String tayteNimi_eng = taytteet.get(i).getNimi_eng();
+			Double tayteHinta = 0.00;
+			Double tayteKilohinta = 0.00;
 
 				// Luodaan uusi Tayte-olio taytelistaan lisättäväksi
-				Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteHinta);
+				Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng, tayteHinta, tayteKilohinta);
 				taytelista.add(uusiTayte);
 			}
 			
@@ -128,7 +130,7 @@ public class LisaaPizzaServlet extends HttpServlet {
 
 		// Haetaan syötetty hinta validointia varten
 		String hintaStr = request.getParameter("pizzaHinta");
-		if (hintaStr == null) {
+		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hintaStr", "Hinta vaaditaan.");
 		}
 		String uusiHintaStr = hintaStr.replace(',', '.');
