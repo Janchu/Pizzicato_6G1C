@@ -84,6 +84,7 @@ public class TayteDAO extends DataAccessObject {
 		}
 
 	}
+
 	/**
 	 * Tuodaan lisattavaTayte-olio addTayte-metodille. Vied‰‰n kantaan tiedot
 	 * tayte- ja pizzatayte-tauluihin.
@@ -141,12 +142,6 @@ public class TayteDAO extends DataAccessObject {
 			connection = getConnection();
 
 			stmtInsert = connection
-					.prepareStatement("DELETE FROM pizzatayte WHERE tayte_id = (?);");
-			stmtInsert.setInt(1, poistettavaTayte.getId());
-			stmtInsert.executeUpdate();
-			stmtInsert.close();
-
-			stmtInsert = connection
 					.prepareStatement("DELETE FROM tayte WHERE id = (?);");
 			stmtInsert.setInt(1, poistettavaTayte.getId());
 			stmtInsert.executeUpdate();
@@ -157,6 +152,7 @@ public class TayteDAO extends DataAccessObject {
 			close(stmtInsert, connection);
 		}
 	}
+
 	/**
 	 * Tuodaan mukana paivitettavaTayte-olio, jonka id:n perusteella kannassa
 	 * tehd‰‰n muutokset tayte- ja pizzatayte-tauluihin.
@@ -165,47 +161,45 @@ public class TayteDAO extends DataAccessObject {
 	 *            Mukana tuotava Tayte-olio
 	 * @throws SQLException
 	 */
-	
+
 	public void updateTayte(Tayte paivitettavaTayte) throws SQLException {
-		
+
 		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
 		// try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
-		
+
 		try {
 			connection = getConnection();
-			stmtInsert = connection.prepareStatement("");
+			stmtInsert = connection.prepareStatement("UPDATE tayte SET nimi = (?) WHERE id = (?)");
 			stmtInsert.setString(1, paivitettavaTayte.getNimi());
 			stmtInsert.setInt(2, paivitettavaTayte.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
-			
-			stmtInsert = connection.prepareStatement("");
+
+			stmtInsert = connection.prepareStatement("UPDATE tayte SET hinta = (?) WHERE id = (?)");
 			stmtInsert.setDouble(1, paivitettavaTayte.getHinta());
 			stmtInsert.setInt(2, paivitettavaTayte.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
-			
-			stmtInsert = connection.prepareStatement("");
+
+			stmtInsert = connection.prepareStatement("UPDATE tayte SET nimi_eng = (?) WHERE id = (?)");
 			stmtInsert.setString(1, paivitettavaTayte.getNimi_eng());
 			stmtInsert.setInt(2, paivitettavaTayte.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
-			
-			stmtInsert = connection.prepareStatement("");
+
+			stmtInsert = connection.prepareStatement("UPDATE tayte SET kilohinta = (?) WHERE id = (?)");
 			stmtInsert.setDouble(1, paivitettavaTayte.getKilohinta());
 			stmtInsert.setInt(2, paivitettavaTayte.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
-			
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtInsert, connection);
 		}
 	}
-	
+
 }
-
-
