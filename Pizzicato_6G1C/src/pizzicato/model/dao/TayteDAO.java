@@ -25,7 +25,7 @@ public class TayteDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT id, nimi, hinta from tayte;";
+			String sqlSelect = "SELECT id, nimi, nimi_eng, hinta, kilohinta FROM tayte;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
