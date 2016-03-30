@@ -231,7 +231,7 @@ public class PizzaDAO extends DataAccessObject {
 			close(stmtInsert, connection);
 		}
 	}
-	
+
 	private Pizza readPizza(ResultSet rs) {
 		try {
 			// Haetaan yhden pizzan tiedot
@@ -257,13 +257,13 @@ public class PizzaDAO extends DataAccessObject {
 			// Haetaan yhden täytteen tiedot
 			int id = rs.getInt("tayte.id");
 			String nimi = rs.getString("tayte");
+			String nimi_eng = rs.getString("tayte_eng");
 			double hinta = rs.getDouble("tayte.hinta");
 
-			return new Tayte(id, nimi, hinta);
+			return new Tayte(id, nimi, nimi_eng, hinta);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
+
 }

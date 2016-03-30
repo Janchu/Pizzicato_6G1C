@@ -74,10 +74,11 @@ public class LisaaPizzaServlet extends HttpServlet {
 			int tayteId = new Integer(tayte[i]);
 			String tayteNimi = taytteet.get(i).getNimi();
 			System.out.println(tayteNimi);
+			String tayteNimi_eng = taytteet.get(i).getNimi_eng();
 			Double tayteHinta = 0.00;
 
 			// Luodaan uusi Tayte-olio taytelistaan lisättäväksi
-			Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteHinta);
+			Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng, tayteHinta);
 			taytelista.add(uusiTayte);
 		}
 

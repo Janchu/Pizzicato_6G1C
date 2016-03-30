@@ -6,6 +6,7 @@ public class Tayte {
 
 	private int id;
 	private String nimi;
+	private String nimi_eng;
 	private double hinta;
 
 	// Konstruktorit
@@ -14,10 +15,11 @@ public class Tayte {
 
 	}
 
-	public Tayte(int id, String nimi, double hinta) {
+	public Tayte(int id, String nimi, String nimi_eng, double hinta) {
 
 		this.id = id;
 		this.nimi = nimi;
+		this.nimi_eng = nimi_eng;
 		this.hinta = hinta;
 	}
 
@@ -39,6 +41,14 @@ public class Tayte {
 		this.nimi = nimi;
 	}
 
+	public String getNimi_eng() {
+		return nimi_eng;
+	}
+
+	public void setNimi_eng(String nimi_eng) {
+		this.nimi_eng = nimi_eng;
+	}
+
 	public double getHinta() {
 		return hinta;
 	}
@@ -48,10 +58,10 @@ public class Tayte {
 	}
 
 	// toString
-
 	@Override
 	public String toString() {
-		return "Tayte [id=" + id + ", nimi=" + nimi + ", hinta=" + hinta + "]";
+		return "Tayte [id=" + id + ", nimi=" + nimi + ", nimi_eng=" + nimi_eng
+				+ ", hinta=" + hinta + "]";
 	}
 
 }
