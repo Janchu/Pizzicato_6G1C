@@ -76,12 +76,161 @@ public class TayteDAO extends DataAccessObject {
 			String nimi = rs.getString("nimi");
 			String nimi_eng = rs.getString("nimi_eng");
 			double hinta = rs.getDouble("hinta");
+			double kilohinta = rs.getDouble("kilohinta");
 
-			return new Tayte(id, nimi, nimi_eng, hinta);
+			return new Tayte(id, nimi, nimi_eng, hinta, kilohinta);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 
 	}
+	/**
+	 * Tuodaan lisattavaTayte-olio addTayte-metodille. Vied‰‰n kantaan tiedot
+	 * tayte- ja pizzatayte-tauluihin.
+	 * 
+	 * @param lisattavaTayte
+	 *            Mukana tuotava Tayte-olio
+	 * @throws SQLException
+	 */
+	public void addTayte(Tayte lisattavaTayte) throws SQLException {
 
+		// Alustetaan Connection ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+
+		try {
+			connection = getConnection();
+			stmtInsert = connection
+					.prepareStatement("INSERT INTO tayte(id, nimi, hinta, nimi_eng, kilohinta) VALUES (last_insert_id(), ?, ?, ?, ?);");
+
+			stmtInsert.setString(2, lisattavaTayte.getNimi());
+			stmtInsert.setDouble(3, lisattavaTayte.getHinta());
+			stmtInsert.setString(4, lisattavaTayte.getNimi_eng());
+			stmtInsert.setDouble(5, lisattavaTayte.getKilohinta());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+
+		}
+
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtInsert, connection);
+		}
+	}
+
+	/**
+	 * Metodiin tuodaan poistettavaTayte-olio, jonka id:n perusteella kannasta
+	 * poistetaan tietty tayte ja sen yhteydet pizzoihin.
+	 * 
+	 * @param poistettavaTayte
+	 *            Mukana tuotava Tayte-olio
+	 * @throws SQLException
+	 */
+	public void deleteTayte(Tayte poistettavaTayte) throws SQLException {
+
+		// Alustetaan Connection ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+		poistettavaTayte.getId();
+		System.out.println(poistettavaTayte.getId());
+		try {
+			connection = getConnection();
+
+			stmtInsert = connection
+					.prepareStatement("DELETE FROM pizzatayte WHERE tayte_id = (?);");
+			stmtInsert.setInt(1, poistettavaTayte.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+
+			stmtInsert = connection
+					.prepareStatement("DELETE FROM tayte WHERE id = (?);");
+			stmtInsert.setInt(1, poistettavaTayte.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtInsert, connection);
+		}
+	}
+	/**
+	 * Tuodaan mukana paivitettavaTayte-olio, jonka id:n perusteella kannassa
+	 * tehd‰‰n muutokset tayte- ja pizzatayte-tauluihin.
+	 * 
+	 * @param paivitettavaTayte
+	 *            Mukana tuotava Tayte-olio
+	 * @throws SQLException
+	 */
+	
+	public void updateTayte(Tayte paivitettavaTayte) throws SQLException {
+		
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+		
+		try {
+			connection = getConnection();
+			stmtInsert = connection.prepareStatement("");
+			stmtInsert.setString(1, paivitettavaTayte.getNimi());
+			stmtInsert.setInt(2, paivitettavaTayte.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			
+			stmtInsert = connection.prepareStatement("");
+			stmtInsert.setDouble(1, paivitettavaTayte.getHinta());
+			stmtInsert.setInt(2, paivitettavaTayte.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			
+			stmtInsert = connection.prepareStatement("");
+			stmtInsert.setString(1, paivitettavaTayte.getNimi_eng());
+			stmtInsert.setInt(2, paivitettavaTayte.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			
+			stmtInsert = connection.prepareStatement("");
+			stmtInsert.setDouble(1, paivitettavaTayte.getKilohinta());
+			stmtInsert.setInt(2, paivitettavaTayte.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtInsert, connection);
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

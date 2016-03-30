@@ -80,9 +80,10 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		String tayteNimi = "";
 		String tayteNimi_eng = "";
 		Double tayteHinta = 0.00;
+		Double tayteKilohinta = 0.00;
 
 		// Luodaan Tayte-olio, muokattavan pizzan mukana vietäväksi.
-		Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng, tayteHinta);
+		Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng, tayteHinta, tayteKilohinta);
 		taytelista.add(uusiTayte);
 
 		try {
