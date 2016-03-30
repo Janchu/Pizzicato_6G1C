@@ -78,9 +78,9 @@
 				</tr>
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaHinta"
+					<td><input type="text" name="pizzaHinta" maxlength="5" step="any" min="6" max="99.99"
 						value="<%=pizzaHinta%>" required></td>
-					<td>Hinta muotoa 0.00</td>
+					<td>Hinta muotoa 0,00 ja hinnan pitää olla 6,00 - 99,00 euroa</td>
 				</tr>
 			</table>
 
