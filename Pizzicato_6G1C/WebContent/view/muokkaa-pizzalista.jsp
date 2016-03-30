@@ -95,8 +95,8 @@
 		</div>
 
 		<div id="nappulasijainti">
-			<a href="LisaaPizzaServlet" class="button">Lisää pizza</a> <a
-				href="ListaaPizzatServlet" class="button">Poistu muokkaustilasta</a>
+			<a href="LisaaPizzaServlet" class="button">Lisää pizza</a>
+			<br> <a href="ListaaPizzatServlet" class="button">Poistu <br> muokkaustilasta</a>
 		</div>
 	</div>
 
