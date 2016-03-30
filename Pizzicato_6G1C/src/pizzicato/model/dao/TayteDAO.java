@@ -209,28 +209,3 @@ public class TayteDAO extends DataAccessObject {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
