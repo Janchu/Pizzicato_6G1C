@@ -3,6 +3,8 @@ package pizzicato.model;
 import java.util.ArrayList;
 
 public class Pizza extends Tuote {
+	
+	// Attribuutit
 	private int nakyvyys;
 	private String pohja;
 	private ArrayList<Tayte> taytelista;
