@@ -28,14 +28,14 @@ public class MuokkaaTayteServlet extends HttpServlet {
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 
-		String muokattavaTayteId = request.getParameter("TayteId");
+		String muokattavaTayteId = request.getParameter("TId");
 		int TId = new Integer(muokattavaTayteId);
 		request.setAttribute("muokattavaTayteId", TId);
 
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietï¿½vï¿½ksi
 		request.setAttribute("taytteet", taytteet);
 
-		// Lähetetään jsp:lle
+		// Lï¿½hetetï¿½ï¿½n jsp:lle
 		String jsp = "/view/muokkaa-tayte.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
@@ -46,14 +46,14 @@ public class MuokkaaTayteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Luodaan TayteDAO, jota tarvitaan kun täytteiden
-		// muokkaustoiminto lisätään.
+		// Luodaan TayteDAO, jota tarvitaan kun tï¿½ytteiden
+		// muokkaustoiminto lisï¿½tï¿½ï¿½n.
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 
-		// Haetaan käyttäjän syöttämät täytteen nimi, nimi_eng, hinta ja
+		// Haetaan kï¿½yttï¿½jï¿½n syï¿½ttï¿½mï¿½t tï¿½ytteen nimi, nimi_eng, hinta ja
 		// kilohinta.
 		// Muutetaan hinta ja kilohinta oikeaan muotoon.
 		String nimi = request.getParameter("tayteNimi");
@@ -74,14 +74,14 @@ public class MuokkaaTayteServlet extends HttpServlet {
 		taytelista.add(muokattavaTayte);
 
 		try {
-			// Luodaan uusi tayte-olio kantaan vietäväksi
+			// Luodaan uusi tayte-olio kantaan vietï¿½vï¿½ksi
 			Tayte muokattuTayte = new Tayte(id, nimi, nimi_eng, hinta,
 					kilohinta);
 
 			// Kutsutaan updateTayte metodia
 			taytedao.updateTayte(muokattuTayte);
 
-			// Palauteen käyttäjä taytelistan muokkaustilaan.
+			// Palauteen kï¿½yttï¿½jï¿½ taytelistan muokkaustilaan.
 			response.sendRedirect("MuokkaaTaytelistaServlet");
 
 		} catch (Exception e) {
