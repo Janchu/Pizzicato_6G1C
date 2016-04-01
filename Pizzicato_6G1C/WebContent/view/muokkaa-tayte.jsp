@@ -22,6 +22,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Muokkaa pizzaa</title>
 </head>
+/** jeejee**/
 <body>
 	<nav id="navigaatio">
 	<div class="container-fluid">
