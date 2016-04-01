@@ -32,7 +32,7 @@ public class PizzaDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT pizza.id, tuote.tyyppi, pizza.nakyvyys, pizza.pohja, tuote.nimi, tuote.hinta, tayte.id, tayte.nimi AS tayte, tayte.nimi_eng AS tayte_eng, tayte.hinta, tayte.kilohinta FROM tuote JOIN pizza ON tuote.id = pizza.id JOIN pizzatayte ON pizza.id = pizzatayte.pizza_id JOIN tayte ON pizzatayte.tayte_id = tayte.id;";
+			String sqlSelect = "SELECT pizza.id, tuote.tyyppi, pizza.nakyvyys, pizza.pohja, tuote.nimi, tuote.hinta, tayte.id, tayte.nimi AS tayte, tayte.nimi_eng AS tayte_eng, tayte.hinta, tayte.kilohinta FROM tuote JOIN pizza ON tuote.id = pizza.id JOIN pizzatayte ON pizza.id = pizzatayte.pizza_id JOIN tayte ON pizzatayte.tayte_id = tayte.id ORDER BY tuote.id;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
@@ -59,7 +59,7 @@ public class PizzaDAO extends DataAccessObject {
 	}
 
 	/**
-	 * Tuodaan lisattavaPizza-olio addPizza-metodille. Viedään kantaan tiedot
+	 * Tuodaan lisattavaPizza-olio addPizza-metodille. Viedï¿½ï¿½n kantaan tiedot
 	 * tuote-, pizza- ja pizzatayte-tauluihin.
 	 * 
 	 * @param lisattavaPizza
@@ -114,7 +114,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	/**
 	 * Metodiin tuodaan poistettavaPizza-olio, jonka id:n perusteella kannasta
-	 * poistetaan tietty pizza ja sen yhteydet täytteisiin.
+	 * poistetaan tietty pizza ja sen yhteydet tï¿½ytteisiin.
 	 * 
 	 * @param poistettavaPizza
 	 *            Mukana tuotava Pizza-olio
@@ -196,7 +196,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	/**
 	 * Tuodaan mukana paivitettavaPizza-olio, jonka id:n perusteella kannassa
-	 * tehdään muutokset pizza-, tuote- ja pizzatayte-tauluihin.
+	 * tehdï¿½ï¿½n muutokset pizza-, tuote- ja pizzatayte-tauluihin.
 	 * 
 	 * @param paivitettavaPizza
 	 *            Mukana tuotava Pizza-olio
@@ -254,7 +254,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	private Tayte readTayte(ResultSet rs) {
 		try {
-			// Haetaan yhden täytteen tiedot
+			// Haetaan yhden tï¿½ytteen tiedot
 			int id = rs.getInt("tayte.id");
 			String nimi = rs.getString("tayte");
 			String nimi_eng = rs.getString("tayte_eng");
