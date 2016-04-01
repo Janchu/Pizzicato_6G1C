@@ -66,15 +66,19 @@
 				<tr>
 
 					<td width="50px"><%=taytenumero%></td>
-					<td><%=taytteet.get(i).getNimi()%></td>
+					
+					
+					
+					<td><b><%=taytteet.get(i).getNimi()%></b>
+ 	
 					<td><%=taytteet.get(i).getNimi_eng()%></td>
 					<td width="100px"><%=decimal.format(taytteet.get(i).getHinta())%></td>
 					<td width="100px"><%=decimal.format(taytteet.get(i).getKilohinta())%></td>
-					<td width="50px"><a href="MuokkaaTayteServlet?PizId=<%=taytteet.get(i).getId()%>"><input
+					<td width="50px"><a href="MuokkaaTayteServlet?TId=<%=taytteet.get(i).getId()%>"><input
 							type="submit" value="Muokkaa täytettä"></a></td>
-					<td width="50px"><a href="PoistaTayteServlet?PizId=<%=taytteet.get(i).getId()%>"><input
+					<td width="50px"><a href="PoistaTayteServlet?PizId=<%=taytteet.get(i).getId()%>"
+						onclick="return confirm('Haluatko varmasti poistaa Täytteen?')"><input
 							type="submit" value="Poista täyte"></a></td>
-
 				</tr>
 
 				<%

@@ -58,6 +58,18 @@
 					<td>Max 20 merkkiä</td>
 				</tr>
 
+<tr>
+					<td><label>Täytteen englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
+					<td><input type="text" name="tayteNimi_eng" placeholder="Täytteen eng.nimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="${uusiTayte.nimi}">
+					 <%
+               if (errors.containsKey("nimi")) {
+                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
+               }
+            %>
+            </td>
+					<td>Max 20 merkkiä</td>
+				</tr>
+
 				<tr>
 					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="Kilohinta" placeholder="Täytteen kilohinta" maxlength="7" step="any" min="1.00" max="1000.00" required value="${uusiTayte.kilohinta}">
@@ -86,7 +98,7 @@
 			
 			
 
-			<input type="submit" class="button" value="Täyte täydellinen!"> <a
+			<input type="submit" class="button" value="Täyte täydellinen! kyl vitus jee"> <a
 				href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
 		</form>
 	</div>
