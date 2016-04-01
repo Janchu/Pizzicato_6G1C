@@ -99,8 +99,6 @@ public class Kayttaja {
 	public void setPostinro(String postinro) {
 		this.postinro = postinro;
 	}
-	
-	// ToString
 
 	@Override
 	public String toString() {
