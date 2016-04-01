@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
+<%@ page import="pizzicato.model.Tayte"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
 	scope="request" />
 <html>
@@ -17,7 +18,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 
@@ -59,12 +59,12 @@
 				<%
 					DecimalFormat decimal = new DecimalFormat("0.00");
 					int pizzanumero = 0;
-					for (int i = 0; i < pizzat.size(); i++) { //kukkuu
+					for (int i = 0; i < pizzat.size(); i++) {
 						pizzanumero++;
 						int nakyvyysInt = pizzat.get(i).getNakyvyys();
 						String nakyvyys = "";
 						if (nakyvyysInt == 1) {
-							nakyvyys = "Näkyvillä"; //
+							nakyvyys = "Näkyvillä";
 						} else {
 							nakyvyys = "Piilossa";
 						}
@@ -73,7 +73,11 @@
 				<tr>
 
 					<td width="50px"><%=pizzanumero%></td>
-					<td><%=pizzat.get(i).getNimi()%></td>
+					<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
+						for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) {
+					%> <%=pizzat.get(i).getTaytelista().get(j).getNimi()%> <%
+ 	}
+ %></td>
 					<td width="100px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
 					<td width="50px"><%=nakyvyys%></td>
 					<td width="50px"><a
@@ -83,7 +87,8 @@
 						href="PiilotaPizzaServlet?Nakyvyys=<%=pizzat.get(i).getNakyvyys()%>&Id=<%=pizzat.get(i).getId()%>"><input
 							type="submit" value="Piilota / näytä"></a></td>
 					<td width="50px"><a
-						href="PoistaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><input
+						href="PoistaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"
+						onclick="return confirm('Haluatko varmasti poistaa Pizzan?')"><input
 							type="submit" value="Poista pizza"></a></td>
 
 				</tr>
@@ -95,8 +100,10 @@
 		</div>
 
 		<div id="nappulasijainti">
-			<a href="LisaaPizzaServlet" class="button">Lisää pizza</a>
-			<br> <a href="ListaaPizzatServlet" class="button">Poistu <br> muokkaustilasta</a>
+			<a href="LisaaPizzaServlet" class="button">Lisää pizza</a> <br>
+			<a href="ListaaPizzatServlet" class="button">Poistu <br>
+				muokkaustilasta
+			</a>
 		</div>
 	</div>
 

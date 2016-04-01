@@ -24,55 +24,39 @@ public class PoistaPizzaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Pyydet‰‰n poistettavan pizzan id muokkaa-pizzalista.jsp:lt‰ ja
+		// Pyydet√§√§n poistettavan pizzan id muokkaa-pizzalista.jsp:lt√§ ja
 		// muutetaan se oikeaan muotoon.
 		String poistettavaPizzaIdStr = request.getParameter("PizId");
 		int poistettavaPizzaId = new Integer(poistettavaPizzaIdStr);
 
 		// Luodaan pizzaDAO johon haetaan pizzat kannasta.
 		PizzaDAO pizzadao = new PizzaDAO();
-		ArrayList<Pizza> pizzat = pizzadao.findAll();
 
-		// Laitetaan id ja pizzalista menem‰‰n jsp:lle
-		request.setAttribute("poistettavaPizzaId", poistettavaPizzaId);
-		request.setAttribute("pizzat", pizzat);
-
-		// L‰hetet‰‰n jsp:lle
-		String jsp = "/view/poista-pizza.jsp";
-		RequestDispatcher dispatcher = getServletContext()
-				.getRequestDispatcher(jsp);
-		dispatcher.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		// Luodaan pizzadao
-		PizzaDAO pizzadao = new PizzaDAO();
-
-		// Pyydet‰‰n jsp:lt‰ mukana kuljetettu poistettavan pizzan id ja
+		// Pyydet√§√§n jsp:lt√§ mukana kuljetettu poistettavan pizzan id ja
 		// alustetaan muut nolliksi.
-		String pidStr = request.getParameter("pid");
-		int pid = new Integer(pidStr);
 		String tyyppi = "";
 		String nimi = "";
 		double hinta = 0;
 		int nakyvyys = 0;
 		String pohja = "";
-		ArrayList<Tayte> taytelista = new ArrayList<Tayte>(); // kukkuu
+		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 
 		try {
 			// Luodaan Pizza-olio
-			Pizza poistettavapizza = new Pizza(pid, tyyppi, nimi, hinta,
-					nakyvyys, pohja, taytelista);
+			Pizza poistettavapizza = new Pizza(poistettavaPizzaId, tyyppi,
+					nimi, hinta, nakyvyys, pohja, taytelista);
 
 			// Kutsutaan deletePizza-metodia
 			pizzadao.deletePizza(poistettavapizza);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		// Palautetaan k‰ytt‰j‰ pizzalistan muokkaustilaan.
+		// Palautetaan k√§ytt√§j√§ pizzalistan muokkaustilaan.
 		response.sendRedirect("MuokkaaPizzalistaServlet");
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 	}
 

@@ -29,8 +29,6 @@ import pizzicato.model.dao.TayteDAO;
 public class LisaaPizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private RequestDispatcher jsp;
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// Luodaan PizzaDAO ja TayteDAO, ja molemmille ArrayListit
@@ -39,11 +37,11 @@ public class LisaaPizzaServlet extends HttpServlet {
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 
-		// ArrayList tallennetaan request-olioon jsp:lle viet‰v‰ksi
+		// ArrayList tallennetaan request-olioon jsp:lle viet√§v√§ksi
 		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("taytteet", taytteet);
 
-		// L‰hetet‰‰n jsp:lle
+		// L√§hetet√§√§n jsp:lle
 		String jsp = "/view/lisaa-pizza.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
@@ -59,12 +57,12 @@ public class LisaaPizzaServlet extends HttpServlet {
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
-		
-		// ArrayList tallennetaan request-olioon jsp:lle viet‰v‰ksi
+
+		// ArrayList tallennetaan request-olioon jsp:lle viet√§v√§ksi
 		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("taytteet", taytteet);
-		
-		jsp = getServletContext().getRequestDispatcher("/view/lisaa-pizza.jsp");
+
+		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-pizza.jsp");
 
 		HashMap<String, String> errors = validate(request);
 		if (!errors.isEmpty()) {
@@ -75,35 +73,35 @@ public class LisaaPizzaServlet extends HttpServlet {
 			// automaattisesti
 			int id = 0;
 
-			// N‰m‰ arvot ovat pelk‰st‰‰n futureproofia varten.
+			// N√§m√§ arvot ovat pelk√§st√§√§n futureproofia varten.
 			String tyyppi = "pizza";
 			int nakyvyys = 1;
 			String pohja = "normaali";
 
-			// Laitetaan k‰ytt‰j‰n valitsemat t‰ytteet listaan
+			// Laitetaan k√§ytt√§j√§n valitsemat t√§ytteet listaan
 			String[] tayte = request.getParameterValues("tayte");
 			for (int i = 0; i < tayte.length; i++) {
 
 				int tayteId = new Integer(tayte[i]);
-			String tayteNimi = taytteet.get(i).getNimi();
-			System.out.println(tayteNimi);
-			String tayteNimi_eng = taytteet.get(i).getNimi_eng();
-			Double tayteHinta = 0.00;
-			Double tayteKilohinta = 0.00;
+				String tayteNimi = taytteet.get(i).getNimi();
+				System.out.println(tayteNimi);
+				String tayteNimi_eng = taytteet.get(i).getNimi_eng();
+				Double tayteHinta = 0.00;
+				Double tayteKilohinta = 0.00;
 
-				// Luodaan uusi Tayte-olio taytelistaan lis‰tt‰v‰ksi
-				Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng, tayteHinta, tayteKilohinta);
+				// Luodaan uusi Tayte-olio taytelistaan lis√§tt√§v√§ksi
+				Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng,
+						tayteHinta, tayteKilohinta);
 				taytelista.add(uusiTayte);
 			}
-			
-			
 
 			try {
-				// Luodaan uusi pizza olio kantaan viet‰v‰ksi
+				// Luodaan uusi pizza olio kantaan viet√§v√§ksi
 				Pizza leikkiPizza = (Pizza) request.getAttribute("uusiPizza");
 				String nimi = leikkiPizza.getNimi();
 				double hinta = leikkiPizza.getHinta();
-				Pizza uusiPizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys, pohja, taytelista);
+				Pizza uusiPizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys,
+						pohja, taytelista);
 				pizzadao.addPizza(uusiPizza);
 				response.sendRedirect("MuokkaaPizzalistaServlet");
 
@@ -118,33 +116,36 @@ public class LisaaPizzaServlet extends HttpServlet {
 		Pizza uusiPizza = new Pizza();
 		HashMap<String, String> errors = new HashMap<String, String>();
 
-		// Haetaan syˆtetty nimi validointia varten
+		// Haetaan sy√∂tetty nimi validointia varten
 		String nimi = request.getParameter("pizzaNimi");
 		if (nimi == null || nimi.trim().length() == 0) {
 			errors.put("nimi", "Nimi vaaditaan.");
 		}
-		int maxLength = (nimi.length() < 20)?nimi.length():20;
+		int maxLength = (nimi.length() < 20) ? nimi.length() : 20;
 		String rajattuNimi = nimi.substring(0, maxLength);
 		nimi = rajattuNimi;
 		uusiPizza.setNimi(nimi);
 
-		// Haetaan syˆtetty hinta validointia varten
+		// Haetaan sy√∂tetty hinta validointia varten
 		String hintaStr = request.getParameter("pizzaHinta");
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
-			errors.put("hintaStr", "Hinta vaaditaan.");
-		}
-		String uusiHintaStr = hintaStr.replace(',', '.');
-		double hinta = 0;
-		hinta = new Double(uusiHintaStr);
-		formatter.format(hinta);
+			errors.put("hinta", "Hinta vaaditaan.");
+		} else {
+			String uusiHintaStr = hintaStr.replace(',', '.');
+			double hinta = 0;
+			hinta = new Double(uusiHintaStr);
+			formatter.format(hinta);
 
-		if (hinta < 6 || hinta > 99.99) {
-			errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+			if (hinta < 6 || hinta > 99.99) {
+				errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+			} else {
+			uusiPizza.setHinta(hinta);
+			request.setAttribute("uusiPizza", uusiPizza);
+			}
 		}
-		uusiPizza.setHinta(hinta);
+			request.setAttribute("errors", errors);
+			
 		
-		request.setAttribute("errors", errors);
-		request.setAttribute("uusiPizza", uusiPizza);
 
 		return errors;
 	}

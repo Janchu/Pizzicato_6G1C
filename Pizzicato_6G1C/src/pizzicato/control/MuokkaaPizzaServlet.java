@@ -3,6 +3,7 @@ package pizzicato.control;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,11 +37,11 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		int PId = new Integer(muokattavaPizzaId);
 		request.setAttribute("muokattavaPizzaId", PId);
 
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietï¿½vï¿½ksi
 		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("taytteet", taytteet);
 
-		// Lähetetään jsp:lle
+		// LÃ¤hetetÃ¤Ã¤n jsp:lle
 		String jsp = "/view/muokkaa-pizza.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
@@ -51,8 +52,8 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Luodaan PizzaDAO ja TayteDAO, joita tarvitaan kun täytteiden
-		// muokkaustoiminto lisätään.
+		// Luodaan PizzaDAO ja TayteDAO, joita tarvitaan kun tÃ¤ytteiden
+		// muokkaustoiminto lisÃ¤tÃ¤Ã¤n.
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
 		TayteDAO taytedao = new TayteDAO();
@@ -60,48 +61,63 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 
-		// Haetaan käyttäjän syöttämät pizzan nimi ja hinta. Muutetaan hinta
-		// oikeaan muotoon.
-		String nimi = request.getParameter("pizzaNimi");
-		String hintaStr = request.getParameter("pizzaHinta");
-		String uusiHintaStr = hintaStr.replace(',', '.');
-		double hinta = new Double(uusiHintaStr);
-		formatter.format(hinta);
+		// ArrayList tallennetaan request-olioon jsp:lle vietÃ¤vÃ¤ksi
+		request.setAttribute("pizzat", pizzat);
+		request.setAttribute("taytteet", taytteet);
+		
 		String idStr = request.getParameter("pizzaId");
 		int id = new Integer(idStr);
 
-		// Nämä arvot ovat pelkästään futureproofia varten.
-		String tyyppi = "pizza";
-		int nakyvyys = 1;
-		String pohja = "normaali";
+		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
+				"/view/muokkaa-pizza.jsp");
 
-		// Täytteiden tiedot alustetaan nolliksi kunnes täytteiden
-		// muokkaustoiminto toimii.
-		int tayteId = 0;
-		String tayteNimi = "";
-		String tayteNimi_eng = "";
-		Double tayteHinta = 0.00;
-		Double tayteKilohinta = 0.00;
+		HashMap<String, String> errors = LisaaPizzaServlet.validate(request);
+		if (!errors.isEmpty()) {
+			request.setAttribute("muokattavaPizzaId", id);
+			jsp.forward(request, response);
+		} else {
 
-		// Luodaan Tayte-olio, muokattavan pizzan mukana vietäväksi.
-		Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng, tayteHinta, tayteKilohinta);
-		taytelista.add(uusiTayte);
+			// Haetaan kÃ¤yttÃ¤jÃ¤n syÃ¶ttÃ¤mÃ¤t pizzan nimi ja hinta. Muutetaan hinta
+			// oikeaan muotoon.
+			String nimi = request.getParameter("pizzaNimi");
+			String hintaStr = request.getParameter("pizzaHinta");
+			String uusiHintaStr = hintaStr.replace(',', '.');
+			double hinta = new Double(uusiHintaStr);
+			formatter.format(hinta);
 
-		try {
-			// Luodaan uusi pizza olio kantaan vietäväksi
-			Pizza muokattuPizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys,
-					pohja, taytelista);
+			// NÃ¤mÃ¤ arvot ovat pelkÃ¤stÃ¤Ã¤n futureproofia varten.
+			String tyyppi = "pizza";
+			int nakyvyys = 1;
+			String pohja = "normaali";
 
-			// Kutsutaan updatePizza metodia
-			pizzadao.updatePizza(muokattuPizza);
+			// TÃ¤ytteiden tiedot alustetaan nolliksi kunnes tÃ¤ytteiden
+			// muokkaustoiminto toimii.
+			int tayteId = 0;
+			String tayteNimi = "";
+			String tayteNimi_eng = "";
+			Double tayteHinta = 0.00;
+			Double tayteKilohinta = 0.00;
 
-			// Palautetaan käyttäjä pizzalistan muokkaustilaan.
-			response.sendRedirect("MuokkaaPizzalistaServlet");
+			// Luodaan Tayte-olio, muokattavan pizzan mukana vietï¿½vï¿½ksi.
+			Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng,
+					tayteHinta, tayteKilohinta);
+			taytelista.add(uusiTayte);
 
-		} catch (Exception e) {
-			response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp"); //
+			try {
+				// Luodaan uusi pizza olio kantaan vietï¿½vï¿½ksi
+				Pizza muokattuPizza = new Pizza(id, tyyppi, nimi, hinta,
+						nakyvyys, pohja, taytelista);
+
+				// Kutsutaan updatePizza metodia
+				pizzadao.updatePizza(muokattuPizza);
+
+				// Palautetaan kï¿½yttï¿½jï¿½ pizzalistan muokkaustilaan.
+				response.sendRedirect("MuokkaaPizzalistaServlet");
+
+			} catch (Exception e) {
+				response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp"); //
+			}
+
 		}
-
 	}
-
 }

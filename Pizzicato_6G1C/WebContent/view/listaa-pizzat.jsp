@@ -75,8 +75,8 @@
 
 				<tr>
 					<td width="100px"><%=pizzanumero%></td>
-					<td><b><%=pizzat.get(i).getNimi()%><br> Täytteet:</b> <%
- 	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu
+					<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
+ 	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) {
  %> <%=pizzat.get(i).getTaytelista().get(j)
 								.getNimi()%> <%
  	}

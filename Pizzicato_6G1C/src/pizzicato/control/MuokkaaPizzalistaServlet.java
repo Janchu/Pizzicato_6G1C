@@ -27,10 +27,10 @@ public class MuokkaaPizzalistaServlet extends HttpServlet {
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
 
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietï¿½vï¿½ksi
 		request.setAttribute("pizzat", pizzat);
 
-		// Lähetetään jsp:lle
+		// LÃ¤hetetÃ¤Ã¤n jsp:lle
 		String jsp = "/view/muokkaa-pizzalista.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);

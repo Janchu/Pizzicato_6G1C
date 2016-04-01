@@ -12,6 +12,7 @@
 	scope="request" />
 <jsp:useBean id="muokattavaPizzaId" scope="request"
 	type="java.lang.Integer" />
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -73,13 +74,23 @@
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>"
-						required></td>
+						>
+						<%
+               if (errors.containsKey("nimi")) {
+                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
+               }
+            %></td>
 					<td>Max 20 merkkiä</td>
 				</tr>
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaHinta" maxlength="5" step="any" min="6" max="99.99"
-						value="<%=pizzaHinta%>" required></td>
+						value="<%=pizzaHinta%>" >
+						<%
+               if (errors.containsKey("hinta")) {
+                  out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
+               }
+            %></td>
 					<td>Hinta muotoa 0,00 ja hinnan pitää olla 6,00 - 99,00 euroa</td>
 				</tr>
 			</table>
