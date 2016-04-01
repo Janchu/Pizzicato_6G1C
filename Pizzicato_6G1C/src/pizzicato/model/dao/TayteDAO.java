@@ -11,8 +11,8 @@ import pizzicato.model.Tayte;
 public class TayteDAO extends DataAccessObject {
 
 	/**
-	 * Kaivaa kannasta kaikki täytteet ja niiden tiedot. Luo jokaisesta
-	 * täytteestä Tayte-olion ja tekee luoduista Tayte-olioista ArrayListin.
+	 * Kaivaa kannasta kaikki tï¿½ytteet ja niiden tiedot. Luo jokaisesta
+	 * tï¿½ytteestï¿½ Tayte-olion ja tekee luoduista Tayte-olioista ArrayListin.
 	 * 
 	 * @return Palauttaa valmiin taytelista-ArrayListin
 	 */
@@ -71,7 +71,7 @@ public class TayteDAO extends DataAccessObject {
 
 	private Tayte readTayte(ResultSet rs) {
 		try {
-			// Haetaan yhden täytteen tiedot
+			// Haetaan yhden tï¿½ytteen tiedot
 			int id = rs.getInt("id");
 			String nimi = rs.getString("nimi");
 			String nimi_eng = rs.getString("nimi_eng");
@@ -86,7 +86,7 @@ public class TayteDAO extends DataAccessObject {
 	}
 
 	/**
-	 * Tuodaan lisattavaTayte-olio addTayte-metodille. Viedään kantaan tiedot
+	 * Tuodaan lisattavaTayte-olio addTayte-metodille. Viedï¿½ï¿½n kantaan tiedot
 	 * tayte- ja pizzatayte-tauluihin.
 	 * 
 	 * @param lisattavaTayte
@@ -103,12 +103,12 @@ public class TayteDAO extends DataAccessObject {
 		try {
 			connection = getConnection();
 			stmtInsert = connection
-					.prepareStatement("INSERT INTO tayte(id, nimi, hinta, nimi_eng, kilohinta) VALUES (last_insert_id(), ?, ?, ?, ?);");
+					.prepareStatement("INSERT INTO tayte(nimi, hinta, nimi_eng, kilohinta) VALUES (?, ?, ?, ?);");
 
-			stmtInsert.setString(2, lisattavaTayte.getNimi());
-			stmtInsert.setDouble(3, lisattavaTayte.getHinta());
-			stmtInsert.setString(4, lisattavaTayte.getNimi_eng());
-			stmtInsert.setDouble(5, lisattavaTayte.getKilohinta());
+			stmtInsert.setString(1, lisattavaTayte.getNimi());
+			stmtInsert.setDouble(2, lisattavaTayte.getHinta());
+			stmtInsert.setString(3, lisattavaTayte.getNimi_eng());
+			stmtInsert.setDouble(4, lisattavaTayte.getKilohinta());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
@@ -136,8 +136,7 @@ public class TayteDAO extends DataAccessObject {
 		// try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
-		poistettavaTayte.getId();
-		System.out.println(poistettavaTayte.getId());
+
 		try {
 			connection = getConnection();
 
@@ -155,7 +154,7 @@ public class TayteDAO extends DataAccessObject {
 
 	/**
 	 * Tuodaan mukana paivitettavaTayte-olio, jonka id:n perusteella kannassa
-	 * tehdään muutokset tayte- ja pizzatayte-tauluihin.
+	 * tehdï¿½ï¿½n muutokset tayte- ja pizzatayte-tauluihin.
 	 * 
 	 * @param paivitettavaTayte
 	 *            Mukana tuotava Tayte-olio

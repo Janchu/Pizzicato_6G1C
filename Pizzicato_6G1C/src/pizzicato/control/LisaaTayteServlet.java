@@ -28,10 +28,10 @@ public class LisaaTayteServlet extends HttpServlet {
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 		
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietï¿½vï¿½ksi
 		request.setAttribute("taytteet", taytteet);
 		
-		// Lähtetetään jsp:lle
+		// Lï¿½htetetï¿½ï¿½n jsp:lle
 		String jsp = "/view/lisaa-tayte.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
@@ -45,7 +45,7 @@ public class LisaaTayteServlet extends HttpServlet {
 		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 		
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietï¿½vï¿½ksi
 		request.setAttribute("taytteet", taytteet);
 		
 		jsp = getServletContext().getRequestDispatcher("/view/lisaa-tayte.jsp");
@@ -54,7 +54,7 @@ public class LisaaTayteServlet extends HttpServlet {
 		// automaattisesti 
 		int id = 0;
 		
-		// Haetaan käyttäjän syöttämät täytteen nimi, nimi_eng, hinta ja
+		// Haetaan kï¿½yttï¿½jï¿½n syï¿½ttï¿½mï¿½t tï¿½ytteen nimi, nimi_eng, hinta ja
 		// kilohinta.
 		// Muutetaan hinta ja kilohinta oikeaan muotoon.
 		String nimi = request.getParameter("tayteNimi");
@@ -63,24 +63,20 @@ public class LisaaTayteServlet extends HttpServlet {
 		String uusiHintaStr = hintaStr.replace(",", ".");
 		double hinta = new Double(uusiHintaStr);
 		formatter.format(hinta);
-		String kilohintaStr = request.getParameter("tayteKilohinta");
+		String kilohintaStr = request.getParameter("Kilohinta");
 		String uusiKilohintaStr = kilohintaStr.replace(",", ".");
 		double kilohinta = new Double(uusiKilohintaStr);
 		formatter.format(kilohinta);
 
-		// Luodaan Tayte-olio.
-		Tayte muokattavaTayte = new Tayte(id, nimi, nimi_eng, hinta, kilohinta);
-		taytelista.add(muokattavaTayte);
-
 		try {
-			// Luodaan uusi tayte-olio kantaan vietäväksi
-			Tayte uusiTayte = new Tayte(id, nimi, nimi_eng, hinta,
+			// Luodaan uusi tayte-olio kantaan vietï¿½vï¿½ksi
+			Tayte lisattavaTayte = new Tayte(id, nimi, nimi_eng, hinta,
 					kilohinta);
 
 			// Kutsutaan updateTayte metodia
-			taytedao.updateTayte(uusiTayte);
+			taytedao.addTayte(lisattavaTayte);
 
-			// Palauteen käyttäjä taytelistan muokkaustilaan.
+			// Palauteen kï¿½yttï¿½jï¿½ taytelistan muokkaustilaan.
 			response.sendRedirect("MuokkaaTaytelistaServlet");
 
 		} catch (Exception e) {
