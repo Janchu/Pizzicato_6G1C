@@ -15,45 +15,44 @@ import pizzicato.model.Tayte;
 import pizzicato.model.dao.TayteDAO;
 
 /**
- * Servlet implementation class LisaaTayteServlet
+ * Servlet implementation class MuokkaaTayteServlet
  */
-@WebServlet("/LisaaTayteServlet")
-public class LisaaTayteServlet extends HttpServlet {
+@WebServlet("/MuokkaaTayteServlet")
+public class MuokkaaTayteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    private RequestDispatcher jsp;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Luodaan TayteDAO ja ArrayList
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		// Luodaan TayteDAO-oliot
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
-		
+
+		String muokattavaTayteId = request.getParameter("TayteId");
+		int TId = new Integer(muokattavaTayteId);
+		request.setAttribute("muokattavaTayteId", TId);
+
 		// ArrayList tallennetaan request-olioon jsp:lle viet‰v‰ksi
 		request.setAttribute("taytteet", taytteet);
-		
-		// L‰htetet‰‰n jsp:lle
-		String jsp = "/view/lisaa-tayte.jsp";
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
+
+		// L‰hetet‰‰n jsp:lle
+		String jsp = "/view/muokkaa-tayte.jsp";
+		RequestDispatcher dispatcher = getServletContext()
+				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
+
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
-		// Luodaan TayteDAO (ja decimalformat)
+		// Luodaan TayteDAO, jota tarvitaan kun t‰ytteiden
+		// muokkaustoiminto lis‰t‰‰n.
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
-		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 		DecimalFormat formatter = new DecimalFormat("#0.00");
-		
-		// ArrayList tallennetaan request-olioon jsp:lle viet‰v‰ksi
-		request.setAttribute("taytteet", taytteet);
-		
-		jsp = getServletContext().getRequestDispatcher("/view/lisaa-tayte.jsp");
-		
-		// Alustetaan ID nollaksi, koska ID generoituu kannassa
-		// automaattisesti 
-		int id = 0;
-		
+		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
+
 		// Haetaan k‰ytt‰j‰n syˆtt‰m‰t t‰ytteen nimi, nimi_eng, hinta ja
 		// kilohinta.
 		// Muutetaan hinta ja kilohinta oikeaan muotoon.
@@ -67,6 +66,8 @@ public class LisaaTayteServlet extends HttpServlet {
 		String uusiKilohintaStr = kilohintaStr.replace(",", ".");
 		double kilohinta = new Double(uusiKilohintaStr);
 		formatter.format(kilohinta);
+		String idStr = request.getParameter("tayteId");
+		int id = new Integer(idStr);
 
 		// Luodaan Tayte-olio.
 		Tayte muokattavaTayte = new Tayte(id, nimi, nimi_eng, hinta, kilohinta);
@@ -74,20 +75,20 @@ public class LisaaTayteServlet extends HttpServlet {
 
 		try {
 			// Luodaan uusi tayte-olio kantaan viet‰v‰ksi
-			Tayte uusiTayte = new Tayte(id, nimi, nimi_eng, hinta,
+			Tayte muokattuTayte = new Tayte(id, nimi, nimi_eng, hinta,
 					kilohinta);
 
 			// Kutsutaan updateTayte metodia
-			taytedao.updateTayte(uusiTayte);
+			taytedao.updateTayte(muokattuTayte);
 
 			// Palauteen k‰ytt‰j‰ taytelistan muokkaustilaan.
 			response.sendRedirect("MuokkaaTaytelistaServlet");
 
 		} catch (Exception e) {
 			response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp");
-	
-	}
+
+		}
 
 	}
-		
+
 }
