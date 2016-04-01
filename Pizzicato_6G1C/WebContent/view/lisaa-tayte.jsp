@@ -98,7 +98,7 @@
 			
 			
 
-			<input type="submit" class="button" value="Täyte täydellinen!"> <a
+			<input type="submit" class="button" value="Täyte täydellinen! kyl vitus"> <a
 				href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
 		</form>
 	</div>
