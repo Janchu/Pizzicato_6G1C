@@ -28,11 +28,13 @@ public class ListaaPizzatServlet extends HttpServlet {
 		// Luodaan PizzaDAO
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
+		
+		System.out.println(pizzat);
 
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietï¿½vï¿½ksi
 		request.setAttribute("pizzat", pizzat);
 
-		// Lähetetään jsp:lle
+		// Lï¿½hetetï¿½ï¿½n jsp:lle
 		String jsp = "/view/listaa-pizzat.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);

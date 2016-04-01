@@ -95,7 +95,13 @@
 				</tr>
 			</table>
 
-
+		<%
+			for (int i = 0; i < taytteet.size(); i++) {
+		%>
+			
+			
+			
+		<%}%>
 
 
 

@@ -64,6 +64,7 @@
 				</tr>
 
 				<%
+				
 					DecimalFormat decimal = new DecimalFormat("0.00");
 					int pizzanumero = 0;
 					for (int i = 0; i < pizzat.size(); i++) {

@@ -44,8 +44,9 @@ public class PizzaDAO extends DataAccessObject {
 					pizza = readPizza(rs);
 					pizzalista.add(pizza);
 				}
+				
 				tayte = readTayte(rs);
-				pizza.addTayte(tayte);
+				pizza.getTaytelista().add(tayte);
 
 				pizzaIdEdellinen = rs.getInt("pizza.id");
 
@@ -59,7 +60,7 @@ public class PizzaDAO extends DataAccessObject {
 	}
 
 	/**
-	 * Tuodaan lisattavaPizza-olio addPizza-metodille. Viedään kantaan tiedot
+	 * Tuodaan lisattavaPizza-olio addPizza-metodille. Viedï¿½ï¿½n kantaan tiedot
 	 * tuote-, pizza- ja pizzatayte-tauluihin.
 	 * 
 	 * @param lisattavaPizza
@@ -114,7 +115,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	/**
 	 * Metodiin tuodaan poistettavaPizza-olio, jonka id:n perusteella kannasta
-	 * poistetaan tietty pizza ja sen yhteydet täytteisiin.
+	 * poistetaan tietty pizza ja sen yhteydet tï¿½ytteisiin.
 	 * 
 	 * @param poistettavaPizza
 	 *            Mukana tuotava Pizza-olio
@@ -196,7 +197,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	/**
 	 * Tuodaan mukana paivitettavaPizza-olio, jonka id:n perusteella kannassa
-	 * tehdään muutokset pizza-, tuote- ja pizzatayte-tauluihin.
+	 * tehdï¿½ï¿½n muutokset pizza-, tuote- ja pizzatayte-tauluihin.
 	 * 
 	 * @param paivitettavaPizza
 	 *            Mukana tuotava Pizza-olio
@@ -254,7 +255,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	private Tayte readTayte(ResultSet rs) {
 		try {
-			// Haetaan yhden täytteen tiedot
+			// Haetaan yhden tï¿½ytteen tiedot
 			int id = rs.getInt("tayte.id");
 			String nimi = rs.getString("tayte");
 			String nimi_eng = rs.getString("tayte_eng");
