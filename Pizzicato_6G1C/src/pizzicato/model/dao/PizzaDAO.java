@@ -28,7 +28,7 @@ public class PizzaDAO extends DataAccessObject {
 		ArrayList<Pizza> pizzalista = new ArrayList<Pizza>();
 		Pizza pizza = null;
 		Tayte tayte = new Tayte();
-		int pizzaIdEdellinen = 0;
+		int pizzaIdEdellinen = 0; //kukkuu
 
 		try {
 			conn = getConnection();
