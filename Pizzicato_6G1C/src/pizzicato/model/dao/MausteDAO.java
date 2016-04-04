@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 
 
+
 import pizzicato.model.Mauste;
+import pizzicato.model.Tayte;
 
 public class MausteDAO extends DataAccessObject {
 	
@@ -115,6 +117,80 @@ public class MausteDAO extends DataAccessObject {
 			close(stmtInsert, connection);
 		}
 	}
+	
+	/**
+	 * Metodiin tuodaan poistettavaMauste-olio, jonka id:n perusteella kannasta
+	 * poistetaan tietty mauste ja sen yhteydet pizzoihin.
+	 * 
+	 * @param poistettavaMauste
+	 *            Mukana tuotava Mauste-olio
+	 * @throws SQLException
+	 */
+	public void deleteMauste(Mauste poistettavaMauste) throws SQLException {
+
+		// Alustetaan Connection ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+
+		try {
+			connection = getConnection();
+
+			stmtInsert = connection
+					.prepareStatement("DELETE FROM mauste WHERE id = (?);");
+			stmtInsert.setInt(1, poistettavaMauste.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtInsert, connection);
+		}
+	}
+
+	/**
+	 * Tuodaan mukana paivitettavaMauste-olio, jonka id:n perusteella kannassa
+	 * tehdäänmuutokset mauste- ja pizzamauste-tauluihin.
+	 * 
+	 * @param paivitettavaMauste
+	 *            Mukana tuotava Mauste-olio
+	 * @throws SQLException
+	 */
+
+	public void updateMauste(Mauste paivitettavaMauste) throws SQLException {
+
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+
+		try {
+			connection = getConnection();
+			stmtInsert = connection.prepareStatement("UPDATE mauste SET nimi = (?) WHERE id = (?)");
+			stmtInsert.setString(1, paivitettavaMauste.getNimi());
+			stmtInsert.setInt(2, paivitettavaMauste.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+
+			stmtInsert = connection.prepareStatement("UPDATE mauste SET nimi_eng = (?) WHERE id = (?)");
+			stmtInsert.setString(1, paivitettavaMauste.getNimi_eng());
+			stmtInsert.setInt(2, paivitettavaMauste.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+
+			stmtInsert = connection.prepareStatement("UPDATE mauste SET kilohinta = (?) WHERE id = (?)");
+			stmtInsert.setDouble(1, paivitettavaMauste.getKilohinta());
+			stmtInsert.setInt(2, paivitettavaMauste.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtInsert, connection);
+		}
+	}
+
 	
 	}
 
