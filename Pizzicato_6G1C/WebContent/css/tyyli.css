@@ -1,7 +1,13 @@
-body {
-background-image: url("../images/italolib.jpg");
+html, body {
+background-image: url("../images/italolib2.jpg");
 background-size: 100% 100%;
+width: 100%;
+height: 100%; 
+margin:0;
+padding:0;
 }
+
+
 
 /* caption muokkaa taulukon otsikon kokoa */
 caption {
@@ -33,16 +39,9 @@ padding:20px;
 
 /* th:n background-color tekee otsikkosolusta vihre‰n ja color otsikoiden v‰rist‰ valkoisen */
 #pizzalistataulukko th {
-    background-color: #4CAF50;
+    background-color: #6FD630;
     color: white;
 }
-
-/* Sijoittaa nappulat loota1:n sis‰ll‰ haluttuun sijaintiin */
-#nappulasijainti {
-margin-top:20px;
-margin-left:10%;
-}
-
 
  /* m‰‰ritt‰‰ navigaatiopalkin pysym‰‰n aina ylh‰‰ll‰, sen v‰rin ja leveyden */    	
  #navigaatio {
@@ -56,30 +55,64 @@ margin-left:10%;
    color: black;
    background:white;
 }
+ #logoloota {
+ background-color:white;
+ margin-left:15%;
+ width:72%;
+ height:33%;
+ }
+
+ .logo {
+height: 100%;
+margin-left:29%;
+
+ }
+ 
+ #lootavasen {
+
+ display:inline-block;
+ float:left;
+ width:33.3%;
+ }
+ 
+ #lootakeski {
+ display:inline-block;
+ float:center;
+ height:100%;
+ width:33.3%;
+ text-align:center;
+ }
+ 
+ #lootaoikea {
+ display:inline-block;
+ float:right;
+ height:100%;
+ width:33.3%;
+ text-align:center;
+ }
  
 /* M‰‰ritt‰‰ lootan leveyden, v‰rin, korkeuden, sijainnin ja kaiken */			
 #loota1 {
 		background-color: white;
     	width:72%;
     	height:auto;
-		border-radius:20px;
       	padding:15px;
-		margin-top:5%;
-		margin-bottom:20px;
 		margin-left:15%;
 		}
+
 		
 /* M‰‰ritt‰‰ footerin v‰rin, leveyden, sijainnin ja tekstin ominaisuudet */			
 	#footer {
 	
-	background-color:black;
-	width:100%;
+	background-color:gray;
+	width:72%;
    	color:white;
    	text-align:left;
 	height:120px;
 	padding:5px;
 	clear:both;
 	position:bottom;
+	margin-left:15%;
 	}
 	
 	#footer_sis‰ltˆ {float:left;}
@@ -88,17 +121,17 @@ margin-left:10%;
 /* Sijoittaa nappulat loota1:n sis‰ll‰ haluttuun sijaintiin */
 #nappulasijainti {
 position:fixed;
-top: 180px;
-right:240px;
+top: 43%;
+right:245px;
 }
 	
 /* Vihre‰n nappulan class, joka m‰‰ritt‰‰ sen ominaisuudet */
 	
 	.button {
-    background-color: #4CAF50;
+    background-color: #6FD630;
     border: none;
     color: white;
-    padding: 10px 10px;
+    padding: 5px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -108,8 +141,18 @@ right:240px;
 	border-radius:10px;
 }
 
-.uksijainti {
-	top: 20px;
+.button2 {
+    background-color: #6FD630;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	border-radius:10px;
 }
 
 /* lisaa-pizza.jsp syˆttˆkent‰n * pakollinen merkin t‰hti punaiseksi */
