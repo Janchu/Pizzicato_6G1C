@@ -60,7 +60,7 @@
 
 <tr>
 					<td><label>Täytteen englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteNimi_eng" placeholder="Täytteen eng.nimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="${uusiTayte.nimi}">
+					<td><input type="text" name="tayteNimi_eng" placeholder="Täytteen eng.nimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="${uusiTayte.nimi_eng}">
 					 <%
                if (errors.containsKey("nimi")) {
                   out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
@@ -70,28 +70,30 @@
 					<td>Max 20 merkkiä</td>
 				</tr>
 
-				<tr>
-					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="Kilohinta" placeholder="Täytteen kilohinta" maxlength="7" step="any" min="1.00" max="1000.00" required value="${uusiTayte.kilohinta}">
-					<%
-               if (errors.containsKey("kilohinta")) {
-                  out.println("<span class=\"error\">" + errors.get("kilohinta") + "</span>");
-               }
-            %>
-            </td>
-					<td>Hinnan pitää olla 1,00 - 1000,00</td>
-				</tr>
+				
 				
 				<tr>
 					<td><label>Täytteen hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteHinta" placeholder="Täytteen hinta" maxlength="5" step="any" min="0.20" max="10.00" required value="${uusiTayte.hinta}">
+					<td><input type="text" name="tayteHinta" placeholder="Täytteen hinta" maxlength="5" step="any" min="0.50" max="10.00" required value="${uusiTayte.hinta}">
 					<%
                if (errors.containsKey("hinta")) {
                   out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
                }
             %>
             </td>
-					<td>Hinnan pitää olla 0,20 - 10,00</td>
+					<td>Hinnan pitää olla 0,50 - 10,00</td>
+				</tr>
+				
+				<tr>
+					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
+					<td><input type="text" name="Kilohinta" placeholder="Täytteen kilohinta" maxlength="5" step="any" min="0.50" max="99.99" required value="${uusiTayte.kilohinta}">
+					<%
+               if (errors.containsKey("kilohinta")) {
+                  out.println("<span class=\"error\">" + errors.get("kilohinta") + "</span>");
+               }
+            %>
+            </td>
+					<td>Hinnan pitää olla 0,50 - 99,99</td>
 				</tr>
 			</table>
 
