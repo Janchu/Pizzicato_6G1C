@@ -3,19 +3,25 @@ package pizzicato.model;
 public class Mauste {
 
 	private int id;
-	private String mausteet;
+	private String nimi;
+	private String nimi_eng;
+	private double kilohinta;
 
 	// Konstruktorit
-	public Mauste(int id, String mausteet) {
+	public Mauste(int id, String nimi, String nimi_eng, double kilohinta) {
 
 		this.id = id;
-		this.mausteet = mausteet;
+		this.nimi = nimi;
+		this.nimi_eng = nimi_eng;
+		this.kilohinta = kilohinta;
 	}
 
 	public Mauste() {
 
 		this.id = 0;
-		this.mausteet = null;
+		this.nimi = null;
+		this.nimi_eng = null;
+		this.kilohinta = 0;
 
 	}
 
@@ -29,19 +35,36 @@ public class Mauste {
 		this.id = id;
 	}
 
-	public String getMausteet() {
-		return mausteet;
+	public String getNimi() {
+		return nimi;
 	}
 
-	public void setMausteet(String mausteet) {
-		this.mausteet = mausteet;
+	public void setNimi(String nimi) {
+		this.nimi = nimi;
+	}
+
+	public String getNimi_eng() {
+		return nimi_eng;
+	}
+
+	public void setNimi_eng(String nimi_eng) {
+		this.nimi_eng = nimi_eng;
+	}
+
+	public double getKilohinta() {
+		return kilohinta;
+	}
+
+	public void setKilohinta(double kilohinta) {
+		this.kilohinta = kilohinta;
 	}
 
 	// toString
 
 	@Override
 	public String toString() {
-		return "Mausteet [id=" + id + ", mausteet=" + mausteet + "]";
+		return "Mauste [id=" + id + ", nimi=" + nimi + ", nimi_eng=" + nimi_eng
+				+ ", kilohinta=" + kilohinta + "]";
 	}
 
 }
