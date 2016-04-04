@@ -75,7 +75,7 @@
 					<td><b><%=pizzat.get(i).getNimi()%><br> Toppings:</b> <%
  	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu
  %> <%=pizzat.get(i).getTaytelista().get(j)
-								.getNimi()%> <%
+								.getNimi_eng()%> <%
  	}
  %></td>
 					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
