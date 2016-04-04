@@ -100,7 +100,7 @@
 			
 			
 
-			<input type="submit" class="button" value="Täyte täydellinen! kyl vitus jee"> <a
+			<input type="submit" class="button" value="Täyte täydellinen! kyl vitus jepajepa jee"> <a
 				href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
 		</form>
 	</div>
