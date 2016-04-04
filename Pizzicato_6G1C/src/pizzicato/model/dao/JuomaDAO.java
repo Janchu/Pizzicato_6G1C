@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import pizzicato.model.Juoma;
-import pizzicato.model.Pizza;
 
 public class JuomaDAO extends DataAccessObject {
 
@@ -31,7 +30,7 @@ public class JuomaDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT juoma.id, tuote.tyyppi, juoma.koko, juoma.nakyvyys, tuote.nimi, tuote.hinta FROM tuote JOIN juoma tuote.id = juoma.id ORDER BY tuote.tyyppi DESC, tuote.hinta ASC, tuote.id ASC;";
+			String sqlSelect = "SELECT juoma.id, tuote.tyyppi, juoma.koko, juoma.nakyvyys, tuote.nimi, tuote.hinta FROM tuote JOIN juoma ON tuote.id = juoma.id ORDER BY tuote.tyyppi DESC, tuote.hinta ASC, tuote.id ASC;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
