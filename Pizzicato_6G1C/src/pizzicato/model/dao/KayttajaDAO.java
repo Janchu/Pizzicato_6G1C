@@ -26,4 +26,17 @@ public class KayttajaDAO extends DataAccessObject {
 		String postinro = rs.getString("kayttaja.postinro");
 		return new Kayttaja();
 	}
+	
+	public void create(Kayttaja kayttaja) {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			stmtInsert = connection.prepareStatement("INSERT INTO kayttaja(")
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
 }
