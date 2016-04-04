@@ -2,7 +2,7 @@ package pizzicato.model;
 
 public class Juoma extends Tuote {
 
-	// Attribuutit
+	// Attribuutit kukkuu
 	private double koko;
 
 	// Oletuskonstruktori

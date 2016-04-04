@@ -1,6 +1,6 @@
 package pizzicato.model;
 
-import java.util.ArrayList;
+import java.util.ArrayList; // kukkuu
 
 public class Pizza extends Tuote {
 	
