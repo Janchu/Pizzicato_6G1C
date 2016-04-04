@@ -75,7 +75,7 @@
 					<td width="50px"><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
 						for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) {
-					%> <%=pizzat.get(i).getTaytelista().get(j).getNimi()%> <%
+					%> <%=pizzat.get(i).getTaytelista().get(j).getNimi()%><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <%}
  	}
  %></td>
 					<td width="100px"><%=decimal.format(pizzat.get(i).getHinta())%></td>

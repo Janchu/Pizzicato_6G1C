@@ -81,14 +81,15 @@
 					<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
  	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) {
  %> <%=pizzat.get(i).getTaytelista().get(j)
-								.getNimi()%> <%
- 	}
- %></td>
+								.getNimi()%><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <%}
+ 	}%>
+ </td>
 					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
 				</tr>
 				<%
 					}
 					}
+					
 				%>
 			</table>
 		</div>

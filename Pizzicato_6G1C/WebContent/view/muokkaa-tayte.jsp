@@ -88,7 +88,7 @@
 						<tr>
 					<td><label>Täytteen englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteNimi_eng" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" value="<%=tayteNimi_eng%>">
-						>
+						
 						<%
                if (errors.containsKey("nimi")) {
                   out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");

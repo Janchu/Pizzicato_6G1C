@@ -74,7 +74,7 @@
 			<table>
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>">
+					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>" required>
 						<%
 							if (errors.containsKey("nimi")) {
 								out.println("<span class=\"error\">" + errors.get("nimi")
@@ -86,7 +86,7 @@
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaHinta" maxlength="5"
-						step="any" min="6" max="99.99" value="<%=pizzaHinta%>"> <%
+						step="any" min="6" max="99.99" value="<%=pizzaHinta%>" required> <%
  	if (errors.containsKey("hinta")) {
  		out.println("<span class=\"error\">" + errors.get("hinta")
  				+ "</span>");
