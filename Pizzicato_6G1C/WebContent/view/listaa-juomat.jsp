@@ -12,6 +12,28 @@
 </head>
 <body>
 
+<div id="logoloota">
+<div id="lootavasen">
+<div class="logo">
+<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+</div>
+</div>
+<div id="lootakeski">
+<p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
+Avoinna: 07-23<br>
+Puhelin: +358 0123456<br>
+Katuosoite: Katu2<br>
+Postitoimipaikka: Helsinki, 010101</p>
+</div>
+<div id="lootaoikea">
+
+<a href="" class="button2">Rekisteröidy</a>
+<a href="" class="button2">Kirjaudu Sisään</a>
+<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib3.jpg" width="32" height="32"></a>
+</div>
+</div>
+</div>
+
 <div id="juomalistataulukko">
 		
 	

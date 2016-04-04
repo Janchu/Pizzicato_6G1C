@@ -20,9 +20,6 @@
 </head>
 <body>
 
-
-	
-	
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
