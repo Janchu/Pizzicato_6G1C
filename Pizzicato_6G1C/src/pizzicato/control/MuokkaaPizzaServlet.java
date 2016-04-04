@@ -71,7 +71,7 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
 				"/view/muokkaa-pizza.jsp");
 
-		HashMap<String, String> errors = LisaaPizzaServlet.validate(request);
+		HashMap<String, String> errors = validateMuokkaa(request, id);
 		if (!errors.isEmpty()) {
 			request.setAttribute("muokattavaPizzaId", id);
 			jsp.forward(request, response);
@@ -106,7 +106,6 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 						tayteHinta, tayteKilohinta);
 				taytelista.add(uusiTayte);
 				taytemaara++;
-				
 
 			}
 			try {
@@ -127,5 +126,53 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 			}
 
 		}
+	}
+
+	public static HashMap<String, String> validateMuokkaa(
+			HttpServletRequest request, int id) {
+		DecimalFormat formatter = new DecimalFormat("#0.00");
+		Pizza uusiPizza = new Pizza();
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzat = pizzadao.findAll();
+		HashMap<String, String> errors = new HashMap<String, String>();
+
+		// Haetaan syötetty nimi validointia varten
+		String nimi = request.getParameter("pizzaNimi");
+		if (nimi == null || nimi.trim().length() == 0) {
+			errors.put("nimi", "Nimi vaaditaan.");
+		} else {
+			for (int i = 0; i < pizzat.size(); i++) {
+				if (nimi.equalsIgnoreCase(pizzat.get(i).getNimi())) {
+					if (id != pizzat.get(i).getId()) {
+						errors.put("nimi", "Nimi on jo käytössä.");
+					}
+				}
+			}
+		}
+		int maxLength = (nimi.length() < 20) ? nimi.length() : 20;
+		String rajattuNimi = nimi.substring(0, maxLength);
+		nimi = rajattuNimi;
+		uusiPizza.setNimi(nimi);
+
+		// Haetaan syötetty hinta validointia varten
+		String hintaStr = request.getParameter("pizzaHinta");
+		if (hintaStr == null || hintaStr.trim().length() == 0) {
+			errors.put("hinta", "Hinta vaaditaan.");
+		} else {
+			String uusiHintaStr = hintaStr.replace(',', '.');
+			double hinta = 0;
+			hinta = new Double(uusiHintaStr);
+			formatter.format(hinta);
+
+			if (hinta < 6 || hinta > 99.99) {
+				errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+			} else {
+				uusiPizza.setHinta(hinta);
+				request.setAttribute("uusiPizza", uusiPizza);
+			}
+		}
+		request.setAttribute("errors", errors);
+
+		return errors;
 	}
 }

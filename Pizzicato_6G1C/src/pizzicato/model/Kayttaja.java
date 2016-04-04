@@ -12,6 +12,8 @@ public class Kayttaja {
 	private String puh;
 	private String osoite;
 	private String postinro;
+	private String postitmp;
+	private String email;
 	
 	// Oletuskonstruktori
 	
@@ -20,9 +22,10 @@ public class Kayttaja {
 	}
 	
 	// Parametrillinen konstruktori
-
+	
 	public Kayttaja(int id, String etunimi, String sukunimi, String salasana,
-			String tyyppi, String puh, String osoite, String postinro) {
+			String tyyppi, String puh, String osoite, String postinro,
+			String postitmp, String email) {
 		super();
 		this.id = id;
 		this.etunimi = etunimi;
@@ -32,9 +35,11 @@ public class Kayttaja {
 		this.puh = puh;
 		this.osoite = osoite;
 		this.postinro = postinro;
+		this.postitmp = postitmp;
+		this.email = email;
 	}
 	
-	// Get & Set
+	// Getters & Setters
 
 	public int getId() {
 		return id;
@@ -100,12 +105,30 @@ public class Kayttaja {
 		this.postinro = postinro;
 	}
 
+	public String getPostitmp() {
+		return postitmp;
+	}
+
+	public void setPostitmp(String postitmp) {
+		this.postitmp = postitmp;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	// ToString
+	
 	@Override
 	public String toString() {
 		return "Kayttaja [id=" + id + ", etunimi=" + etunimi + ", sukunimi="
 				+ sukunimi + ", salasana=" + salasana + ", tyyppi=" + tyyppi
 				+ ", puh=" + puh + ", osoite=" + osoite + ", postinro="
-				+ postinro + "]";
+				+ postinro + ", postitmp=" + postitmp + ", email=" + email +"]";
 	}
 	
 	
