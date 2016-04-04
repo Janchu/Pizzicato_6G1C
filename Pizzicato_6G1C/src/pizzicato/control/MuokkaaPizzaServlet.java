@@ -64,7 +64,7 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("taytteet", taytteet);
-		
+
 		String idStr = request.getParameter("pizzaId");
 		int id = new Integer(idStr);
 
@@ -89,27 +89,35 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 			String tyyppi = "pizza";
 			int nakyvyys = 1;
 			String pohja = "normaali";
+			int taytemaara = 0;
 
-			// Täytteiden tiedot alustetaan nolliksi kunnes täytteiden
-			// muokkaustoiminto toimii.
-			int tayteId = 0;
-			String tayteNimi = "";
-			String tayteNimi_eng = "";
-			Double tayteHinta = 0.00;
-			Double tayteKilohinta = 0.00;
+			// Laitetaan käyttäjän valitsemat täytteet listaan
+			String[] tayte = request.getParameterValues("tayte");
+			for (int i = 0; i < tayte.length; i++) {
 
-			// Luodaan Tayte-olio, muokattavan pizzan mukana viet�v�ksi.
-			Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng,
-					tayteHinta, tayteKilohinta);
-			taytelista.add(uusiTayte);
+				int tayteId = new Integer(tayte[i]);
+				String tayteNimi = taytteet.get(i).getNimi();
+				String tayteNimi_eng = taytteet.get(i).getNimi_eng();
+				Double tayteHinta = taytteet.get(i).getHinta();
+				Double tayteKilohinta = taytteet.get(i).getKilohinta();
 
+				// Luodaan Tayte-olio, muokattavan pizzan mukana viet�v�ksi.
+				Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng,
+						tayteHinta, tayteKilohinta);
+				taytelista.add(uusiTayte);
+				taytemaara++;
+				
+
+			}
 			try {
 				// Luodaan uusi pizza olio kantaan viet�v�ksi
 				Pizza muokattuPizza = new Pizza(id, tyyppi, nimi, hinta,
 						nakyvyys, pohja, taytelista);
 
-				// Kutsutaan updatePizza metodia
-				pizzadao.updatePizza(muokattuPizza);
+				if (taytemaara > 0) {
+					// Kutsutaan updatePizza metodia
+					pizzadao.updatePizza(muokattuPizza);
+				}
 
 				// Palautetaan k�ytt�j� pizzalistan muokkaustilaan.
 				response.sendRedirect("MuokkaaPizzalistaServlet");

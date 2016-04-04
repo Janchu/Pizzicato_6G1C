@@ -44,7 +44,7 @@ public class PizzaDAO extends DataAccessObject {
 					pizza = readPizza(rs);
 					pizzalista.add(pizza);
 				}
-				
+
 				tayte = readTayte(rs);
 				pizza.getTaytelista().add(tayte);
 
@@ -225,12 +225,28 @@ public class PizzaDAO extends DataAccessObject {
 			stmtInsert.setInt(2, paivitettavaPizza.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
-
+			
+			stmtInsert = connection
+					.prepareStatement("DELETE FROM pizzatayte WHERE pizza_id = (?);");
+			stmtInsert.setInt(1, paivitettavaPizza.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			
+			for (int i = 0; i < paivitettavaPizza.getTaytelista().size(); i++) {
+				stmtInsert = connection
+						.prepareStatement("INSERT INTO pizzatayte(pizza_id, tayte_id) VALUES (?, ?);");
+				stmtInsert.setInt(1, paivitettavaPizza.getId());
+				stmtInsert.setInt(2, paivitettavaPizza.getTaytelista().get(i)
+						.getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtInsert, connection);
 		}
+	
 	}
 
 	private Pizza readPizza(ResultSet rs) {
@@ -261,7 +277,7 @@ public class PizzaDAO extends DataAccessObject {
 			String nimi_eng = rs.getString("tayte_eng");
 			double hinta = rs.getDouble("tayte.hinta");
 			double kilohinta = rs.getDouble("tayte.kilohinta");
-			
+
 			return new Tayte(id, nimi, nimi_eng, hinta, kilohinta);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

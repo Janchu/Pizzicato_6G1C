@@ -86,8 +86,8 @@ public class LisaaPizzaServlet extends HttpServlet {
 				String tayteNimi = taytteet.get(i).getNimi();
 				System.out.println(tayteNimi);
 				String tayteNimi_eng = taytteet.get(i).getNimi_eng();
-				Double tayteHinta = 0.00;
-				Double tayteKilohinta = 0.00;
+				Double tayteHinta = taytteet.get(i).getHinta();
+				Double tayteKilohinta = taytteet.get(i).getKilohinta();
 
 				// Luodaan uusi Tayte-olio taytelistaan lisättäväksi
 				Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng,

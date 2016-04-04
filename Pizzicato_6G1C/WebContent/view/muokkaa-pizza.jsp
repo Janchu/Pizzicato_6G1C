@@ -12,7 +12,8 @@
 	scope="request" />
 <jsp:useBean id="muokattavaPizzaId" scope="request"
 	type="java.lang.Integer" />
-<jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap"
+	class="java.util.HashMap" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -56,10 +57,10 @@
 			int id = muokattavaPizzaId;
 			double pizzaHinta = 0;
 			String pizzaNimi = "";
+			int taytemaara = 0;
 			ArrayList<Tayte> vanhatTaytteet = new ArrayList<Tayte>();
-
 			for (int i = 0; i < pizzat.size(); i++) {
-				if (id == pizzat.get(i).getId()) {
+				if (pizzat.get(i).getId() == muokattavaPizzaId) {
 					pizzaNimi = pizzat.get(i).getNimi();
 					pizzaHinta = pizzat.get(i).getHinta();
 					vanhatTaytteet = pizzat.get(i).getTaytelista();
@@ -73,35 +74,52 @@
 			<table>
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>"
-						>
+					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>">
 						<%
-               if (errors.containsKey("nimi")) {
-                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
-               }
-            %></td>
+							if (errors.containsKey("nimi")) {
+								out.println("<span class=\"error\">" + errors.get("nimi")
+										+ "</span>");
+							}
+						%></td>
 					<td>Max 20 merkkiä</td>
 				</tr>
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaHinta" maxlength="5" step="any" min="6" max="99.99"
-						value="<%=pizzaHinta%>" >
-						<%
-               if (errors.containsKey("hinta")) {
-                  out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
-               }
-            %></td>
+					<td><input type="text" name="pizzaHinta" maxlength="5"
+						step="any" min="6" max="99.99" value="<%=pizzaHinta%>"> <%
+ 	if (errors.containsKey("hinta")) {
+ 		out.println("<span class=\"error\">" + errors.get("hinta")
+ 				+ "</span>");
+ 	}
+ %></td>
 					<td>Hinta muotoa 0,00 ja hinnan pitää olla 6,00 - 99,00 euroa</td>
 				</tr>
 			</table>
 
-		<%
-			for (int i = 0; i < taytteet.size(); i++) {
-		%>
-			
-			
-			
-		<%}%>
+			<h3>Täytteet:</h3>
+			<br>
+			<%
+				for (int i = 0; i < taytteet.size(); i++) {					
+					for (int j = 0; j < vanhatTaytteet.size(); j++) {
+						while (taytemaara <= i) {
+							if (vanhatTaytteet.get(j).getId() == taytteet.get(i).getId()) {
+			%>
+								<input type="checkbox" name="tayte" checked
+									value="<%=taytteet.get(i).getId()%>">
+								<%=taytteet.get(i).getNimi()%><br>
+			<%
+							} else {
+			%>
+								<input type="checkbox" name="tayte"
+								value="<%=taytteet.get(i).getId()%>">
+								<%=taytteet.get(i).getNimi()%><br>
+			<%	
+						}
+						taytemaara++;
+						}
+					}
+				}
+			%>
 
 
 
