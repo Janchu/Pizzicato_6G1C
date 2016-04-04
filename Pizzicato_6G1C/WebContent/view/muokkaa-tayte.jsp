@@ -75,7 +75,7 @@
 			<table>
 				<tr>
 					<td><label>Täytteen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteNimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="${uusiTayte.nimi}">
+					<td><input type="text" name="tayteNimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" value="<%=tayteNimi%>">
 						>
 						<%
                if (errors.containsKey("nimi")) {
@@ -87,7 +87,7 @@
 				
 						<tr>
 					<td><label>Täytteen englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteNimi_eng" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="${uusiTayte.nimi_eng}">
+					<td><input type="text" name="tayteNimi_eng" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" value="<%=tayteNimi_eng%>">
 						>
 						<%
                if (errors.containsKey("nimi")) {

@@ -1,18 +1,18 @@
 package pizzicato.model;
 
-public class Mausteet {
+public class Mauste {
 
 	private int id;
 	private String mausteet;
 
 	// Konstruktorit
-	public Mausteet(int id, String mausteet) {
+	public Mauste(int id, String mausteet) {
 
 		this.id = id;
 		this.mausteet = mausteet;
 	}
 
-	public Mausteet() {
+	public Mauste() {
 
 		this.id = 0;
 		this.mausteet = null;
