@@ -1,5 +1,7 @@
 package pizzicato.model.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -24,5 +26,4 @@ public class KayttajaDAO extends DataAccessObject {
 		String postinro = rs.getString("kayttaja.postinro");
 		return new Kayttaja();
 	}
-	
 }
