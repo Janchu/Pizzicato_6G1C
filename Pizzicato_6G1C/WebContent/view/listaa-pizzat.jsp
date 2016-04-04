@@ -48,6 +48,8 @@
 
 	<div id="loota1">
 	
+	<a href="EngListaaPizzatServlet"><class="uksijainti"><img alt="lib" src="images/UKlib.jpg" width="32" height="32"></a>
+	
 <!-- pizzalista on toteutettu taulukkona -->
 	
 		<div id="pizzalistataulukko">
