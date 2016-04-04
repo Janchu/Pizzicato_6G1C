@@ -1,6 +1,6 @@
 package pizzicato.model;
 
-import java.util.ArrayList;
+import java.util.ArrayList; // kukkuu
 
 public class Pizza extends Tuote {
 	
@@ -64,6 +64,7 @@ public class Pizza extends Tuote {
 		this.taytelista.add(uusiTayte);
 	}
 
+	// To-String
 	@Override
 	public String toString() {
 		return "Pizza [nakyvyys=" + nakyvyys + ", pohja=" + pohja

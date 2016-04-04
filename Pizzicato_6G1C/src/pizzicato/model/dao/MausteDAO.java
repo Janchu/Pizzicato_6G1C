@@ -1,16 +1,12 @@
 package pizzicato.model.dao;
 
-import java.sql.Connection;
+import java.sql.Connection; // kukkuu
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-
-
 import pizzicato.model.Mauste;
-import pizzicato.model.Tayte;
 
 public class MausteDAO extends DataAccessObject {
 	
