@@ -111,8 +111,8 @@
 				
 				<tr>
 					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteHinta" maxlength="7" step="any" min="1.00" max="1000.00"
-						value="<%=tayteHinta%>" >
+					<td><input type="text" name="tayteKilohinta" maxlength="7" step="any" min="1.00" max="1000.00"
+						value="<%=tayteKilohinta%>" >
 						<%
                if (errors.containsKey("hinta")) {
                   out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
