@@ -64,7 +64,7 @@ public class LisaaPizzaServlet extends HttpServlet {
 
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-pizza.jsp");
 
-		HashMap<String, String> errors = validate(request);
+		HashMap<String, String> errors = validateLisaa(request);
 		if (!errors.isEmpty()) {
 			jsp.forward(request, response);
 		} else {
@@ -111,15 +111,23 @@ public class LisaaPizzaServlet extends HttpServlet {
 		}
 	}
 
-	public static HashMap<String, String> validate(HttpServletRequest request) {
+	public static HashMap<String, String> validateLisaa(HttpServletRequest request) {
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 		Pizza uusiPizza = new Pizza();
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzat = pizzadao.findAll();
 		HashMap<String, String> errors = new HashMap<String, String>();
 
 		// Haetaan syötetty nimi validointia varten
 		String nimi = request.getParameter("pizzaNimi");
 		if (nimi == null || nimi.trim().length() == 0) {
 			errors.put("nimi", "Nimi vaaditaan.");
+		} else {
+			for (int i = 0; i < pizzat.size(); i++) {
+				if (nimi.equalsIgnoreCase(pizzat.get(i).getNimi())) {
+					errors.put("nimi", "Nimi on jo käytössä.");
+				}
+			}
 		}
 		int maxLength = (nimi.length() < 20) ? nimi.length() : 20;
 		String rajattuNimi = nimi.substring(0, maxLength);
