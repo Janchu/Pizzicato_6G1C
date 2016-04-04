@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 		ServletContext context = config.getServletContext();
 		jsp = context.getRequestDispatcher("/view/listaa-pizzat.jsp");
 	}
-	// Ahalol haha
+	// Ahalol h
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("doGet()");
 		jsp.forward(request, response);
