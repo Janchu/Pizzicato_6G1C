@@ -31,7 +31,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 		request.setAttribute("juomat", juomat);
 		
 		// Lähetetään jsp:lle
-		String jsp = "view/lisaa-juoma.jsp";
+		String jsp = "/view/lisaa-juomat.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
@@ -46,8 +46,8 @@ public class LisaaJuomaServlet extends HttpServlet {
 		// Arraylist tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("juomat", juomat);
 		
-		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-juoma.jsp");
-		
+		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-juomat.jsp");
+		jsp.forward(request, response);
 		// Alustetaan ID nollaksi, koska ID generoituu kannassa
 		// automaattisesti
 		
@@ -63,11 +63,11 @@ public class LisaaJuomaServlet extends HttpServlet {
 			String nimi = leikkiJuoma.getNimi();
 			double hinta = leikkiJuoma.getHinta();
 			double koko = leikkiJuoma.getKoko();
-			Juoma uusiJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys);
-			juomadao.addJuoma(uusiJuoma);
+			Juoma lisattavaJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys);
+			juomadao.addJuoma(lisattavaJuoma);
 			response.sendRedirect("MuokkaaJuomalistaServlet");
 		}catch(Exception e) {
-			response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp");
+			throw new RuntimeException(e);
 		}
 	}
 
