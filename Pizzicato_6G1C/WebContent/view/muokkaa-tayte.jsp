@@ -75,7 +75,7 @@
 			<table>
 				<tr>
 					<td><label>Täytteen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteNimi" value="<%=tayteNimi%>"
+					<td><input type="text" name="tayteNimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" value="<%=tayteNimi%>">
 						>
 						<%
                if (errors.containsKey("nimi")) {
@@ -87,7 +87,7 @@
 				
 						<tr>
 					<td><label>Täytteen englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteNimi_eng" value="<%=tayteNimi_eng%>"
+					<td><input type="text" name="tayteNimi_eng" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" value="<%=tayteNimi_eng%>">
 						>
 						<%
                if (errors.containsKey("nimi")) {
@@ -111,14 +111,14 @@
 				
 				<tr>
 					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteHinta" maxlength="7" step="any" min="1.00" max="1000.00"
-						value="<%=tayteHinta%>" >
+					<td><input type="text" name="tayteKilohinta" maxlength="5" step="any" min="0.50" max="99.99"
+						value="<%=tayteKilohinta%>" >
 						<%
                if (errors.containsKey("hinta")) {
                   out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
                }
             %></td>
-					<td>Hinta muotoa 0,00 ja hinnan pitää olla 1,00 - 1000,00 euroa</td>
+					<td>Hinta muotoa 0,00 ja hinnan pitää olla 0,50 - 99,99 euroa</td>
 				</tr>
 			</table>
 

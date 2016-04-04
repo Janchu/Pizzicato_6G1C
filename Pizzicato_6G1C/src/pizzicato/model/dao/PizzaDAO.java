@@ -28,11 +28,11 @@ public class PizzaDAO extends DataAccessObject {
 		ArrayList<Pizza> pizzalista = new ArrayList<Pizza>();
 		Pizza pizza = null;
 		Tayte tayte = new Tayte();
-		int pizzaIdEdellinen = 0;
+		int pizzaIdEdellinen = 0; //kukkuu
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT pizza.id, tuote.tyyppi, pizza.nakyvyys, pizza.pohja, tuote.nimi, tuote.hinta, tayte.id, tayte.nimi AS tayte, tayte.nimi_eng AS tayte_eng, tayte.hinta, tayte.kilohinta FROM tuote JOIN pizza ON tuote.id = pizza.id JOIN pizzatayte ON pizza.id = pizzatayte.pizza_id JOIN tayte ON pizzatayte.tayte_id = tayte.id ORDER BY tuote.id;";
+			String sqlSelect = "SELECT pizza.id, tuote.tyyppi, pizza.nakyvyys, pizza.pohja, tuote.nimi, tuote.hinta, tayte.id, tayte.nimi AS tayte, tayte.nimi_eng AS tayte_eng, tayte.hinta, tayte.kilohinta FROM tuote JOIN pizza ON tuote.id = pizza.id JOIN pizzatayte ON pizza.id = pizzatayte.pizza_id JOIN tayte ON pizzatayte.tayte_id = tayte.id ORDER BY tuote.tyyppi DESC, tuote.hinta ASC, tuote.id ASC;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 

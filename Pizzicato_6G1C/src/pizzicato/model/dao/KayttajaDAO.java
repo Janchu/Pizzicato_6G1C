@@ -1,5 +1,7 @@
 package pizzicato.model.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -23,6 +25,18 @@ public class KayttajaDAO extends DataAccessObject {
 		String osoite = rs.getString("kayttaja.osoite");
 		String postinro = rs.getString("kayttaja.postinro");
 		return new Kayttaja();
+	}
+	// testi
+	public void create(Kayttaja kayttaja) {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			stmtInsert = connection.prepareStatement("INSERT INTO kayttaja(")
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 }
