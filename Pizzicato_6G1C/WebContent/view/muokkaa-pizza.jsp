@@ -28,7 +28,7 @@
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
 </div>
 </div>
 <div id="lootakeski">
@@ -71,6 +71,24 @@ Postitoimipaikka: Helsinki, 010101</p>
 
 
 			<legend>Syötä pizzan tiedot:</legend>
+			
+						<% if (!errors.isEmpty()) { %>
+			<div class="pakollinenLoota">
+				<p class="pakollinen">
+				<%
+               if (errors.containsKey("nimi")) {
+                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span><br>");
+               }
+               if (errors.containsKey("hinta")) {
+                  out.println("<span class=\"error\">" + errors.get("hinta") + "</span><br>");
+               }
+               if (errors.containsKey("taytteet")) {
+                   out.println("<span class=\"error\">" + errors.get("taytteet") + "</span><br>");
+               }
+            %>
+			</div>
+			<%} %>
+			
 			<table>
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>

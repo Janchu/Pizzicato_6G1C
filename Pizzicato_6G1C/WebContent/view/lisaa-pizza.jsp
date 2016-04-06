@@ -22,7 +22,7 @@
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
 </div>
 </div>
 <div id="lootakeski">
@@ -39,7 +39,6 @@ Postitoimipaikka: Helsinki, 010101</p>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib3.jpg" width="32" height="32"></a>
 </div>
 </div>
-</div>
 	<div id="loota1">
 
 
@@ -47,26 +46,35 @@ Postitoimipaikka: Helsinki, 010101</p>
 
 
 			<legend>Syötä pizzan tiedot:</legend>
+			
+			<% if (!errors.isEmpty()) { %>
+			<div class="pakollinenLoota">
+				<p class="pakollinen">
+				<%
+               if (errors.containsKey("nimi")) {
+                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span><br>");
+               }
+               if (errors.containsKey("hinta")) {
+                  out.println("<span class=\"error\">" + errors.get("hinta") + "</span><br>");
+               }
+               if (errors.containsKey("taytteet")) {
+                   out.println("<span class=\"error\">" + errors.get("taytteet") + "</span><br>");
+               }
+            %>
+			</div>
+			<%} %>
 			<table>
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaNimi" placeholder="Pizzan nimi" maxlength="20" title="Pizzan nimi saa olla max 20 merkkiä pitkä"  value="${uusiPizza.nimi}" required>
-					 <%
-               if (errors.containsKey("nimi")) {
-                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
-               }
-            %></td>
+					 </td>
 					<td>Max 20 merkkiä</td>
 				</tr>
 
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="pizzaHinta" placeholder="Pizzan hinta" maxlength="5" step="any" min="6" max="99.99"  value="${uusiPizza.hinta}" required>
-					<%
-               if (errors.containsKey("hinta")) {
-                  out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
-               }
-            %></td>
+					</td>
 					<td>Hinnan pitää olla 6,00 - 99,99</td>
 				</tr>
 			</table>

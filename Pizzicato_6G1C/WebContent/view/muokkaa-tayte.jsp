@@ -24,7 +24,7 @@
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
 </div>
 </div>
 <div id="lootakeski">
@@ -70,7 +70,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 			<table>
 				<tr>
 					<td><label>Täytteen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteNimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" value="<%=tayteNimi%>">
+					<td><input type="text" name="tayteNimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="<%=tayteNimi%>">
 						>
 						<%
                if (errors.containsKey("nimi")) {
@@ -82,7 +82,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 				
 						<tr>
 					<td><label>Täytteen englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteNimi_eng" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" value="<%=tayteNimi_eng%>">
+					<td><input type="text" name="tayteNimi_eng" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="<%=tayteNimi_eng%>">
 						
 						<%
                if (errors.containsKey("nimi")) {
@@ -94,7 +94,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 				
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteHinta" maxlength="5" step="any" min="0.50" max="10.00"
+					<td><input type="text" name="tayteHinta" maxlength="5" step="any" min="0.50" max="10.00" required
 						value="<%=tayteHinta%>" >
 						<%
                if (errors.containsKey("hinta")) {
@@ -106,7 +106,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 				
 				<tr>
 					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteKilohinta" maxlength="5" step="any" min="0.50" max="99.99"
+					<td><input type="text" name="tayteKilohinta" maxlength="5" step="any" min="0.50" max="99.99" required
 						value="<%=tayteKilohinta%>" >
 						<%
                if (errors.containsKey("hinta")) {

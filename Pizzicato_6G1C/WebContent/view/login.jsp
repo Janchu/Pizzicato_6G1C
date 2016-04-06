@@ -9,9 +9,9 @@
 <body>
 <form method="post">
 <h3>Käyttäjätunnus:</h3>
-<input type="text" name="kayttajatunnus">
+<input type="text" name="kayttajatunnus" required>
 <h3>Salasana:</h3>
-<input type="text" name="salasana">
+<input type="text" name="salasana" required>
 <br>
 <%
 String message = (String) request.getAttribute("message");

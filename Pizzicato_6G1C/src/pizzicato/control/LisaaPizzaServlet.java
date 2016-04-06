@@ -62,7 +62,8 @@ public class LisaaPizzaServlet extends HttpServlet {
 		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("taytteet", taytteet);
 
-		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-pizza.jsp");
+		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
+				"/view/lisaa-pizza.jsp");
 
 		HashMap<String, String> errors = validateLisaa(request);
 		if (!errors.isEmpty()) {
@@ -111,7 +112,8 @@ public class LisaaPizzaServlet extends HttpServlet {
 		}
 	}
 
-	public static HashMap<String, String> validateLisaa(HttpServletRequest request) {
+	public static HashMap<String, String> validateLisaa(
+			HttpServletRequest request) {
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 		Pizza uusiPizza = new Pizza();
 		PizzaDAO pizzadao = new PizzaDAO();
@@ -139,21 +141,32 @@ public class LisaaPizzaServlet extends HttpServlet {
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hinta", "Hinta vaaditaan.");
 		} else {
-			String uusiHintaStr = hintaStr.replace(',', '.');
-			double hinta = 0;
-			hinta = new Double(uusiHintaStr);
-			formatter.format(hinta);
-
-			if (hinta < 6 || hinta > 99.99) {
-				errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+			if (hintaStr.matches("[0-9].,") == false) {
+				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
 			} else {
-			uusiPizza.setHinta(hinta);
-			request.setAttribute("uusiPizza", uusiPizza);
+				String uusiHintaStr = hintaStr.replace(',', '.');
+
+				double hinta = 0;
+				hinta = new Double(uusiHintaStr);
+				formatter.format(hinta);
+
+				if (hinta < 6 || hinta > 99.99) {
+					errors.put("hinta",
+							"Hinta sallittujen rajojen ulkopuolella.");
+				} else {
+					uusiPizza.setHinta(hinta);
+					request.setAttribute("uusiPizza", uusiPizza);
+				}
 			}
 		}
-			request.setAttribute("errors", errors);
-			
-		
+		// Haetaan täytteet validointia varten
+		String[] tayte = request.getParameterValues("tayte");
+		System.out.println(tayte);
+		if (tayte == null) {
+			errors.put("taytteet", "Valitse vähintään yksi täyte");
+		}
+
+		request.setAttribute("errors", errors);
 
 		return errors;
 	}

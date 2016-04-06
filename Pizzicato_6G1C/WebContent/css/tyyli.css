@@ -175,3 +175,12 @@ right:80px;
 
 	.pakollinen {color:red}
 	
+/* Varoitustekstit */
+
+div.pakollinenLoota {
+	min-width: 100px;
+	max-width: 500px;
+	border: 2px solid #F44336;
+	padding: 0px 10px 0px 10px;
+}
+	

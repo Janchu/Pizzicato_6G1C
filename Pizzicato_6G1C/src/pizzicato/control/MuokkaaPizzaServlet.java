@@ -171,6 +171,14 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 				request.setAttribute("uusiPizza", uusiPizza);
 			}
 		}
+		
+		// Haetaan täytteet validointia varten
+				String[] tayte = request.getParameterValues("tayte");
+				System.out.println(tayte);
+				if (tayte == null) {
+					errors.put("taytteet", "Valitse vähintään yksi täyte");
+				}
+		
 		request.setAttribute("errors", errors);
 
 		return errors;
