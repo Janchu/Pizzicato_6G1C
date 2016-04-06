@@ -63,7 +63,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 					<td><input type="text" name="tayteNimi_eng" placeholder="Täytteen eng.nimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="${uusiTayte.nimi_eng}">
 					 <%
                if (errors.containsKey("nimi")) {
-                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
+                  out.println("<span class=\"error\">" + errors.get("nimi_eng") + "</span>");
                }
             %>
             </td>
@@ -86,7 +86,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 				
 				<tr>
 					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="Kilohinta" placeholder="Täytteen kilohinta" maxlength="5" step="any" min="0.50" max="99.99" required value="${uusiTayte.kilohinta}">
+					<td><input type="text" name="tayteKilohinta" placeholder="Täytteen kilohinta" maxlength="5" step="any" min="0.50" max="99.99" required value="${uusiTayte.kilohinta}">
 					<%
                if (errors.containsKey("kilohinta")) {
                   out.println("<span class=\"error\">" + errors.get("kilohinta") + "</span>");
