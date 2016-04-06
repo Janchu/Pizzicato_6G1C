@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Kayttaja;
+import pizzicato.model.dao.KayttajaDAO;
 
 import com.sun.istack.internal.logging.Logger;
 
@@ -23,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		ServletContext context = config.getServletContext();
-		jsp = context.getRequestDispatcher("/view/listaa-pizzat.jsp");
+		jsp = context.getRequestDispatcher("/view/login.jsp");
 	}
 
 	protected void doGet(HttpServletRequest request,
@@ -34,7 +35,26 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		
+		String kayttajatunnus = request.getParameter("kayttajatunnus");
+		String salasana = request.getParameter("salasana");
+		
+		KayttajaDAO kayttajadao = new KayttajaDAO();
+		Kayttaja kayttaja = kayttajadao.etsiTunnuksella(kayttajatunnus);
+		
+		if (kayttaja == null) {
+			request.setAttribute("message", "Kirjautuminen epäonnistui.");
+			jsp.forward(request, response);
+		} else if (salasana == null || !kayttaja.getSalasana().equals(salasana)) {
+			request.setAttribute("message", "Kirjautuminen epäonnistui.");
+			jsp.forward(request, response);
+		} else {
+			HttpSession session = request.getSession();
+			int id = kayttaja.getId();
+			session.setAttribute("id", id);
+			response.sendRedirect("ListaaPizzatServlet");
+		}
+		
 	}
 
 }
