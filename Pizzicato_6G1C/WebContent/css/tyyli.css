@@ -25,6 +25,9 @@ font-weight:bold;
 	background-color: rgba(0,0,0,0.55);
 }
 
+/* taustalaatikko ett‰ lis‰ys/muokkaustilat n‰kyy kunnolla */
+
+
 
 
 
@@ -35,6 +38,9 @@ font-weight:bold;
 	margin-left:15%;
 	
 }
+
+
+
 
 /* td padding lis‰‰ tilaa taulukon vaakasolun ymp‰rill‰ */
 #pizzalistataulukko	td {
@@ -114,6 +120,7 @@ margin-left:29%;
     	height:100%;
       	padding:15px;
 		margin-left:15%;
+		background-color:white;
 		}
 
 		

@@ -16,14 +16,14 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<title color="white">Pizzalista</title>
+<title>Pizzalista</title>
 </head>
 <body>
 
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 </div>
 </div>
 <div id="lootakeski">
@@ -44,7 +44,10 @@ Postitoimipaikka: Helsinki, 010101</p>
 
 <!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
 
-	<div id="loota1">
+	<div id="otsikkoloota">
+	<h1>Pizzalista</h1>
+	
+	</div>
 	
 	
 <!-- pizzalista on toteutettu taulukkona -->
@@ -54,7 +57,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 	
 
 			<table>
-				<caption>Pizzalista</caption>
+				
 
 				<tr>
 					<th>Numero</th>

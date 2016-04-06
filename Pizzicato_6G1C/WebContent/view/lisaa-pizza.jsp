@@ -22,7 +22,7 @@
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 </div>
 </div>
 <div id="lootakeski">
@@ -40,6 +40,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 </div>
 </div>
 </div>
+
 	<div id="loota1">
 
 
@@ -87,5 +88,6 @@ Postitoimipaikka: Helsinki, 010101</p>
 				href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
 		</form>
 	</div>
+	
 </body>
 </html>
