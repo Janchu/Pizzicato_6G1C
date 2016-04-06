@@ -28,7 +28,7 @@ public class ListaaJuomatServlet extends HttpServlet {
 		System.out.println(juomat);
 		
 		// Arraylist tallennetaan request-olioon jsp:lle vietäväksi
-		request.setAttribute("juoma", juomat);
+		request.setAttribute("juomat", juomat);
 		
 		// Lähetetään jsp:lle
 		String jsp = "/view/listaa-juomat.jsp";
