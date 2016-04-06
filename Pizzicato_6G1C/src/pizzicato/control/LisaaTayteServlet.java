@@ -52,7 +52,7 @@ public class LisaaTayteServlet extends HttpServlet {
 		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("taytteet", taytteet);
 
-		jsp = getServletContext().getRequestDispatcher("/view/lisaa-tayte.jsp");
+	 	RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-tayte.jsp");
 
 		HashMap<String, String> errors = validateLisaa(request);
 		if (!errors.isEmpty()) {
@@ -72,8 +72,8 @@ public class LisaaTayteServlet extends HttpServlet {
 			String uusiHintaStr = hintaStr.replace(",", ".");
 			double hinta = new Double(uusiHintaStr);
 			formatter.format(hinta);
-			String kilohintaStr = request.getParameter("Kilohinta");
-			String uusiKilohintaStr = kilohintaStr.replace(",", ".");
+			String kilohintaStr = request.getParameter("tayteKilohinta");
+			String uusiKilohintaStr = kilohintaStr.replace(",",".");
 			double kilohinta = new Double(uusiKilohintaStr);
 			formatter.format(kilohinta);
 
@@ -125,13 +125,13 @@ public class LisaaTayteServlet extends HttpServlet {
 		if (nimi_eng == null || nimi_eng.trim().length() == 0) {
 			errors.put("nimi_eng", "Nimi vaaditaan.");
 		} else {
-			for (int i = 0; i < taytteet.size(); i++) {
-				if (nimi_eng.equalsIgnoreCase(taytteet.get(i).getNimi_eng())) {
+			for (int j = 0; j < taytteet.size(); j++) {
+				if (nimi_eng.equalsIgnoreCase(taytteet.get(j).getNimi_eng())) {
 					errors.put("nimi_eng", "Nimi on jo käytössä.");
 				}
 			}
 		}
-		int maxLengthEng = (nimi_eng.length() < 20) ? nimi.length() : 20;
+		int maxLengthEng = (nimi_eng.length() < 20) ? nimi_eng.length() : 20;
 		String rajattuNimiEng = nimi_eng.substring(0, maxLengthEng);
 		nimi_eng = rajattuNimiEng;
 		uusiTayte.setNimi_eng(nimi_eng);
