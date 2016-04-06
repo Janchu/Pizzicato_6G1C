@@ -16,7 +16,7 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<title>Pizzalista</title>
+<title color="white">Pizzalista</title>
 </head>
 <body>
 

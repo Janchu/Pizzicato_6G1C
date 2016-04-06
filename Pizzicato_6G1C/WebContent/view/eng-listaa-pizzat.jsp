@@ -22,7 +22,7 @@
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 </div>
 </div>
 <div id="lootakeski">
@@ -43,14 +43,17 @@ Zip Code: Helsinki, 010101</p>
 
 <!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
 
-	<div id="loota1">
+<div id="otsikkoloota">
+<h1>Pizza menu</h1>
+
+</div>	
 	
 <!-- pizzalista on toteutettu taulukkona -->
 	
 		<div id="pizzalistataulukko">
-
+			
 			<table>
-				<caption>Pizza menu</caption>
+				
 
 				<tr>
 					<th>Number</th>
@@ -92,7 +95,7 @@ Zip Code: Helsinki, 010101</p>
 			<a href="MuokkaaTayteListaServlet" class="button">Siirry
 				täytelistan <br> muokkaukseen</a>	
 		</div>
-	</div>
+	
 	
 <!-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. -->
 

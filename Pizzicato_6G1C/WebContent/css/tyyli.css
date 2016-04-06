@@ -1,6 +1,6 @@
 html, body {
-background-image: url("../images/italolib2.jpg");
-background-size: 100% 100%;
+background-image: url("../images/pizzubg4.jpg");
+background-size: 100% auto;
 width: 100%;
 height: 100%; 
 margin:0;
@@ -11,16 +11,29 @@ padding:0;
 
 /* caption muokkaa taulukon otsikon kokoa */
 caption {
-font-size:170%;
+font-size:500%;
 font-weight:bold;
+
 }
+
+/* otsikon tyyli opacityn kanssa testailua */
+
+#otsikkoloota {
+	width:72%;
+	margin-left:15%;
+	color:white;
+	background-color: rgba(0,0,0,0.55);
+}
+
+
+
 
 
 /* pizzalistataulukko muokkaa taulukon leveytt‰, ym */
 #pizzalistataulukko  table {
-	width:80%;
-	margin-left:10%;
-	padding:20px;
+	width:72%;
+	margin-left:15%;
+	
 }
 
 /* td padding lis‰‰ tilaa taulukon vaakasolun ymp‰rill‰ */
@@ -36,6 +49,7 @@ padding:20px;
 
 /* TƒRKEƒ, tekee PIZZALISTATAULUKON joka toisen vaakarivin eriv‰riseksi*/
 #pizzalistataulukko tr:nth-child(even){background-color: #f2f2f2}
+#pizzalistataulukko tr:nth-child(odd){background-color: white}
 
 /* th:n background-color tekee otsikkosolusta vihre‰n ja color otsikoiden v‰rist‰ valkoisen */
 #pizzalistataulukko th {
@@ -56,7 +70,7 @@ padding:20px;
    background:white;
 }
  #logoloota {
- background-color:white;
+ background-color: rgba(0,0,0,0.55);
  margin-left:15%;
  width:72%;
  height:33%;
@@ -81,6 +95,7 @@ margin-left:29%;
  height:100%;
  width:33.3%;
  text-align:center;
+ color:white;
  }
  
  #lootaoikea {
@@ -93,7 +108,8 @@ margin-left:29%;
  
 /* M‰‰ritt‰‰ lootan leveyden, v‰rin, korkeuden, sijainnin ja kaiken */			
 #loota1 {
-		background-color: white;
+		
+		
     	width:72%;
     	height:100%;
       	padding:15px;
@@ -121,8 +137,8 @@ margin-left:29%;
 /* Sijoittaa nappulat loota1:n sis‰ll‰ haluttuun sijaintiin */
 #nappulasijainti {
 position:fixed;
-top: 43%;
-right:245px;
+top: 50%;
+right:80px;
 }
 	
 /* Vihre‰n nappulan class, joka m‰‰ritt‰‰ sen ominaisuudet */
