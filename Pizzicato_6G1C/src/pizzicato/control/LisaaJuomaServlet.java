@@ -48,6 +48,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 		
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-juomat.jsp");
 		jsp.forward(request, response);
+		
 		// Alustetaan ID nollaksi, koska ID generoituu kannassa
 		// automaattisesti
 		
@@ -59,10 +60,11 @@ public class LisaaJuomaServlet extends HttpServlet {
 		
 		try {
 			// Luodaan uusi juoma-olio kantaan vietäväksi
-			Juoma leikkiJuoma = (Juoma) request.getAttribute("uusiJuoma");
-			String nimi = leikkiJuoma.getNimi();
-			double hinta = leikkiJuoma.getHinta();
-			double koko = leikkiJuoma.getKoko();
+			Juoma uusiJuoma = (Juoma) request.getAttribute("uusiJuoma");
+			String nimi = uusiJuoma.getNimi();
+			double hinta = uusiJuoma.getHinta();
+			double koko = uusiJuoma.getKoko();
+			
 			Juoma lisattavaJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys);
 			juomadao.addJuoma(lisattavaJuoma);
 			response.sendRedirect("MuokkaaJuomalistaServlet");
