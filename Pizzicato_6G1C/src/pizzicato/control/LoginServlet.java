@@ -50,9 +50,11 @@ public class LoginServlet extends HttpServlet {
 			jsp.forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
-			int id = kayttaja.getId();
+			int idInt = kayttaja.getId();
+			Long id = new Long(idInt);
 			session.setAttribute("id", id);
-			response.sendRedirect("ListaaPizzatServlet");
+			System.out.println("Sessiossa id:n arvo on: " + session.getAttribute("id"));
+			response.sendRedirect("OmistajaListaaPizzatServlet");
 		}
 		
 	}

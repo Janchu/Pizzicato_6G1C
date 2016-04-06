@@ -8,10 +8,13 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+@WebFilter("/*")
 public class SecurityFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
@@ -26,19 +29,27 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		
 		HttpSession session = req.getSession();
-		String kayttajatunnus = (String) session.getAttribute("kayttajatunnus");
+
+		Long kayttajatunnus = (Long) session.getAttribute("id");
+
 		
 		String servletPath = req.getServletPath();
-		
-		
-		if (servletPath.equals("/LoginServlet")) {
+		if (servletPath.endsWith(".css")) {
+			chain.doFilter(req, resp);
+		} else if(servletPath.endsWith(".png")) {
+			chain.doFilter(req, resp);
+		} else if(servletPath.endsWith(".jpg")) {
+			chain.doFilter(req, resp);
+		} else if(servletPath.endsWith(".ico")) {
+			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/LoginServlet")) {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/ListaaPizzatServlet")) {
 			chain.doFilter(req, resp);
 		} else if (kayttajatunnus != null) {
 			chain.doFilter(req, resp);
 		} else {
-			resp.sendRedirect("/LoginServlet");
+			resp.sendRedirect("/Pizzicato_6G1C/LoginServlet");
 		}
 		
 		

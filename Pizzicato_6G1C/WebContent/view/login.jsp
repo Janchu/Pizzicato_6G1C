@@ -11,7 +11,16 @@
 <h3>Käyttäjätunnus:</h3>
 <input type="text" name="kayttajatunnus">
 <h3>Salasana:</h3>
-<input type="text" name="salasana"><br><br>
+<input type="text" name="salasana">
+<br>
+<%
+String message = (String) request.getAttribute("message");
+if (message != null) {
+	out.println("<p>" + message + "</p>");
+}
+
+%>
+<br>
 <input type="Submit" class="button" value="Kirjaudu sisään">
 </form>
 </body>
