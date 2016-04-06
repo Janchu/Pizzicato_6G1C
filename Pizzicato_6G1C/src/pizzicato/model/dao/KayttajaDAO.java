@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import jdk.nashorn.internal.ir.SetSplitState;
 import pizzicato.model.Kayttaja;
 
 public class KayttajaDAO extends DataAccessObject {
@@ -27,7 +26,7 @@ public class KayttajaDAO extends DataAccessObject {
 		String postinro = rs.getString("kayttaja.postinro");
 		String postitmp = rs.getString("kayttaja.postitmp");
 		String email = rs.getString("kayttaja.email");
-		return new Kayttaja();
+		return new Kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh, osoite, postinro, postitmp, email);
 	}
 
 	// testi
@@ -59,5 +58,29 @@ public class KayttajaDAO extends DataAccessObject {
 			// TODO: handle exception
 		}
 	}
+	
+	 public Kayttaja etsiTunnuksella(String kayttajatunnus) {
+		 ResultSet rs = null;
+		 PreparedStatement stmt = null;
+		 Connection connection = null;
+		 
+		 try {
+			connection = getConnection();
+			String sql = "SELECT * FROM kayttaja where sahkoposti = (?);";
+			stmt = connection.prepareStatement(sql);
+			stmt.setString(1, kayttajatunnus);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				return null;
+			}
+			return read(rs);
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, connection);
+		}
+	 }
 
 }
