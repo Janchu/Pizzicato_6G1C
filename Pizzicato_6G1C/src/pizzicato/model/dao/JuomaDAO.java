@@ -30,7 +30,7 @@ public class JuomaDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT juoma.id, tuote.tyyppi, juoma.koko, tuote.nimi, tuote.hinta FROM tuote JOIN juoma tuote.id = juoma.id ORDER BY tuote.tyyppi DESC, tuote.hinta ASC, tuote.id ASC;";
+			String sqlSelect = "SELECT juoma.id, tuote.tyyppi, juoma.koko, juoma.nakyvyys, tuote.nimi, tuote.hinta FROM tuote JOIN juoma ON tuote.id = juoma.id ORDER BY tuote.tyyppi DESC, tuote.hinta ASC, tuote.id ASC;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
@@ -77,7 +77,7 @@ public class JuomaDAO extends DataAccessObject {
 			stmtInsert.close();
 
 			stmtInsert = connection
-					.prepareStatement("INSERT INTO juoma (id, koko) VALUES (last_insert_id(), ?);");
+					.prepareStatement("INSERT INTO juoma (id, nakyvyys, koko) VALUES (last_insert_id(), ?, ?);");
 			stmtInsert.setDouble(1, lisattavaJuoma.getKoko());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
@@ -120,6 +120,43 @@ public class JuomaDAO extends DataAccessObject {
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtInsert, connection);
+		}
+
+	}
+	
+	/**
+	 * Tuodaan mukana piilotettavaJuoma-olio, jonka id:n perusteella kannasta
+	 * muutetaan kyseisen juoman nakyvyys-ominaisuutta.
+	 * 
+	 * @param piilotettavaJuoma
+	 *            Mukana tuotava Juoma-olio
+	 * @throws SQLException
+	 */
+	public void hideJuoma(Juoma piilotettavaJuoma) throws SQLException {
+
+		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
+		// try-catchia
+		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+		try {
+			connection = getConnection();
+			if (piilotettavaJuoma.getNakyvyys() == 1) {
+				stmtInsert = connection
+						.prepareStatement("UPDATE juoma SET nakyvyys = 0 WHERE id = (?);");
+				stmtInsert.setInt(1, piilotettavaJuoma.getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
+			} else if (piilotettavaJuoma.getNakyvyys() == 0) {
+				stmtInsert = connection
+						.prepareStatement("UPDATE juoma SET nakyvyys = 1 WHERE id = (?);");
+				stmtInsert.setInt(1, piilotettavaJuoma.getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -175,9 +212,10 @@ public class JuomaDAO extends DataAccessObject {
 			String nimi = rs.getString("tuote.nimi");
 			double hinta = rs.getDouble("tuote.hinta");
 			double koko = rs.getDouble("juoma.koko");
+			int nakyvyys = rs.getInt("juoma.nakyvyys");
 
 			// Palautetaan pizza
-			return new Juoma(id, tyyppi, nimi, hinta, koko);
+			return new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

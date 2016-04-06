@@ -15,33 +15,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Pizzamenu</title>
 </head>
 <body>
 
+<div id="logoloota">
+<div id="lootavasen">
+<div class="logo">
+<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+</div>
+</div>
+<div id="lootakeski">
+<p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
+Open: 07-23<br>
+Phone: +358 0123456<br>
+Address: Katu2<br>
+Zip Code: Helsinki, 010101</p>
+</div>
+<div id="lootaoikea">
 
-	<nav id="navigaatio">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Pizzeria Pizzicato</a>
-		</div>
-		<ul class="nav navbar-nav">
-			<li><a href="" class="current">Front Page</a></li>
-			<li><a href="#">:3</a></li>
-			<li><a href="#">Contact Info</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-					Sign up</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-					Log in</a></li>
-		</ul>
-	</div>
-	</nav>
+<a href="" class="button2">Register</a>
+<a href="" class="button2">Log In</a>
+<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib3.jpg" width="32" height="32"></a>
+</div>
+</div>
+</div>
 
 <!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
 

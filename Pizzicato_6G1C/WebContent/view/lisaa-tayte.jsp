@@ -11,32 +11,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 <title>Lisää pizza</title>
 </head>
 <body>
 
-	<nav id="navigaatio">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Pizzeria Pizzicato</a>
-		</div>
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="ListaaPizzatServlet">Etusivu</a></li>
-			<li><a href="#">:3</a></li>
-			<li><a href="#">Yhteystiedot</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-					Rekisteröidy</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-					Kirjaudu sisään</a></li>
-		</ul>
-	</div>
-	</nav>
+<div id="logoloota">
+<div id="lootavasen">
+<div class="logo">
+<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+</div>
+</div>
+<div id="lootakeski">
+<p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
+Avoinna: 07-23<br>
+Puhelin: +358 0123456<br>
+Katuosoite: Katu2<br>
+Postitoimipaikka: Helsinki, 010101</p>
+</div>
+<div id="lootaoikea">
+
+<a href="" class="button2">Rekisteröidy</a>
+<a href="" class="button2">Kirjaudu Sisään</a>
+<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib3.jpg" width="32" height="32"></a>
+</div>
+</div>
+</div>
 
 	<div id="loota1">
 
