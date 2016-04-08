@@ -94,7 +94,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 			<table>
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>" required>
+					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>" required maxlength="20">
 						<%
 							if (errors.containsKey("nimi")) {
 								out.println("<span class=\"error\">" + errors.get("nimi")

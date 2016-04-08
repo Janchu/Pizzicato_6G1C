@@ -53,12 +53,13 @@ public class MuokkaaTayteServlet extends HttpServlet {
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
-		
+
 		request.setAttribute("taytteet", taytteet);
 		String idStr = request.getParameter("tayteId");
 		int id = new Integer(idStr);
-		
-		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/muokkaa-tayte.jsp");
+
+		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
+				"/view/muokkaa-tayte.jsp");
 		// Validointia
 		HashMap<String, String> errors = validateMuokkaa(request, id);
 		if (!errors.isEmpty()) {
@@ -155,16 +156,21 @@ public class MuokkaaTayteServlet extends HttpServlet {
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hinta", "Hinta vaaditaan.");
 		} else {
-			String uusiHintaStr = hintaStr.replace(',', '.');
-			double hinta = 0;
-			hinta = new Double(uusiHintaStr);
-			formatter.format(hinta);
-
-			if (hinta < 0.50 || hinta > 10.00) {
-				errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+			if (hintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
+				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
 			} else {
-				uusiTayte.setHinta(hinta);
-				request.setAttribute("uusiTayte", uusiTayte);
+				String uusiHintaStr = hintaStr.replace(',', '.');
+				double hinta = 0;
+				hinta = new Double(uusiHintaStr);
+				formatter.format(hinta);
+
+				if (hinta < 0.50 || hinta > 10.00) {
+					errors.put("hinta",
+							"Hinta sallittujen rajojen ulkopuolella.");
+				} else {
+					uusiTayte.setHinta(hinta);
+					request.setAttribute("uusiTayte", uusiTayte);
+				}
 			}
 		}
 		// Haetaan syötetty kilohinta validointia varten
@@ -172,19 +178,22 @@ public class MuokkaaTayteServlet extends HttpServlet {
 		if (kilohintaStr == null || kilohintaStr.trim().length() == 0) {
 			errors.put("kilohinta", "Kilohinta vaaditaan.");
 		} else {
-			String uusiKiloHintaStr = kilohintaStr.replace(',', '.');
-			double kilohinta = 0;
-			kilohinta = new Double(uusiKiloHintaStr);
-			formatter.format(kilohinta);
-
-			if (kilohinta < 0.50 || kilohinta > 99.99) {
-				errors.put("kilohinta",
-						"Kilohinta sallittujen rajojen ulkopuolella.");
+			if (kilohintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
+				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
 			} else {
-				uusiTayte.setKilohinta(kilohinta);
-				request.setAttribute("uusiTayte", uusiTayte);
-			}
+				String uusiKiloHintaStr = kilohintaStr.replace(',', '.');
+				double kilohinta = 0;
+				kilohinta = new Double(uusiKiloHintaStr);
+				formatter.format(kilohinta);
 
+				if (kilohinta < 0.50 || kilohinta > 99.99) {
+					errors.put("kilohinta",
+							"Kilohinta sallittujen rajojen ulkopuolella.");
+				} else {
+					uusiTayte.setKilohinta(kilohinta);
+					request.setAttribute("uusiTayte", uusiTayte);
+				}
+			}
 		}
 		request.setAttribute("errors", errors);
 

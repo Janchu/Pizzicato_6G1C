@@ -159,16 +159,20 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hinta", "Hinta vaaditaan.");
 		} else {
-			String uusiHintaStr = hintaStr.replace(',', '.');
-			double hinta = 0;
-			hinta = new Double(uusiHintaStr);
-			formatter.format(hinta);
-
-			if (hinta < 6 || hinta > 99.99) {
-				errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+			if (hintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
+				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
 			} else {
-				uusiPizza.setHinta(hinta);
-				request.setAttribute("uusiPizza", uusiPizza);
+				String uusiHintaStr = hintaStr.replace(',', '.');
+				double hinta = 0;
+				hinta = new Double(uusiHintaStr);
+				formatter.format(hinta);
+
+				if (hinta < 6 || hinta > 99.99) {
+					errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+				} else {
+					uusiPizza.setHinta(hinta);
+					request.setAttribute("uusiPizza", uusiPizza);
+				}
 			}
 		}
 		
