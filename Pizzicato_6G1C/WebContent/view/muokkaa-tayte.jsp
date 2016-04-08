@@ -130,7 +130,7 @@ Meilahti, 00270</p>
 
 
 			<input type="hidden" name="tayteId" value="<%=id%>"> <input
-				type="submit" class="button" value="Täyte täydellinen!"> <a
+				type="submit" class="button" value="Valmis"> <a
 				href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
 
 		</form>
