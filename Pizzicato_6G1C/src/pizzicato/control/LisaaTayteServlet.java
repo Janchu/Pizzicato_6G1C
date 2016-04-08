@@ -52,7 +52,8 @@ public class LisaaTayteServlet extends HttpServlet {
 		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("taytteet", taytteet);
 
-	 	RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-tayte.jsp");
+		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
+				"/view/lisaa-tayte.jsp");
 
 		HashMap<String, String> errors = validateLisaa(request);
 		if (!errors.isEmpty()) {
@@ -73,7 +74,7 @@ public class LisaaTayteServlet extends HttpServlet {
 			double hinta = new Double(uusiHintaStr);
 			formatter.format(hinta);
 			String kilohintaStr = request.getParameter("tayteKilohinta");
-			String uusiKilohintaStr = kilohintaStr.replace(",",".");
+			String uusiKilohintaStr = kilohintaStr.replace(",", ".");
 			double kilohinta = new Double(uusiKilohintaStr);
 			formatter.format(kilohinta);
 
@@ -141,18 +142,22 @@ public class LisaaTayteServlet extends HttpServlet {
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hinta", "Hinta vaaditaan.");
 		} else {
-			String uusiHintaStr = hintaStr.replace(',', '.');
-			double hinta = 0;
-			hinta = new Double(uusiHintaStr);
-			formatter.format(hinta);
-
-			if (hinta < 0.50 || hinta > 10.00) {
-				errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+			if (hintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
+				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
 			} else {
-				uusiTayte.setHinta(hinta);
-				request.setAttribute("uusiTayte", uusiTayte);
-			}
+				String uusiHintaStr = hintaStr.replace(',', '.');
+				double hinta = 0;
+				hinta = new Double(uusiHintaStr);
+				formatter.format(hinta);
 
+				if (hinta < 0.50 || hinta > 10.00) {
+					errors.put("hinta",
+							"Hinta sallittujen rajojen ulkopuolella.");
+				} else {
+					uusiTayte.setHinta(hinta);
+					request.setAttribute("uusiTayte", uusiTayte);
+				}
+			}
 		}
 
 		// Haetaan syötetty kilohinta validointia varten
@@ -160,17 +165,21 @@ public class LisaaTayteServlet extends HttpServlet {
 		if (kilohintaStr == null || kilohintaStr.trim().length() == 0) {
 			errors.put("kilohinta", "Kilohinta vaaditaan.");
 		} else {
-			String uusiKiloHintaStr = kilohintaStr.replace(',', '.');
-			double kilohinta = 0;
-			kilohinta = new Double(uusiKiloHintaStr);
-			formatter.format(kilohinta);
-
-			if (kilohinta < 0.50 || kilohinta > 99.99) {
-				errors.put("kilohinta",
-						"Kilohinta sallittujen rajojen ulkopuolella.");
+			if (kilohintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
+				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
 			} else {
-				uusiTayte.setKilohinta(kilohinta);
-				request.setAttribute("uusiTayte", uusiTayte);
+				String uusiKiloHintaStr = kilohintaStr.replace(',', '.');
+				double kilohinta = 0;
+				kilohinta = new Double(uusiKiloHintaStr);
+				formatter.format(kilohinta);
+
+				if (kilohinta < 0.50 || kilohinta > 99.99) {
+					errors.put("kilohinta",
+							"Kilohinta sallittujen rajojen ulkopuolella.");
+				} else {
+					uusiTayte.setKilohinta(kilohinta);
+					request.setAttribute("uusiTayte", uusiTayte);
+				}
 			}
 		}
 		request.setAttribute("errors", errors);

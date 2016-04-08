@@ -42,8 +42,8 @@ Meilahti, 00270</p>
 </div>
 <div id="lootaoikea">
 
-<a href="" class="button2">Rekisteröidy</a>
-<a href="" class="button2">Kirjaudu Sisään</a>
+
+<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 <a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
 </div>
@@ -99,7 +99,7 @@ Meilahti, 00270</p>
 			<table>
 				<tr>
 					<td><label>Pizzan nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>" required>
+					<td><input type="text" name="pizzaNimi" value="<%=pizzaNimi%>" required maxlength="20">
 						<%
 							if (errors.containsKey("nimi")) {
 								out.println("<span class=\"error\">" + errors.get("nimi")

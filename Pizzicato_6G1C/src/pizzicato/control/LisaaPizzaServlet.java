@@ -141,7 +141,7 @@ public class LisaaPizzaServlet extends HttpServlet {
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hinta", "Hinta vaaditaan.");
 		} else {
-			if (hintaStr.matches("[0-9].,") == false) {
+			if (hintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
 				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
 			} else {
 				String uusiHintaStr = hintaStr.replace(',', '.');
