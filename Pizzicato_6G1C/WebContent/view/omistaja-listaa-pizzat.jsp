@@ -50,11 +50,12 @@ Meilahti, 00270</p>
 
 	<div id="loota1">
 	
+	
+	
 <!-- pizzalista on toteutettu taulukkona -->
 	
 		<div id="pizzalistataulukko">
-		
-	
+		<div id="tablescoller">
 
 			<table>
 				
@@ -90,7 +91,9 @@ Meilahti, 00270</p>
 					}
 					
 				%>
+				
 			</table>
+			</div>
 		</div>
 		
 		<div id="nappulasijainti">
