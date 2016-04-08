@@ -33,7 +33,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 </div>
 <div id="lootaoikea">
 
-<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a> <!--  -->
+<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib3.jpg" width="32" height="32"></a>
 </div>
 </div>
