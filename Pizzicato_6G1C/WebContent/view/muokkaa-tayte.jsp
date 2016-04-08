@@ -72,28 +72,39 @@ Meilahti, 00270</p>
 
 
 			<legend>Syötä täytteen tiedot:</legend>
+			
+			<% if (!errors.isEmpty()) { %>
+			<div class="pakollinenLoota">
+				<p class="pakollinen">
+				<%
+               if (errors.containsKey("nimi")) {
+                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span><br>");
+               }
+               if (errors.containsKey("nimi_eng")) {
+                  out.println("<span class=\"error\">" + errors.get("nimi_eng") + "</span><br>");
+               }
+               if (errors.containsKey("hinta")) {
+                   out.println("<span class=\"error\">" + errors.get("hinta") + "</span><br>");
+               }
+               if (errors.containsKey("kilohinta")) {
+                   out.println("<span class=\"error\">" + errors.get("kilohinta") + "</span><br>");
+               }
+            %>
+			</div>
+			<%} %>
+			
 			<table>
 				<tr>
 					<td><label>Täytteen nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteNimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="<%=tayteNimi%>">
-						>
-						<%
-               if (errors.containsKey("nimi")) {
-                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
-               }
-            %></td>
+					</td>
 					<td>Max 20 merkkiä</td>
 				</tr>
 				
 						<tr>
 					<td><label>Täytteen englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteNimi_eng" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="<%=tayteNimi_eng%>">
-						
-						<%
-               if (errors.containsKey("nimi")) {
-                  out.println("<span class=\"error\">" + errors.get("nimi") + "</span>");
-               }
-            %></td>
+					</td>
 					<td>Max 20 merkkiä</td>
 				</tr>
 				
@@ -101,11 +112,7 @@ Meilahti, 00270</p>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteHinta" maxlength="5" step="any" min="0.50" max="10.00" required
 						value="<%=tayteHinta%>" >
-						<%
-               if (errors.containsKey("hinta")) {
-                  out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
-               }
-            %></td>
+						</td>
 					<td>Hinta muotoa 0,00 ja hinnan pitää olla 0,50 - 10,00 euroa</td>
 				</tr>
 				
@@ -113,11 +120,7 @@ Meilahti, 00270</p>
 					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteKilohinta" maxlength="5" step="any" min="0.50" max="99.99" required
 						value="<%=tayteKilohinta%>" >
-						<%
-               if (errors.containsKey("hinta")) {
-                  out.println("<span class=\"error\">" + errors.get("hinta") + "</span>");
-               }
-            %></td>
+						</td>
 					<td>Hinta muotoa 0,00 ja hinnan pitää olla 0,50 - 99,99 euroa</td>
 				</tr>
 			</table>

@@ -44,6 +44,8 @@ public class SecurityFilter implements Filter {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/LoginServlet")) {
 			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/EngListaaPizzatServlet")) {
+			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/ListaaPizzatServlet")) {
 			chain.doFilter(req, resp);
 		} else if (kayttajatunnus != null) {
