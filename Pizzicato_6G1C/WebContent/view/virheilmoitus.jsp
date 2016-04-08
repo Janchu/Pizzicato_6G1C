@@ -11,7 +11,7 @@
 <body>
 
 	<h1>
-		Softassasi tapahtui virhe! <br> Korjaa paskasi!
+		Virhe!
 	</h1>
 
 	<div id="nappula">
