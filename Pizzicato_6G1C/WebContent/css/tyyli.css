@@ -44,7 +44,11 @@ font-weight:bold;
 
 
 
-
+#tablescoller {
+	overflow:auto;
+	height:650px;
+	
+}
 
 
 /* pizzalistataulukko muokkaa taulukon leveytt‰, ym */
@@ -148,7 +152,7 @@ margin-left:29%;
 #nappulasijainti {
 position:fixed;
 top: 50%;
-right:270px;
+right:280px;
 }
 	
 /* Vihre‰n nappulan class, joka m‰‰ritt‰‰ sen ominaisuudet */
