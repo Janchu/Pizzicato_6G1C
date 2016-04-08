@@ -8,7 +8,6 @@ padding:0;
 }
 
 
-
 /* caption muokkaa taulukon otsikon kokoa */
 caption {
 font-size:500%;
@@ -19,6 +18,10 @@ font-weight:bold;
 /* otsikon tyyli opacityn kanssa testailua */
 
 #otsikkoloota {
+	
+	padding:10px;
+	margin-top:10px;
+	font-size:350%;
 	width:72%;
 	margin-left:15%;
 	color:white;
@@ -63,18 +66,6 @@ padding:20px;
     color: white;
 }
 
- /* m‰‰ritt‰‰ navigaatiopalkin pysym‰‰n aina ylh‰‰ll‰, sen v‰rin ja leveyden */    	
- #navigaatio {
- position:fixed;
- top:0;
- width:100%;
- background-color: black;
- }
- 
- #navigaatio li a.current{
-   color: black;
-   background:white;
-}
  #logoloota {
  background-color: rgba(0,0,0,0.55);
  margin-left:15%;
@@ -117,7 +108,7 @@ margin-left:29%;
 		
 		
     	width:72%;
-    	height:100%;
+    	height:auto;
       	padding:15px;
 		margin-left:15%;
 		background-color:white;
@@ -127,7 +118,7 @@ margin-left:29%;
 /* M‰‰ritt‰‰ footerin v‰rin, leveyden, sijainnin ja tekstin ominaisuudet */			
 	#footer {
 	
-	background-color:gray;
+	background-color:rgba(0,0,0,0.55);
 	width:72%;
    	color:white;
    	text-align:left;
@@ -145,7 +136,7 @@ margin-left:29%;
 #nappulasijainti {
 position:fixed;
 top: 50%;
-right:80px;
+right:270px;
 }
 	
 /* Vihre‰n nappulan class, joka m‰‰ritt‰‰ sen ominaisuudet */

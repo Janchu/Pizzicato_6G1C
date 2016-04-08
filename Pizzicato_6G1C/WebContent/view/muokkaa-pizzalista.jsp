@@ -27,25 +27,30 @@
 </div>
 <div id="lootakeski">
 <p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
-Avoinna: 07-23<br>
-Puhelin: +358 0123456<br>
-Katuosoite: Katu2<br>
-Postitoimipaikka: Helsinki, 010101</p>
+Avoinna: Ma-La 11-21, Su 12-18<br>
++358 40 666 666<br>
+Kuusitie 66<br>
+Meilahti, 00270</p>
 </div>
 <div id="lootaoikea">
 
 <a href="" class="button2">Rekisteröidy</a>
 <a href="" class="button2">Kirjaudu Sisään</a>
-<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib3.jpg" width="32" height="32"></a>
+<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+<a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
 </div>
 </div>
+</div>
+
+<div id="otsikkoloota">
+<p style="margin-left:15%;">Pizzalista</p>
 </div>
 
 	<div id="loota1">
 		<div id="pizzalistataulukko">
 
 			<table>
-				<caption>Pizzalista</caption>
+				
 				<tr>
 
 					<th>Numero</th>
@@ -82,7 +87,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 					<td width="100px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
 					<td width="50px"><%=nakyvyys%></td>
 					<td width="50px"><a href="MuokkaaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><img alt="lib" src="images/muokkaaicon.png" width="32" height="32"></a></td>
-					<td width="50px"><a href="PiilotaPizzaServlet?Nakyvyys=<%=pizzat.get(i).getNakyvyys()%>&Id=<%=pizzat.get(i).getId()%>"><img alt="lib" src="images/naytaicon.jpg" width="32" height="32"></a></td>
+					<td width="50px"><a href="PiilotaPizzaServlet?Nakyvyys=<%=pizzat.get(i).getNakyvyys()%>&Id=<%=pizzat.get(i).getId()%>"><img alt="lib" src="images/showicon.png" width="32" height="32"></a></td>
 					<td width="50px"><a href="PoistaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"
 						onclick="return confirm('Haluatko varmasti poistaa Pizzan?')"><img alt="lib" src="images/remove.png" width="32" height="32"></a></td>
 
@@ -102,7 +107,17 @@ Postitoimipaikka: Helsinki, 010101</p>
 			</a>
 		</div>
 	
+<div id="footer">
+		<div id="footer_sisältö">
 
+			<p>
+				Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
+				Sähköpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite: Kuusitie 66 <br>
+				Postitoimipaikka: Meilahti, 00270 <br>
+			</p>
+		</div>
+
+	</div>
 
 </body>
 </html>

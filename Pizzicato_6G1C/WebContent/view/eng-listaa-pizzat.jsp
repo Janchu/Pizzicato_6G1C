@@ -36,7 +36,8 @@ Zip Code: Helsinki, 010101</p>
 
 <a href="" class="button2">Register</a>
 <a href="" class="button2">Log In</a>
-<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib3.jpg" width="32" height="32"></a>
+<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+<a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
 </div>
 </div>
 </div>
@@ -44,8 +45,7 @@ Zip Code: Helsinki, 010101</p>
 <!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
 
 <div id="otsikkoloota">
-<h1>Pizza menu</h1>
-
+<p style="margin-left:15%;">Pizzalista</p>
 </div>
 
 
@@ -106,9 +106,9 @@ Zip Code: Helsinki, 010101</p>
 		<div id="footer_sisältö">
 
 			<p>
-				Pizzeria Pizzicato<br> Phone: 01245678<br>
-				Email: pizzicato@xxx.fi<br> Address: katu21 <br>
-				City: Helsinki, Zip Code: 010101 <br>
+				Pizzeria Pizzicato<br> Phone: +358 40 666 666<br>
+				Email: pizzeria.pizzicato@gmail.com<br> Address: Kuusitie 66 <br>
+				Zip Code: Meilahti, 00270 <br>
 			</p>
 		</div>
 
