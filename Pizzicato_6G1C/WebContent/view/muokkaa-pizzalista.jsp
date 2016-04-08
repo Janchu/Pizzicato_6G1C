@@ -32,12 +32,11 @@ Avoinna: Ma-La 11-21, Su 12-18<br>
 Kuusitie 66<br>
 Meilahti, 00270</p>
 </div>
-<div id="lootaoikea">
 
+<div id="lootaoikea">
 <a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
-<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-<a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
 </div>
+
 </div>
 </div>
 

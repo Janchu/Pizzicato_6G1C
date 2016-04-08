@@ -3,10 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Kirjaudu sisään</title>
 </head>
 <body>
+<div id="loginloota">
 <form method="post">
 <h3>Käyttäjätunnus:</h3>
 <input type="text" name="kayttajatunnus" required>
@@ -23,5 +25,6 @@ if (message != null) {
 <br>
 <input type="Submit" class="button" value="Kirjaudu sisään">
 </form>
+</div>
 </body>
 </html>
