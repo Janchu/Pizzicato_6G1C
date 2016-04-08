@@ -46,7 +46,9 @@ Zip Code: Helsinki, 010101</p>
 <div id="otsikkoloota">
 <h1>Pizza menu</h1>
 
-</div>	
+</div>
+
+
 	
 <!-- pizzalista on toteutettu taulukkona -->
 	
@@ -87,6 +89,7 @@ Zip Code: Helsinki, 010101</p>
 				%>
 			</table>
 		</div>
+		
 		
 		<div id="nappulasijainti">
 			<a href="MuokkaaPizzalistaServlet" class="button">Siirry

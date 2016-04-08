@@ -20,7 +20,9 @@
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+
+<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
+
 </div>
 </div>
 <div id="lootakeski">
@@ -91,6 +93,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 				%><tr>
 			</table>
 		</div>
+		</div>
 
 		<div id="nappulasijainti">
 			<a href="LisaaPizzaServlet" class="button">Lisää pizza</a> <br>
@@ -98,7 +101,7 @@ Postitoimipaikka: Helsinki, 010101</p>
 				muokkaustilasta
 			</a>
 		</div>
-	</div>
+	
 
 
 </body>
