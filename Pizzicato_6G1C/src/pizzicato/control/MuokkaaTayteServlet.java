@@ -179,7 +179,7 @@ public class MuokkaaTayteServlet extends HttpServlet {
 			errors.put("kilohinta", "Kilohinta vaaditaan.");
 		} else {
 			if (kilohintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
-				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
+				errors.put("kilohinta", "Kilohinta sisältää kiellettyjä merkkejä.");
 			} else {
 				String uusiKiloHintaStr = kilohintaStr.replace(',', '.');
 				double kilohinta = 0;
