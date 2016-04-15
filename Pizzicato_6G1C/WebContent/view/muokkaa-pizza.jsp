@@ -140,7 +140,7 @@ Meilahti, 00270</p>
 					
 				
 			%>
-			<%-- seuraavassa koodinpätkässä on nappulat --%>
+			<%-- seuraavassa koodinpätkässä on nappulat jes --%>
 			<input type="hidden" name="pizzaId" value="<%=id%>"> <input
 				type="submit" class="button" value="Pizza valmis!"> <a
 				href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
