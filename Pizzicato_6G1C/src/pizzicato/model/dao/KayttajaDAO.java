@@ -66,7 +66,7 @@ public class KayttajaDAO extends DataAccessObject {
 		 
 		 try {
 			connection = getConnection();
-			String sql = "SELECT * FROM kayttaja where sahkoposti = (?);";
+			String sql = "SELECT * FROM kayttaja where email = (?);";
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, kayttajatunnus);
 			rs = stmt.executeQuery();
