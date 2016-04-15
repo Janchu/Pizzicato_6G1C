@@ -1,20 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="pizzicato.model.Tayte"%>
 <%@page import="pizzicato.model.Pizza"%>
-<jsp:useBean id="taytteet"
-	type="java.util.ArrayList<pizzicato.model.Tayte>" scope="request" />
-<jsp:useBean id="pizzat"
-	type="java.util.ArrayList<pizzicato.model.Pizza>" scope="request" />
+<jsp:useBean id="taytteet" type="java.util.ArrayList<pizzicato.model.Tayte>" scope="request" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<pizzicato.model.Pizza>" scope="request" />
 <jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Lisää pizza</title>
 </head>
 <body>
@@ -44,16 +41,14 @@ Meilahti, 00270</p>
 <div id="otsikkoloota">
 	<p>Lisää pizza</p>
 	</div>
-	
 </div>
 <div id="loota1">
 
-
 		<form method="post">
-
 
 			<legend>Syötä pizzan tiedot:</legend>
 			
+			<%-- Validointi --%>
 			<% if (!errors.isEmpty()) { %>
 			<div class="pakollinenLoota">
 				<p class="pakollinen">
@@ -98,21 +93,19 @@ Meilahti, 00270</p>
 				}
 			%>
 
-			<input type="submit" class="button" value="Pizza valmis!"> <a
-				href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
+			<input type="submit" class="button" value="Pizza valmis!"> 
+			<a href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
 		</form>
 	</div>
 	
 	<div id="footer">
 		<div id="footer_sisältö">
-
 			<p>
 				Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
 				Sähköpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite: Kuusitie 66 <br>
 				Postitoimipaikka: Meilahti, 00270 <br>
 			</p>
 		</div>
-
 	</div>
 </body>
 </html>

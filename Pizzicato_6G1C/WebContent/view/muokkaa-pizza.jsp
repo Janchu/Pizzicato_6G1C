@@ -1,19 +1,14 @@
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
-	scope="request" />
-<jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte>"
-	scope="request" />
-<jsp:useBean id="muokattavaPizzaId" scope="request"
-	type="java.lang.Integer" />
-<jsp:useBean id="errors" scope="request" type="java.util.HashMap"
-	class="java.util.HashMap" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"scope="request" />
+<jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte>"scope="request" />
+<jsp:useBean id="muokattavaPizzaId" scope="request" type="java.lang.Integer" />
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

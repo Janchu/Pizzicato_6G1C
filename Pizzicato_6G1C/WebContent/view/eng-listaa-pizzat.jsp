@@ -5,8 +5,7 @@
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
-	scope="request" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"scope="request" />
 <html>
 <head>
 
@@ -39,21 +38,15 @@ Meilahti, 00270</p>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 <a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
 </div>
-
 </div>
 </div>
 
-<!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
-
-<div id="otsikkoloota">
+<div id="otsikkoloota"> <%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
 <p style="margin-left:15%;">Pizzamenu</p>
 </div>
 
 <div id="loota1">
-	
-<!-- pizzalista on toteutettu taulukkona -->
-	
-		<div id="pizzalistataulukko">
+		<div id="pizzalistataulukko"> <%-- pizzalista on toteutettu taulukkona --%>
 		<div id="tablescoller">
 			
 			<table>
@@ -73,15 +66,13 @@ Meilahti, 00270</p>
 							pizzanumero++;
 				%>
 
-
 				<tr>
 					<td width="100px"><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%><br> Toppings:</b> <%
- 	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu
- %> <%=pizzat.get(i).getTaytelista().get(j)
-								.getNimi_eng()%><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <%}
- 	}
- %></td>
+ 					for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu %>
+ 					 <%=pizzat.get(i).getTaytelista().get(j).getNimi_eng()%><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <%}
+ 					} %>
+ 					</td>
 					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
 				</tr>
 				<%
@@ -91,23 +82,16 @@ Meilahti, 00270</p>
 			</table>
 		</div>
 		</div>
-		
-		
-		
-	
 	</div>
-<!-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. -->
 
-	<div id="footer">
+	<div id="footer"> <%-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. --%>
 		<div id="footer_sisältö">
-
 			<p>
 				Pizzeria Pizzicato<br> Phone: +358 40 666 666<br>
 				Email: pizzeria.pizzicato@gmail.com<br> Address: Kuusitie 66 <br>
 				Zip Code: Meilahti, 00270 <br>
 			</p>
 		</div>
-
 	</div>
 </body>
 </html>

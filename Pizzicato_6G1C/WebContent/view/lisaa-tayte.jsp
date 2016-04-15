@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="pizzicato.model.Tayte"%>
 <%@page import="pizzicato.model.Pizza"%>
@@ -9,10 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-<title>Lisää pizza</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Lisää täyte</title>
 </head>
 <body>
 
@@ -31,8 +28,8 @@ Avoinna: Ma-La 11-21, Su 12-18<br>
 Kuusitie 66<br>
 Meilahti, 00270</p>
 </div>
-<div id="lootaoikea">
 
+<div id="lootaoikea">
 <a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 </div>
 </div>
@@ -44,12 +41,11 @@ Meilahti, 00270</p>
 	
 	<div id="loota1">
 
-
 		<form method="post">
-
 
 			<legend>Syötä täytteen tiedot:</legend>
 			
+			<%-- Validointi --%>
 			<% if (!errors.isEmpty()) { %>
 			<div class="pakollinenLoota">
 				<p class="pakollinen">
@@ -74,54 +70,46 @@ Meilahti, 00270</p>
 				<tr>
 					<td><label>Täytteen nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteNimi" placeholder="Täytteen nimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="${uusiTayte.nimi}">
-					
-            </td>
+					</td>
 					<td>Max 20 merkkiä</td>
 				</tr>
 
-<tr>
+				<tr>
 					<td><label>Täytteen englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteNimi_eng" placeholder="Täytteen eng.nimi" maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä" required value="${uusiTayte.nimi_eng}">
-					 
-            </td>
+           			 </td>
 					<td>Max 20 merkkiä</td>
 				</tr>
 
 				<tr>
 					<td><label>Täytteen hinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteHinta" placeholder="Täytteen hinta" maxlength="5" step="any" min="0.50" max="10.00" required value="${uusiTayte.hinta}">
-					
-            </td>
+         		    </td>
 					<td>Hinnan pitää olla 0,50 - 10,00</td>
 				</tr>
 				
 				<tr>
 					<td><label>Kilohinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="tayteKilohinta" placeholder="Täytteen kilohinta" maxlength="5" step="any" min="0.50" max="99.99" required value="${uusiTayte.kilohinta}">
-					
-            </td>
+					<td><input type="text" name="tayteKilohinta" placeholder="Täytteen kilohinta" maxlength="5" step="any" min="0.50" max="99.99" required value="${uusiTayte.kilohinta}">	
+          		    </td>
 					<td>Hinnan pitää olla 0,50 - 99,99</td>
 				</tr>
 			</table>
 
-			
-			
-
-			<input type="submit" class="button" value="Valmis"> <a
-				href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
+		<%-- Nappulat --%>
+			<input type="submit" class="button" value="Valmis"> 
+			<a href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
 		</form>
 	</div>
 	
 	<div id="footer">
 		<div id="footer_sisältö">
-
 			<p>
 				Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
 				Sähköpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite: Kuusitie 66 <br>
 				Postitoimipaikka: Meilahti, 00270 <br>
 			</p>
 		</div>
-
 	</div>
 </body>
 </html>

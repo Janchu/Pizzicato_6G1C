@@ -1,6 +1,5 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Juoma"%>
@@ -8,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Listaa juomat</title>
 </head>
 <body>
 
@@ -25,8 +24,8 @@ Avoinna: Ma-La 11-21, Su 12-18<br>
 Kuusitie 66<br>
 Meilahti, 00270</p>
 </div>
-<div id="lootaoikea">
 
+<div id="lootaoikea">
 <a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 </div>
 </div>
@@ -38,8 +37,6 @@ Meilahti, 00270</p>
 
 <div id="juomalistataulukko">
 		
-	
-
 			<table>
 				<caption>Juomalista</caption>
 
@@ -73,14 +70,12 @@ Meilahti, 00270</p>
 </div>
 <div id="footer">
 		<div id="footer_sisältö">
-
 			<p>
 				Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
 				Sähköpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite: Kuusitie 66 <br>
 				Postitoimipaikka: Meilahti, 00270 <br>
 			</p>
 		</div>
-
 	</div>
 
 </body>
