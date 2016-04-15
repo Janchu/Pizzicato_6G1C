@@ -46,8 +46,7 @@ Meilahti, 00270</p>
 	</div>
 	
 </div>
-
-	<div id="loota1">
+<div id="loota1">
 
 
 		<form method="post">
@@ -87,7 +86,7 @@ Meilahti, 00270</p>
 				</tr>
 			</table>
 
-			<h3>Täytteet:</h3>
+			<h3>Täytteet:</h3><%-- checkboxeilla valitaan täytteet --%>
 			<br>
 			<%
 				for (int i = 0; i < taytteet.size(); i++) {

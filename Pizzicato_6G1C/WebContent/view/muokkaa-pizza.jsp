@@ -53,11 +53,6 @@ Meilahti, 00270</p>
 </div>
 
 	<div id="loota1">
-
-
-
-
-
 		<%
 			int id = muokattavaPizzaId;
 			double pizzaHinta = 0;
@@ -136,9 +131,7 @@ Meilahti, 00270</p>
 							
 						}
 						
-						
-					
-					if (taytemaara <= i) { %>
+						if (taytemaara <= i) { %>
 					<input type="checkbox" name="tayte"
 							value="<%=taytteet.get(i).getId()%>">
 							<%=taytteet.get(i).getNimi()%><br><%
@@ -147,9 +140,7 @@ Meilahti, 00270</p>
 					
 				
 			%>
-
-
-
+			<%-- seuraavassa koodinpätkässä on nappulat --%>
 			<input type="hidden" name="pizzaId" value="<%=id%>"> <input
 				type="submit" class="button" value="Pizza valmis!"> <a
 				href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>

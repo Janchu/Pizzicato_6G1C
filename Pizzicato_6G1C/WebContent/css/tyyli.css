@@ -27,7 +27,7 @@ font-weight:bold;
 
 }
 
-/* otsikon tyyli opacityn kanssa testailua */
+
 
 #otsikkoloota {
 	
@@ -40,26 +40,17 @@ font-weight:bold;
 	background-color: rgba(0,0,0,0.55);
 }
 
-/* taustalaatikko ett‰ lis‰ys/muokkaustilat n‰kyy kunnolla */
-
-
-
+/* scrollbar taulukon oikeassa reunassa*/
 #tablescoller {
 	overflow:auto;
 	height:650px;
-	
-}
-
+	}
 
 /* pizzalistataulukko muokkaa taulukon leveytt‰, ym */
 #pizzalistataulukko  table {
 	width:72%;
 	margin-left:15%;
-	
-}
-
-
-
+	}
 
 /* td padding lis‰‰ tilaa taulukon vaakasolun ymp‰rill‰ */
 #pizzalistataulukko	td {
@@ -89,14 +80,13 @@ padding:20px;
  height:33%;
  }
 
+ /* m‰‰r‰‰ logon koon ja sijainnin*/
  .logo {
 height: 100%;
 margin-left:29%;
-
  }
  
  #lootavasen {
-
  display:inline-block;
  float:left;
  width:33.3%;
@@ -121,9 +111,7 @@ margin-left:29%;
  
 /* M‰‰ritt‰‰ lootan leveyden, v‰rin, korkeuden, sijainnin ja kaiken */			
 #loota1 {
-		
-		
-    	width:72%;
+		width:72%;
     	height:auto;
       	padding:15px;
 		margin-left:15%;
@@ -133,7 +121,6 @@ margin-left:29%;
 		
 /* M‰‰ritt‰‰ footerin v‰rin, leveyden, sijainnin ja tekstin ominaisuudet */			
 	#footer {
-	
 	background-color:rgba(0,0,0,0.55);
 	width:72%;
    	color:white;
@@ -156,7 +143,6 @@ right:15.5%;
 }
 	
 /* Vihre‰n nappulan class, joka m‰‰ritt‰‰ sen ominaisuudet */
-	
 	.button {
     background-color: #6FD630;
     border: none;

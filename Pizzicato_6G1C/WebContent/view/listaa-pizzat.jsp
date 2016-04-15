@@ -20,14 +20,17 @@
 </head>
 <body>
 
+<%-- Logolootassa on "header" ja se kootuu kolmesta eri lootasta, jotka
+ järjestävät logolootan sisällön. Vasemmassa lootassa on logo, keskimmäisessä
+ yhteystiedot ja oikeanpuolimmaisessa kirjautuminen ja kielenvaihto --%>
+
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-
 <a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
+</div>
+</div>
 
-</div>
-</div>
 <div id="lootakeski">
 <p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
 Avoinna: Ma-La 11-21, Su 12-18<br>
@@ -35,8 +38,8 @@ Avoinna: Ma-La 11-21, Su 12-18<br>
 Kuusitie 66<br>
 Meilahti, 00270</p>
 </div>
-<div id="lootaoikea">
 
+<div id="lootaoikea">
 <a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 <a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
@@ -44,22 +47,16 @@ Meilahti, 00270</p>
 </div>
 </div>
 
-<!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
+<%-- Otsikkoloota on ainoastaan sitä varten, että saa taulukon otsikon kokoa ja sijaintia muutettua--%>
 
 <div id="otsikkoloota">
 <p style="margin-left:15%;">Pizzalista</p>
 </div>
 	
-	<div id="loota1">
-<!-- pizzalista on toteutettu taulukkona -->
-	
-		<div id="pizzalistataulukko">
-		
-	<div id="tablescoller">
-
-			<table>
-				
-
+<div id="loota1"> <%-- Lootan sisällä on kaikki itse sisältö --%>
+<div id="pizzalistataulukko"><%-- Pizzalista on toteutettu taulukkona --%>
+<div id="tablescoller"><%-- Tablescoller on taulukon oikean reunan scrollbar --%>
+		<table>
 				<tr>
 					<th>Numero</th>
 					<th>Nimi</th>
@@ -75,8 +72,6 @@ Meilahti, 00270</p>
 						if (pizzat.get(i).getNakyvyys() == 1) {
 							pizzanumero++;
 				%>
-
-
 				<tr>
 					<td width="100px"><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
@@ -93,16 +88,12 @@ Meilahti, 00270</p>
 					
 				%>
 			</table>
-			</div>
-		</div>
-		
-		
-	</div>
-	
-	
-<!-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. -->
+</div>
+</div>
+</div>
 
-	<div id="footer">
+
+	<div id="footer"><%-- Footerin sisällöllä voi siirtää footerin sisältöä --%>
 		<div id="footer_sisältö">
 
 			<p>
