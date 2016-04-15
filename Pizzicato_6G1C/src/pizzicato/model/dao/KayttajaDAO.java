@@ -25,7 +25,7 @@ public class KayttajaDAO extends DataAccessObject {
 		String osoite = rs.getString("kayttaja.osoite");
 		String postinro = rs.getString("kayttaja.postinro");
 		String postitmp = null; //rs.getString("kayttaja.postitmp");
-		String email = rs.getString("kayttaja.sahkoposti");
+		String email = rs.getString("kayttaja.email");
 		return new Kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh, osoite, postinro, postitmp, email);
 	}
 
