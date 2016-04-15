@@ -74,8 +74,6 @@ Meilahti, 00270</p>
 						if (pizzat.get(i).getNakyvyys() == 1) {
 							pizzanumero++;
 				%>
-
-
 				<tr>
 					<td width="100px"><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%

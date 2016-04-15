@@ -87,8 +87,6 @@ Meilahti, 00270</p>
 					<td>Max 20 merkkiä</td>
 				</tr>
 
-				
-				
 				<tr>
 					<td><label>Täytteen hinta: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="tayteHinta" placeholder="Täytteen hinta" maxlength="5" step="any" min="0.50" max="10.00" required value="${uusiTayte.hinta}">

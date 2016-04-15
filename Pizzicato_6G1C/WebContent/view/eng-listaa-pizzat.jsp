@@ -58,7 +58,6 @@ Meilahti, 00270</p>
 			
 			<table>
 				
-
 				<tr>
 					<th>Number</th>
 					<th>Name</th>
