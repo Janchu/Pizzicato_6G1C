@@ -103,7 +103,11 @@ public class LisaaPizzaServlet extends HttpServlet {
 				double hinta = leikkiPizza.getHinta();
 				Pizza uusiPizza = new Pizza(id, tyyppi, nimi, hinta, nakyvyys,
 						pohja, taytelista);
+				
+				// Kutsutaan addPizza-metodia
 				pizzadao.addPizza(uusiPizza);
+				
+				// Uudelleenohjataan MuokkaaPizzalistaServletille
 				response.sendRedirect("MuokkaaPizzalistaServlet");
 
 			} catch (Exception e) {
@@ -122,9 +126,12 @@ public class LisaaPizzaServlet extends HttpServlet {
 
 		// Haetaan syötetty nimi validointia varten
 		String nimi = request.getParameter("pizzaNimi");
+		
+		// Tarkistetaan, ettei kenttä ole tyhjä
 		if (nimi == null || nimi.trim().length() == 0) {
 			errors.put("nimi", "Nimi vaaditaan.");
 		} else {
+			// Tarkistetaan, ettei nimi ole jo käytössä
 			for (int i = 0; i < pizzat.size(); i++) {
 				if (nimi.equalsIgnoreCase(pizzat.get(i).getNimi())) {
 					errors.put("nimi", "Nimi on jo käytössä.");
@@ -138,6 +145,8 @@ public class LisaaPizzaServlet extends HttpServlet {
 
 		// Haetaan syötetty hinta validointia varten
 		String hintaStr = request.getParameter("pizzaHinta");
+		
+		
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hinta", "Hinta vaaditaan.");
 		} else {

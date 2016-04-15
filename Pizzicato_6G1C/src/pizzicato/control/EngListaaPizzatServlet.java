@@ -29,10 +29,10 @@ public class EngListaaPizzatServlet extends HttpServlet {
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
 
-		// ArrayList tallennetaan request-olioon jsp:lle viet�v�ksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("pizzat", pizzat);
 
-		// L�hetet��n jsp:lle
+		// Lähetetään jsp:lle
 		String jsp = "/view/eng-listaa-pizzat.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
