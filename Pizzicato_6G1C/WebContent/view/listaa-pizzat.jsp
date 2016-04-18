@@ -45,7 +45,8 @@ Meilahti, 00270</p>
 <%-- Otsikkoloota on ainoastaan sitä varten, että saa taulukon otsikon kokoa ja sijaintia muutettua--%>
 
 <div id="otsikkoloota">
-<p style="margin-left:15%;">Pizzalista</p>
+<a href="ListaaPizzatServlet" class="pizzalistabutton"><u>Pizzalista</u></a>
+<a href="ListaaJuomatServlet" class="juomabutton">Juomat</a>
 </div>
 	
 <div id="loota1"> <%-- Lootan sisällä on kaikki itse sisältö --%>

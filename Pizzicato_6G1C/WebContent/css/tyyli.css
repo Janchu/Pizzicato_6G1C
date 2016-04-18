@@ -171,6 +171,34 @@ right:15.5%;
 	border-radius:10px;
 }
 
+.pizzalistabutton {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 40px;
+    margin: 4px 2px;
+    cursor: pointer;
+	width:48%;
+	
+	
+	
+}
+
+.juomabutton {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 40px;
+    margin: 4px 2px;
+    cursor: pointer;
+	width:48%;
+
+	}
+
 /* lisaa-pizza.jsp syöttökentän * pakollinen merkin tähti punaiseksi */
 
 	.pakollinen {color:red}
