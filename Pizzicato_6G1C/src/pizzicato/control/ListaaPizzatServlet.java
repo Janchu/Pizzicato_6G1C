@@ -28,7 +28,7 @@ public class ListaaPizzatServlet extends HttpServlet {
 		// Luodaan PizzaDAO
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
-		
+
 		System.out.println(pizzat);
 
 		// ArrayList tallennetaan request-olioon jsp:lle viet�v�ksi
