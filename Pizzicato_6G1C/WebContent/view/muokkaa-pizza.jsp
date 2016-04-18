@@ -5,8 +5,8 @@
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"scope="request" />
-<jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte>"scope="request" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
+<jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte>" scope="request" />
 <jsp:useBean id="muokattavaPizzaId" scope="request" type="java.lang.Integer" />
 <jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>

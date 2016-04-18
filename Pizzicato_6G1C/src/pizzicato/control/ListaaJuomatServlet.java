@@ -19,26 +19,27 @@ import pizzicato.model.dao.JuomaDAO;
 @WebServlet("/ListaaJuomatServlet")
 public class ListaaJuomatServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// Luodaan JuomaDAO
 		JuomaDAO juomadao = new JuomaDAO();
 		ArrayList<Juoma> juomat = juomadao.findAll();
-		
+
 		System.out.println(juomat);
-		
+
 		// Arraylist tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("juomat", juomat);
-		
+
 		// Lähetetään jsp:lle
 		String jsp = "/view/listaa-juomat.jsp";
-		RequestDispatcher dispatcher = getServletContext().
-				getRequestDispatcher(jsp);
+		RequestDispatcher dispatcher = getServletContext()
+				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 	}
 

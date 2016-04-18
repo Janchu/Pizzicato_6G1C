@@ -1,10 +1,10 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"scope="request" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,7 +40,7 @@ Meilahti, 00270</p>
 <a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
 </div>
 </div>
-</div>
+
 
 <%-- Otsikkoloota on ainoastaan sitä varten, että saa taulukon otsikon kokoa ja sijaintia muutettua--%>
 
