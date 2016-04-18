@@ -48,6 +48,14 @@ Meilahti, 00270</p>
             %></td>
 					<td>Max 20 merkkiä</td>
 				</tr>
+				
+				<tr>
+					<td><label>Englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
+					<td><input type="text" name="juomaNimi_eng" placeholder="Juoman eng nimi" maxlenght="20" title="Juoman nimi saa olla max 30 merkkiä pitkä" value="${uusiJuoma.nimi_eng}" required>
+					<%
+				%></td>
+						<td>Max 30 merkkiä</td>
+				</tr>
 
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
@@ -58,7 +66,7 @@ Meilahti, 00270</p>
 				</tr>
 				<tr>
 				<td><label>Koko: <span class="pakollinen">*</span></label></td>
-				<td><input type="text" name="juomanKoko" placeholder="Juoman koko" maxlength="5" value="${uusiJuoma.koko}" required>
+				<td><input type="text" name="juomaKoko" placeholder="Juoman koko" maxlength="5" value="${uusiJuoma.koko}" required>
 				<%
 				%></td>
 			</table>

@@ -30,7 +30,7 @@ public class JuomaDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT juoma.id, tuote.tyyppi, juoma.koko, juoma.nakyvyys, tuote.nimi, tuote.hinta FROM tuote JOIN juoma ON tuote.id = juoma.id ORDER BY tuote.tyyppi DESC, tuote.hinta ASC, tuote.id ASC;";
+			String sqlSelect = "SELECT juoma.id, tuote.tyyppi, juoma.koko, juoma.nakyvyys, tuote.nimi, juoma.nimi_eng, tuote.hinta FROM tuote JOIN juoma ON tuote.id = juoma.id ORDER BY tuote.tyyppi DESC, tuote.hinta ASC, tuote.id ASC;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
@@ -77,7 +77,7 @@ public class JuomaDAO extends DataAccessObject {
 			stmtInsert.close();
 
 			stmtInsert = connection
-					.prepareStatement("INSERT INTO juoma (id, nakyvyys, koko) VALUES (last_insert_id(), ?, ?);");
+					.prepareStatement("INSERT INTO juoma (id, nakyvyys, koko, nimi_eng) VALUES (last_insert_id(), ?, ?, ?);");
 			stmtInsert.setDouble(1, lisattavaJuoma.getKoko());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
@@ -187,6 +187,13 @@ public class JuomaDAO extends DataAccessObject {
 			stmtInsert.setString(1, paivitettavaJuoma.getNimi());
 			stmtInsert.setInt(2, paivitettavaJuoma.getId());
 			stmtInsert.executeUpdate();
+			stmtInsert.close();	
+			
+			stmtInsert = connection
+					.prepareStatement("UPDATE juoma SET nimi_eng = (?) WHERE id = (?)");
+			stmtInsert.setString(1, paivitettavaJuoma.getNimi_eng());
+			stmtInsert.setInt(2, paivitettavaJuoma.getId());
+			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
 			stmtInsert = connection
@@ -195,6 +202,8 @@ public class JuomaDAO extends DataAccessObject {
 			stmtInsert.setInt(2, paivitettavaJuoma.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
+			
+
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

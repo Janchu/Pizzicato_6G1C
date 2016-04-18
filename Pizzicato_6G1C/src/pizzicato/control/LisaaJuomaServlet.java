@@ -1,7 +1,9 @@
 package pizzicato.control;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,8 +49,11 @@ public class LisaaJuomaServlet extends HttpServlet {
 		request.setAttribute("juomat", juomat);
 		
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/lisaa-juomat.jsp");
-		jsp.forward(request, response);
 		
+		HashMap<String, String> errors = validateLisaa(request);
+		if(!errors.isEmpty()) {
+		jsp.forward(request, response);
+		}else {
 		// Alustetaan ID nollaksi, koska ID generoituu kannassa
 		// automaattisesti
 		
@@ -56,22 +61,128 @@ public class LisaaJuomaServlet extends HttpServlet {
 		
 		// Nämä arvot ovat pelkästään futureproofia varten
 		String tyyppi = "juoma";
-		String nimi_eng = "";
 		int nakyvyys = 1;
 		
 		try {
 			// Luodaan uusi juoma-olio kantaan vietäväksi
 			Juoma uusiJuoma = (Juoma) request.getAttribute("uusiJuoma");
 			String nimi = uusiJuoma.getNimi();
+			String nimi_eng = uusiJuoma.getNimi_eng();
 			double hinta = uusiJuoma.getHinta();
 			double koko = uusiJuoma.getKoko();
 			
 			Juoma lisattavaJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys, nimi_eng);
+			
+			// Kutsutaan addJuoma-metodia
 			juomadao.addJuoma(lisattavaJuoma);
+			
+			// Uudelleenohjataan MuokkaaJuomaServletille
 			response.sendRedirect("MuokkaaJuomalistaServlet");
 		}catch(Exception e) {
-			throw new RuntimeException(e);
+			response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp");
 		}
+	}
+	}
+	
+	public static HashMap<String, String> validateLisaa(
+			HttpServletRequest request) {
+		DecimalFormat formatter = new DecimalFormat("#0.00");
+		Juoma lisattavaJuoma = new Juoma();
+		JuomaDAO juomadao = new JuomaDAO();
+		ArrayList<Juoma> juomat = juomadao.findAll();
+		HashMap<String, String> errors = new HashMap<String, String>();
+		
+		// Haetaan syötetty nimi validointia varten
+		String nimi = request.getParameter("juomaNimi");
+		
+		// Tarkistetaan, ettei kenttä ole tyhjä
+		if(nimi == null || nimi.trim().length() == 0) {
+			errors.put("nimi", "Nimi vaaditaan.");
+		}else {
+			// Tarkistetaan, ettei nimi ole jo käytössä
+			for(int i = 0; i < juomat.size(); i++) {
+				if(nimi.equalsIgnoreCase(juomat.get(i).getNimi())) {
+					errors.put("nimi", "Nimi on jo käytössä.");
+				}
+			}
+		}
+		
+		int maxLenght = (nimi.length() < 20) ? nimi.length() : 20;
+		String rajattuNimi = nimi.substring(0, maxLenght);
+		nimi = rajattuNimi;
+		lisattavaJuoma.setNimi(nimi);
+		
+		// Haetaan syötetty nimi_eng validointia varten
+		String nimi_eng = request.getParameter("juomaNimi_eng");
+		
+		// Tarkistetaan, ettei kenttä ole tyhjä
+		if(nimi_eng == null || nimi_eng.trim().length() == 0) {
+			errors.put("nimi_eng", "Nimi vaaditaan");
+		}else {
+			// Tarkistetaan, ettei nimi ole jo käytössä
+			for(int i = 0; i < juomat.size(); i++) {
+				if(nimi_eng.equalsIgnoreCase(juomat.get(i).getNimi_eng())) {
+					errors.put("nimi_eng", "Nimi on jo käytössä");
+				}
+			}
+		}
+		
+		int maxLenghtEng = (nimi_eng.length() < 30) ? nimi.length() : 30;
+		String rajattuNimi_eng = nimi_eng.substring(0, maxLenghtEng);
+		nimi_eng = rajattuNimi_eng;
+		lisattavaJuoma.setNimi_eng(nimi_eng);
+		
+		// Haetaan syötetty hinta validointia varten
+		String hintaStr = request.getParameter("juomaHinta");
+		
+		if(hintaStr == null || hintaStr.trim().length() == 0) {
+			errors.put("hinta", "Hinta vaaditaan.");
+		}else {
+			if(hintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
+				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
+			}else {
+				String uusiHintaStr = hintaStr.replace(',', '.');
+				
+				double hinta = 0;
+				hinta = new Double(uusiHintaStr);
+				formatter.format(hinta);
+				
+				if(hinta < 0.50 || hinta > 10.00) {
+					errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+				}else {
+					lisattavaJuoma.setHinta(hinta);
+					request.setAttribute("lisattavaJuoma", lisattavaJuoma);
+				}
+			}
+		}
+		// Haetaan syötetty koko validointia varten
+		String kokoStr = request.getParameter("juomaKoko");
+		
+		if(kokoStr == null || kokoStr.trim().length() == 0) {
+			errors.put("koko", "Koko vaaditaan.");
+		}else {
+			if(kokoStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
+				errors.put("koko", "Koko sisältää kiellettyjä merkkejä.");
+			}else {
+				String uusiKokoStr = kokoStr.replace(',', '.');
+				
+				double koko = 0;
+				koko = new Double(uusiKokoStr);
+				formatter.format(koko);
+				
+				if(koko < 0.33 || koko > 1.5) {
+					errors.put("koko", "Koko sallittujen rajojen ulkopuolella.");
+				}else {
+					lisattavaJuoma.setKoko(koko);
+					request.setAttribute("lisattavaJuoma", lisattavaJuoma);
+				}
+			}
+		}
+		
+		request.setAttribute("errors", errors);
+		
+		return errors;
+	
 	}
 
 }
