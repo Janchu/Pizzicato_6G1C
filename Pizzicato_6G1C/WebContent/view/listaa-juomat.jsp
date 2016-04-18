@@ -54,7 +54,7 @@
 				int juomanumero = 0;
 				for (int i = 0; i < juomat.size(); i++) {
 
-					if (juomat.get(i).getTyyppi() == "juoma") {
+					if (juomat.get(i).getTyyppi().equalsIgnoreCase("juoma")) {
 
 						if (juomat.get(i).getNakyvyys() == 1) {
 							juomanumero++;

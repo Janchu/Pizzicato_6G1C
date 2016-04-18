@@ -78,7 +78,9 @@ public class JuomaDAO extends DataAccessObject {
 
 			stmtInsert = connection
 					.prepareStatement("INSERT INTO juoma (id, nakyvyys, koko, nimi_eng) VALUES (last_insert_id(), ?, ?, ?);");
-			stmtInsert.setDouble(1, lisattavaJuoma.getKoko());
+			stmtInsert.setDouble(1, lisattavaJuoma.getNakyvyys());
+			stmtInsert.setDouble(2, lisattavaJuoma.getKoko());
+			stmtInsert.setString(3, lisattavaJuoma.getNimi_eng());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 

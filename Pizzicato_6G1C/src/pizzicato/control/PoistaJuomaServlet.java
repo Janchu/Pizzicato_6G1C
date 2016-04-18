@@ -35,7 +35,7 @@ public class PoistaJuomaServlet extends HttpServlet {
 		String nimi = "";
 		double hinta = 0;
 		double koko = 0;
-		String nakyvyys = "";
+		int nakyvyys = 1;
 		String nimi_eng = "";
 
 		try {

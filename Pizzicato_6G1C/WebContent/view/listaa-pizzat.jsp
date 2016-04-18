@@ -63,7 +63,7 @@ Meilahti, 00270</p>
 					DecimalFormat decimal = new DecimalFormat("0.00");
 					int pizzanumero = 0;
 					for (int i = 0; i < pizzat.size(); i++) {
-
+						if(pizzat.get(i).getTyyppi().equalsIgnoreCase("pizza") || pizzat.get(i).getTyyppi().equalsIgnoreCase("fantasia")){
 						if (pizzat.get(i).getNakyvyys() == 1) {
 							pizzanumero++;
 				%>
@@ -77,6 +77,7 @@ Meilahti, 00270</p>
 					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
 				</tr>
 				<%
+					}
 					}
 					}
 				%>

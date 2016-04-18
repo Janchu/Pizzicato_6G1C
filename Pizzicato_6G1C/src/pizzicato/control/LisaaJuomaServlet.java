@@ -65,16 +65,16 @@ public class LisaaJuomaServlet extends HttpServlet {
 		
 		try {
 			// Luodaan uusi juoma-olio kantaan vietäväksi
-			Juoma uusiJuoma = (Juoma) request.getAttribute("uusiJuoma");
-			String nimi = uusiJuoma.getNimi();
-			String nimi_eng = uusiJuoma.getNimi_eng();
-			double hinta = uusiJuoma.getHinta();
-			double koko = uusiJuoma.getKoko();
+			Juoma leikkiJuoma = (Juoma) request.getAttribute("uusiJuoma");
+			String nimi = leikkiJuoma.getNimi();
+			String nimi_eng = leikkiJuoma.getNimi_eng();
+			double hinta = leikkiJuoma.getHinta();
+			double koko = leikkiJuoma.getKoko();
 			
-			Juoma lisattavaJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys, nimi_eng);
+			Juoma uusiJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys, nimi_eng);
 			
 			// Kutsutaan addJuoma-metodia
-			juomadao.addJuoma(lisattavaJuoma);
+			juomadao.addJuoma(uusiJuoma);
 			
 			// Uudelleenohjataan MuokkaaJuomaServletille
 			response.sendRedirect("MuokkaaJuomalistaServlet");
@@ -87,7 +87,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 	public static HashMap<String, String> validateLisaa(
 			HttpServletRequest request) {
 		DecimalFormat formatter = new DecimalFormat("#0.00");
-		Juoma lisattavaJuoma = new Juoma();
+		Juoma uusiJuoma = new Juoma();
 		JuomaDAO juomadao = new JuomaDAO();
 		ArrayList<Juoma> juomat = juomadao.findAll();
 		HashMap<String, String> errors = new HashMap<String, String>();
@@ -110,7 +110,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 		int maxLenght = (nimi.length() < 20) ? nimi.length() : 20;
 		String rajattuNimi = nimi.substring(0, maxLenght);
 		nimi = rajattuNimi;
-		lisattavaJuoma.setNimi(nimi);
+		uusiJuoma.setNimi(nimi);
 		
 		// Haetaan syötetty nimi_eng validointia varten
 		String nimi_eng = request.getParameter("juomaNimi_eng");
@@ -130,7 +130,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 		int maxLenghtEng = (nimi_eng.length() < 30) ? nimi.length() : 30;
 		String rajattuNimi_eng = nimi_eng.substring(0, maxLenghtEng);
 		nimi_eng = rajattuNimi_eng;
-		lisattavaJuoma.setNimi_eng(nimi_eng);
+		uusiJuoma.setNimi_eng(nimi_eng);
 		
 		// Haetaan syötetty hinta validointia varten
 		String hintaStr = request.getParameter("juomaHinta");
@@ -150,8 +150,8 @@ public class LisaaJuomaServlet extends HttpServlet {
 				if(hinta < 0.50 || hinta > 10.00) {
 					errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
 				}else {
-					lisattavaJuoma.setHinta(hinta);
-					request.setAttribute("lisattavaJuoma", lisattavaJuoma);
+					uusiJuoma.setHinta(hinta);
+					request.setAttribute("uusiJuoma", uusiJuoma);
 				}
 			}
 		}
@@ -173,8 +173,8 @@ public class LisaaJuomaServlet extends HttpServlet {
 				if(koko < 0.33 || koko > 1.5) {
 					errors.put("koko", "Koko sallittujen rajojen ulkopuolella.");
 				}else {
-					lisattavaJuoma.setKoko(koko);
-					request.setAttribute("lisattavaJuoma", lisattavaJuoma);
+					uusiJuoma.setKoko(koko);
+					request.setAttribute("uusiJuoma", uusiJuoma);
 				}
 			}
 		}
