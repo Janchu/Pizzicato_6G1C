@@ -213,9 +213,10 @@ public class JuomaDAO extends DataAccessObject {
 			double hinta = rs.getDouble("tuote.hinta");
 			double koko = rs.getDouble("juoma.koko");
 			int nakyvyys = rs.getInt("juoma.nakyvyys");
+			String nimi_eng = rs.getString("juoma.nimi_eng");
 
 			// Palautetaan pizza
-			return new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys);
+			return new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys, nimi_eng);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

@@ -56,6 +56,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 		
 		// Nämä arvot ovat pelkästään futureproofia varten
 		String tyyppi = "juoma";
+		String nimi_eng = "";
 		int nakyvyys = 1;
 		
 		try {
@@ -65,7 +66,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 			double hinta = uusiJuoma.getHinta();
 			double koko = uusiJuoma.getKoko();
 			
-			Juoma lisattavaJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys);
+			Juoma lisattavaJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys, nimi_eng);
 			juomadao.addJuoma(lisattavaJuoma);
 			response.sendRedirect("MuokkaaJuomalistaServlet");
 		}catch(Exception e) {
