@@ -74,7 +74,7 @@ Meilahti, 00270</p>
  					<%=pizzat.get(i).getTaytelista().get(j).getNimi()%><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <%}
  					}%>
  					</td>
-					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
+					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td><td><form action="OstoskoriServlet" method="post"><input type="submit" value="Lisää ostoskoriin"></form></td>
 				</tr>
 				<%
 					}
