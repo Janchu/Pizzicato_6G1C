@@ -66,7 +66,7 @@ Meilahti, 00270</p>
 				</tr>
 				<tr>
 				<td><label>Koko: <span class="pakollinen">*</span></label></td>
-				<td><input type="text" name="juomaKoko" placeholder="Juoman koko" maxlength="5" value="${uusiJuoma.koko}" required>
+				<td><input type="checkbox" name="juomaKoko" value="${uusiJuoma.koko}" required>0.33l<br>
 				<%
 				%></td>
 			</table>
