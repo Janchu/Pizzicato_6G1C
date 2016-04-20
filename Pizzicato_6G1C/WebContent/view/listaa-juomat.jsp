@@ -47,6 +47,7 @@
 				<th>Numero</th>
 				<th>Nimi</th>
 				<th>Hinta</th>
+				<th>Koko</th>
 			</tr>
 
 			<%

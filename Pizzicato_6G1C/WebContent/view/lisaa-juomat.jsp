@@ -66,9 +66,16 @@ Meilahti, 00270</p>
 				</tr>
 				<tr>
 				<td><label>Koko: <span class="pakollinen">*</span></label></td>
-				<td><input type="checkbox" name="juomaKoko" value="${uusiJuoma.koko}" required>0.33l<br>
+				<td><input type="checkbox" name="juomaKoko" value="0.33" value="${uusiJuoma.koko}">0.33l<br>
 				<%
 				%></td>
+				<td><input type="checkbox" name="juomaKoko" value="0.5" value="${uusiJuoma.koko}">0.5l</td>
+				<%
+				%>
+				<td><input type="checkbox" name="juomaKoko" value="1.5" value="${uusiJuoma.koko}">1.5l</td>
+				<%
+				%>
+				</tr>
 			</table>
 
 			<input type="submit" class="button" value="Juoma valmis!"> <a

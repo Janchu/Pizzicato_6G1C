@@ -48,6 +48,7 @@ Meilahti, 00270</p>
 						<th>Numero</th>
 						<th>Nimi</th>
 						<th>Hinta</th>
+						<th>Koko</th>
 						<th>Näkyvillä</th>
 						<th>Muokkaa</th>
 						<th>Piilota</th>
@@ -73,6 +74,7 @@ Meilahti, 00270</p>
 						<td width="50px"><%=juomanumero%></td>
 						<td><b><%=juomat.get(i).getNimi()%></b></td>
 						<td width="100px"><%=decimal.format(juomat.get(i).getHinta())%></td>
+						<td width="100px"><%=juomat.get(i).getKoko()%></td>
 						<td width="50px"><%=nakyvyys%></td>
 						<td width="50px"><a
 							href="MuokkaaJuomaServlet?JuoId=<%=juomat.get(i).getId()%>"><img
