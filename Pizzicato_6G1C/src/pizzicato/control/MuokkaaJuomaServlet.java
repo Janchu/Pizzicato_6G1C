@@ -71,9 +71,12 @@ public class MuokkaaJuomaServlet extends HttpServlet {
 			String nimi = request.getParameter("juomaNimi");
 			String nimi_eng = request.getParameter("juomaNimi_eng");
 			String kokoStr = request.getParameter("juomaKoko");
+			String uusiKokoStr = kokoStr.replace(",", ".");
+			double koko = new Double(uusiKokoStr);
 			String hintaStr = request.getParameter("juomaHinta");
 			String uusiHintaStr = hintaStr.replace(",", ".");
 			double hinta = new Double(uusiHintaStr);
+			
 			formatter.format(hinta);
 			
 			// Nämä arvot ovat pelkästään futureproofia varten.
@@ -85,7 +88,8 @@ public class MuokkaaJuomaServlet extends HttpServlet {
 			// Luodaan uusi juoma olio kantaan vietäväksi
 			Juoma muokattuJuoma = new Juoma(id, tyyppi, nimi, hinta, koko, nakyvyys, nimi_eng);
 			
-			if ()
+		}catch {
+			
 		}
 		
 	}
