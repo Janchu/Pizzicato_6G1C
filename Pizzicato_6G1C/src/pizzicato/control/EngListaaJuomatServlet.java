@@ -3,6 +3,7 @@ package pizzicato.control;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +23,15 @@ public class EngListaaJuomatServlet extends HttpServlet {
 		// Luodaan JuomaDAO
 		JuomaDAO juomadao = new JuomaDAO();
 		ArrayList<Juoma> juomat = juomadao.findAll();
+		
+		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		request.setAttribute("juomat", juomat);
+		
+		// Lähetetään jsp:lle
+		String jsp = "/view/eng-listaa-juomat.jsp";
+		RequestDispatcher dispatcher = getServletContext()
+				.getRequestDispatcher(jsp);
+		dispatcher.forward(request, response);
 	}
 
 
