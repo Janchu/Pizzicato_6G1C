@@ -47,7 +47,7 @@ Meilahti, 00270</p>
 </div>
 
 <div id="loota1">
-		<div id="pizzalistataulukko"> <%-- pizzalista on toteutettu taulukkona --%>
+		<div id="tuotelistataulukko"> <%-- pizzalista on toteutettu taulukkona --%>
 		<div id="tablescoller">
 			
 			<table>

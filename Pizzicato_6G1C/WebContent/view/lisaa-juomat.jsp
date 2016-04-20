@@ -5,15 +5,18 @@
 <jsp:useBean id="juomat" type="java.util.ArrayList<pizzicato.model.Juoma>" scope="request" />
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/tyyli.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Lisää juoma</title>
 </head>
 <body>
 
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 </div>
 </div>
 <div id="lootakeski">
@@ -25,14 +28,13 @@ Meilahti, 00270</p>
 </div>
 <div id="lootaoikea">
 
-<a href="" class="button2">Kirjaudu Sisään</a>
-</div>
+<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 </div>
 </div>
 
 <div id="otsikkoloota">
-	<p style="margin-left:15%;">Lisää juoma</p>
-	</div>
+	<p>Lisää juoma</p>
+</div>
 
 <div id="loota1">
 

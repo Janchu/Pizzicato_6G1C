@@ -54,7 +54,7 @@ Meilahti, 00270</p>
 	
 <!-- pizzalista on toteutettu taulukkona -->
 	
-		<div id="pizzalistataulukko">
+		<div id="tuotelistataulukko">
 		<div id="tablescoller">
 
 			<table>
@@ -99,7 +99,10 @@ Meilahti, 00270</p>
 				pizzalistan <br> muokkaukseen</a>
 				<br>
 			<a href="MuokkaaTaytelistaServlet" class="button">Siirry
-				täytelistan <br> muokkaukseen</a>	
+				täytelistan <br> muokkaukseen</a>
+				<br>	
+			<a href="MuokkaaJuomalistaServlet" class="button">Siirry
+				juomalistan <br> muokkaukseen</a>	
 		</div>
 	</div>
 	

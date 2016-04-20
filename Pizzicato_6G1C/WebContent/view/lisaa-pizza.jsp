@@ -40,8 +40,8 @@ Meilahti, 00270</p>
 
 <div id="otsikkoloota">
 	<p>Lisää pizza</p>
-	</div>
 </div>
+
 <div id="loota1">
 
 		<form method="post">

@@ -47,28 +47,28 @@ font-weight:bold;
 	}
 
 /* pizzalistataulukko muokkaa taulukon leveyttä, ym */
-#pizzalistataulukko  table {
+#tuotelistataulukko  table {
 	width:72%;
 	margin-left:15%;
 	}
 
 /* td padding lisää tilaa taulukon vaakasolun ympärillä */
-#pizzalistataulukko	td {
+#tuotelistataulukko	td {
 padding:20px;
 }
 
 /* th padding-left siirtää taulukon otsikkosolua samalle tasolle muun tekstin kanssa*/
-#pizzalistataulukko th, td {
+#tuotelistataulukko th, td {
     text-align: left;
 	padding-left:20px;  
 }
 
 /* TÄRKEÄ, tekee PIZZALISTATAULUKON joka toisen vaakarivin eriväriseksi*/
-#pizzalistataulukko tr:nth-child(even){background-color: #f2f2f2}
-#pizzalistataulukko tr:nth-child(odd){background-color: white}
+#tuotelistataulukko tr:nth-child(even){background-color: #f2f2f2}
+#tuotelistataulukko tr:nth-child(odd){background-color: white}
 
 /* th:n background-color tekee otsikkosolusta vihreän ja color otsikoiden väristä valkoisen */
-#pizzalistataulukko th {
+#tuotelistataulukko th {
     background-color: #6FD630;
     color: white;
 }
@@ -241,7 +241,9 @@ div.pakollinenLoota {
     font-size: 16px;
     margin: 4px 2px;
 	border-radius:10px;
-	
+	position:fixed;
+	top: 4%;
+	right:15.5%;
 	
 }
 	

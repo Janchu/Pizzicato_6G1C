@@ -8,7 +8,10 @@
 	scope="request" />
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/tyyli.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Listaa juomat</title>
 </head>
 <body>
@@ -17,7 +20,7 @@
 		<div id="lootavasen">
 			<div class="logo">
 				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
-					src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+					src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">
@@ -30,24 +33,35 @@
 
 		<div id="lootaoikea">
 			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+			<a href="EngListaaJuomattServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
+			<div id="ostoskoributton2">
+<img src="images/ostoskoriicon.png" width="40" height="40">1 kpl, yht. 7,00€
+<div id="ostoskoributton1">
+<a href="ostoskori.html">Ostoskoriin</a>
+</div>
+</div>
 		</div>
 	</div>
 	</div>
 
 	<div id="otsikkoloota">
-		<p style="margin-left: 15%;">Listaa juomat</p>
-	</div>
-
-	<div id="juomalistataulukko">
+<a href="ListaaPizzatServlet" class="pizzalistabutton">Pizzalista</a>
+<a href="ListaaJuomatServlet" class="juomabutton"><u>Juomat</u></a>
+</div>
+<div id="loota1">
+<div id="tuotelistataulukko">
+<div id="tablescoller">
 
 		<table>
-			<caption>Juomalista</caption>
-
+		
 			<tr>
 				<th>Numero</th>
 				<th>Nimi</th>
 				<th>Hinta</th>
 				<th>Koko</th>
+				<th></th>
+				<th></th>
 			</tr>
 
 			<%
@@ -66,6 +80,9 @@
 				<td><b><%=juomat.get(i).getNimi()%></b>
 				<td width="50px"><%=decimal.format(juomat.get(i).getHinta())%></td>
 				<td width="50px"><%=juomat.get(i).getKoko()%></td>
+				<td width="230px"><input type="checkbox"  value="koko1"> 1,5L <input type="checkbox" value="koko2"> 0,5L<br>
+				<input type="checkbox" value="koko3"> LITRAN STOBE
+<td width="100px"><input type="text" size=2 maxlength="2" name="maara" onChange='this.value=CKquantity(this.value)' value="1">  Määrä<input type=button value='  Lisää ostoskoriin  ' onClick='AddToCart(this.form)'></td>
 			</tr>
 
 			<%
@@ -73,7 +90,11 @@
 					}
 				}
 			%>
+			</table>
 			</div>
+			</div>
+			</div>
+			
 			<div id="footer">
 				<div id="footer_sisältö">
 					<p>

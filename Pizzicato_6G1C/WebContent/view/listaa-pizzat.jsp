@@ -56,7 +56,7 @@ Meilahti, 00270</p>
 </div>
 	
 <div id="loota1"> <%-- Lootan sisällä on kaikki itse sisältö --%>
-<div id="pizzalistataulukko"><%-- Pizzalista on toteutettu taulukkona --%>
+<div id="tuotelistataulukko"><%-- Pizzalista on toteutettu taulukkona --%>
 <div id="tablescoller"><%-- Tablescoller on taulukon oikean reunan scrollbar --%>
 		<table>
 				<tr>
