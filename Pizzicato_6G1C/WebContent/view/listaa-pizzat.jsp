@@ -37,7 +37,13 @@ Meilahti, 00270</p>
 <div id="lootaoikea">
 <a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-<a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
+<a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
+<div id="ostoskoributton2">
+<img src="images/ostoskoriicon.png" width="40" height="40">1 kpl, yht. 7,00€
+<div id="ostoskoributton1">
+<a href="ostoskori.html">Ostoskoriin</a>
+</div>
+</div>
 </div>
 </div>
 
@@ -57,6 +63,8 @@ Meilahti, 00270</p>
 					<th>Numero</th>
 					<th>Nimi</th>
 					<th>Hinta</th>
+					<th>Mausteet</th>
+					<th></th>
 				</tr>
 
 				<%
@@ -76,6 +84,10 @@ Meilahti, 00270</p>
  					}%>
  					</td>
 					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
+					<td width="230px"><input type="checkbox"  value="Oregano"> Basilika <input type="checkbox" value="Basilika"> Oregano<br>
+<input type="checkbox"  value="Parmesaani"> Parmesaani <input type="checkbox" value="Valkosipuli"> Valkosipuli </td>
+<td width="100px"><input type="text" size=2 maxlength="2" name="maara" onChange='this.value=CKquantity(this.value)' value="1">  Määrä<input type=button value='  Lisää ostoskoriin  ' onClick='AddToCart(this.form)'></td>
+					
 				</tr>
 				<%
 					}

@@ -211,4 +211,37 @@ div.pakollinenLoota {
 	border: 2px solid #F44336;
 	padding: 0px 10px 0px 10px;
 }
+
+#ostoskoributton1{
+
+    background-color: #6FD630;
+    border: none;
+    color: white;
+    padding: 13px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	
+
+	
+}
+
+
+#ostoskoributton2 {
+ background-color: #6FD630;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+	border-radius:10px;
+	
+	
+}
 	
