@@ -168,21 +168,22 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 				formatter.format(hinta);
 
 				if (hinta < 6 || hinta > 99.99) {
-					errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+					errors.put("hinta",
+							"Hinta sallittujen rajojen ulkopuolella.");
 				} else {
 					uusiPizza.setHinta(hinta);
 					request.setAttribute("uusiPizza", uusiPizza);
 				}
 			}
 		}
-		
+
 		// Haetaan täytteet validointia varten
-				String[] tayte = request.getParameterValues("tayte");
-				System.out.println(tayte);
-				if (tayte == null) {
-					errors.put("taytteet", "Valitse vähintään yksi täyte");
-				}
-		
+		String[] tayte = request.getParameterValues("tayte");
+		System.out.println(tayte);
+		if (tayte == null) {
+			errors.put("taytteet", "Valitse vähintään yksi täyte");
+		}
+
 		request.setAttribute("errors", errors);
 
 		return errors;
