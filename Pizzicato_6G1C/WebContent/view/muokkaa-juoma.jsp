@@ -16,7 +16,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Muokkaa juomaa</title>
 </head>
 <body>
@@ -46,109 +47,113 @@
 	</div>
 
 	<div id="otsikkoloota">
-		<p style="margin-left: 15%;">Muokkaa pizza</p>
+		<p style="margin-left: 15%;">Muokkaa juoma</p>
 	</div>
 
 	<div id="loota1">
 		<%
 			int id = muokattavaJuomaId;
-			double juomaHinta = 0;
 			String juomaNimi = "";
 			String juomaNimi_eng = "";
+			double juomaHinta = 0;
 			double juomaKoko = 0;
-			
-		%>
-		
-		<form method="post">
-				
-			<legend>Syötä pizzan tiedot:</legend>
-				
-				<% if (!errors.isEmpty()) { %>
-		<div class="pakollinenLoota">
-			<p class="pakollinen">
-				<%
-					if (errors.containsKey("nimi")) {
-				  out.println("<span class=\"error\">" + errors.get("nimi") + "</span><br>");
+			for(int i = 0; i < juomat.size(); i++) {
+				if(juomat.get(i).getId() == muokattavaJuomaId) {
+					juomaNimi = juomat.get(i).getNimi();
+					juomaNimi_eng = juomat.get(i).getNimi_eng();
+					juomaHinta = juomat.get(i).getHinta();
+					juomaKoko = juomat.get(i).getKoko();
+					
 				}
-				if(errors.containsKey("nimi_eng")) {
-					out.println("<span class=\"error\">" + errors.get("nimi_eng") + "</span><br>");
-				}
-				if (errors.containsKey("hinta")) {
-				  out.println("<span class=\"error\">" + errors.get("hinta") + "</span><br>");
-				}
-				if (errors.containsKey("koko")) {
-				   out.println("<span class=\"error\">" + errors.get("koko") + "</span><br>");
-				}
-				%>
-			
-		</div>
-		<%
 			}
 		%>
 
-		<table>
-			<tr>
-				<td><label>Juoman nimi: <span class="pakollinen">*</span></label></td>
-				<td><input type="text" name="juomaNimi" value="<%=juomaNimi%>"
-					required maxlength="20"> <%
+		<form method="post">
+
+			<legend>Syötä juoman tiedot:</legend>
+
+			<%
+				if (!errors.isEmpty()) {
+			%>
+			<div class="pakollinenLoota">
+				<p class="pakollinen">
+					<%
+						if (errors.containsKey("nimi")) {
+								out.println("<span class=\"error\">" + errors.get("nimi")
+										+ "</span><br>");
+							}
+							if (errors.containsKey("nimi_eng")) {
+								out.println("<span class=\"error\">"
+										+ errors.get("nimi_eng") + "</span><br>");
+							}
+							if (errors.containsKey("hinta")) {
+								out.println("<span class=\"error\">" + errors.get("hinta")
+										+ "</span><br>");
+							}
+							if (errors.containsKey("koko")) {
+								out.println("<span class=\"error\">" + errors.get("koko")
+										+ "</span><br>");
+							}
+					%>
+				
+			</div>
+			<%
+				}
+			%>
+
+			<table>
+				<tr>
+					<td><label>Juoman nimi: <span class="pakollinen">*</span></label></td>
+					<td><input type="text" name="juomaNimi" value="<%=juomaNimi%>"
+						required maxlength="20"> <%
  	if (errors.containsKey("nimi")) {
  		out.println("<span class=\"error\">" + errors.get("nimi")
  				+ "</span>");
  	}
  %></td>
-				<td>Max 20 merkkiä</td>
-			</tr>
-			<td><label>Juoman eng-nimi: <span class="pakollinen">*</span></label></td>
-			<td><input type="text" name="juomaNimi_eng" value="<%=juomaNimi_eng%>" required maxlenght="30"> <%
-			if(errors.containsKey("nimi_eng")) {
-			out.println("<span class=\"error\">" + errors.get("nimi_eng")
-			+ "</span>");
-			}
-			%></td>
-			<tr>
-				<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-				<td><input type="text" name="pizzaHinta" maxlength="5"
-					step="any" min="6" max="99.99" value="<%=pizzaHinta%>" required>
+					<td>Max 20 merkkiä</td>
+				</tr>
+				<td><label>Juoman englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
+				<td><input type="text" name="juomaNimi_eng"
+					value="<%=juomaNimi_eng%>" required maxlenght="30"> <%
+ 	if (errors.containsKey("nimi_eng")) {
+ 		out.println("<span class=\"error\">" + errors.get("nimi_eng")
+ 				+ "</span>");
+ 	}
+ %></td>
+				<tr>
+					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
+					<td><input type="text" name="pizzaHinta" maxlength="5"
+						step="any" min="6" max="99.99" value="<%=juomaHinta%>" required>
+						<%
+							if (errors.containsKey("hinta")) {
+								out.println("<span class=\"error\">" + errors.get("hinta")
+										+ "</span>");
+							}
+						%></td>
+					<td>Hinta muotoa 0,00 ja hinnan pitää olla 0.50 - 10.00 euroa</td>
+				</tr>
+				<tr>
+					<td><label>Koko:</label></td>
+
+					<%if(juomaKoko == 0.33) {%>
+					<td><input type="checkbox" name="juomaKoko" checked value="0.33" value="<%=juomaKoko %>"></td>
+					<%}else if(juomaKoko == 0.5) {%>
+					<td><input type="checkbox" name="juomaKoko" checked value="0.5" value="<%=juomaKoko %>"></td>
+					<%}else{%>
+					<td><input type="checkbox" name="juomaKoko" checked value="1.5" value="<%=juomaKoko %>"></td>
 					<%
-						if (errors.containsKey("hinta")) {
-					out.println("<span class=\"error\">" + errors.get("hinta")
-						+ "</span>");
 					}
-					%></td>
-				<td>Hinta muotoa 0,00 ja hinnan pitää olla 6,00 - 99,00 euroa</td>
-			</tr>
-		</table>
-
-		<h3>Täytteet:</h3>
-		<br>
-		<%
-			for (int i = 0; i < taytteet.size(); i++) {				
-			for (int j = 0; j < vanhatTaytteet.size(); j++) {
-				
-			if (vanhatTaytteet.get(j).getId() == taytteet.get(i).getId()) {
-		%>
-		<input type="checkbox" name="tayte" checked
-			value="<%=taytteet.get(i).getId()%>">
-		<%=taytteet.get(i).getNimi()%><br>
-
-		<%
-			taytemaara++;}
+					%>
+				</tr>
+			</table>
 			
-				}
-				
-				if (taytemaara <= i) {
-		%>
-		<input type="checkbox" name="tayte"
-			value="<%=taytteet.get(i).getId()%>">
-		<%=taytteet.get(i).getNimi()%><br>
-		<%
-			taytemaara++;}
-		}
-		%>
-		<%-- seuraavassa koodinpätkässä on nappulat jes --%>
-		<input type="hidden" name="pizzaId" value="<%=id%>"> <input
-			type="submit" class="button" value="Pizza valmis!"> <a
-			href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
+			
+
+			<%-- seuraavassa koodinpätkässä on nappulat jes --%>
+			<input type="hidden" name="juomaId" value="<%=id%>"> <input
+				type="submit" class="button" value="Juoma valmis!"> <a
+				href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
 
 		</form>
 	</div>
