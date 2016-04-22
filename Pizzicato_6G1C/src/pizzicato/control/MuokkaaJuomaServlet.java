@@ -16,79 +16,95 @@ import pizzicato.model.Juoma;
 import pizzicato.model.dao.JuomaDAO;
 
 /**
- * Servlet implementation class LisaaJuomaServlet
+ * Servlet implementation class MuokkaaJuomaServlet
  */
-@WebServlet("/LisaaJuomaServlet")
-public class LisaaJuomaServlet extends HttpServlet {
+@WebServlet("/MuokkaaJuomaServlet")
+public class MuokkaaJuomaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Luodaan JuomaDAO ja sille Arraylist
+		// Luodaan JuomaDAO olio
 		JuomaDAO juomadao = new JuomaDAO();
 		ArrayList<Juoma> juomat = juomadao.findAll();
 
-		// Arraylist tallennetaan request-olioon jsp:lle vietäväksi
+		String muokattavaJuomaId = request.getParameter("JuoId");
+		int JId = new Integer(muokattavaJuomaId);
+		request.setAttribute("muokattavaJuomaId", JId);
+
+		// ArrayList tallennetaan request olioon jsp:lle vietäväksi
 		request.setAttribute("juomat", juomat);
 
 		// Lähetetään jsp:lle
-		String jsp = "/view/lisaa-juomat.jsp";
+		String jsp = "/view/muokkaa-juoma.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Luodaan JuomaDAO
+		// Luodaan JuomaDAO, jota tarvitaan kun juomien
+		// muokkaustoiminto lisätään
 		JuomaDAO juomadao = new JuomaDAO();
 		ArrayList<Juoma> juomat = juomadao.findAll();
+		DecimalFormat formatter = new DecimalFormat("#0.00");
 
-		// Arraylist tallennetaan request-olioon jsp:lle vietäväksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("juomat", juomat);
 
-		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
-				"/view/lisaa-juomat.jsp");
+		String idStr = request.getParameter("juomaId");
+		int id = new Integer(idStr);
 
-		HashMap<String, String> errors = validateLisaa(request);
+		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
+				"/view/muokkaa-juoma.jsp");
+
+		HashMap<String, String> errors = validateMuokkaa(request, id);
 		if (!errors.isEmpty()) {
+			request.setAttribute("muokattavaJuomaId", id);
 			jsp.forward(request, response);
 		} else {
-			// Alustetaan ID nollaksi, koska ID generoituu kannassa
-			// automaattisesti
 
-			int id = 0;
+			// Haetaan käyttäjän syöttämät juoman nimi ja hinta. Muutetaan hinta
+			// oikeaan muotoon.
+			String nimi = request.getParameter("juomaNimi");
+			String nimi_eng = request.getParameter("juomaNimi_eng");
+			String kokoStr = request.getParameter("juomaKoko");
+			String uusiKokoStr = kokoStr.replace(",", ".");
+			double koko = new Double(uusiKokoStr);
+			String hintaStr = request.getParameter("juomaHinta");
+			String uusiHintaStr = hintaStr.replace(",", ".");
+			double hinta = new Double(uusiHintaStr);
 
-			// Nämä arvot ovat pelkästään futureproofia varten
+			formatter.format(hinta);
+
+			// Nämä arvot ovat pelkästään futureproofia varten.
 			String tyyppi = "juoma";
 			int nakyvyys = 1;
 
 			try {
-				// Luodaan uusi juoma-olio kantaan vietäväksi
-				Juoma leikkiJuoma = (Juoma) request.getAttribute("uusiJuoma");
-				String nimi = leikkiJuoma.getNimi();
-				String nimi_eng = leikkiJuoma.getNimi_eng();
-				double hinta = leikkiJuoma.getHinta();
-				double koko = leikkiJuoma.getKoko();
-
-				Juoma uusiJuoma = new Juoma(id, tyyppi, nimi, hinta, koko,
+				// Luodaan uusi juoma olio kantaan vietäväksi
+				Juoma muokattuJuoma = new Juoma(id, tyyppi, nimi, hinta, koko,
 						nakyvyys, nimi_eng);
 
-				// Kutsutaan addJuoma-metodia
-				juomadao.addJuoma(uusiJuoma);
+				// Kutsutaan updateJuoma metodia
+				juomadao.updateJuoma(muokattuJuoma);
 
-				// Uudelleenohjataan MuokkaaJuomaServletille
+				// Palautetaan käyttäjä juomalistan muokkaustilaan.
 				response.sendRedirect("MuokkaaJuomalistaServlet");
+
 			} catch (Exception e) {
 				response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp");
 			}
 		}
+
 	}
 
-	public static HashMap<String, String> validateLisaa(
-			HttpServletRequest request) {
+	public static HashMap<String, String> validateMuokkaa(
+			HttpServletRequest request, int id) {
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 		Juoma uusiJuoma = new Juoma();
 		JuomaDAO juomadao = new JuomaDAO();
@@ -105,7 +121,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 			// Tarkistetaan, ettei nimi ole jo käytössä
 			for (int i = 0; i < juomat.size(); i++) {
 				if (nimi.equalsIgnoreCase(juomat.get(i).getNimi())) {
-					errors.put("nimi", "Nimi on jo käytössä.");
+					errors.put("nimi", "Nimi on jo käytössä");
 				}
 			}
 		}
@@ -122,10 +138,9 @@ public class LisaaJuomaServlet extends HttpServlet {
 		if (nimi_eng == null || nimi_eng.trim().length() == 0) {
 			errors.put("nimi_eng", "Nimi vaaditaan");
 		} else {
-			// Tarkistetaan, ettei nimi ole jo käytössä
+			// Tarkistetaan ettei nimi ole jo käytössä
 			for (int i = 0; i < juomat.size(); i++) {
 				if (nimi_eng.equalsIgnoreCase(juomat.get(i).getNimi_eng())) {
-					errors.put("nimi_eng", "Nimi on jo käytössä");
 				}
 			}
 		}
@@ -159,6 +174,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 				}
 			}
 		}
+
 		// Haetaan syötetty koko validointia varten
 		String kokoStr = request.getParameter("juomaKoko");
 
@@ -175,7 +191,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 				formatter.format(koko);
 
 				if (koko < 0.33 || koko > 1.5) {
-					errors.put("koko", "Koko sallittujen rajojen ulkopuolella.");
+					errors.put("koko", "Koko sallittujen rajojen ulkopuolella");
 				} else {
 					uusiJuoma.setKoko(koko);
 					request.setAttribute("uusiJuoma", uusiJuoma);
@@ -186,7 +202,5 @@ public class LisaaJuomaServlet extends HttpServlet {
 		request.setAttribute("errors", errors);
 
 		return errors;
-
 	}
-
 }

@@ -12,8 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Muokkaa Pizzalistaa</title>
 </head>
 <body>
@@ -46,7 +45,7 @@ Meilahti, 00270</p>
 </div>
 
 	<div id="loota1">
-		<div id="pizzalistataulukko">
+		<div id="tuotelistataulukko">
 		<div id="tablescoller">
 			<table>
 				

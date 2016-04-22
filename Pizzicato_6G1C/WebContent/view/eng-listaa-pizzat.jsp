@@ -42,11 +42,12 @@ Meilahti, 00270</p>
 </div>
 
 <div id="otsikkoloota"> <%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
-<p style="margin-left:15%;">Pizzamenu</p>
+<a href="EngListaaPizzatServlet" class="pizzalistabutton">Pizza menu</a>
+<a href="ListaaJuomatServlet" class="juomabutton">Drinks</a>
 </div>
 
 <div id="loota1">
-		<div id="pizzalistataulukko"> <%-- pizzalista on toteutettu taulukkona --%>
+		<div id="tuotelistataulukko"> <%-- pizzalista on toteutettu taulukkona --%>
 		<div id="tablescoller">
 			
 			<table>

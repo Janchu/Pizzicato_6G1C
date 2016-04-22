@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,11 +47,17 @@ public class SecurityFilter implements Filter {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/ListaaPizzatServlet")) {
 			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/LisaaJuomaServlet")) {
+			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/MuokkaaJuomalistaServlet")) {
+			chain.doFilter(req, resp);
 		} else if (kayttajatunnus != null) {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/ListaaJuomatServlet")) {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/OstoskoriServlet")) {
+			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/EngListaaJuomatServlet")) {
 			chain.doFilter(req, resp);
 		} else {
 			resp.sendRedirect("/Pizzicato_6G1C/LoginServlet");

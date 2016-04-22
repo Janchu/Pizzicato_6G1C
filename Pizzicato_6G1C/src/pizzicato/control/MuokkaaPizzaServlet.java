@@ -37,7 +37,7 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		int PId = new Integer(muokattavaPizzaId);
 		request.setAttribute("muokattavaPizzaId", PId);
 
-		// ArrayList tallennetaan request-olioon jsp:lle viet�v�ksi
+		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("taytteet", taytteet);
 
@@ -101,7 +101,7 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 				Double tayteHinta = taytteet.get(i).getHinta();
 				Double tayteKilohinta = taytteet.get(i).getKilohinta();
 
-				// Luodaan Tayte-olio, muokattavan pizzan mukana viet�v�ksi.
+				// Luodaan Tayte-olio, muokattavan pizzan mukana vietäväksi.
 				Tayte uusiTayte = new Tayte(tayteId, tayteNimi, tayteNimi_eng,
 						tayteHinta, tayteKilohinta);
 				taytelista.add(uusiTayte);
@@ -109,7 +109,7 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 
 			}
 			try {
-				// Luodaan uusi pizza olio kantaan viet�v�ksi
+				// Luodaan uusi pizza olio kantaan vietäväksi
 				Pizza muokattuPizza = new Pizza(id, tyyppi, nimi, hinta,
 						nakyvyys, pohja, taytelista);
 
@@ -118,7 +118,7 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 					pizzadao.updatePizza(muokattuPizza);
 				}
 
-				// Palautetaan k�ytt�j� pizzalistan muokkaustilaan.
+				// Palautetaan käyttäjä pizzalistan muokkaustilaan.
 				response.sendRedirect("MuokkaaPizzalistaServlet");
 
 			} catch (Exception e) {
@@ -168,21 +168,22 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 				formatter.format(hinta);
 
 				if (hinta < 6 || hinta > 99.99) {
-					errors.put("hinta", "Hinta sallittujen rajojen ulkopuolella.");
+					errors.put("hinta",
+							"Hinta sallittujen rajojen ulkopuolella.");
 				} else {
 					uusiPizza.setHinta(hinta);
 					request.setAttribute("uusiPizza", uusiPizza);
 				}
 			}
 		}
-		
+
 		// Haetaan täytteet validointia varten
-				String[] tayte = request.getParameterValues("tayte");
-				System.out.println(tayte);
-				if (tayte == null) {
-					errors.put("taytteet", "Valitse vähintään yksi täyte");
-				}
-		
+		String[] tayte = request.getParameterValues("tayte");
+		System.out.println(tayte);
+		if (tayte == null) {
+			errors.put("taytteet", "Valitse vähintään yksi täyte");
+		}
+
 		request.setAttribute("errors", errors);
 
 		return errors;

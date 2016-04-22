@@ -5,15 +5,18 @@
 <jsp:useBean id="juomat" type="java.util.ArrayList<pizzicato.model.Juoma>" scope="request" />
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/tyyli.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Lisää juoma</title>
 </head>
 <body>
 
 <div id="logoloota">
 <div id="lootavasen">
 <div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogo2.jpg" height="110%" width="110%"></a>
+<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 </div>
 </div>
 <div id="lootakeski">
@@ -25,16 +28,15 @@ Meilahti, 00270</p>
 </div>
 <div id="lootaoikea">
 
-<a href="" class="button2">Kirjaudu Sisään</a>
-</div>
+<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 </div>
 </div>
 
 <div id="otsikkoloota">
-	<p style="margin-left:15%;">Lisää juoma</p>
-	</div>
+	<p>Lisää juoma</p>
+</div>
 
-<div id="loota1">
+<div id="loota2">
 
 			<form method="post">
 
@@ -48,19 +50,28 @@ Meilahti, 00270</p>
             %></td>
 					<td>Max 20 merkkiä</td>
 				</tr>
+				
+				<tr>
+					<td><label>Englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
+					<td><input type="text" name="juomaNimi_eng" placeholder="Juoman eng nimi" maxlenght="20" title="Juoman nimi saa olla max 20 merkkiä pitkä" value="${uusiJuoma.nimi_eng}" required>
+					<%
+				%></td>
+						<td>Max 20 merkkiä</td>
+				</tr>
 
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaHinta" placeholder="Juoman hinta" maxlength="5" step="any" min="6" max="99.99"  value="${uusiJuoma.hinta}" required>
+					<td><input type="text" name="juomaHinta" placeholder="Juoman hinta" maxlength="5" step="any" min="2.00" max="20.00"  value="${uusiJuoma.hinta}" required>
 					<%
             %></td>
-					<td>Hinnan pitää olla 6,00 - 99,99</td>
+					<td>Hinnan pitää olla 2,00 - 10.00</td>
 				</tr>
 				<tr>
 				<td><label>Koko: <span class="pakollinen">*</span></label></td>
-				<td><input type="text" name="juomanKoko" placeholder="Juoman koko" maxlength="5" value="${uusiJuoma.koko}" required>
+				<td><input type="text" name="juomaKoko" placeholder="Juoman koko" maxlenght="4" step="any" value="${uusiJuoma.koko}" required>
 				<%
-				%></td>
+				%>
+				</tr>
 			</table>
 
 			<input type="submit" class="button" value="Juoma valmis!"> <a

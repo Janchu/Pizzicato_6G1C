@@ -43,7 +43,7 @@ Meilahti, 00270</p>
 <p style="margin-left:15%;">Täytelista</p>
 </div>
 	<div id="loota1">
-		<div id="pizzalistataulukko">
+		<div id="tuotelistataulukko">
 		<div id="tablescoller">
 
 			<table>
