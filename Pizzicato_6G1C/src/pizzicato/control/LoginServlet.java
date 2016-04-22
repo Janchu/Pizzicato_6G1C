@@ -15,8 +15,6 @@ import javax.servlet.http.HttpSession;
 import pizzicato.model.Kayttaja;
 import pizzicato.model.dao.KayttajaDAO;
 
-import com.sun.istack.internal.logging.Logger;
-
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

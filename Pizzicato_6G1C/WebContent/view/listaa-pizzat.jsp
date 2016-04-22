@@ -4,108 +4,144 @@
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
+<%@ page import="pizzicato.model.Tilaus"%>
+<%@ page import="pizzicato.model.Tilausrivi"%>
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
+	scope="request" />
+<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>"
+	scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Listaa pizzat</title>
 </head>
 <body>
 
-<%-- Logolootassa on "header" ja se kootuu kolmesta eri lootasta, jotka
+	<%-- Logolootassa on "header" ja se kootuu kolmesta eri lootasta, jotka
  järjestävät logolootan sisällön. Vasemmassa lootassa on logo, keskimmäisessä
  yhteystiedot ja oikeanpuolimmaisessa kirjautuminen ja kielenvaihto --%>
 
-<div id="logoloota">
-<div id="lootavasen">
-<div class="logo">
-<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
-</div>
-</div>
+	<div id="logoloota">
+		<div id="lootavasen">
+			<div class="logo">
+				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
+					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+			</div>
+		</div>
 
-<div id="lootakeski">
-<p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
-Avoinna: Ma-La 11-21, Su 12-18<br>
-+358 40 666 666<br>
-Kuusitie 66<br>
-Meilahti, 00270</p>
-</div>
+		<div id="lootakeski">
+			<p
+				style="margin-top: 100px; font-size: 170%; font-family: Kozuka Gothic Pro EL;">
+				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
+				Kuusitie 66<br> Meilahti, 00270
+			</p>
+		</div>
 
-<div id="lootaoikea">
-<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
-<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-<a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
-<div id="ostoskoributton2">
-<img src="images/ostoskoriicon.png" width="40" height="40">1 kpl, yht. 7,00€
-<div id="ostoskoributton1">
-<a href="ostoskori.html">Ostoskoriin</a>
-</div>
-</div>
-</div>
-</div>
-
-
-<%-- Otsikkoloota on ainoastaan sitä varten, että saa taulukon otsikon kokoa ja sijaintia muutettua--%>
-
-<div id="otsikkoloota">
-<a href="ListaaPizzatServlet" class="pizzalistabutton"><u>Pizzalista</u></a>
-<a href="ListaaJuomatServlet" class="juomabutton">Juomat</a>
-</div>
-	
-<div id="loota1"> <%-- Lootan sisällä on kaikki itse sisältö --%>
-<div id="tuotelistataulukko"><%-- Pizzalista on toteutettu taulukkona --%>
-<div id="tablescoller"><%-- Tablescoller on taulukon oikean reunan scrollbar --%>
-		<table>
-				<tr>
-					<th>Numero</th>
-					<th>Nimi</th>
-					<th>Hinta</th>
-					<th>Mausteet</th>
-					<th></th>
-				</tr>
-
-				<%
-				
-					DecimalFormat decimal = new DecimalFormat("0.00");
-					int pizzanumero = 0;
-					for (int i = 0; i < pizzat.size(); i++) {
-						if(pizzat.get(i).getTyyppi().equalsIgnoreCase("pizza") || pizzat.get(i).getTyyppi().equalsIgnoreCase("fantasia")){
-						if (pizzat.get(i).getNakyvyys() == 1) {
-							pizzanumero++;
-				%>
-				<tr>
-					<td width="100px"><%=pizzanumero%></td>
-					<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
- 					for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) {%>
- 					<%=pizzat.get(i).getTaytelista().get(j).getNimi()%><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <%}
- 					}%>
- 					</td>
-					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
-					<td width="230px"><input type="checkbox"  value="Oregano"> Basilika <input type="checkbox" value="Basilika"> Oregano<br>
-<input type="checkbox"  value="Parmesaani"> Parmesaani <input type="checkbox" value="Valkosipuli"> Valkosipuli </td>
-<td width="100px"><input type="text" size=2 maxlength="2" name="maara" onChange='this.value=CKquantity(this.value)' value="1">  Määrä<input type=button value='  Lisää ostoskoriin  ' onClick='AddToCart(this.form)'></td>
-					
-				</tr>
-				<%
-					}
-					}
-					}
-				%>
-			</table>
-</div>
-</div>
-</div>
+		<div id="lootaoikea">
+			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a> <a
+				href="EngListaaPizzatServlet"><img alt="lib"
+				src="images/uklib4.png" width="32" height="32"></a> <a
+				href="ListaaPizzatServlet"><img alt="lib"
+				src="images/finlib.png" width="32" height="32"></a><br>
+			<div id="ostoskoributton2">
+			<form method="get">
+				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
+				kpl, yht. 7,00€
+				<div id="ostoskoributton1">
+					<a href="OstoskoriServlet">Ostoskoriin</a>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
-	<div id="footer"><%-- Footerin sisällöllä voi siirtää footerin sisältöä --%>
+	<%-- Otsikkoloota on ainoastaan sitä varten, että saa taulukon otsikon kokoa ja sijaintia muutettua--%>
+
+	<div id="otsikkoloota">
+		<a href="ListaaPizzatServlet" class="pizzalistabutton"><u>Pizzalista</u></a>
+		<a href="ListaaJuomatServlet" class="juomabutton">Juomat</a>
+	</div>
+
+	<div id="loota1">
+		<%-- Lootan sisällä on kaikki itse sisältö --%>
+		<div id="tuotelistataulukko">
+			<%-- Pizzalista on toteutettu taulukkona --%>
+			<div id="tablescoller">
+				<%-- Tablescoller on taulukon oikean reunan scollbar --%>
+				<form action="OstoskoriServlet" method="post">
+				<table>
+					<tr>
+						<th>Numero</th>
+						<th>Nimi</th>
+						<th>Hinta</th>
+						<th>Mausteet</th>
+						<th></th>
+					</tr>
+
+					<%
+						DecimalFormat decimal = new DecimalFormat("0.00");
+						int pizzanumero = 0;
+						for (int i = 0; i < pizzat.size(); i++) {
+							if (pizzat.get(i).getTyyppi().equalsIgnoreCase("pizza")
+									|| pizzat.get(i).getTyyppi()
+											.equalsIgnoreCase("fantasia")) {
+								if (pizzat.get(i).getNakyvyys() == 1) {
+									pizzanumero++;
+					%>
+					<tr>
+						<td width="100px"><%=pizzanumero%></td>
+						<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
+							for (int j = 0; j < pizzat.get(i).getTaytelista()
+												.size(); j++) {
+						%> <%=pizzat.get(i).getTaytelista().get(j)
+									.getNimi()%> <%
+ 	if (j + 1 < pizzat.get(i).getTaytelista().size()) {
+ %>, <%
+ 	}
+ 				}
+ %></td>
+
+						<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%>
+
+						</td>
+						<td width="230px"><input type="checkbox" value="Oregano">
+							
+								<input type="hidden" value="<%=pizzat.get(i).getId()%>"
+									name="koriin"> Oregano <input type="checkbox"
+									value="Basilika"> Basilika<br> <input
+									type="checkbox" value="Parmesaani"> Parmesaani <input
+									type="checkbox" value="Valkosipuli"> Valkosipuli</td>
+						<td width="100px"><input type="text" size=2 maxlength="2"
+							name="maara" value="1"> Määrä<input type="submit"
+							value='  Lisää ostoskoriin  '>
+							</td>
+
+					</tr>
+					<%
+						}
+							}
+						}
+					%>
+				</table>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="footer">
+		<%-- Footerin sisällöllä voi siirtää footerin sisältöä --%>
 		<div id="footer_sisältö">
 			<p>
 				Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
-				Sähköpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite: Kuusitie 66 <br>
-				Postitoimipaikka: Meilahti, 00270 <br>
+				Sähköpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite:
+				Kuusitie 66 <br> Postitoimipaikka: Meilahti, 00270 <br>
 			</p>
 		</div>
 	</div>

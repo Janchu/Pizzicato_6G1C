@@ -1,5 +1,7 @@
 package pizzicato.model;
 
+import java.util.ArrayList;
+
 public class Tilaus {
 	
 	// Attribuutit
@@ -9,23 +11,25 @@ public class Tilaus {
 	private String maksutapa;
 	private String toimitus;
 	private String lisatiedot;
+	private ArrayList<Tilausrivi> tilausrivit;
 	
 	// Oletuskonstruktori
 	
 	public Tilaus() {
-		super();
+		this.tilausrivit = new ArrayList<Tilausrivi>();
 	}
 
 	// Parametrillinen konstruktori
 	
 	public Tilaus(int id, String tila, String maksutapa, String toimitus,
-			String lisatiedot) {
+			String lisatiedot, ArrayList<Tilausrivi> tilausrivit) {
 		super();
 		this.id = id;
 		this.tila = tila;
 		this.maksutapa = maksutapa;
 		this.toimitus = toimitus;
 		this.lisatiedot = lisatiedot;
+		this.tilausrivit = tilausrivit;
 	}
 	
 	// Getters & Setters
@@ -69,6 +73,17 @@ public class Tilaus {
 	public void setLisatiedot(String lisatiedot) {
 		this.lisatiedot = lisatiedot;
 	}
+	
+	public ArrayList<Tilausrivi> getTilausrivit() {
+		return tilausrivit;
+	}
+	
+	public void addTilausrivi(Tilausrivi uusiTilausrivi) {
+		this.tilausrivit.add(uusiTilausrivi);
+	}
+
+	
+	
 
 	// ToString
 	
