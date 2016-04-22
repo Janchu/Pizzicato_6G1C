@@ -30,7 +30,7 @@ public class JuomaDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT juoma.id, tuote.tyyppi, juoma.koko, juoma.nakyvyys, tuote.nimi, juoma.nimi_eng, tuote.hinta FROM tuote JOIN juoma ON tuote.id = juoma.id ORDER BY tuote.tyyppi DESC, tuote.hinta ASC, tuote.id ASC;";
+			String sqlSelect = "SELECT juoma.id, tuote.tyyppi, juoma.koko, juoma.nakyvyys, tuote.nimi, juoma.nimi_eng, tuote.hinta FROM tuote JOIN juoma ON tuote.id = juoma.id ORDER BY tuote.nimi ASC, juoma.koko ASC, tuote.hinta ASC, tuote.id ASC;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
