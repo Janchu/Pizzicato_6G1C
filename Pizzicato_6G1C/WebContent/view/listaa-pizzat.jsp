@@ -4,7 +4,10 @@
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
+<%@ page import="pizzicato.model.Tilaus"%>
+<%@ page import="pizzicato.model.Tilausrivi"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
+<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,6 +38,9 @@ Meilahti, 00270</p>
 </div>
 
 <div id="lootaoikea">
+<form method="get">
+<input type="hidden" name="ostoskori" value="<%=ostoskori %>">
+<a href="OstoskoriServlet">Ostoskori (<%=ostoskori.size() %>)</a></form>
 <a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 <a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
@@ -74,7 +80,8 @@ Meilahti, 00270</p>
  					<%=pizzat.get(i).getTaytelista().get(j).getNimi()%><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <%}
  					}%>
  					</td>
-					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td><td><form action="OstoskoriServlet" method="post"><input type="submit" value="Lisää ostoskoriin"></form></td>
+					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td><td><form action="OstoskoriServlet" method="post">
+					<input type="hidden" value="<%=pizzat.get(i).getId()%>" name="koriin"><input type="submit" value="Lisää ostoskoriin"></form></td>
 				</tr>
 				<%
 					}
