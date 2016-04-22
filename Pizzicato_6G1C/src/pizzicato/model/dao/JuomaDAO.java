@@ -205,6 +205,13 @@ public class JuomaDAO extends DataAccessObject {
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
+			stmtInsert = connection
+					.prepareStatement("UPDATE juoma SET koko = (?) WHERE id = (?)");
+			stmtInsert.setDouble(1, paivitettavaJuoma.getKoko());
+			stmtInsert.setInt(2, paivitettavaJuoma.getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			
 
 
 		} catch (SQLException e) {

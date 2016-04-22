@@ -123,8 +123,8 @@
  %></td>
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="pizzaHinta" maxlength="5"
-						step="any" min="6" max="99.99" value="<%=juomaHinta%>" required>
+					<td><input type="text" name="juomaHinta" maxlength="5"
+						step="any" min="2.00" max="20.00" value="<%=juomaHinta%>" required>
 						<%
 							if (errors.containsKey("hinta")) {
 								out.println("<span class=\"error\">" + errors.get("hinta")
@@ -134,17 +134,13 @@
 					<td>Hinta muotoa 0,00 ja hinnan pit‰‰ olla 0.50 - 10.00 euroa</td>
 				</tr>
 				<tr>
-					<td><label>Koko:</label></td>
-
-					<%if(juomaKoko == 0.33) {%>
-					<td><input type="checkbox" name="juomaKoko" checked value="0.33" value="<%=juomaKoko %>"></td>
-					<%}else if(juomaKoko == 0.5) {%>
-					<td><input type="checkbox" name="juomaKoko" checked value="0.5" value="<%=juomaKoko %>"></td>
-					<%}else{%>
-					<td><input type="checkbox" name="juomaKoko" checked value="1.5" value="<%=juomaKoko %>"></td>
-					<%
+					<td><label>Koko: <span class="pakollinen">*</span></label></td>
+					<td><input type="text" name="juomaKoko" maxlength="4"
+					step="any" value="<%=juomaKoko%>" required> <%
+					if(errors.containsKey("Koko")) {
+					out.println("<span class=\"error\">" + errors.get("koko") + "</span>");
 					}
-					%>
+					%></td>
 				</tr>
 			</table>
 			

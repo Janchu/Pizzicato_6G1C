@@ -53,28 +53,22 @@ Meilahti, 00270</p>
 				
 				<tr>
 					<td><label>Englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaNimi_eng" placeholder="Juoman eng nimi" maxlenght="20" title="Juoman nimi saa olla max 30 merkkiä pitkä" value="${uusiJuoma.nimi_eng}" required>
+					<td><input type="text" name="juomaNimi_eng" placeholder="Juoman eng nimi" maxlenght="20" title="Juoman nimi saa olla max 20 merkkiä pitkä" value="${uusiJuoma.nimi_eng}" required>
 					<%
 				%></td>
-						<td>Max 30 merkkiä</td>
+						<td>Max 20 merkkiä</td>
 				</tr>
 
 				<tr>
 					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaHinta" placeholder="Juoman hinta" maxlength="5" step="any" min="6" max="99.99"  value="${uusiJuoma.hinta}" required>
+					<td><input type="text" name="juomaHinta" placeholder="Juoman hinta" maxlength="5" step="any" min="2.00" max="20.00"  value="${uusiJuoma.hinta}" required>
 					<%
             %></td>
-					<td>Hinnan pitää olla 6,00 - 99,99</td>
+					<td>Hinnan pitää olla 2,00 - 10.00</td>
 				</tr>
 				<tr>
 				<td><label>Koko: <span class="pakollinen">*</span></label></td>
-				<td><input type="checkbox" name="juomaKoko" value="0.33" value="${uusiJuoma.koko}">0.33l<br>
-				<%
-				%></td>
-				<td><input type="checkbox" name="juomaKoko" value="0.5" value="${uusiJuoma.koko}">0.5l</td>
-				<%
-				%>
-				<td><input type="checkbox" name="juomaKoko" value="1.5" value="${uusiJuoma.koko}">1.5l</td>
+				<td><input type="text" name="juomaKoko" placeholder="Juoman koko" maxlenght="4" step="any" value="${uusiJuoma.koko}" required>
 				<%
 				%>
 				</tr>
