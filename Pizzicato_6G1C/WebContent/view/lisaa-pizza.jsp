@@ -42,11 +42,11 @@ Meilahti, 00270</p>
 	<p>Lisää pizza</p>
 </div>
 
-<div id="loota1">
+<div id="loota2">
 
 		<form method="post">
 
-			<legend>Syötä pizzan tiedot:</legend>
+			<legend="color:white">Syötä pizzan tiedot:</legend>
 			
 			<%-- Validointi --%>
 			<% if (!errors.isEmpty()) { %>

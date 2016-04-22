@@ -36,7 +36,7 @@ Meilahti, 00270</p>
 	<p>Lisää juoma</p>
 </div>
 
-<div id="loota1">
+<div id="loota2">
 
 			<form method="post">
 

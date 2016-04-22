@@ -115,6 +115,18 @@ margin-left:29%;
     	height:auto;
       	padding:15px;
 		margin-left:15%;
+		background-size: 100% 100%;
+		background-image: url("../images/takaseina3.jpg");
+		}
+		
+#loota2 {
+		color:white;
+		width:72%;
+    	height:auto;
+      	padding:15px;
+		margin-left:15%;
+		background-image: url("../images/takaseina3.jpg");
+		background-size: 100% 100% ;
 		background-color:white;
 		}
 
