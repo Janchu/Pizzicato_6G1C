@@ -64,7 +64,7 @@ Meilahti, 00270</p>
 					<td><input type="text" name="juomaHinta" placeholder="Juoman hinta" maxlength="5" step="any" min="2.00" max="20.00"  value="${uusiJuoma.hinta}" required>
 					<%
             %></td>
-					<td>Hinnan pitää olla 2,00 - 10.00</td>
+					<td>Hinnan pitää olla 2,00 - 20.00</td>
 				</tr>
 				<tr>
 				<td><label>Koko: <span class="pakollinen">*</span></label></td>

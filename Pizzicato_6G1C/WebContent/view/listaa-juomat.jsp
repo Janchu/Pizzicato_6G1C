@@ -59,7 +59,6 @@
 				<th>Numero</th>
 				<th>Nimi</th>
 				<th>Hinta</th>
-				<th>Koko</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -79,10 +78,7 @@
 				<td width="100px"><%=juomanumero%></td>
 				<td><b><%=juomat.get(i).getNimi()%></b>
 				<td width="50px"><%=decimal.format(juomat.get(i).getHinta())%></td>
-				<td width="50px"><%=juomat.get(i).getKoko()%></td>
-				<td width="230px"><input type="checkbox"  value="koko1"> 1,5L <input type="checkbox" value="koko2"> 0,5L<br>
-				<input type="checkbox" value="koko3"> LITRAN STOBE
-<td width="100px"><input type="text" size=2 maxlength="2" name="maara" onChange='this.value=CKquantity(this.value)' value="1">  Määrä<input type=button value='  Lisää ostoskoriin  ' onClick='AddToCart(this.form)'></td>
+				<td width="100px"><input type="text" size=2 maxlength="2" name="maara" onChange='this.value=CKquantity(this.value)' value="1">  Määrä<input type=button value='  Lisää ostoskoriin  ' onClick='AddToCart(this.form)'></td>
 			</tr>
 
 			<%
