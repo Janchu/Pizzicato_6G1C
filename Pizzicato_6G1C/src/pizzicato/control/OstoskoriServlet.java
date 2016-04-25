@@ -46,7 +46,6 @@ public class OstoskoriServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
 		Tilaus ostoskori;
 		
 		PizzaDAO pizzadao = new PizzaDAO();
@@ -85,10 +84,6 @@ public class OstoskoriServlet extends HttpServlet {
 		request.setAttribute("ostoskori", ostoskori);
 		
 		response.sendRedirect("ListaaPizzatServlet");
-		
-		
-		
-		
 	}
 
 }

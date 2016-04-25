@@ -13,7 +13,7 @@
 			<h3>Käyttäjätunnus:</h3>
 			<input type="text" name="kayttajatunnus" required>
 			<h3>Salasana:</h3>
-			<input type="text" name="salasana" required> <br>
+			<input type="password" name="salasana" required> <br>
 			<%
 				String message = (String) request.getAttribute("message");
 				if (message != null) {

@@ -2,13 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="pizzicato.model.Pizza"%>
-<%@ page import="pizzicato.model.Tuote"%>
-<%@ page import="pizzicato.model.Tayte"%>
-<%@ page import="pizzicato.model.Tilaus"%>
-<%@ page import="pizzicato.model.Tilausrivi"%>
-<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>"
-	scope="request" />
 <html>
 <head>
 
@@ -48,63 +41,56 @@
 
 	</div>
 
-	<%--- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
+	<!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
 
 	<div id="loota1">
 
 
 
-
+		<!-- pizzalista on toteutettu taulukkona -->
 
 		<div id="tuotelistataulukko">
 			<div id="tablescoller">
 
-
-
-				<%
-					if (ostoskori.size() < 1) {
-						String korityhja = "Ostoskorisi on tyhjä! :(";
-				%>
-				<%=korityhja%>
-				<a href="ListaaPizzatServlet" class="button2">Etusivulle</a>
-				<%
-					} else {
-
-						for (int i = 0; i < ostoskori.size(); i++) {
-				%>
-				<table>
-
-					<tr>
-						<td>Nimi</td>
-						<td>Hinta</td>
-					<tr>
-						<td><%=ostoskori.get(i).getTilattuTuote().getNimi()%></td>
-						<td><%=ostoskori.get(i).getTilattuTuote().getHinta()%></td>
-						<td>
-							<form action="PoistaKoristaServlet" method="post">
-								<input type="hidden" value="<%=i%>" name="id"><input
-									type="submit" value="Poista korista" name="poista">
-							</form>
-						</td>
-					</tr>
-
-
-
-				</table>
+				<form method="post">
+					<fieldset>
+						<p>
+							<label>Etunimi: </label><input type="text" name="etunimi">
+						</p>
+						<p>
+							<label>Sukunimi: </label><input type="text" name="sukunimi">
+						</p>
+						<p>
+							<label>Puh: </label><input type="text" name="puh">
+						</p>
+						<p>
+							<label>Email: </label><input type="text" name="email">
+						</p>
+						<p>
+							<label>Osoite: </label><input type="text" name="osoite">
+						</p>
+						<p>
+							<label>Postinumero: </label><input type="text" name="postinro">
+						</p>
+						<p>
+							<label>Postitoimipaikka: </label><input type="text"
+								name="postitmp">
+						</p>
+						<p>
+							<label>Lisätiedot: </label><input type="text" name="lisatiedot">
+						</p>
+						<input type="submit" value="Jatka">
+					</fieldset>
+				</form>
 
 				<a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
-					href="TeeTilausServlet" class="button2">Jatka tilausta</a>
-
-				<%
-					}
-					}
-				%>
+					href="ListaaPizzatServlet" class="button2">Jatka tilausta</a>
 
 			</div>
 		</div>
 	</div>
 
-	<%-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. --%>
+	<!-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. -->
 
 	<div id="footer">
 		<div id="footer_sisältö">

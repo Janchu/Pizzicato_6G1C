@@ -37,7 +37,7 @@ font-weight:bold;
 	width:72%;
 	margin-left:15%;
 	color:white;
-	background-color: rgba(0,0,0,0.55);
+	background-color: rgba(0,0,0,0.6);
 }
 
 /* scrollbar taulukon oikeassa reunassa*/
@@ -64,8 +64,8 @@ padding:20px;
 }
 
 /* TÄRKEÄ, tekee PIZZALISTATAULUKON joka toisen vaakarivin eriväriseksi*/
-#tuotelistataulukko tr:nth-child(even){background-color: #f2f2f2}
-#tuotelistataulukko tr:nth-child(odd){background-color: white}
+#tuotelistataulukko tr:nth-child(even){background-color: rgba(255,255,255,0.8)}
+#tuotelistataulukko tr:nth-child(odd){background-color: rgba(255,255,255,0)}
 
 /* th:n background-color tekee otsikkosolusta vihreän ja color otsikoiden väristä valkoisen */
 #tuotelistataulukko th {
@@ -74,7 +74,8 @@ padding:20px;
 }
 
  #logoloota {
- background-color: rgba(0,0,0,0.55);
+ display: block;
+ background-color: rgba(0,0,0,0.6);
  margin-left:15%;
  width:72%;
  height:33%;
@@ -94,7 +95,7 @@ margin-left:29%;
  
  #lootakeski {
  display:inline-block;
- float:center;
+ float:left;
  height:100%;
  width:33.3%;
  text-align:center;
@@ -116,24 +117,24 @@ margin-left:29%;
       	padding:15px;
 		margin-left:15%;
 		background-size: 100% 100%;
-		background-image: url("../images/takaseina3.jpg");
+		background-color: rgba(255,255,255,0.95);
 		}
 		
 #loota2 {
-		color:white;
+		
 		width:72%;
     	height:auto;
       	padding:15px;
 		margin-left:15%;
-		background-image: url("../images/takaseina3.jpg");
-		background-size: 100% 100% ;
-		background-color:white;
+		
+		background-size: 100% 100%;
+		background-color: rgba(255,255,255,0.95)
 		}
 
 		
 /* Määrittää footerin värin, leveyden, sijainnin ja tekstin ominaisuudet */			
 	#footer {
-	background-color:rgba(0,0,0,0.55);
+	background-color:rgba(0,0,0,0.6);
 	width:72%;
    	color:white;
    	text-align:left;
@@ -213,10 +214,12 @@ right:15.5%;
 
 /* lisaa-pizza.jsp syöttökentän * pakollinen merkin tähti punaiseksi */
 
-	.pakollinen {color:red}
+.pakollinen {color:red}
+	
+
 	
 /* Varoitustekstit */
-
+.error {color:red}
 div.pakollinenLoota {
 	min-width: 100px;
 	max-width: 500px;
@@ -259,3 +262,33 @@ div.pakollinenLoota {
 	
 }
 	
+	
+	
+	
+	
+	
+	
+	
+/* Janen jutut */	
+	
+label {
+	display: block;
+	float: left;
+	width: 175px;
+}
+
+input.text {
+	width: 200px;
+}
+
+fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+div.mauste {
+	float: left;
+	display: inline-block;
+	width: 96px;
+}	
