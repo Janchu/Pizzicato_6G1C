@@ -47,7 +47,7 @@
 	</div>
 
 	<div id="otsikkoloota">
-		<p style="margin-left: 15%;">Muokkaa juoma</p>
+		<p>Muokkaa juomaa</p>
 	</div>
 
 	<div id="loota1">
@@ -69,6 +69,7 @@
 		%>
 
 		<form method="post">
+			<fieldset>
 
 			<legend>Syötä juoman tiedot:</legend>
 
@@ -97,60 +98,69 @@
 					%>
 				
 			</div>
+			<br>
 			<%
 				}
 			%>
-
-			<table>
-				<tr>
-					<td><label>Juoman nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaNimi" value="<%=juomaNimi%>"
-						required maxlength="20"> <%
- 	if (errors.containsKey("nimi")) {
- 		out.println("<span class=\"error\">" + errors.get("nimi")
- 				+ "</span>");
- 	}
- %></td>
-					<td>Max 20 merkkiä</td>
-				</tr>
-				<td><label>Juoman englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
-				<td><input type="text" name="juomaNimi_eng"
-					value="<%=juomaNimi_eng%>" required maxlenght="30"> <%
- 	if (errors.containsKey("nimi_eng")) {
- 		out.println("<span class=\"error\">" + errors.get("nimi_eng")
- 				+ "</span>");
- 	}
- %></td>
-				<tr>
-					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaHinta" maxlength="5"
+			
+		<p>
+			<label>Juoman nimi: <span class="pakollinen">*</span></label>
+			<input type="text" name="juomaNimi" value="<%=juomaNimi%>"
+			required maxlength="20">
+			<%
+ 				if (errors.containsKey("nimi")) {
+ 					out.println("<span class=\"error\">" + errors.get("nimi")
+ 								+ "</span>");
+ 					}
+ 			%>
+ 				Max 20 merkkiä
+ 			</p>
+ 			
+ 			<p>	
+ 				<label>Englanninkielinen nimi: <span class="pakollinen">*</span></label>
+ 				<input type="text" name="juomaNimi_eng"
+				value="<%=juomaNimi_eng%>" required maxlength="20"> 
+					<%
+ 						if (errors.containsKey("nimi_eng")) {
+ 							out.println("<span class=\"error\">" + errors.get("nimi_eng")
+ 									+ "</span>");
+ 						}
+ 					%>
+ 					Max 20 merkkiä
+ 			</p>
+ 			<p>
+ 					<label>Hinta: <span class="pakollinen">*</span></label>
+					<input type="text" name="juomaHinta" maxlength="5"
 						step="any" min="2.00" max="20.00" value="<%=juomaHinta%>" required>
 						<%
 							if (errors.containsKey("hinta")) {
 								out.println("<span class=\"error\">" + errors.get("hinta")
 										+ "</span>");
 							}
-						%></td>
-					<td>Hinta muotoa 0,00 ja hinnan pitää olla 2.00 - 20.00 euroa</td>
-				</tr>
-				<tr>
-					<td><label>Koko: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaKoko" maxlength="4"
-					step="any" value="<%=juomaKoko%>" required> <%
+						%>
+					Hinta muotoa 0,00 ja hinnan pitää olla 2.00 - 20.00 euroa
+				</p>
+				
+				<p>
+				<label>Koko: <span class="pakollinen">*</span></label>
+					<input type="text" name="juomaKoko" maxlength="4"
+					step="any" value="<%=juomaKoko%>" required>
+					
+					 <%
 					if(errors.containsKey("Koko")) {
 					out.println("<span class=\"error\">" + errors.get("koko") + "</span>");
 					}
-					%></td>
-				</tr>
-			</table>
+					%>
+					Max 4 merkkiä
+				</p>
 			
-			
+		
 
 			<%-- seuraavassa koodinpätkässä on nappulat jes --%>
-			<input type="hidden" name="juomaId" value="<%=id%>"> <input
-				type="submit" class="button" value="Juoma valmis!"> <a
-				href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
-
+			<input type="hidden" name="juomaId" value="<%=id%>">
+			<input type="submit" class="button" value="Juoma valmis!">
+			<a href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
+			</fieldset>
 		</form>
 	</div>
 
