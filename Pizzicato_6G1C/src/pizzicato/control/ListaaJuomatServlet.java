@@ -9,8 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Juoma;
+import pizzicato.model.Tilaus;
+import pizzicato.model.Tilausrivi;
 import pizzicato.model.dao.JuomaDAO;
 
 /**
@@ -25,6 +28,18 @@ public class ListaaJuomatServlet extends HttpServlet {
 		// Luodaan JuomaDAO
 		JuomaDAO juomadao = new JuomaDAO();
 		ArrayList<Juoma> juomat = juomadao.findAll();
+		
+		HttpSession session = request.getSession();
+		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
+		
+		if(ostoskori == null) {
+			ostoskori = new Tilaus();
+			System.out.println(ostoskori);
+		}
+		
+		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
+		
+		System.out.println(tilausrivit);
 
 		System.out.println(juomat);
 
