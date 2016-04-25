@@ -121,7 +121,9 @@ public class MuokkaaJuomaServlet extends HttpServlet {
 			// Tarkistetaan, ettei nimi ole jo käytössä
 			for (int i = 0; i < juomat.size(); i++) {
 				if (nimi.equals(juomat.get(i).getNimi())) {
+					if(id != juomat.get(i).getId()) {
 					errors.put("nimi_eng", "Nimi on jo käytössä");
+					}
 				}
 			}
 		}
@@ -141,7 +143,9 @@ public class MuokkaaJuomaServlet extends HttpServlet {
 			// Tarkistetaan, ettei nimi ole jo käytössä
 			for (int i = 0; i < juomat.size(); i++) {
 				if (nimi_eng.equals(juomat.get(i).getNimi_eng())) {
+					if(id != juomat.get(i).getId()) {
 					errors.put("nimi_eng", "Nimi on jo käytössä");
+					}
 				}
 			}
 		}
