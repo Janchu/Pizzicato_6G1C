@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import pizzicato.model.Kayttaja;
 
@@ -15,6 +16,42 @@ public class KayttajaDAO extends DataAccessObject {
 		return instance;
 	}
 
+	public ArrayList<Kayttaja> findAll() {
+		// Alustetaan Connection-, PreparedStatement-, ResultSet-, nulleiksi
+		// ennen try-catchia
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ArrayList<Kayttaja> kayttajalista = new ArrayList<Kayttaja>();
+		Kayttaja kayttaja = null;
+		int kayttajaIdEdellinen = 0;
+
+		try {
+			conn = getConnection();
+			String sqlSelect = "SELECT kayttaja.id, kayttaja.etunimi, kayttaja.sukunimi, kayttaja.salasana, kayttaja.tyyppi, kayttaja.puh, kayttaja.osoite, kayttaja.postinro, posti.postinro, posti.postitmp, kayttaja.email FROM kayttaja JOIN posti ON kayttaja.postinro = posti.postinro;";
+			stmt = conn.prepareStatement(sqlSelect);
+			rs = stmt.executeQuery(sqlSelect);
+
+			while (rs.next()) {
+				// Jos kayttajaId eri kuin edellinen, luodaan uusi kayttaja
+
+				int kayttajaId = rs.getInt("kayttaja.id");
+				if (kayttajaId != kayttajaIdEdellinen) {
+					kayttaja = read(rs);
+					kayttajalista.add(kayttaja);
+				}
+				
+				kayttajaIdEdellinen = rs.getInt("kayttaja.id");
+
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return kayttajalista;
+	}
+
 	private Kayttaja read(ResultSet rs) throws SQLException {
 		int id = rs.getInt("kayttaja.id");
 		String etunimi = rs.getString("kayttaja.etunimi");
@@ -24,15 +61,20 @@ public class KayttajaDAO extends DataAccessObject {
 		String puh = rs.getString("kayttaja.puh");
 		String osoite = rs.getString("kayttaja.osoite");
 		String postinro = rs.getString("kayttaja.postinro");
-		String postitmp = null; //rs.getString("kayttaja.postitmp");
+		String postitmp = rs.getString("posti.postitmp");
 		String email = rs.getString("kayttaja.email");
-		return new Kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh, osoite, postinro, postitmp, email);
+
+		// Palautetaan kayttaja
+		return new Kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh,
+				osoite, postinro, postitmp, email);
 	}
 
 	// testi
-	public void create(Kayttaja kayttaja) {
-		PreparedStatement stmtInsert = null;
+	public void create(Kayttaja kayttaja) throws SQLException {
+
 		Connection connection = null;
+		PreparedStatement stmtInsert = null;
+
 		try {
 			connection = getConnection();
 			stmtInsert = connection
@@ -41,8 +83,9 @@ public class KayttajaDAO extends DataAccessObject {
 			stmtInsert.setString(2, kayttaja.getPostitmp());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
-			
-			stmtInsert = connection.prepareStatement("INSERT INTO kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh, osoite, postinro, email) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?);");
+
+			stmtInsert = connection
+					.prepareStatement("INSERT INTO kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh, osoite, postinro, email) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?);");
 			stmtInsert.setString(1, kayttaja.getEtunimi());
 			stmtInsert.setString(2, kayttaja.getSukunimi());
 			stmtInsert.setString(3, kayttaja.getSalasana());
@@ -53,35 +96,39 @@ public class KayttajaDAO extends DataAccessObject {
 			stmtInsert.setString(8, kayttaja.getEmail());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtInsert, connection);
 		}
+
 	}
-	
-	 public Kayttaja etsiTunnuksella(String kayttajatunnus) {
-		 ResultSet rs = null;
-		 PreparedStatement stmt = null;
-		 Connection connection = null;
-		 
-		 try {
+
+	public Kayttaja etsiTunnuksella(String kayttajatunnus) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		Connection connection = null;
+
+		try {
 			connection = getConnection();
-			String sql = "SELECT * FROM kayttaja where email = (?);";
+			String sql = "SELECT kayttaja.id, kayttaja.etunimi, kayttaja.sukunimi, kayttaja.salasana, kayttaja.tyyppi, kayttaja.puh, kayttaja.osoite, kayttaja.postinro, posti.postinro, posti.postitmp, kayttaja.email FROM kayttaja JOIN posti ON kayttaja.postinro = posti.postinro WHERE email = (?);";
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, kayttajatunnus);
 			rs = stmt.executeQuery();
-			
+
 			if (rs.next()) {
 				return read(rs);
-			} else {		
+			} else {
 				return null;
 			}
-			
+
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(rs, stmt, connection);
 		}
-	 }
+	}
 
 }

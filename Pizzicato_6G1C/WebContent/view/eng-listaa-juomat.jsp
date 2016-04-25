@@ -56,7 +56,6 @@
 						<th>Number</th>
 						<th>Name</th>
 						<th>Price</th>
-						<th>Size</th>
 					</tr>
 
 					<%
@@ -72,7 +71,6 @@
 						<td width="100px"><%=juomanumero%></td>
 						<td><b><%=juomat.get(i).getNimi()%></b></td>
 						<td width="50px"><%=decimal.format(juomat.get(i).getHinta())%></td>
-						<td><%=decimal.format(juomat.get(i).getKoko())%></td>
 					</tr>
 					<%
 						}
