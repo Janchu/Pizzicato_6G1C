@@ -50,7 +50,7 @@
 	
 
 	<div id="otsikkoloota">
-		<p style="margin-left: 15%;">Muokkaa pizza</p>
+		<p>Muokkaa pizzaa</p>
 	</div>
 
 	<div id="loota1">
@@ -100,9 +100,9 @@
 				%>
 
 				<p>
-					<label>Pizzan nimi: <span class="pakollinen">*</span></label> <input
-						type="text" name="pizzaNimi" value="<%=pizzaNimi%>" required
-						maxlength="20">
+					<label>Pizzan nimi: <span class="pakollinen">*</span></label>
+					<input type="text" name="pizzaNimi" value="<%=pizzaNimi%>" 
+					required maxlength="20">
 					<%
 						if (errors.containsKey("nimi")) {
 							out.println("<span class=\"error\">" + errors.get("nimi")
