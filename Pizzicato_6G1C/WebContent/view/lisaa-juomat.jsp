@@ -3,6 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="pizzicato.model.Juoma"%>
 <jsp:useBean id="juomat" type="java.util.ArrayList<pizzicato.model.Juoma>" scope="request" />
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap"
+	class="java.util.HashMap" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,47 +38,72 @@ Meilahti, 00270</p>
 	<p>Lisää juoma</p>
 </div>
 
-<div id="loota2">
+<div id="loota1">
 
 			<form method="post">
-
-
-			<legend>Syötä juoman tiedot:</legend>
-			<table>
-				<tr>
-					<td><label>Juoman nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaNimi" placeholder="Juoman nimi" maxlength="20" title="Juoman nimi saa olla max 20 merkkiä pitkä"  value="${uusiJuoma.nimi}" required>
-					 <%
-            %></td>
-					<td>Max 20 merkkiä</td>
-				</tr>
+			<fieldset>
+				<legend>Syötä juoman tiedot:</legend>
 				
-				<tr>
-					<td><label>Englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaNimi_eng" placeholder="Juoman eng nimi" maxlenght="20" title="Juoman nimi saa olla max 20 merkkiä pitkä" value="${uusiJuoma.nimi_eng}" required>
-					<%
-				%></td>
-						<td>Max 20 merkkiä</td>
-				</tr>
-
-				<tr>
-					<td><label>Hinta: <span class="pakollinen">*</span></label></td>
-					<td><input type="text" name="juomaHinta" placeholder="Juoman hinta" maxlength="5" step="any" min="2.00" max="20.00"  value="${uusiJuoma.hinta}" required>
-					<%
-            %></td>
-					<td>Hinnan pitää olla 2,00 - 20.00</td>
-				</tr>
-				<tr>
-				<td><label>Koko: <span class="pakollinen">*</span></label></td>
-				<td><input type="text" name="juomaKoko" placeholder="Juoman koko" maxlenght="4" step="any" value="${uusiJuoma.koko}" required>
+				
+				<%-- Validointi --%>
 				<%
+					if (!errors.isEmpty()) {
 				%>
-				</tr>
-			</table>
-
-			<input type="submit" class="button" value="Juoma valmis!"> <a
-				href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
+				<div class="pakollinenLoota">
+					<%
+						if (errors.containsKey("nimi")) {
+								out.println("<span class=\"error\">" + errors.get("nimi")
+										+ "</span><br>");
+							}
+							if (errors.containsKey("nimi_eng")) {
+								out.println("<span class=\"error\">"
+										+ errors.get("nimi_eng") + "</span><br>");
+							}
+							if (errors.containsKey("hinta")) {
+								out.println("<span class=\"error\">" + errors.get("hinta")
+										+ "</span><br>");
+							}
+							if (errors.containsKey("koko")) {
+								out.println("<span class=\"error\">"
+										+ errors.get("koko") + "</span><br>");
+							}
+					%>
+				</div>
+				<br>
+				<%
+					}
+				%>
 				
+			<p>
+				<label>Juoman nimi: <span class="pakollinen">*</span></label>
+				<input type="text" name="juomaNimi" placeholder="Juoman nimi"
+				maxlength="20" title="Juoman nimi saa olla max 20 merkkiä pitkä" 
+				required value="${uusiJuoma.nimi}">  Max 20 merkkiä
+				
+			</p>
+			<p>
+				<label>Englanninkielinen nimi: <span class="pakollinen">*</span></label>
+				<input type="text" name="juomaNimi_eng" placeholder="Juoman eng. nimi"
+				maxlenght="20" title="Juoman nimi saa olla max 20 merkkiä pitkä"
+				required value="${uusiJuoma.nimi_eng}">  Max 20 merkkiä
+			</p>
+			
+			<p>
+				<label>Hinta: <span class="pakollinen">*</span></label>
+				<input type="text" name="juomaHinta" placeholder="Juoman hinta"
+				maxlength="5" step="any" min="2.00" max="20.00" 
+				required value="${uusiJuoma.hinta}">  Hinnan pitää olla 2,00 - 20.00
+			</p>
+			
+			<p>
+				<label>Koko: <span class="pakollinen">*</span></label>
+				<input type="text" name="juomaKoko" placeholder="Juoman koko"
+				maxlength="4" step="any" required value="${uusiJuoma.koko}"> Max 4 merkkiä
+			</p>
+
+			<input type="submit" class="button" value="Juoma valmis!">
+			<a href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
+		</fieldset>		
 </form>
 </div>
 
