@@ -74,7 +74,7 @@
 			<%-- Pizzalista on toteutettu taulukkona --%>
 			<div id="tablescoller">
 				<%-- Tablescoller on taulukon oikean reunan scollbar --%>
-				<form action="OstoskoriServlet" method="post">
+				
 				<table>
 					<tr>
 						<th>Numero</th>
@@ -100,7 +100,7 @@
 							for (int j = 0; j < pizzat.get(i).getTaytelista()
 												.size(); j++) {
 						%> <%=pizzat.get(i).getTaytelista().get(j)
-									.getNimi()%> <%
+									.getNimi()%><%
  	if (j + 1 < pizzat.get(i).getTaytelista().size()) {
  %>, <%
  	}
@@ -110,16 +110,15 @@
 						<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%>
 
 						</td>
-						<td width="230px"><input type="checkbox" value="Oregano">
-							
-								<input type="hidden" value="<%=pizzat.get(i).getId()%>"
-									name="koriin"> Oregano <input type="checkbox"
-									value="Basilika"> Basilika<br> <input
-									type="checkbox" value="Parmesaani"> Parmesaani <input
-									type="checkbox" value="Valkosipuli"> Valkosipuli</td>
+						<td width="232px">
+						<div class="mauste"><input type="checkbox" value="Oregano"> Oregano</div>
+						<div class="mauste"><input type="checkbox" value="Basilika"> Basilika<br></div>
+						<div class="mauste"><input type="checkbox" value="Parmesaani"> Valkosipuli</div>
+						<div class="mauste"><input type="checkbox" value="Valkosipuli"> Parmesaani</div></td>
 						<td width="100px"><input type="text" size=2 maxlength="2"
-							name="maara" value="1"> Määrä<input type="submit"
-							value='  Lisää ostoskoriin  '>
+							name="maara" value="1"> Määrä<form action="OstoskoriServlet" method="post"><input type="hidden" value="<%=pizzat.get(i).getId()%>"
+									name="koriin"><input type="submit"
+							value='  Lisää ostoskoriin  '></form>
 							</td>
 
 					</tr>
@@ -129,7 +128,7 @@
 						}
 					%>
 				</table>
-				</form>
+				
 			</div>
 		</div>
 	</div>

@@ -39,7 +39,6 @@ Meilahti, 00270</p>
 </div>
 
 </div>
-</div>
 
 <div id="otsikkoloota">
 	<p style="margin-left:15%;">Pizzalista</p>

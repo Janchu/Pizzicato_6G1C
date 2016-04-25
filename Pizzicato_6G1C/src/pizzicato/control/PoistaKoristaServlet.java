@@ -20,7 +20,7 @@ public class PoistaKoristaServlet extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 	
@@ -33,6 +33,8 @@ public class PoistaKoristaServlet extends HttpServlet {
 		String idStr = request.getParameter("id");
 		int id = new Integer(idStr);
 		
+		System.out.println(id);
+		System.out.println(ostoskori.getTilausrivit().get(id));
 		ostoskori.getTilausrivit().remove(id);
 		
 		response.sendRedirect("OstoskoriServlet");
