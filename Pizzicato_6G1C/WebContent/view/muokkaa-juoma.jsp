@@ -131,7 +131,7 @@
 										+ "</span>");
 							}
 						%></td>
-					<td>Hinta muotoa 0,00 ja hinnan pit‰‰ olla 0.50 - 10.00 euroa</td>
+					<td>Hinta muotoa 0,00 ja hinnan pit‰‰ olla 2.00 - 20.00 euroa</td>
 				</tr>
 				<tr>
 					<td><label>Koko: <span class="pakollinen">*</span></label></td>
