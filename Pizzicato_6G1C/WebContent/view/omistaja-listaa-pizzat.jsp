@@ -13,8 +13,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 
 <title>Pizzalista</title>
 </head>
@@ -27,11 +27,11 @@
 </div>
 </div>
 <div id="lootakeski">
-<p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
+<p3>
 Avoinna: Ma-La 11-21, Su 12-18<br>
 +358 40 666 666<br>
 Kuusitie 66<br>
-Meilahti, 00270</p>
+Meilahti, 00270</p3>
 </div>
 
 <div id="lootaoikea">
@@ -41,7 +41,7 @@ Meilahti, 00270</p>
 </div>
 
 <div id="otsikkoloota">
-	<p style="margin-left:15%;">Pizzalista</p>
+	<p2 style="margin-left:15%;">Pizzalista</p2>
 	
 	</div>
 
