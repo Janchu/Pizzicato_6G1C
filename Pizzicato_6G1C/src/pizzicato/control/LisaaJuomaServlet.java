@@ -101,13 +101,6 @@ public class LisaaJuomaServlet extends HttpServlet {
 		// Tarkistetaan, ettei kenttä ole tyhjä
 		if (nimi == null || nimi.trim().length() == 0) {
 			errors.put("nimi", "Nimi vaaditaan.");
-		} else {
-			// Tarkistetaan, ettei nimi ole jo käytössä
-			for (int i = 0; i < juomat.size(); i++) {
-				if (nimi.equalsIgnoreCase(juomat.get(i).getNimi())) {
-					errors.put("nimi", "Nimi on jo käytössä.");
-				}
-			}
 		}
 
 		int maxLength = (nimi.length() < 20) ? nimi.length() : 20;
@@ -121,13 +114,6 @@ public class LisaaJuomaServlet extends HttpServlet {
 		// Tarkistetaan, ettei kenttä ole tyhjä
 		if (nimi_eng == null || nimi_eng.trim().length() == 0) {
 			errors.put("nimi_eng", "Nimi vaaditaan");
-		} else {
-			// Tarkistetaan, ettei nimi ole jo käytössä
-			for (int i = 0; i < juomat.size(); i++) {
-				if (nimi_eng.equalsIgnoreCase(juomat.get(i).getNimi_eng())) {
-					errors.put("nimi_eng", "Nimi on jo käytössä");
-				}
-			}
 		}
 
 		int maxLengthEng = (nimi_eng.length() < 30) ? nimi.length() : 30;
@@ -150,7 +136,7 @@ public class LisaaJuomaServlet extends HttpServlet {
 				hinta = new Double(uusiHintaStr);
 				formatter.format(hinta);
 
-				if (hinta < 0.50 || hinta > 10.00) {
+				if (hinta < 2.00 || hinta > 20.00) {
 					errors.put("hinta",
 							"Hinta sallittujen rajojen ulkopuolella.");
 				} else {
