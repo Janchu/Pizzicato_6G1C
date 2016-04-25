@@ -45,7 +45,7 @@ Meilahti, 00270</p3>
 	
 	</div>
 
-<!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat -->
+<!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat! -->
 
 	<div id="loota1">
 	
