@@ -37,7 +37,7 @@ Meilahti, 00270</p>
 	<p>Lisää juoma</p>
 </div>
 
-<div id="loota2">
+<div id="loota1">
 
 			<form method="post">
 
@@ -75,7 +75,10 @@ Meilahti, 00270</p>
             %></td>
 					<td>Max 20 merkkiä</td>
 				</tr>
-				
+
+			<fieldset>
+				<legend>Syötä juoman tiedot:</legend>
+
 				<tr>
 					<td><label>Englanninkielinen nimi: <span class="pakollinen">*</span></label></td>
 					<td><input type="text" name="juomaNimi_eng" placeholder="Juoman eng nimi" maxlength="20" title="Juoman nimi saa olla max 20 merkkiä pitkä" value="${uusiJuoma.nimi_eng}" required>
@@ -96,15 +99,9 @@ Meilahti, 00270</p>
 				<td><input type="text" name="juomaKoko" placeholder="Juoman koko" maxlength="4" step="any" value="${uusiJuoma.koko}" required>
 				<%
 				%></td>
-				<td>Koon pitää olla mallia 0.00 ja välillä 0.33 - 1.5</td>
+					<td>Koon pitää olla välillä 0.33 - 1.5 ja muotoa 0.00</td>
 				</tr>
-			</table>
 
-			<input type="submit" class="button" value="Juoma valmis!"> <a
-				href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
-				
-</form>
-</div>
 
 <div id="footer">
 		<div id="footer_sisältö">
