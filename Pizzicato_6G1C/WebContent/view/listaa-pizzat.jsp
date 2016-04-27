@@ -45,6 +45,7 @@
 		</div>
 
 		<div id="lootaoikea">
+			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
 			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a> <a
 				href="EngListaaPizzatServlet"><img alt="lib"
 				src="images/uklib4.png" width="32" height="32"></a> <a

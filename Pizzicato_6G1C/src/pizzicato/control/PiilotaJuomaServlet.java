@@ -47,7 +47,7 @@ public class PiilotaJuomaServlet extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("MuokkaaPizzalistaServlet");
+		response.sendRedirect("MuokkaaJuomalistaServlet");
 	}
 
 	protected void doPost(HttpServletRequest request,

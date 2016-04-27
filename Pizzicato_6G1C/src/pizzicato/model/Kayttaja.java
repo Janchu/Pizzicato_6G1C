@@ -18,7 +18,16 @@ public class Kayttaja {
 	// Oletuskonstruktori
 	
 	public Kayttaja() {
-		super();
+		this.id = 0;
+		this.etunimi = null;
+		this.sukunimi = null;
+		this.salasana = null;
+		this.tyyppi = null;
+		this.puh = null;
+		this.osoite = null;
+		this.postinro = null;
+		this.postitmp = null;
+		this.email = null;
 	}
 	
 	// Parametrillinen konstruktori
@@ -37,6 +46,19 @@ public class Kayttaja {
 		this.postinro = postinro;
 		this.postitmp = postitmp;
 		this.email = email;
+	}
+	
+	public Kayttaja(Kayttaja kayttaja) {
+		this.id = kayttaja.getId();
+		this.etunimi = kayttaja.getEtunimi();
+		this.sukunimi = kayttaja.getSukunimi();
+		this.salasana = kayttaja.getSalasana();
+		this.tyyppi = kayttaja.getTyyppi();
+		this.puh = kayttaja.getPuh();
+		this.osoite = kayttaja.getOsoite();
+		this.postinro = kayttaja.getPostinro();
+		this.postitmp = kayttaja.getPostitmp();
+		this.email = kayttaja.getEmail();
 	}
 	
 	// Getters & Setters

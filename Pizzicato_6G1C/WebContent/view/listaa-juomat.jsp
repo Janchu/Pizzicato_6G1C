@@ -33,7 +33,7 @@
 
 		<div id="lootaoikea">
 			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
-			<a href="EngListaaJuomattServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+			<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<div id="ostoskoributton2">
 <img src="images/ostoskoriicon.png" width="40" height="40">1 kpl, yht. 7,00€

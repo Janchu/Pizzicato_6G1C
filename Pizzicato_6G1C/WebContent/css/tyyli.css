@@ -33,7 +33,6 @@ font-weight:bold;
 	
 	padding:10px;
 	margin-top:10px;
-	font-size:350%;
 	width:72%;
 	margin-left:15%;
 	color:white;
@@ -94,12 +93,15 @@ margin-left:29%;
  }
  
  #lootakeski {
+ padding:1px;
  display:inline-block;
  float:left;
  height:100%;
  width:33.3%;
  text-align:center;
  color:white;
+ padding-top:5%;
+ 
  }
  
  #lootaoikea {
@@ -120,16 +122,6 @@ margin-left:29%;
 		background-color: rgba(255,255,255,0.95);
 		}
 		
-#loota2 {
-		
-		width:72%;
-    	height:auto;
-      	padding:15px;
-		margin-left:15%;
-		
-		background-size: 100% 100%;
-		background-color: rgba(255,255,255,0.95)
-		}
 
 		
 /* M‰‰ritt‰‰ footerin v‰rin, leveyden, sijainnin ja tekstin ominaisuudet */			
@@ -263,8 +255,14 @@ div.pakollinenLoota {
 }
 	
 	
-	
-	
+p2 {font-size: 4vw;}
+
+p3 {font-size: 1.5vw;
+font-family:Kozuka Gothic Pro EL;
+
+}
+
+
 	
 	
 	
@@ -304,3 +302,27 @@ div.mausteet {
 	float: left;
 	max-width: 192px;
 }
+
+
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+   .showcss{ display:block;}
+  .hidecss{ display:none;}
+

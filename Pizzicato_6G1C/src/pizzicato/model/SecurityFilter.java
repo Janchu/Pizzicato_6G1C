@@ -61,6 +61,8 @@ public class SecurityFilter implements Filter {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/ListaaJuomatServlet")) {
 			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/RekisterointiServlet")) {
+			chain.doFilter(req, resp);
 		} else {
 			resp.sendRedirect("/Pizzicato_6G1C/LoginServlet");
 		}

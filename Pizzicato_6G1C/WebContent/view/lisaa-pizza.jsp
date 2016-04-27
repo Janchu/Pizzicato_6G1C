@@ -48,7 +48,7 @@
 		<p>Lisää pizza</p>
 	</div>
 
-	<div id="loota2">
+	<div id="loota1">
 
 		<form method="post">
 			<fieldset>
@@ -83,15 +83,14 @@
 				<label>Pizzan nimi: <span class="pakollinen">*</span></label> <input
 					type="text" name="pizzaNimi" placeholder="Pizzan nimi"
 					maxlength="20" title="Pizzan nimi saa olla max 20 merkkiä pitkä"
-					value="${uusiPizza.nimi}" required> Max 20 merkkiä 
+					value="${uusiPizza.nimi}" required>   Max 20 merkkiä 
 				</p>
 				<p>	
 				<label>Hinta:
 					<span class="pakollinen">*</span>
 				</label> <input type="text" name="pizzaHinta" placeholder="Pizzan hinta"
 					maxlength="5" step="any" min="6" max="99.99"
-					value="${uusiPizza.hinta}" required> Hinnan pitää olla 6,00
-				- 99,99
+					value="${uusiPizza.hinta}" required>   Hinnan pitää olla 6,00 - 99,99
 				</p>
 
 
@@ -107,8 +106,8 @@
 					}
 				%>
 					
-				<br><input type="submit" class="button" value="Pizza valmis!"> <a
-					href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
+				<br><input type="submit" class="button" value="Pizza valmis!">
+				 <a href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
 			</fieldset>
 		</form>
 	</div>

@@ -117,6 +117,15 @@ public class MuokkaaJuomaServlet extends HttpServlet {
 		// Tarkistetaan, ettei kenttä ole tyhjä
 		if (nimi == null || nimi.trim().length() == 0) {
 			errors.put("nimi", "Nimi vaaditaan.");
+		}else {
+			// Tarkistetaan, ettei nimi ole jo käytössä
+			for (int i = 0; i < juomat.size(); i++) {
+				if (nimi.equals(juomat.get(i).getNimi())) {
+					if(id != juomat.get(i).getId()) {
+					errors.put("nimi_eng", "Nimi on jo käytössä");
+					}
+				}
+			}
 		}
 
 		int maxLength = (nimi.length() < 20) ? nimi.length() : 20;
@@ -130,9 +139,18 @@ public class MuokkaaJuomaServlet extends HttpServlet {
 		// Tarkistetaan, ettei kenttä ole tyhjä
 		if (nimi_eng == null || nimi_eng.trim().length() == 0) {
 			errors.put("nimi_eng", "Nimi vaaditaan");
-		} 
+		} else {
+			// Tarkistetaan, ettei nimi ole jo käytössä
+			for (int i = 0; i < juomat.size(); i++) {
+				if (nimi_eng.equals(juomat.get(i).getNimi_eng())) {
+					if(id != juomat.get(i).getId()) {
+					errors.put("nimi_eng", "Nimi on jo käytössä");
+					}
+				}
+			}
+		}
 
-		int maxLengthEng = (nimi_eng.length() < 30) ? nimi.length() : 30;
+		int maxLengthEng = (nimi_eng.length() < 30) ? nimi_eng.length() : 30;
 		String rajattuNimi_eng = nimi_eng.substring(0, maxLengthEng);
 		nimi_eng = rajattuNimi_eng;
 		uusiJuoma.setNimi_eng(nimi_eng);

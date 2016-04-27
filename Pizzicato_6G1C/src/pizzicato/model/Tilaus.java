@@ -12,6 +12,7 @@ public class Tilaus {
 	private String toimitus;
 	private String lisatiedot;
 	private ArrayList<Tilausrivi> tilausrivit;
+	private double yhthinta;
 	
 	
 	// Oletuskonstruktori
@@ -24,7 +25,7 @@ public class Tilaus {
 	// Parametrillinen konstruktori
 	
 	public Tilaus(int id, String tila, String maksutapa, String toimitus,
-			String lisatiedot, ArrayList<Tilausrivi> tilausrivit) {
+			String lisatiedot, ArrayList<Tilausrivi> tilausrivit, double yhthinta) {
 		super();
 		this.id = id;
 		this.tila = tila;
@@ -32,7 +33,8 @@ public class Tilaus {
 		this.toimitus = toimitus;
 		this.lisatiedot = lisatiedot;
 		this.tilausrivit = tilausrivit;
-		
+		this.yhthinta = yhthinta;
+
 	}
 	
 	// Getters & Setters
@@ -84,6 +86,14 @@ public class Tilaus {
 	public void addTilausrivi(Tilausrivi uusiTilausrivi) {
 		this.tilausrivit.add(uusiTilausrivi);
 	}
+	
+	public double getYhthinta() {
+		return yhthinta;
+	}
+	
+	public void setYhthinta(double yhthinta) {
+		this.yhthinta = yhthinta;
+	}
 
 	
 	
@@ -94,7 +104,7 @@ public class Tilaus {
 	public String toString() {
 		return "Tilaus [id=" + id + ", tila=" + tila + ", maksutapa="
 				+ maksutapa + ", toimitus=" + toimitus + ", lisatiedot="
-				+ lisatiedot + "]";
+				+ lisatiedot + ", yhthinta=" + yhthinta +"]";
 	}
 
 }

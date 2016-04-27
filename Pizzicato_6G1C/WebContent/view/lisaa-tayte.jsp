@@ -43,7 +43,7 @@
 		<p>Lisää täyte</p>
 	</div>
 
-	<div id="loota2">
+	<div id="loota1">
 
 		<form method="post">
 			<fieldset>
@@ -79,8 +79,8 @@
 				%>
 
 				<p>
-					<label>Täytteen nimi: <span class="pakollinen">*</span></label> <input
-						type="text" name="tayteNimi" placeholder="Täytteen nimi"
+					<label>Täytteen nimi: <span class="pakollinen">*</span></label>
+						<input type="text" name="tayteNimi" placeholder="Täytteen nimi"
 						maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä"
 						required value="${uusiTayte.nimi}"> Max 20 merkkiä
 				</p>
@@ -104,15 +104,14 @@
 					<label>Kilohinta: <span class="pakollinen">*</span></label> <input
 						type="text" name="tayteKilohinta" placeholder="Täytteen kilohinta"
 						maxlength="5" step="any" min="0.50" max="99.99" required
-						value="${uusiTayte.kilohinta}"> Hinnan pitää olla 0,50 -
-					99,99
-					
+						value="${uusiTayte.kilohinta}"> Hinnan pitää olla 0,50 - 99,99
+		
 				</p>
 
 
 					<%-- Nappulat --%>
-					<input type="submit" class="button" value="Valmis"> <a
-						href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
+					<input type="submit" class="button" value="Valmis">
+					<a href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
 			</fieldset>
 		</form>
 	</div>
