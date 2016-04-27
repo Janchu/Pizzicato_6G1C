@@ -16,15 +16,14 @@ import pizzicato.model.Pizza;
 import pizzicato.model.Tayte;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
-import pizzicato.model.Tuote;
 import pizzicato.model.dao.MausteDAO;
 import pizzicato.model.dao.PizzaDAO;
 
 /**
- * Servlet implementation class OstoskoriServlet
+ * Servlet implementation class AEngOstoskoriServlet
  */
-@WebServlet("/OstoskoriServlet")
-public class OstoskoriServlet extends HttpServlet {
+@WebServlet("/AEngOstoskoriServlet")
+public class AEngOstoskoriServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
@@ -45,6 +44,7 @@ public class OstoskoriServlet extends HttpServlet {
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request,

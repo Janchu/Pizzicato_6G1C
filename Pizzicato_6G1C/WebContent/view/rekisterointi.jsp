@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%@page import="pizzicato.model.Kayttaja"%>
 <jsp:useBean id="kayttajat"
 	type="java.util.ArrayList<pizzicato.model.Kayttaja>" scope="request" />
 <jsp:useBean id="errors" scope="request" type="java.util.HashMap"
 	class="java.util.HashMap" />
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
@@ -35,7 +35,7 @@
 		</div>
 		<div id="lootaoikea">
 
-			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
+			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 				<%
 					if (!errors.isEmpty()) {
 				%>
-				<div class="pakollinenLoota">
+				<div class="pakollinenLoota())">
 					<%
 						if (errors.containsKey("etunimi")) {
 								out.println("<span class=\"error\">"
@@ -140,6 +140,7 @@
 					maxlength="60"
 					value="${uusiKayttaja.email}" required>   Max 60 merkkiä 
 				</p>
+				
 				<br><input type="submit" class="button" value="Valmis!">
 				 <a href="ListaaPizzatServlet" class="button">Peruuta</a>
 			</fieldset>

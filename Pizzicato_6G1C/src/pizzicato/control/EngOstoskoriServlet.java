@@ -16,15 +16,14 @@ import pizzicato.model.Pizza;
 import pizzicato.model.Tayte;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
-import pizzicato.model.Tuote;
 import pizzicato.model.dao.MausteDAO;
 import pizzicato.model.dao.PizzaDAO;
 
 /**
- * Servlet implementation class OstoskoriServlet
+ * Servlet implementation class EngOstoskoriServlet
  */
-@WebServlet("/OstoskoriServlet")
-public class OstoskoriServlet extends HttpServlet {
+@WebServlet("/EngOstoskoriServlet")
+public class EngOstoskoriServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,

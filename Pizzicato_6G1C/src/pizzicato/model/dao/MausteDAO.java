@@ -26,7 +26,7 @@ public class MausteDAO extends DataAccessObject {
 		
 		try{
 			conn = getConnection();
-			String sqlSelect = "SELECT id, nimi, nimi_eng, kilohinta FROM mauste;";
+			String sqlSelect = "SELECT id, nimi, nimi_eng FROM mauste;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 			
@@ -74,9 +74,8 @@ public class MausteDAO extends DataAccessObject {
 			int id = rs.getInt("id");
 			String nimi = rs.getString("nimi");
 			String nimi_eng = rs.getString("nimi_eng");
-			double kilohinta = rs.getDouble("kilohinta");
 			
-			return new Mauste(id, nimi, nimi_eng, kilohinta);
+			return new Mauste(id, nimi, nimi_eng);
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -99,10 +98,9 @@ public class MausteDAO extends DataAccessObject {
 		try {
 			connection = getConnection();
 			stmtInsert = connection.
-					prepareStatement("INSERT INTO mauste (nimi, nimi_eng, kilohinta) VALUES (?,?,?);");
+					prepareStatement("INSERT INTO mauste (nimi, nimi_eng) VALUES (?,?);");
 			stmtInsert.setString(1, lisattavaMauste.getNimi());
 			stmtInsert.setString(2, lisattavaMauste.getNimi_eng());
-			stmtInsert.setDouble(3, lisattavaMauste.getKilohinta());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 		
@@ -170,12 +168,6 @@ public class MausteDAO extends DataAccessObject {
 
 			stmtInsert = connection.prepareStatement("UPDATE mauste SET nimi_eng = (?) WHERE id = (?)");
 			stmtInsert.setString(1, paivitettavaMauste.getNimi_eng());
-			stmtInsert.setInt(2, paivitettavaMauste.getId());
-			stmtInsert.executeUpdate();
-			stmtInsert.close();
-
-			stmtInsert = connection.prepareStatement("UPDATE mauste SET kilohinta = (?) WHERE id = (?)");
-			stmtInsert.setDouble(1, paivitettavaMauste.getKilohinta());
 			stmtInsert.setInt(2, paivitettavaMauste.getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();

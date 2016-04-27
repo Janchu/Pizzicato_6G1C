@@ -1,6 +1,7 @@
 package pizzicato.control;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,25 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pizzicato.model.Mauste;
 import pizzicato.model.Pizza;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
-import pizzicato.model.dao.MausteDAO;
 import pizzicato.model.dao.PizzaDAO;
 
-@WebServlet("/ListaaPizzatServlet")
-public class ListaaPizzatServlet extends HttpServlet {
+/**
+ * Servlet implementation class AOstokoriServlet
+ */
+@WebServlet("/AOstokoriServlet")
+public class AOstokoriServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		// Luodaan PizzaDAO
-		PizzaDAO pizzadao = new PizzaDAO();
-		MausteDAO maustedao = new MausteDAO();
-		ArrayList<Pizza> pizzat = pizzadao.findAll();
-		ArrayList<Mauste> mausteet = maustedao.findAll();
 
 		HttpSession session = request.getSession();
 		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
@@ -40,15 +36,9 @@ public class ListaaPizzatServlet extends HttpServlet {
 
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 
-		System.out.println(tilausrivit);
-
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
-		request.setAttribute("pizzat", pizzat);
-		request.setAttribute("mausteet", mausteet);
 		request.setAttribute("ostoskori", tilausrivit);
 
-		// Lähetetään jsp:lle
-		String jsp = "/view/listaa-pizzat.jsp";
+		String jsp = "/view/ostoskori.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
@@ -56,7 +46,43 @@ public class ListaaPizzatServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		Tilaus ostoskori;
 
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzat = pizzadao.findAll();
+		DecimalFormat formatter = new DecimalFormat("#0.00");
+		Pizza tilattuPizza = new Pizza();
+
+		HttpSession session = request.getSession();
+		ostoskori = (Tilaus) session.getAttribute("ostoskori");
+
+		if (ostoskori == null) {
+			ostoskori = new Tilaus();
+			session.setAttribute("ostoskori", ostoskori);
+		}
+
+		String idStr = request.getParameter("koriin");
+		int id = new Integer(idStr);
+
+		System.out.println(idStr);
+
+		for (int i = 0; i < pizzat.size(); i++) {
+			if (pizzat.get(i).getId() == id) {
+				tilattuPizza.setId(id);
+				tilattuPizza.setHinta(pizzat.get(i).getHinta());
+				tilattuPizza.setNimi(pizzat.get(i).getNimi());
+				Tilausrivi uusiTilausrivi = new Tilausrivi();
+				uusiTilausrivi.setTilattuTuote(tilattuPizza);
+				ostoskori.addTilausrivi(uusiTilausrivi);
+
+			}
+		}
+
+		System.out.println(ostoskori);
+
+		request.setAttribute("ostoskori", ostoskori);
+
+		response.sendRedirect("ListaaPizzatServlet");
 	}
 
 }

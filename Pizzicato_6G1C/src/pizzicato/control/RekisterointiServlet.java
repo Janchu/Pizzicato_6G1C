@@ -28,7 +28,7 @@ public class RekisterointiServlet extends HttpServlet {
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		ArrayList<Kayttaja> kayttajat = kayttajadao.findAll();
 
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		//ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("kayttajat", kayttajat);
 
 		// Lähetetään jsp:lle
@@ -40,14 +40,14 @@ public class RekisterointiServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		
 		// Luodaan KayttajaDAO
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		ArrayList<Kayttaja> kayttajat = kayttajadao.findAll();
 
 		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("kayttajat", kayttajat);
-
+		
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
 				"/view/rekisterointi.jsp");
 		
@@ -56,7 +56,9 @@ public class RekisterointiServlet extends HttpServlet {
 		if (!errors.isEmpty()) {
 			jsp.forward(request, response);
 		} else {
-
+			
+			System.out.println("Ei virheitä");
+			
 			int id = 0;
 
 			// Futureproof
@@ -74,12 +76,14 @@ public class RekisterointiServlet extends HttpServlet {
 				String postinro = leikkikayttaja.getPostinro();
 				String postitmp = leikkikayttaja.getPostitmp();
 				String email = leikkikayttaja.getEmail();
+				
+				System.out.println("tyyppi" + tyyppi);
 
 				Kayttaja uusiKayttaja = new Kayttaja(id, etunimi, sukunimi,
 						salasana, tyyppi, puh, osoite, postinro, postitmp,
 						email);
 				
-				System.out.println(leikkikayttaja);
+				//System.out.println(leikkikayttaja);
 
 				// Kutsutaan create-kayttaja-metodia
 				kayttajadao.create(uusiKayttaja);
@@ -102,7 +106,9 @@ public class RekisterointiServlet extends HttpServlet {
 
 		// Haetaan syötetty etunimi validointia varten
 		String etunimi = request.getParameter("kayttajaEtunimi");
-
+		
+		System.out.println("lomakkeelta" +etunimi);
+		
 		// Tarkistetaan, ettei kenttä ole tyhjä
 		if (etunimi == null || etunimi.trim().length() == 0) {
 			errors.put("etunimi", "Etunimi vaaditaan.");
@@ -206,6 +212,7 @@ public class RekisterointiServlet extends HttpServlet {
 		uusiKayttaja.setEmail(email);
 
 		request.setAttribute("errors", errors);
+		request.setAttribute("uusiKayttaja", uusiKayttaja);
 		
 		System.out.println(uusiKayttaja);
 		

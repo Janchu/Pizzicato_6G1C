@@ -1,7 +1,6 @@
 package pizzicato.control;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,24 +12,22 @@ import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
-import pizzicato.model.Tilausrivi;
 
 /**
- * Servlet implementation class TeeTilausServlet
+ * Servlet implementation class AEngTeeTilausServlet
  */
-@WebServlet("/TeeTilausServlet")
-public class TeeTilausServlet extends HttpServlet {
+@WebServlet("/AEngTeeTilausServlet")
+public class AEngTeeTilausServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		// Lähetetään jsp:lle
-		String jsp = "/view/tee-tilaus.jsp";
+		String jsp = "/view/aeng-tee-tilaus.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -73,7 +70,7 @@ public class TeeTilausServlet extends HttpServlet {
 		session.setAttribute("tilaus", tilaus);
 		session.setAttribute("tilaaja", tilaaja);
 
-		response.sendRedirect("YhteenvetoServlet");
+		response.sendRedirect("AEngYhteenvetoServlet");
 
 	}
 
