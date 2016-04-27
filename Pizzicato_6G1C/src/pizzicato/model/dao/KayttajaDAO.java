@@ -52,7 +52,9 @@ public class KayttajaDAO extends DataAccessObject {
 		return kayttajalista;
 	}
 
-	private Kayttaja read(ResultSet rs) throws SQLException {
+	private Kayttaja read(ResultSet rs) {
+		
+		try {
 		int id = rs.getInt("kayttaja.id");
 		String etunimi = rs.getString("kayttaja.etunimi");
 		String sukunimi = rs.getString("kayttaja.sukunimi");
@@ -67,6 +69,10 @@ public class KayttajaDAO extends DataAccessObject {
 		// Palautetaan kayttaja
 		return new Kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh,
 				osoite, postinro, postitmp, email);
+		
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	// testi
