@@ -45,15 +45,15 @@
 
 	<div id="loota1">
 
-
-
-		<!-- pizzalista on toteutettu taulukkona -->
-
 		<div id="tuotelistataulukko">
 			<div id="tablescoller">
+			
 
 				<form method="post">
 					<fieldset>
+					
+					
+					<legend>Tilaajan tiedot</legend>
 						<p>
 							<label>Etunimi: </label><input type="text" name="etunimi">
 						</p>
@@ -79,12 +79,13 @@
 						<p>
 							<label>Lisätiedot: </label><input type="text" name="lisatiedot">
 						</p>
-						<input type="submit" value="Jatka">
+						
+						<a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <input type="submit" value="Jatka tilausta" class="button2"></a>
+						
 					</fieldset>
 				</form>
 
-				<a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
-					href="ListaaPizzatServlet" class="button2">Jatka tilausta</a>
+				
 
 			</div>
 		</div>

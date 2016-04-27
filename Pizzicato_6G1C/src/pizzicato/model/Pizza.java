@@ -1,6 +1,6 @@
 package pizzicato.model;
 
-import java.util.ArrayList; // kukkuu
+import java.util.ArrayList;
 
 public class Pizza extends Tuote {
 	
@@ -11,6 +11,7 @@ public class Pizza extends Tuote {
 
 	// Oletuskonstruktori
 	public Pizza() {
+		super();
 		this.nakyvyys = 0;
 		this.pohja = null;
 		this.taytelista = null;
@@ -19,6 +20,7 @@ public class Pizza extends Tuote {
 	// Parametrillinen konstruktori
 	public Pizza(int id, String tyyppi, String nimi, double hinta,
 			int nakyvyys, String pohja, ArrayList<Tayte> taytelista) {
+		super();
 		setId(id);
 		setTyyppi(tyyppi);
 		setNimi(nimi);
@@ -30,6 +32,7 @@ public class Pizza extends Tuote {
 
 	// Oliokonstruktori
 	public Pizza(Pizza pizza) {
+		super();
 		setId(pizza.getId());
 		setTyyppi(pizza.getTyyppi());
 		setNimi(pizza.getNimi());
@@ -63,11 +66,15 @@ public class Pizza extends Tuote {
 	public void addTayte(Tayte uusiTayte) {
 		this.taytelista.add(uusiTayte);
 	}
+	
+	public void setTaytelista(ArrayList<Tayte> taytelista) {
+		this.taytelista = taytelista;
+	}
 
 	// To-String
 	@Override
 	public String toString() {
-		return "Pizza [nakyvyys=" + nakyvyys + ", pohja=" + pohja
+		return "Tuote[" + super.getTyyppi() + "Pizza [nakyvyys=" + nakyvyys + ", pohja=" + pohja
 				+ ", taytelista=" + taytelista + "]";
 	}
 

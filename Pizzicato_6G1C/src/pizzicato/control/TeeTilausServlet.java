@@ -1,6 +1,7 @@
 package pizzicato.control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
+import pizzicato.model.Tilausrivi;
 
 /**
  * Servlet implementation class TeeTilausServlet
@@ -27,10 +30,18 @@ public class TeeTilausServlet extends HttpServlet {
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+
+		Tilaus tilaus = new Tilaus();
+		Kayttaja tilaaja = new Kayttaja();
+
+		tilaus = (Tilaus) session.getAttribute("ostoskori");
 
 		String etunimi = request.getParameter("etunimi");
 		String sukunimi = request.getParameter("sukunimi");
@@ -41,10 +52,13 @@ public class TeeTilausServlet extends HttpServlet {
 		String postitmp = request.getParameter("postitmp");
 		String lisatiedot = request.getParameter("lisatiedot");
 
-		Tilaus tilaus = new Tilaus();
-		Kayttaja tilaaja = new Kayttaja();
+		tilaus.setTila("Valmis");
+		tilaus.setToimitus("Kotiinkuljetus");
+		tilaus.setMaksutapa("Kateinen");
 
 		tilaus.setLisatiedot(lisatiedot);
+
+		System.out.println(tilaus);
 
 		tilaaja.setEtunimi(etunimi);
 		tilaaja.setSukunimi(sukunimi);
@@ -53,6 +67,14 @@ public class TeeTilausServlet extends HttpServlet {
 		tilaaja.setOsoite(osoite);
 		tilaaja.setPostinro(postinro);
 		tilaaja.setPostitmp(postitmp);
+
+		System.out.println(tilaaja);
+
+		session.setAttribute("tilaus", tilaus);
+		session.setAttribute("tilaaja", tilaaja);
+
+		response.sendRedirect("YhteenvetoServlet");
+
 	}
 
 }
