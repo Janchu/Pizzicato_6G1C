@@ -10,6 +10,7 @@ public class Tuote {
 
 	// Oletuskonstruktori
 	public Tuote() {
+		super();
 		this.id = 0;
 		this.tyyppi = null;
 		this.nimi = null;
@@ -18,6 +19,7 @@ public class Tuote {
 
 	// Parametrillinen konstruktori
 	public Tuote(int id, String tyyppi, String nimi, double hinta) {
+		super();
 		this.id = id;
 		this.tyyppi = tyyppi;
 		this.nimi = nimi;
@@ -26,6 +28,7 @@ public class Tuote {
 
 	// Oliokonstruktori
 	public Tuote(Tuote tuote) {
+		super();
 		this.id = tuote.getId();
 		this.tyyppi = tuote.getTyyppi();
 		this.nimi = tuote.getNimi();

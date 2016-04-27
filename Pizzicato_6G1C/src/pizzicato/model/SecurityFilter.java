@@ -53,6 +53,8 @@ public class SecurityFilter implements Filter {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/TeeTilausServlet")) {
 			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/YhteenvetoServlet")) {
+			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/PoistaKoristaServlet")) {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/EngListaaJuomatServlet")) {

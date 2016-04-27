@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pizzicato.model.Mauste;
 import pizzicato.model.Pizza;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
+import pizzicato.model.dao.MausteDAO;
 import pizzicato.model.dao.PizzaDAO;
 
 /**
@@ -28,7 +30,9 @@ public class ListaaPizzatServlet extends HttpServlet {
 
 		// Luodaan PizzaDAO
 		PizzaDAO pizzadao = new PizzaDAO();
+		MausteDAO maustedao = new MausteDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
+		ArrayList<Mauste> mausteet = maustedao.findAll();
 
 		HttpSession session = request.getSession();
 		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
@@ -37,17 +41,17 @@ public class ListaaPizzatServlet extends HttpServlet {
 		
 		if (ostoskori == null) {
 			ostoskori = new Tilaus();
-			System.out.println(ostoskori);
 		}
 		
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 		
-		System.out.println(tilausrivit);
+		
 
 		
 
 		// ArrayList tallennetaan request-olioon jsp:lle viet�v�ksi
 		request.setAttribute("pizzat", pizzat);
+		request.setAttribute("mausteet", mausteet);
 		request.setAttribute("ostoskori", tilausrivit);
 
 		// Lhetetään jsp:lle

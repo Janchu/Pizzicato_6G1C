@@ -5,15 +5,13 @@ public class Mauste {
 	private int id;
 	private String nimi;
 	private String nimi_eng;
-	private double kilohinta;
 
 	// Konstruktorit
-	public Mauste(int id, String nimi, String nimi_eng, double kilohinta) {
+	public Mauste(int id, String nimi, String nimi_eng) {
 
 		this.id = id;
 		this.nimi = nimi;
 		this.nimi_eng = nimi_eng;
-		this.kilohinta = kilohinta;
 	}
 
 	public Mauste() {
@@ -21,7 +19,6 @@ public class Mauste {
 		this.id = 0;
 		this.nimi = null;
 		this.nimi_eng = null;
-		this.kilohinta = 0;
 
 	}
 
@@ -51,20 +48,15 @@ public class Mauste {
 		this.nimi_eng = nimi_eng;
 	}
 
-	public double getKilohinta() {
-		return kilohinta;
-	}
-
-	public void setKilohinta(double kilohinta) {
-		this.kilohinta = kilohinta;
-	}
-
 	// toString
-
+	
 	@Override
 	public String toString() {
 		return "Mauste [id=" + id + ", nimi=" + nimi + ", nimi_eng=" + nimi_eng
-				+ ", kilohinta=" + kilohinta + "]";
+				+ "]";
 	}
+
+
+
 
 }

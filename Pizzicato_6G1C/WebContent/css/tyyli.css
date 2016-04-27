@@ -292,3 +292,15 @@ div.mauste {
 	display: inline-block;
 	width: 96px;
 }	
+
+div.lisaakoriin {
+	display:inline-block;
+	float:left;
+	width: 100px;
+}
+
+div.mausteet {
+	display: inline-block;
+	float: left;
+	max-width: 192px;
+}

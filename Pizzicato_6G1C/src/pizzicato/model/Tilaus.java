@@ -13,10 +13,12 @@ public class Tilaus {
 	private String lisatiedot;
 	private ArrayList<Tilausrivi> tilausrivit;
 	
+	
 	// Oletuskonstruktori
 	
 	public Tilaus() {
 		this.tilausrivit = new ArrayList<Tilausrivi>();
+		
 	}
 
 	// Parametrillinen konstruktori
@@ -30,6 +32,7 @@ public class Tilaus {
 		this.toimitus = toimitus;
 		this.lisatiedot = lisatiedot;
 		this.tilausrivit = tilausrivit;
+		
 	}
 	
 	// Getters & Setters

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -9,6 +10,7 @@
 <%@ page import="pizzicato.model.Tilausrivi"%>
 <jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>"
 	scope="request" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
 <html>
 <head>
 
@@ -67,19 +69,33 @@
 				%>
 				<%=korityhja%>
 				<a href="ListaaPizzatServlet" class="button2">Etusivulle</a>
-				<%
-					} else {
 
-						for (int i = 0; i < ostoskori.size(); i++) {
-				%>
 				<table>
 
 					<tr>
 						<td>Nimi</td>
 						<td>Hinta</td>
+						<td>Lkm</td>
+						<td>Mausteet</td>
+
+						<%
+							} else {
+								
+								ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
+
+								for (int i = 0; i < ostoskori.size(); i++) {
+									for (int j = 0; j < pizzat.size(); j++) {
+										if (ostoskori.get(i).getTilattuTuote().getId() == pizzat.get(j).getId()) {
+											taytteet = pizzat.get(j).getTaytelista();
+									}
+								}
+						%>
+					
 					<tr>
-						<td><%=ostoskori.get(i).getTilattuTuote().getNimi()%></td>
+						<td><%=ostoskori.get(i).getTilattuTuote().getNimi()%> <% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><% } %></td>
 						<td><%=ostoskori.get(i).getTilattuTuote().getHinta()%></td>
+						<td><%=ostoskori.get(i).getLkm()%></td>
+						<td><% for (int j = 0; j < ostoskori.get(i).getMaustelista().size(); j++) {%> <%=ostoskori.get(i).getMaustelista().get(j).getNimi() %> <% } %></td>
 						<td>
 							<form action="PoistaKoristaServlet" method="post">
 								<input type="hidden" value="<%=i%>" name="id"><input
@@ -92,11 +108,13 @@
 
 				</table>
 
-				<a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
-					href="TeeTilausServlet" class="button2">Jatka tilausta</a>
+
 
 				<%
 					}
+				%><a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
+					href="TeeTilausServlet" class="button2">Jatka tilausta</a>
+				<%
 					}
 				%>
 
