@@ -12,11 +12,12 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
+<link rel="stylesheet" href="css/responsive.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-
 <title>Pizzalista</title>
+
+
 </head>
 <body>
 
@@ -49,6 +50,17 @@ Meilahti, 00270</p3>
 
 	<div id="loota1">
 	
+	<div id="nappulasijainti2">
+			<a href="MuokkaaPizzalistaServlet" class="button">Siirry
+				pizzalistan <br> muokkaukseen</a>
+				
+			<a href="MuokkaaTaytelistaServlet" class="button">Siirry
+				täytelistan <br> muokkaukseen</a>
+				
+			<a href="MuokkaaJuomalistaServlet" class="button">Siirry
+				juomalistan <br> muokkaukseen</a>	
+		</div>
+	
 	
 	
 <!-- pizzalista on toteutettu taulukkona -->
@@ -59,7 +71,7 @@ Meilahti, 00270</p3>
 			<table>
 				
 				<tr>
-					<th>Numero</th>
+					<th>#</th>
 					<th>Nimi</th>
 					<th>Hinta</th>
 				</tr>
@@ -74,7 +86,7 @@ Meilahti, 00270</p3>
 							pizzanumero++;
 				%>
 				<tr>
-					<td width="100px"><%=pizzanumero%></td>
+					<td width="10px"><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
  	for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) {
  %> <%=pizzat.get(i).getTaytelista().get(j)

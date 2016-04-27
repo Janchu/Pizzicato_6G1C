@@ -1,0 +1,36 @@
+@media only screen and (max-width: 1680px) {
+#nappulasijainti {
+display:none;}}
+
+@media only screen and (max-width: 1000px) {
+
+#logoloota {width:100%;
+height:22%;
+margin-left:0;}
+#otsikkoloota {width:100%;
+margin-left:0;}
+#loota1 {width:100%;
+margin-left:0;}
+#footer {width:100%;
+margin-left:0;}
+#tuotelistataulukko table {width:100%;
+margin-left:0;}
+#tuotelistataulukko	td {
+padding:0;
+padding-left:10px;
+}
+#tuotelistataulukko th, td {
+	padding-left:10px;  
+}
+
+p4 	{font-size: 3vw;}
+p2 {font-size: 1em;}
+p3 {font-size: 1em;}
+
+.button2 {font-size:3vw;}
+}
+
+@media only screen and (min-width: 1681px) {
+#nappulasijainti2 {
+display:none;}
+}
