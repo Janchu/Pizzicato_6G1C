@@ -1,18 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="pizzicato.model.Kayttaja"%>
-<jsp:useBean id="kayttajat"
-	type="java.util.ArrayList<pizzicato.model.Kayttaja>" scope="request" />
-<jsp:useBean id="errors" scope="request" type="java.util.HashMap"
-	class="java.util.HashMap" />
+<jsp:useBean id="kayttajat" type="java.util.ArrayList<pizzicato.model.Kayttaja>" scope="request" />
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Rekisteröinti</title>
 </head>
 <body>
@@ -27,11 +23,10 @@
 			</div>
 		</div>
 		<div id="lootakeski">
-			<p
-				style="margin-top: 100px; font-size: 170%; font-family: Kozuka Gothic Pro EL;">
+			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
-			</p>
+			</p3>
 		</div>
 		<div id="lootaoikea">
 
@@ -41,7 +36,7 @@
 	</div>
 
 	<div id="otsikkoloota">
-		<p>Rekisteröidy</p>
+		<p2>Rekisteröidy</p2>
 	</div>
 
 	<div id="loota1">

@@ -354,10 +354,11 @@ padding-left:10px;
 }
 
 p4 	{font-size: 3vw;}
-p2 {font-size: 1em;}
+p2 {font-size: 16px;}
 p3 {font-size: 1em;}
 
 .button2 {font-size:3vw;}
+.button {font-size:3vw;}
 }
 
 @media only screen and (min-width: 1681px) {

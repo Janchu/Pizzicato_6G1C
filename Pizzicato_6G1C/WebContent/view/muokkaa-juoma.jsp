@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Juoma"%>
@@ -16,8 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Muokkaa juomaa</title>
 </head>
 <body>
@@ -32,11 +31,10 @@
 			</div>
 		</div>
 		<div id="lootakeski">
-			<p
-				style="margin-top: 100px; font-size: 170%; font-family: Kozuka Gothic Pro EL;">
+			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
-			</p>
+			</p3>
 		</div>
 
 		<div id="lootaoikea">
@@ -47,7 +45,7 @@
 	</div>
 
 	<div id="otsikkoloota">
-		<p>Muokkaa juomaa</p>
+		<p2>Muokkaa juomaa</p2>
 	</div>
 
 	<div id="loota1">
@@ -71,7 +69,7 @@
 		<form method="post">
 			<fieldset>
 
-			<legend>Syˆt‰ juoman tiedot:</legend>
+			<legend>Sy√∂t√§ juoman tiedot:</legend>
 
 			<%
 				if (!errors.isEmpty()) {
@@ -113,7 +111,7 @@
  								+ "</span>");
  					}
  			%>
- 				Max 20 merkki‰
+ 				Max 20 merkki√§
  			</p>
  			
  			<p>	
@@ -126,7 +124,7 @@
  									+ "</span>");
  						}
  					%>
- 					Max 20 merkki‰
+ 					Max 20 merkki√§
  			</p>
  			<p>
  					<label>Hinta: <span class="pakollinen">*</span></label>
@@ -138,7 +136,7 @@
 										+ "</span>");
 							}
 						%>
-					Hinta muotoa 0,00 ja hinnan pit‰‰ olla 2.00 - 20.00 euroa
+					Hinta muotoa 0,00 ja hinnan pit√§√§ olla 2.00 - 20.00 euroa
 				</p>
 				
 				<p>
@@ -151,12 +149,12 @@
 					out.println("<span class=\"error\">" + errors.get("koko") + "</span>");
 					}
 					%>
-					Max 4 merkki‰
+					Max 4 merkki√§
 				</p>
 			
 		
 
-			<%-- seuraavassa koodinp‰tk‰ss‰ on nappulat jes --%>
+			<%-- seuraavassa koodinp√§tk√§ss√§ on nappulat jes --%>
 			<input type="hidden" name="juomaId" value="<%=id%>">
 			<input type="submit" class="button" value="Juoma valmis!">
 			<a href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
@@ -165,11 +163,11 @@
 	</div>
 
 	<div id="footer">
-		<div id="footer_sis‰ltˆ">
+		<div id="footer_sis√§lt√∂">
 
 			<p>
 				Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
-				S‰hkˆpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite:
+				S√§hk√∂postiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite:
 				Kuusitie 66 <br> Postitoimipaikka: Meilahti, 00270 <br>
 			</p>
 		</div>

@@ -26,11 +26,10 @@
 			</div>
 		</div>
 		<div id="lootakeski">
-			<p
-				style="margin-top: 100px; font-size: 170%; font-family: Kozuka Gothic Pro EL;">
+			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
-			</p>
+			</p3>
 		</div>
 
 		<div id="lootaoikea">
@@ -40,7 +39,7 @@
 
 
 	<div id="otsikkoloota">
-		<p>Lisää täyte</p>
+		<p2>Lisää täyte</p2>
 	</div>
 
 	<div id="loota1">
