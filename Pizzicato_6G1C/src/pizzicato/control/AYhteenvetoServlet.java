@@ -14,10 +14,10 @@ import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
 
 /**
- * Servlet implementation class YhteenvetoServlet
+ * Servlet implementation class AYhteenvetoServlet
  */
-@WebServlet("/YhteenvetoServlet")
-public class YhteenvetoServlet extends HttpServlet {
+@WebServlet("/AYhteenvetoServlet")
+public class AYhteenvetoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
@@ -32,7 +32,7 @@ public class YhteenvetoServlet extends HttpServlet {
 		request.setAttribute("tilaaja", tilaaja);
 
 		// Lähetetään jsp:lle
-		String jsp = "/view/yhteenveto.jsp";
+		String jsp = "/view/ayhteenveto.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
