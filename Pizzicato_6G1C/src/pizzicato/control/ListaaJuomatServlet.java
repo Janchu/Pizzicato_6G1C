@@ -25,20 +25,21 @@ public class ListaaJuomatServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		// Luodaan JuomaDAO
 		JuomaDAO juomadao = new JuomaDAO();
 		ArrayList<Juoma> juomat = juomadao.findAll();
-		
+
 		HttpSession session = request.getSession();
 		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
-		
-		if(ostoskori == null) {
+
+		if (ostoskori == null) {
 			ostoskori = new Tilaus();
 			System.out.println(ostoskori);
 		}
-		
+
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
-		
+
 		System.out.println(tilausrivit);
 
 		System.out.println(juomat);

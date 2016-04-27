@@ -1,7 +1,6 @@
 package pizzicato.control;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -17,72 +16,44 @@ import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
 import pizzicato.model.dao.PizzaDAO;
 
-/**
- * Servlet implementation class OstoskoriServlet
- */
-@WebServlet("/OstoskoriServlet")
-public class OstoskoriServlet extends HttpServlet {
+@WebServlet("/AListaaPizzatServlet")
+public class AListaaPizzatServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		// Luodaan PizzaDAO
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzat = pizzadao.findAll();
 
 		HttpSession session = request.getSession();
 		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
 
 		if (ostoskori == null) {
 			ostoskori = new Tilaus();
+			System.out.println(ostoskori);
 		}
 
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 
+		System.out.println(tilausrivit);
+
+		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("ostoskori", tilausrivit);
 
-		String jsp = "/view/ostoskori.jsp";
+		// Lähetetään jsp:lle
+		String jsp = "/view/listaa-pizzat.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Tilaus ostoskori;
 
-		PizzaDAO pizzadao = new PizzaDAO();
-		ArrayList<Pizza> pizzat = pizzadao.findAll();
-		DecimalFormat formatter = new DecimalFormat("#0.00");
-		Pizza tilattuPizza = new Pizza();
-
-		HttpSession session = request.getSession();
-		ostoskori = (Tilaus) session.getAttribute("ostoskori");
-
-		if (ostoskori == null) {
-			ostoskori = new Tilaus();
-			session.setAttribute("ostoskori", ostoskori);
-		}
-
-		String idStr = request.getParameter("koriin");
-		int id = new Integer(idStr);
-
-		System.out.println(idStr);
-
-		for (int i = 0; i < pizzat.size(); i++) {
-			if (pizzat.get(i).getId() == id) {
-				tilattuPizza.setId(id);
-				tilattuPizza.setHinta(pizzat.get(i).getHinta());
-				tilattuPizza.setNimi(pizzat.get(i).getNimi());
-				Tilausrivi uusiTilausrivi = new Tilausrivi();
-				uusiTilausrivi.setTilattuTuote(tilattuPizza);
-				ostoskori.addTilausrivi(uusiTilausrivi);
-
-			}
-		}
-
-		System.out.println(ostoskori);
-
-		request.setAttribute("ostoskori", ostoskori);
-
-		response.sendRedirect("ListaaPizzatServlet");
 	}
 
 }

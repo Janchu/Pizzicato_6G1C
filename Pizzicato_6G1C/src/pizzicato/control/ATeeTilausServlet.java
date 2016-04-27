@@ -13,10 +13,10 @@ import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
 
 /**
- * Servlet implementation class TeeTilausServlet
+ * Servlet implementation class ATeeTilausServlet
  */
-@WebServlet("/TeeTilausServlet")
-public class TeeTilausServlet extends HttpServlet {
+@WebServlet("/ATeeTilausServlet")
+public class ATeeTilausServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,

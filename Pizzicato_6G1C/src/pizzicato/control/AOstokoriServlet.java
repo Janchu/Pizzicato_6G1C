@@ -18,10 +18,10 @@ import pizzicato.model.Tilausrivi;
 import pizzicato.model.dao.PizzaDAO;
 
 /**
- * Servlet implementation class OstoskoriServlet
+ * Servlet implementation class AOstokoriServlet
  */
-@WebServlet("/OstoskoriServlet")
-public class OstoskoriServlet extends HttpServlet {
+@WebServlet("/AOstokoriServlet")
+public class AOstokoriServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
