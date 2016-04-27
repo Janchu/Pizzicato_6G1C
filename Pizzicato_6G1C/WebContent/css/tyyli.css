@@ -291,6 +291,20 @@ div.mauste {
 	width: 96px;
 }	
 
+div.lisaakoriin {
+	display:inline-block;
+	float:left;
+	width: 100px;
+}
+
+div.mausteet {
+	display: inline-block;
+	float: left;
+	max-width: 192px;
+}
+
+
+
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {width: 25%;}
@@ -311,3 +325,4 @@ div.mauste {
     }
    .showcss{ display:block;}
   .hidecss{ display:none;}
+

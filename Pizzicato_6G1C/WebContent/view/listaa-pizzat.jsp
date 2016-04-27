@@ -4,11 +4,14 @@
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
+<%@ page import="pizzicato.model.Mauste"%>
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
 	scope="request" />
 <jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>"
+	scope="request" />
+<jsp:useBean id="mausteet" type="java.util.ArrayList<Mauste>"
 	scope="request" />
 <html>
 <head>
@@ -82,7 +85,7 @@
 						<th>Nimi</th>
 						<th>Hinta</th>
 						<th>Mausteet</th>
-						<th></th>
+						
 					</tr>
 
 					<%
@@ -111,15 +114,19 @@
 						<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%>
 
 						</td>
-						<td width="232px">
-						<div class="mauste"><input type="checkbox" value="Oregano"> Oregano</div>
-						<div class="mauste"><input type="checkbox" value="Basilika"> Basilika<br></div>
-						<div class="mauste"><input type="checkbox" value="Parmesaani"> Valkosipuli</div>
-						<div class="mauste"><input type="checkbox" value="Valkosipuli"> Parmesaani</div></td>
-						<td width="100px"><input type="text" size=2 maxlength="2"
-							name="maara" value="1"> Määrä<form action="OstoskoriServlet" method="post"><input type="hidden" value="<%=pizzat.get(i).getId()%>"
+						
+						<td width="400px"><form action="OstoskoriServlet" method="post">
+						<div class="mausteet">
+						<% for (int j = 0; j < mausteet.size(); j++) { %>
+							
+							
+							<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>"><%=mausteet.get(j).getNimi() %></div>
+							
+						<%} %></div>
+						<div class="lisaakoriin"><input type="text" size=2 maxlength="2"
+							name="maara" value="1"> Määrä<input type="hidden" value="<%=pizzat.get(i).getId()%>"
 									name="koriin"><input type="submit"
-							value='  Lisää ostoskoriin  '></form>
+							value='  Lisää ostoskoriin  '></div></form>
 							</td>
 
 					</tr>
