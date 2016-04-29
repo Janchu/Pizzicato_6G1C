@@ -24,11 +24,10 @@
 			</div>
 		</div>
 		<div id="lootakeski">
-			<p
-				style="margin-top: 100px; font-size: 170%; font-family: Kozuka Gothic Pro EL;">
+			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
-			</p>
+			</p3>
 		</div>
 
 		<div id="lootaoikea">
@@ -36,7 +35,7 @@
 			<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<div id="ostoskoributton2">
-<img src="images/ostoskoriicon.png" width="40" height="40">1 kpl, yht. 7,00€
+<img src="images/ostoskoriicon.png" width="10%" height="10%">1 kpl, yht. 7,00€
 <div id="ostoskoributton1">
 <a href="ostoskori.html">Ostoskoriin</a>
 </div>
@@ -46,8 +45,10 @@
 	</div>
 
 	<div id="otsikkoloota">
-<a href="ListaaPizzatServlet" class="pizzalistabutton">Pizzalista</a>
-<a href="ListaaJuomatServlet" class="juomabutton"><u>Juomat</u></a>
+	
+<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2>Pizzalista</p2></a>
+<a href="ListaaJuomatServlet" class="juomabutton"><u><p2>Juomat</p2></u></a>
+
 </div>
 <div id="loota1">
 <div id="tuotelistataulukko">
@@ -56,11 +57,11 @@
 		<table>
 		
 			<tr>
-				<th>Numero</th>
+				<th>#</th>
 				<th>Nimi</th>
 				<th>Hinta</th>
 				<th></th>
-				<th></th>
+			
 			</tr>
 
 			<%
@@ -75,10 +76,10 @@
 			%>
 
 			<tr>
-				<td width="100px"><%=juomanumero%></td>
-				<td><b><%=juomat.get(i).getNimi()%></b>
-				<td width="50px"><%=decimal.format(juomat.get(i).getHinta())%></td>
-				<td width="100px"><input type="text" size=2 maxlength="2" name="maara" onChange='this.value=CKquantity(this.value)' value="1">  Määrä<input type=button value='  Lisää ostoskoriin  ' onClick='AddToCart(this.form)'></td>
+				<td width="5%"><%=juomanumero%></td>
+				<td width="40%"><b><%=juomat.get(i).getNimi()%></b>
+				<td width="5%"><%=decimal.format(juomat.get(i).getHinta())%></td>
+				<td width="5%"><input type=button value='  Lisää ostoskoriin  ' onClick='AddToCart(this.form)'></td>
 			</tr>
 
 			<%

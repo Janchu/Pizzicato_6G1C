@@ -1,11 +1,10 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Juoma"%>
-<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>"
-	scope="request" />
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,11 +24,11 @@
 </div>
 </div>
 <div id="lootakeski">
-<p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
+<p3>
 Avoinna: Ma-La 11-21, Su 12-18<br>
 +358 40 666 666<br>
 Kuusitie 66<br>
-Meilahti, 00270</p>
+Meilahti, 00270</p3>
 </div>
 
 <div id="lootaoikea">
@@ -38,21 +37,27 @@ Meilahti, 00270</p>
 </div>
 
 	<div id="otsikkoloota">
-		<p style="margin-left: 15%;">Juomalista</p>
+		<p2 style="margin-left: 15%;">Juomalista</p2>
 	</div>
 
 	<div id="loota1">
+	<div id="nappulasijainti2">
+		<a href="LisaaJuomaServlet" class="button">Lis√§√§ juoma</a> <a
+			href="OmistajaListaaPizzatServlet" class="button">Poistu <br>
+			muokkaustilasta
+		</a>
+	</div>
 		<div id="tuotelistataulukko">
 			<div id="tablescoller">
 				<table>
 
 					<tr>
 
-						<th>Numero</th>
+						<th>#</th>
 						<th>Nimi</th>
 						<th>Hinta</th>
 						<th>Koko</th>
-						<th>N‰kyvill‰</th>
+						<th>N√§kyvill√§</th>
 						<th>Muokkaa</th>
 						<th>Piilota</th>
 						<th>Poista</th>
@@ -66,7 +71,7 @@ Meilahti, 00270</p>
 							int nakyvyysInt = juomat.get(i).getNakyvyys();
 							String nakyvyys = "";
 							if (nakyvyysInt == 1) {
-								nakyvyys = "N‰kyvill‰";
+								nakyvyys = "N√§kyvill√§";
 							} else {
 								nakyvyys = "Piilossa";
 							}
@@ -74,7 +79,7 @@ Meilahti, 00270</p>
 
 					<tr>
 
-						<td width="50px"><%=juomanumero%></td>
+						<td width="10px"><%=juomanumero%></td>
 						<td><b><%=juomat.get(i).getNimi()%></b></td>
 						<td width="100px"><%=decimal.format(juomat.get(i).getHinta())%></td>
 						<td width="100px"><%=juomat.get(i).getKoko()%></td>
@@ -99,17 +104,17 @@ Meilahti, 00270</p>
 	</div>
 
 	<div id="nappulasijainti">
-		<a href="LisaaJuomaServlet" class="button">Lis‰‰ juoma</a><br> <a
+		<a href="LisaaJuomaServlet" class="button">Lis√§√§ juoma</a><br> <a
 			href="OmistajaListaaPizzatServlet" class="button">Poistu <br>
 			muokkaustilasta
 		</a>
 	</div>
 	<div id="footer">
-		<div id="footerin_sis‰ltˆ">
+		<div id="footerin_sis√§lt√∂">
 
 			<p>
 				Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
-				S‰hkˆpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite:
+				S√§hk√∂postiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite:
 				Kuusitie 66 <br> Postitoimipaikka: Meilahti, 00270 <br>
 			</p>
 		</div>

@@ -52,7 +52,11 @@ public class LoginServlet extends HttpServlet {
 			Long id = new Long(idInt);
 			session.setAttribute("id", id);
 			System.out.println("Sessiossa id:n arvo on: " + session.getAttribute("id"));
+			if(kayttaja.getTyyppi().equalsIgnoreCase("omistaja")) {
 			response.sendRedirect("OmistajaListaaPizzatServlet");
+			}else {
+				response.sendRedirect("AListaaPizzatServlet");
+			}
 		}
 		
 	}

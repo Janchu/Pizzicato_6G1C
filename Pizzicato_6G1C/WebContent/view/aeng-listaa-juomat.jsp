@@ -1,24 +1,29 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="pizzicato.model.Kayttaja"%>
 <%@ page import="pizzicato.model.Juoma"%>
 <%@ page import="pizzicato.model.Tuote"%>
-<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>" scope="request" />
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>"
+	scope="request" />
+<jsp:useBean id="kayttajat" type="java.util.ArrayList<Kayttaja>" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>Drinkmenu</title>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Drink menu</title>
 </head>
 <body>
 
-	<div id="logoloota">
+<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="EngListaaJuomatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaJuomatServlet"><img alt="Pizzerian logo"
+					src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 
 		</div>
@@ -30,18 +35,29 @@
 		</div>
 
 		<div id="lootaoikea">
-			<a href="LoginServlet" class="button2">Log In</a> <a
+		<%
+		for(int i = 0; i < kayttajat.size(); i++) {
+		%>
+		
+		<td>Tervetuloa: <%=kayttajat.get(i).getEtunimi()%></td>
+		<%
+		}
+		%>
+		
+			<a href="LogoutServlet" class="button2">Log Out</a> <a
 				href="EngListaaJuomatServlet"><img alt="lib"
 				src="images/uklib4.png" width="32" height="32"></a> <a
 				href="ListaaJuomatServlet"><img alt="lib"
 				src="images/finlib.png" width="32" height="32"></a>
+		
 		</div>
 	</div>
+	</div>
 	
-
 	<div id="otsikkoloota">
 		<%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
-		<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2>Pizza menu</p2></a> <a href="ListaaJuomatServlet" class="juomabutton"><p2><u>Drinks</u></p2></a>
+		<a href="AEngListaaPizzatServlet" class="pizzalistabutton"><p2>Pizza
+			menu</p2></a> <a href="AEngListaaJuomatServlet" class="juomabutton"><p2><u>Drinks</u></p2></a>
 	</div>
 
 	<div id="loota1">

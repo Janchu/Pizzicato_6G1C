@@ -19,27 +19,28 @@ import pizzicato.model.Tilaus;
 @WebServlet("/YhteenvetoServlet")
 public class YhteenvetoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
-		
+
 		Tilaus tilaus = (Tilaus) session.getAttribute("tilaus");
 		Kayttaja tilaaja = (Kayttaja) session.getAttribute("tilaaja");
-		
+
 		request.setAttribute("tilaus", tilaus);
 		request.setAttribute("tilaaja", tilaaja);
-		
+
 		// Lähetetään jsp:lle
 		String jsp = "/view/yhteenveto.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
-		dispatcher.forward(request, response);	
+		dispatcher.forward(request, response);
 	}
 
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 
 }

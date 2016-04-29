@@ -30,6 +30,7 @@ public class TeeTilausServlet extends HttpServlet {
 		
 		request.setAttribute("errors", errors);
 		request.setAttribute("toimitus", "");
+		request.setAttribute("maksutapa", "");
 		request.setAttribute("etunimi", "");
 		request.setAttribute("sukunimi", "");
 		request.setAttribute("puh", "");
@@ -38,18 +39,21 @@ public class TeeTilausServlet extends HttpServlet {
 		request.setAttribute("postinro", "");
 		request.setAttribute("postitmp", "");
 		request.setAttribute("lisatiedot", "");
-		
 
 		// Lähetetään jsp:lle
-		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
-				"/view/tee-tilaus.jsp");
-		jsp.forward(request, response);
+		String jsp = "/view/tee-tilaus.jsp";
+		RequestDispatcher dispatcher = getServletContext()
+				.getRequestDispatcher(jsp);
+		dispatcher.forward(request, response);
 	}
+
+
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+
 
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
 				"/view/tee-tilaus.jsp");
@@ -80,6 +84,7 @@ public class TeeTilausServlet extends HttpServlet {
 		request.setAttribute("toimitus", tilaus.getToimitus());
 		request.setAttribute("maksutapa", tilaus.getMaksutapa());
 
+
 		tilaus.setLisatiedot(lisatiedot);
 
 		System.out.println(tilaus);
@@ -91,6 +96,8 @@ public class TeeTilausServlet extends HttpServlet {
 		tilaaja.setOsoite(osoite);
 		tilaaja.setPostinro(postinro);
 		tilaaja.setPostitmp(postitmp);
+
+
 
 		session.setAttribute("tilaus", tilaus);
 		session.setAttribute("tilaaja", tilaaja);

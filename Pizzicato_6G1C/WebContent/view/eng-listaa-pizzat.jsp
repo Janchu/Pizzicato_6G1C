@@ -8,12 +8,10 @@
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Pizzamenu</title>
 </head>
 <body>
@@ -26,11 +24,11 @@
 
 </div>
 <div id="lootakeski">
-<p style= "margin-top:100px; font-size:170%; font-family:Kozuka Gothic Pro EL;">
+<p3>
 Open: Mon-Sat 11-21, Sun 12-18<br>
 +358 40 666 666<br>
 Kuusitie 66<br>
-Meilahti, 00270</p>
+Meilahti, 00270</p3>
 </div>
 
 <div id="lootaoikea">
@@ -39,11 +37,11 @@ Meilahti, 00270</p>
 <a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
 </div>
 </div>
-</div>
+
 
 <div id="otsikkoloota"> <%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
-<a href="EngListaaPizzatServlet" class="pizzalistabutton">Pizza menu</a>
-<a href="ListaaJuomatServlet" class="juomabutton">Drinks</a>
+<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizza menu</u></p2></a>
+<a href="ListaaJuomatServlet" class="juomabutton"><p2>Drinks</p2></a>
 </div>
 
 <div id="loota1">
@@ -53,7 +51,7 @@ Meilahti, 00270</p>
 			<table>
 				
 				<tr>
-					<th>Number</th>
+					<th>#</th>
 					<th>Name</th>
 					<th>Price</th>
 				</tr>
@@ -68,7 +66,7 @@ Meilahti, 00270</p>
 				%>
 
 				<tr>
-					<td width="100px"><%=pizzanumero%></td>
+					<td width="10px"><%=pizzanumero%></td>
 					<td><b><%=pizzat.get(i).getNimi()%><br> Toppings:</b> <%
  					for (int j = 0; j < pizzat.get(i).getTaytelista().size(); j++) { //kukkuu %>
  					 <%=pizzat.get(i).getTaytelista().get(j).getNimi_eng()%><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <%}

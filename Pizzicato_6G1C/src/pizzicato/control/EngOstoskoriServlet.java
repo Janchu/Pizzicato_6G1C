@@ -20,18 +20,15 @@ import pizzicato.model.dao.MausteDAO;
 import pizzicato.model.dao.PizzaDAO;
 
 /**
- * Servlet implementation class OstoskoriServlet
+ * Servlet implementation class EngOstoskoriServlet
  */
-@WebServlet("/OstoskoriServlet")
-public class OstoskoriServlet extends HttpServlet {
+@WebServlet("/EngOstoskoriServlet")
+public class EngOstoskoriServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		PizzaDAO pizzadao = new PizzaDAO();
-		ArrayList<Pizza> pizzat = pizzadao.findAll();
-		
 		HttpSession session = request.getSession();
 		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
 
@@ -42,9 +39,8 @@ public class OstoskoriServlet extends HttpServlet {
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 
 		request.setAttribute("ostoskori", tilausrivit);
-		request.setAttribute("pizzat", pizzat);
 
-		String jsp = "/view/ostoskori.jsp";
+		String jsp = "/view/eng-ostoskori.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
@@ -137,9 +133,9 @@ public class OstoskoriServlet extends HttpServlet {
 		session.setAttribute("ostoskori", ostoskori);
 
 		request.setAttribute("ostoskori", ostoskori);
+
 		request.setAttribute("pizzat", pizzat);
 
-
-		response.sendRedirect("ListaaPizzatServlet");
+		response.sendRedirect("EngListaaPizzatServlet");
 	}
 }
