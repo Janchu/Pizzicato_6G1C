@@ -37,11 +37,15 @@
 			<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<div id="ostoskoributton2">
-<img src="images/ostoskoriicon.png" width="10%" height="10%">1 kpl, yht. 7,00€
-<div id="ostoskoributton1">
-<a href="ostoskori.html">Ostoskoriin</a>
-</div>
-</div>
+			<form method="get">
+				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
+				kpl, yht. 
+				<div id="ostoskoributton1">
+					<a href="OstoskoriServlet">Ostoskoriin</a>
+				</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	</div>
