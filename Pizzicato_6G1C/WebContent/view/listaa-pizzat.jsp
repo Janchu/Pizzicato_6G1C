@@ -7,12 +7,9 @@
 <%@ page import="pizzicato.model.Mauste"%>
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
-	scope="request" />
-<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>"
-	scope="request" />
-<jsp:useBean id="mausteet" type="java.util.ArrayList<Mauste>"
-	scope="request" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
+<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
+<jsp:useBean id="mausteet" type="java.util.ArrayList<Mauste>" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -62,6 +59,7 @@
 		</div>
 	</div>
 	
+	<%-- tämä tulee näkyville, kun menee 1000px alle --%>
 	<div id="ostoskoributton3">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
