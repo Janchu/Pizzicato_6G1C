@@ -32,7 +32,7 @@ Meilahti, 00270</p3>
 </div>
 
 <div id="lootaoikea">
-<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+<span class="valkoinen">Tervetuloa, Outi  </span><a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 </div>
 
 </div>
@@ -88,10 +88,10 @@ Meilahti, 00270</p3>
  %></td>
 					<td width="100px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
 					<td width="50px"><%=nakyvyys%></td>
-					<td width="50px"><a href="MuokkaaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><img alt="lib" src="images/muokkaaicon.png" width="32" height="32"></a></td>
-					<td width="50px"><a href="PiilotaPizzaServlet?Nakyvyys=<%=pizzat.get(i).getNakyvyys()%>&Id=<%=pizzat.get(i).getId()%>"><img alt="lib" src="images/showicon.png" width="32" height="32"></a></td>
+					<td width="50px"><a href="MuokkaaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"><img alt="lib" src="images/muokkaaicon.png" title="muokkaa" width="32" height="32"></a></td>
+					<td width="50px"><a href="PiilotaPizzaServlet?Nakyvyys=<%=pizzat.get(i).getNakyvyys()%>&Id=<%=pizzat.get(i).getId()%>"><img alt="lib" src="images/showicon.png" title="näytä/piilota" width="32" height="32"></a></td>
 					<td width="50px"><a href="PoistaPizzaServlet?PizId=<%=pizzat.get(i).getId()%>"
-						onclick="return confirm('Haluatko varmasti poistaa Pizzan?')"><img alt="lib" src="images/remove.png" width="32" height="32"></a></td>
+						onclick="return confirm('Haluatko varmasti poistaa Pizzan?')"><img alt="lib" src="images/remove.png" title="poista" width="32" height="32"></a></td>
 
 				</tr>
 

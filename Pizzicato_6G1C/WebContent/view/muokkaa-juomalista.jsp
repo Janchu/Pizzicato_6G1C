@@ -1,6 +1,5 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Juoma"%>
@@ -32,7 +31,7 @@ Meilahti, 00270</p3>
 </div>
 
 <div id="lootaoikea">
-<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+<span class="valkoinen">Tervetuloa, Outi  </span><a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 </div>
 </div>
 
@@ -84,16 +83,12 @@ Meilahti, 00270</p3>
 						<td width="100px"><%=decimal.format(juomat.get(i).getHinta())%></td>
 						<td width="100px"><%=juomat.get(i).getKoko()%></td>
 						<td width="50px"><%=nakyvyys%></td>
+						<td width="50px"><a href="MuokkaaJuomaServlet?JuoId=<%=juomat.get(i).getId()%>"><img alt="lib" src="images/muokkaaicon.png" title="muokkaa" width="32" height="32"></a></td>
+						<td width="50px"><a href="PiilotaJuomaServlet?Nakyvyys=<%=juomat.get(i).getNakyvyys()%>&Id=<%=juomat.get(i).getId()%>">
+						<img alt="lib" src="images/showicon.png" title="piilota/näytä" width="32" height="32"></a></td>
 						<td width="50px"><a
-							href="MuokkaaJuomaServlet?JuoId=<%=juomat.get(i).getId()%>"><img
-								alt="lib" src="images/muokkaaicon.png" width="32" height="32"></a></td>
-						<td width="50px"><a
-							href="PiilotaJuomaServlet?Nakyvyys=<%=juomat.get(i).getNakyvyys()%>&Id=<%=juomat.get(i).getId()%>"><img
-								alt="lib" src="images/showicon.png" width="32" height="32"></a></td>
-						<td width="50px"><a
-							href="PoistaJuomaServlet?JuoId=<%=juomat.get(i).getId()%>"
-							onclick="return confirm('Haluatko varmasti poistaa Juoman?')"><img
-								alt="lib" src="images/remove.png" width="32" height="32"></a></td>
+							href="PoistaJuomaServlet?JuoId=<%=juomat.get(i).getId()%>
+							"onclick="return confirm('Haluatko varmasti poistaa Juoman?')"><img alt="lib" src="images/remove.png" title="poista" width="32" height="32"></a></td>
 					</tr>
 					<%
 						}

@@ -28,18 +28,14 @@
 
 	<div id="logoloota">
 		<div id="lootavasen">
-		<a
-				href="EngListaaPizzatServlet"><img alt="lib"
-				src="images/uklib4.png" width="32" height="32"></a> <a
-				href="ListaaPizzatServlet"><img alt="lib"
-				src="images/finlib.png" width="32" height="32"></a>
 			<div class="logo">
-				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 
 		<div id="lootakeski">
+		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
@@ -56,7 +52,6 @@
 		<% } %>
 
 			<br>
-			 
 			<div id="ostoskoributton2">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">

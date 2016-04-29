@@ -1,16 +1,12 @@
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Juoma"%>
 <%@ page import="pizzicato.model.Tuote"%>
-<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>"
-	scope="request" />
-<jsp:useBean id="muokattavaJuomaId" scope="request"
-	type="java.lang.Integer" />
-<jsp:useBean id="errors" scope="request" type="java.util.HashMap"
-	class="java.util.HashMap" />
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>" scope="request" />
+<jsp:useBean id="muokattavaJuomaId" scope="request" type="java.lang.Integer" />
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,7 +34,7 @@
 		</div>
 
 		<div id="lootaoikea">
-			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+			<span class="valkoinen">Tervetuloa, Outi  </span><a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 		</div>
 
 	</div>
