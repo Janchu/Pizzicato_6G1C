@@ -8,9 +8,9 @@
 <%@ page import="pizzicato.model.Tayte"%>
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
-<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>"
-	scope="request" />
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
+<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
+
 <html>
 <head>
 
@@ -92,7 +92,7 @@
 						%>
 					
 					<tr>
-						<td><%=ostoskori.get(i).getTilattuTuote().getNimi()%> <% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><% } %></td>
+						<td><%=ostoskori.get(i).getTilattuTuote().getNimi()%> <% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }} %></td>
 						<td><%=ostoskori.get(i).getTilattuTuote().getHinta()%></td>
 						<td><%=ostoskori.get(i).getLkm()%></td>
 						<td><% for (int j = 0; j < ostoskori.get(i).getMaustelista().size(); j++) {%> <%=ostoskori.get(i).getMaustelista().get(j).getNimi() %> <% } %></td>

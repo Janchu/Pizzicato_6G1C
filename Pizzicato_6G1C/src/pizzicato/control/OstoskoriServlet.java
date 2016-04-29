@@ -30,6 +30,9 @@ public class OstoskoriServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzat = pizzadao.findAll();
+		
 		HttpSession session = request.getSession();
 		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
 
@@ -40,6 +43,7 @@ public class OstoskoriServlet extends HttpServlet {
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 
 		request.setAttribute("ostoskori", tilausrivit);
+		request.setAttribute("pizzat", pizzat);
 
 		String jsp = "/view/ostoskori.jsp";
 		RequestDispatcher dispatcher = getServletContext()
@@ -130,7 +134,6 @@ public class OstoskoriServlet extends HttpServlet {
 
 		session.setAttribute("ostoskori", ostoskori);
 		request.setAttribute("ostoskori", ostoskori);
-		request.setAttribute("pizzat", pizzat);
 
 		response.sendRedirect("ListaaPizzatServlet");
 	}

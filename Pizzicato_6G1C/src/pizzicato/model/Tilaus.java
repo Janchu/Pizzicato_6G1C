@@ -18,8 +18,13 @@ public class Tilaus {
 	// Oletuskonstruktori
 	
 	public Tilaus() {
+		this.id = 0;
+		this.tila = null;
+		this.maksutapa = null;
+		this.toimitus = null;
+		this.lisatiedot = null;
 		this.tilausrivit = new ArrayList<Tilausrivi>();
-		
+		this.yhthinta = 0;
 	}
 
 	// Parametrillinen konstruktori
@@ -94,17 +99,21 @@ public class Tilaus {
 	public void setYhthinta(double yhthinta) {
 		this.yhthinta = yhthinta;
 	}
-
 	
 	
-
 	// ToString
-	
 	@Override
 	public String toString() {
 		return "Tilaus [id=" + id + ", tila=" + tila + ", maksutapa="
 				+ maksutapa + ", toimitus=" + toimitus + ", lisatiedot="
-				+ lisatiedot + ", yhthinta=" + yhthinta +"]";
+				+ lisatiedot + ", tilausrivit=" + tilausrivit + ", yhthinta="
+				+ yhthinta + "]";
 	}
+
+	
+	
+
+	
+	
 
 }

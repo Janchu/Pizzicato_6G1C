@@ -1,6 +1,8 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap"
+	class="java.util.HashMap" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,33 +56,43 @@
 					
 					
 					<legend>Tilaajan tiedot</legend>
+					
+					<%  %>
+					
+					
 						<p>
-							<label>Etunimi: </label><input type="text" name="etunimi">
+							<label>Toimitustapa:</label><input type="radio" value="nouto" name="toimitus" >Nouto <input type="radio" value="kotiinkuljetus" name="toimitus" >Kotiinkuljetus
 						</p>
 						<p>
-							<label>Sukunimi: </label><input type="text" name="sukunimi">
+							<label>Maksutapa:</label><input type="radio" value="kateinen" name="maksutapa" >Käteinen <input type="radio" value="kortti" name="maksutapa" >Kortti
 						</p>
 						<p>
-							<label>Puh: </label><input type="text" name="puh">
+							<label>Etunimi: </label><input type="text" name="etunimi" value="<%if (request.getAttribute("etunimi") != null) { %><%=request.getAttribute("etunimi")%><%}%>"><%if (errors.get("etunimi") != null) {%><span class="error"><%=errors.get("etunimi") %></span><%} %>
 						</p>
 						<p>
-							<label>Email: </label><input type="text" name="email">
+							<label>Sukunimi: </label><input type="text" name="sukunimi" value="<%if (request.getAttribute("sukunimi") != null) { %><%=request.getAttribute("sukunimi")%><%}%>"><%if (errors.get("sukunimi") != null) {%><span class="error"><%=errors.get("sukunimi") %></span><%} %>
 						</p>
 						<p>
-							<label>Osoite: </label><input type="text" name="osoite">
+							<label>Puh: </label><input type="text" name="puh" value="<%if (request.getAttribute("puh") != null) { %><%=request.getAttribute("puh")%><%}%>"><%if (errors.get("puh") != null) {%><span class="error"><%=errors.get("puh") %></span><%} %>
 						</p>
 						<p>
-							<label>Postinumero: </label><input type="text" name="postinro">
+							<label>Email: </label><input type="text" name="email" value="<%if (request.getAttribute("email") != null) { %><%=request.getAttribute("email")%><%}%>"><%if (errors.get("email") != null) {%><span class="error"><%=errors.get("email") %></span><%} %>
+						</p>
+						<p>
+							<label>Osoite: </label><input type="text" name="osoite" value="<%if (request.getAttribute("osoite") != null) { %><%=request.getAttribute("osoite")%><%}%>"><%if (errors.get("osoite") != null) {%><span class="error"><%=errors.get("osoite") %></span><%} %>
+						</p>
+						<p>
+							<label>Postinumero: </label><input type="text" name="postinro" value="<%if (request.getAttribute("postinro") != null) { %><%=request.getAttribute("postinro")%><%}%>"><%if (errors.get("postinro") != null) {%><span class="error"><%=errors.get("postinro") %></span><%} %>
 						</p>
 						<p>
 							<label>Postitoimipaikka: </label><input type="text"
-								name="postitmp">
+								name="postitmp" value="<%if (request.getAttribute("postitmp") != null) { %><%=request.getAttribute("postitmp")%><%}%>"><%if (errors.get("postitmp") != null) {%><span class="error"><%=errors.get("postitmp") %></span><%} %>
 						</p>
 						<p>
-							<label>Lisätiedot: </label><input type="text" name="lisatiedot">
+							<label>Lisätiedot: </label><input type="text" name="lisatiedot" value="<%if (request.getAttribute("lisatiedot") != null) { %><%=request.getAttribute("lisatiedot")%><%}%>"><%if (errors.get("lisatiedot") != null) {%><span class="error"><%=errors.get("lisatiedot") %></span><%} %>
 						</p>
 						
-						<a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <input type="submit" value="Jatka tilausta" class="button2"></a>
+						<a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <input type="submit" value="Jatka tilausta" class="button2">
 						
 					</fieldset>
 				</form>
