@@ -4,8 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Juoma"%>
-<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>"
-	scope="request" />
+<%@ page import="pizzicato.model.Tilaus"%>
+<%@ page import="pizzicato.model.Tilausrivi"%>
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>" scope="request" />
+<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,6 +45,17 @@
 		</div>
 	</div>
 	</div>
+	
+	<div id="ostoskoributton3">
+			<form method="get">
+				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
+				kpl, yht. 
+				<div id="ostoskoributton4">
+					<a href="OstoskoriServlet">Ostoskoriin</a>
+				</div>
+				</form>
+			</div>
 
 	<div id="otsikkoloota">
 	
@@ -50,6 +63,7 @@
 <a href="ListaaJuomatServlet" class="juomabutton"><u><p2>Juomat</p2></u></a>
 
 </div>
+
 <div id="loota1">
 <div id="tuotelistataulukko">
 <div id="tablescoller">
@@ -79,7 +93,10 @@
 				<td width="5%"><%=juomanumero%></td>
 				<td width="40%"><b><%=juomat.get(i).getNimi()%></b>
 				<td width="5%"><%=decimal.format(juomat.get(i).getHinta())%></td>
-				<td width="5%"><input type=button value='  Lisää ostoskoriin  ' onClick='AddToCart(this.form)'></td>
+				<td width="5%"><form action="OstoskoriServlet" method="post"><div class="lisaakoriin"><input type="text" size=2 maxlength="2"
+							name="maara" value="1"> Määrä<input type="hidden" value="<%=juomat.get(i).getId()%>"
+									name="koriin"><input type="submit"
+							value='  Lisää ostoskoriin  '></div></form></td>
 			</tr>
 
 			<%
