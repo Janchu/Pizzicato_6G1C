@@ -295,6 +295,8 @@ font-family:Kozuka Gothic Pro EL;
 	
 	
 /* Janen jutut */	
+/* ---------------------------------------------------------------- */
+
 	
 label {
 	display: block;
@@ -329,6 +331,13 @@ div.mausteet {
 	float: left;
 	max-width: 192px;
 }
+
+.valkoinen {
+	color:white;
+}
+
+/* ---------------------------------------------------------------- */
+
 
    .showcss{ display:block;}
 

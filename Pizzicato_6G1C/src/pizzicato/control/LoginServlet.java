@@ -48,6 +48,9 @@ public class LoginServlet extends HttpServlet {
 			jsp.forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
+			int idInt = kayttaja.getId();
+			Long id = new Long(idInt);
+			session.setAttribute("id", id);
 			session.setAttribute("kayttaja", kayttaja);
 			
 			if (kayttaja.getTyyppi().equalsIgnoreCase("omistaja")) {
