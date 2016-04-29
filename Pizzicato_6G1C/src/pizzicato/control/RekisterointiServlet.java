@@ -150,32 +150,27 @@ public class RekisterointiServlet extends HttpServlet {
 			}
 		}
 
-			// Haetaan syötetty salasana validointia varten
-			String salasana = request.getParameter("kayttajaSalasana");
+		// Haetaan syötetty salasana validointia varten
+		String salasana = request.getParameter("kayttajaSalasana");
 
-			// Tarkistetaan, ettei kenttä ole tyhjä
-			if (salasana == null || salasana.trim().length() == 0) {
-				errors.put("salasana", "Salasana vaaditaan.");
-			} else {
-				if (salasana
-						.matches("\\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\\b") == false) {
-					errors.put("salasana", "Salasana on väärän muotoinen");
-				} else {
-					if (salasana.trim().length() > 30) {
-						errors.put("salasana", "Salasana on liian pitkä");
-					} else {
-						request.setAttribute("salasana", salasana);
-					}
-				}
+		// Tarkistetaan, ettei kenttä ole tyhjä
+		if (salasana == null || salasana.trim().length() == 0) {
+			errors.put("salasana", "Salasana vaaditaan.");
+		} else {
+			if (salasana.length() < 5 || salasana.length() > 20) {
+				errors.put("salasana", "Salasana saa olla 5-20 merkkiä");
 			}
 
-			// Haetaan syötetty puh validointia varten
-			String puh = request.getParameter("kayttajaPuh");
+			request.setAttribute("salasana", salasana);
+		}
 
-			// Tarkistetaan, ettei kenttä ole tyhjä
-			if (puh == null || puh.trim().length() == 0) {
-				errors.put("puh", "Puh vaaditaan.");
-			} else {
+		// Haetaan syötetty puh validointia varten
+		String puh = request.getParameter("kayttajaPuh");
+
+		// Tarkistetaan, ettei kenttä ole tyhjä
+		if (puh == null || puh.trim().length() == 0) {
+			errors.put("puh", "Puh vaaditaan.");
+		} else {
 			Pattern p = Pattern.compile("^[0-9\\+ ]+$");
 			Matcher m = p.matcher(puh);
 
@@ -196,7 +191,7 @@ public class RekisterointiServlet extends HttpServlet {
 		// Tarkistetaan, ettei kenttä ole tyhjä
 		if (osoite == null || osoite.trim().length() == 0) {
 			errors.put("osoite", "Osoite vaaditaan.");
-		}else {
+		} else {
 			if (osoite.trim().length() > 30) {
 				errors.put("osoite", "Osoite on liian pitkä");
 			} else {
@@ -214,8 +209,6 @@ public class RekisterointiServlet extends HttpServlet {
 				}
 			}
 		}
-
-		
 
 		// Haetaan syötetty postinro validointia varten
 		String postinro = request.getParameter("kayttajaPostinro");
@@ -266,7 +259,6 @@ public class RekisterointiServlet extends HttpServlet {
 			}
 		}
 
-
 		// Haetaan syötetty email validointia varten
 		String email = request.getParameter("kayttajaEmail");
 
@@ -285,8 +277,6 @@ public class RekisterointiServlet extends HttpServlet {
 				}
 			}
 		}
-
-
 
 		request.setAttribute("errors", errors);
 		request.setAttribute("uusiKayttaja", uusiKayttaja);
