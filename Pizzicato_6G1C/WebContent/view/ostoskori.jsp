@@ -108,12 +108,11 @@
 									type="submit" value="Poista korista" name="poista">
 							</form>
 						</td>
-						
-						
-						
-						
 					</tr>
-					
+					<tr >
+					<td bgcolor="#ccffcc"><b>Hinta yhteensä:</b></td>
+					<td bgcolor="#ccffcc"><b>€</b></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td>
+					</tr>					
 
 				
 

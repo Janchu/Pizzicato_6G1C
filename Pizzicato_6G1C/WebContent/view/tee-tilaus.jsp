@@ -1,8 +1,8 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<jsp:useBean id="errors" scope="request" type="java.util.HashMap"
-	class="java.util.HashMap" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="pizzicato.model.Kayttaja"%>
+<jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
+<jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,13 +33,20 @@
 		</div>
 
 		<div id="lootaoikea">
+			<% if (kayttaja.getTyyppi() != null) { %>
+			<span class="valkoinen">Tervetuloa, <%=kayttaja.getEtunimi() %></span>
 			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+		<% } else { %>
+			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
+			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
+		<% } %>
+
 		</div>
 
 	</div>
 
 	<div id="otsikkoloota">
-		<p style="margin-left: 15%;">Ostoskori</p>
+		<p2> </p>
 
 	</div>
 
@@ -89,8 +96,8 @@
 								name="postitmp" value="<%if (request.getAttribute("postitmp") != null) { %><%=request.getAttribute("postitmp")%><%}%>"><%if (errors.get("postitmp") != null) {%><span class="error"><%=errors.get("postitmp") %></span><%} %>
 						</p>
 						<p>
-							<label>Lisätiedot: </label><input type="text" name="lisatiedot" value="<%if (request.getAttribute("lisatiedot") != null) { %><%=request.getAttribute("lisatiedot")%><%}%>"><%if (errors.get("lisatiedot") != null) {%><span class="error"><%=errors.get("lisatiedot") %></span><%} %>
-						</p>
+							<label>Lisätiedot: </label><textarea rows="4" cols="50" value="<%if (request.getAttribute("lisatiedot") != null) { %><%=request.getAttribute("lisatiedot")%><%}%>"><%if (errors.get("lisatiedot") != null) {%><span class="error"><%=errors.get("lisatiedot") %></span><%} %>
+						</textarea></p>
 						
 						<a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <input type="submit" value="Jatka tilausta" class="button2">
 						
