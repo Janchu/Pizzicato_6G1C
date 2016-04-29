@@ -60,7 +60,7 @@
 		<% } %>
 		<legend>Tilaajan tiedot:</legend>
 		<p>
-		<label>Tilaaja: </label> <%=tilaaja.getSukunimi() %> <%=tilaaja.getEtunimi() %>
+		<label>Tilaaja: </label> <%=tilaaja.getEtunimi() %> <%=tilaaja.getSukunimi() %>
 		</p>
 		<p>
 		<label>Osoite: </label> <%=tilaaja.getOsoite() %>, <%=tilaaja.getPostinro() %> <%=tilaaja.getPostitmp() %>
@@ -70,6 +70,10 @@
 		</p>
 		</fieldset>
 		
+		<form method="post">
+		
+		<input type="submit" value="Tee tilaus" class="button2">
+		</form>
 	</div>
 
 	<%-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. --%>
