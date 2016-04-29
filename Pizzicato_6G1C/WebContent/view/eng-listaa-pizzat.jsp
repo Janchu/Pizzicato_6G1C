@@ -1,18 +1,22 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
+<%@ page import="pizzicato.model.Mauste"%>
+<%@ page import="pizzicato.model.Tilaus"%>
+<%@ page import="pizzicato.model.Tilausrivi"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
+<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
+<jsp:useBean id="mausteet" type="java.util.ArrayList<Mauste>" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>Pizzamenu</title>
+<title>Pizza menu</title>
 </head>
 <body>
 
@@ -28,15 +32,37 @@
 Open: Mon-Sat 11-21, Sun 12-18<br>
 +358 40 666 666<br>
 Kuusitie 66<br>
-Meilahti, 00270</p3>
+Meilahti, 00270
+</p3>
 </div>
 
 <div id="lootaoikea">
 <a href="LoginServlet" class="button2">Log In</a>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 <a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
+<div id="ostoskoributton2">
+			<form method="get">
+				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
+				kpl, yht. 
+				<div id="ostoskoributton1">
+					<a href="OstoskoriServlet">Ostoskoriin</a>
+				</div>
+				</form>
+			</div>
 </div>
 </div>
+
+<div id="ostoskoributton3">
+			<form method="get">
+				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
+				kpl, yht. 
+				<div id="ostoskoributton4">
+					<a href="OstoskoriServlet">Ostoskoriin</a>
+				</div>
+				</form>
+			</div>
 
 
 <div id="otsikkoloota"> <%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
@@ -54,16 +80,19 @@ Meilahti, 00270</p3>
 					<th>#</th>
 					<th>Name</th>
 					<th>Price</th>
+					<th>Spices</th>
 				</tr>
 
 				<%
-					DecimalFormat decimal = new DecimalFormat("0.00");
-					int pizzanumero = 0;
-					for (int i = 0; i < pizzat.size(); i++) {
-
-						if (pizzat.get(i).getNakyvyys() == 1) {
-							pizzanumero++;
-				%>
+						DecimalFormat decimal = new DecimalFormat("0.00");
+						int pizzanumero = 0;
+						for (int i = 0; i < pizzat.size(); i++) {
+							if (pizzat.get(i).getTyyppi().equalsIgnoreCase("pizza")
+									|| pizzat.get(i).getTyyppi()
+											.equalsIgnoreCase("fantasia")) {
+								if (pizzat.get(i).getNakyvyys() == 1) {
+									pizzanumero++;
+					%>
 
 				<tr>
 					<td width="10px"><%=pizzanumero%></td>
@@ -73,9 +102,23 @@ Meilahti, 00270</p3>
  					} %>
  					</td>
 					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
+					<td width="400px"><form action="OstoskoriServlet" method="post">
+						<div class="mausteet">
+						<% for (int j = 0; j < mausteet.size(); j++) { %>
+							
+							
+							<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>"><%=mausteet.get(j).getNimi() %></div>
+							
+						<%} %></div>
+						<div class="lisaakoriin"><input type="text" size=2 maxlength="2"
+							name="maara" value="1"> Määrä<input type="hidden" value="<%=pizzat.get(i).getId()%>"
+									name="koriin"><input type="submit"
+							value='  Lisää ostoskoriin  '></div></form>
+							</td>
 				</tr>
 				<%
 					}
+						                   	}
 					}
 				%>
 			</table>

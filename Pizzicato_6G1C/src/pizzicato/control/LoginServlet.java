@@ -56,6 +56,7 @@ public class LoginServlet extends HttpServlet {
 			if (kayttaja.getTyyppi().equalsIgnoreCase("omistaja")) {
 				response.sendRedirect("OmistajaListaaPizzatServlet");
 			} else {
+
 				response.sendRedirect("ListaaPizzatServlet");
 			}
 		}

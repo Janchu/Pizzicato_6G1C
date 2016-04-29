@@ -1,17 +1,19 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="pizzicato.model.Juoma"%>
 <%@ page import="pizzicato.model.Tuote"%>
+<%@ page import="pizzicato.model.Juoma"%>
+<%@ page import="pizzicato.model.Tilaus"%>
+<%@ page import="pizzicato.model.Tilausrivi"%>
 <jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>" scope="request" />
+<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>Drinkmenu</title>
+<title>Drink menu</title>
 </head>
 <body>
 
@@ -35,9 +37,29 @@
 				src="images/uklib4.png" width="32" height="32"></a> <a
 				href="ListaaJuomatServlet"><img alt="lib"
 				src="images/finlib.png" width="32" height="32"></a>
+				<div id="ostoskoributton2">
+			<form method="get">
+				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
+				kpl, yht. 
+				<div id="ostoskoributton1">
+					<a href="OstoskoriServlet">Ostoskoriin</a>
+				</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	
+	<div id="ostoskoributton3">
+			<form method="get">
+				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
+				kpl, yht. 
+				<div id="ostoskoributton4">
+					<a href="OstoskoriServlet">Ostoskoriin</a>
+				</div>
+				</form>
+			</div>
 
 	<div id="otsikkoloota">
 		<%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
@@ -55,24 +77,32 @@
 						<th>#</th>
 						<th>Name</th>
 						<th>Price</th>
+						<th></th>
 					</tr>
 
 					<%
-						DecimalFormat decimal = new DecimalFormat("0.00");
-						int juomanumero = 0;
-						for (int i = 0; i < juomat.size(); i++) {
+				DecimalFormat decimal = new DecimalFormat("0.00");
+				int juomanumero = 0;
+				for (int i = 0; i < juomat.size(); i++) {
 
-							if (juomat.get(i).getNakyvyys() == 1) {
-								juomanumero++;
-					%>
+					if (juomat.get(i).getTyyppi().equalsIgnoreCase("juoma")) {
+
+						if (juomat.get(i).getNakyvyys() == 1) {
+							juomanumero++;
+			%>
 
 					<tr>
 						<td width="10px"><%=juomanumero%></td>
 						<td><b><%=juomat.get(i).getNimi()%></b></td>
 						<td width="50px"><%=decimal.format(juomat.get(i).getHinta())%></td>
+						<td><form action="OstoskoriServlet" method="post"><div class="lisaakoriin"><input type="text" size=2 maxlength="2"
+							name="maara" value="1"> Määrä<input type="hidden" value="<%=juomat.get(i).getId()%>"
+									name="koriin"><input type="submit"
+							value='  Lisää ostoskoriin  '></div></form></td>
 					</tr>
 					<%
 						}
+					}
 						}
 					%>
 				</table>
