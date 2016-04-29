@@ -196,7 +196,7 @@ public class TeeTilausServlet extends HttpServlet {
 		if (osoite == null || osoite.trim().length() == 0) {
 			errors.put("osoite", "Osoite vaaditaan");
 		} else {
-			if (email.trim().length() > 30) {
+			if (osoite.trim().length() > 30) {
 				errors.put("osoite", "Osoite on liian pitkä");
 			} else {
 
