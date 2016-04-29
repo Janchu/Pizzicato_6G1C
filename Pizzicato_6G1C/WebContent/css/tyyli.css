@@ -233,12 +233,8 @@ div.pakollinenLoota {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-
     margin: 4px 2px;
     cursor: pointer;
-	
-
-	
 }
 
 
@@ -250,14 +246,40 @@ div.pakollinenLoota {
     text-align: center;
     text-decoration: none;
     display: inline-block;
- 
     margin: 4px 2px;
 	border-radius:10px;
-	position:fixed;
-	top: 4%;
-	right:15.5%;
 	
 }
+
+#ostoskoributton3{
+
+    background-color: #6FD630;
+    border: none;
+    color: white;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left:15%;
+    border-radius:10px;
+}
+
+
+#ostoskoributton4 {
+ background-color: #6FD630;
+    border: none;
+    color: white;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    
+	border-radius:10px;
+	
+}
+
 p4 	{font-size: 1vw;}
 	
 p2 {font-size: 2vw;}
@@ -314,7 +336,12 @@ div.mausteet {
   
   @media only screen and (max-width: 1680px) {
 #nappulasijainti {
-display:none;}}
+display:none;}
+#ostoskoributton1 {
+display:none;}
+#ostoskoributton2 {
+display:none;}
+}
 
 @media only screen and (max-width: 1000px) {
 
@@ -353,6 +380,10 @@ p3 {font-size: 1em;}
 
 @media only screen and (min-width: 1681px) {
 #nappulasijainti2 {
+display:none;}
+#ostoskoributton3 {
+display:none;}
+#ostoskoributton4 {
 display:none;}
 }
 
