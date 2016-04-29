@@ -18,8 +18,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Listaa pizzat</title>
 </head>
 <body>
@@ -37,11 +36,10 @@
 		</div>
 
 		<div id="lootakeski">
-			<p
-				style="margin-top: 100px; font-size: 170%; font-family: Kozuka Gothic Pro EL;">
+			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
-			</p>
+			</p3>
 		</div>
 
 		<div id="lootaoikea">
@@ -55,7 +53,7 @@
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
-				kpl, yht. 7,00€
+				kpl, yht. 
 				<div id="ostoskoributton1">
 					<a href="OstoskoriServlet">Ostoskoriin</a>
 				</div>
@@ -63,13 +61,24 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="ostoskoributton3">
+			<form method="get">
+				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
+				kpl, yht. 
+				<div id="ostoskoributton4">
+					<a href="OstoskoriServlet">Ostoskoriin</a>
+				</div>
+				</form>
+			</div>
 
 
 	<%-- Otsikkoloota on ainoastaan sitä varten, että saa taulukon otsikon kokoa ja sijaintia muutettua--%>
 
 	<div id="otsikkoloota">
-		<a href="ListaaPizzatServlet" class="pizzalistabutton"><u>Pizzalista</u></a>
-		<a href="ListaaJuomatServlet" class="juomabutton">Juomat</a>
+		<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizzalista</u></p2></a>
+		<a href="ListaaJuomatServlet" class="juomabutton"><p2>Juomat</p2></a>
 	</div>
 
 	<div id="loota1">
@@ -81,7 +90,7 @@
 				
 				<table>
 					<tr>
-						<th>Numero</th>
+						<th>#</th>
 						<th>Nimi</th>
 						<th>Hinta</th>
 						<th>Mausteet</th>
@@ -99,7 +108,7 @@
 									pizzanumero++;
 					%>
 					<tr>
-						<td width="100px"><%=pizzanumero%></td>
+						<td width="10px"><%=pizzanumero%></td>
 						<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
 							for (int j = 0; j < pizzat.get(i).getTaytelista()
 												.size(); j++) {
