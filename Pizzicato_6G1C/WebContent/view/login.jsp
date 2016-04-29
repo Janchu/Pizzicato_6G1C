@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Kirjaudu sisään</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Kirjaudu sisÃ¤Ã¤n</title>
 </head>
 <body>
 	<div id="loginloota">
 		<form method="post">
-			<h3>Käyttäjätunnus:</h3>
+			<h3>KÃ¤yttÃ¤jÃ¤tunnus:</h3>
 			<input type="text" name="kayttajatunnus" required>
 			<h3>Salasana:</h3>
 			<input type="password" name="salasana" required> <br>
@@ -20,8 +20,8 @@
 					out.println("<p>" + message + "</p>");
 				}
 			%>
-			<br> <input type="Submit" class="button" value="Kirjaudu sisään"><a
-				href="ListaaPizzatServlet" class="button">Peruuta</a>
+			<br> <input type="Submit" class="button2" value="Kirjaudu sisÃ¤Ã¤n"><a
+				href="ListaaPizzatServlet" class="button2">Peruuta</a>
 		</form>
 	</div>
 </body>
