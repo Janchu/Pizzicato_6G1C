@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
+import pizzicato.model.Tilausrivi;
 import pizzicato.model.dao.TilausDAO;
 
 /**
@@ -43,13 +44,23 @@ public class YhteenvetoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
 		
-		TilausDAO tilausdao = new TilausDAO();
-		ArrayList<Tilaus> tilaukset = tilausdao.findAll();
+		Tilaus tilaus = (Tilaus) session.getAttribute("tilaus");
+		//Kayttaja tilaaja = (Kayttaja) session.getAttribute("tilaaja");
 		
-		request.setAttribute("tilaukset", tilaukset);
+		//TilausDAO tilausdao = new TilausDAO();
 		
-		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/yhteenveto.jsp");
+		//try {
+		//tilausdao.addTilaus(tilaus, tilaaja);
+		//} catch (Exception e) {
+		//	response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp");
+		//}
+		
+		ArrayList<Tilausrivi> uusiTilausrivit = new ArrayList<Tilausrivi>();
+		
+		tilaus.setTilausrivit(uusiTilausrivit);
+				
 		response.sendRedirect("ListaaPizzatServlet");
 		
 	}

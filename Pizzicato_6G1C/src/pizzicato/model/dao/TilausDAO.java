@@ -44,7 +44,7 @@ public class TilausDAO extends DataAccessObject {
 		return tilauslista;
 	}
 
-	public void addTilaus(Tilaus tilaus, Kayttaja tilaaja, Tilausrivi tilausrivi) throws SQLException {
+	public void addTilaus(Tilaus tilaus, Kayttaja tilaaja) throws SQLException {
 		
 		// Alustetaan Connection- ja PreparedStatement-oliot nulleiksi ennen
 		// try-catchia
@@ -60,15 +60,6 @@ public class TilausDAO extends DataAccessObject {
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
-			stmtInsert = connection.prepareStatement("INSERT INTO tilaavaasiakas (id, etunimi, sukunimi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?);");
-			stmtInsert.setString(1, tilaaja.getEtunimi());
-			stmtInsert.setString(2, tilaaja.getSukunimi());
-			stmtInsert.setString(3, tilaaja.getOsoite());
-			stmtInsert.setString(4, tilaaja.getPuh());
-			stmtInsert.setString(5, tilaaja.getEmail());
-			stmtInsert.setString(6, tilaaja.getPostinro());
-			stmtInsert.close();
-			
 			stmtInsert = connection.prepareStatement("INSERT INTO tilaus (id, tila, maksutapa, toimitus, lisatiedot, kayttaja_id, yhthinta) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?);");
 			stmtInsert.setString(1, tilaus.getTila());
 			stmtInsert.setString(2, tilaus.getMaksutapa());
@@ -76,13 +67,27 @@ public class TilausDAO extends DataAccessObject {
 			stmtInsert.setString(4, tilaus.getLisatiedot());
 			stmtInsert.setInt(5, tilaaja.getId());
 			stmtInsert.setDouble(6, tilaus.getYhthinta());
+			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
+			stmtInsert = connection.prepareStatement("INSERT INTO tilaavaasiakas (id, etunimi, sukunimi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?);");
+			stmtInsert.setString(1, tilaaja.getEtunimi());
+			stmtInsert.setString(2, tilaaja.getSukunimi());
+			stmtInsert.setString(3, tilaaja.getOsoite());
+			stmtInsert.setString(4, tilaaja.getPuh());
+			stmtInsert.setString(5, tilaaja.getEmail());
+			stmtInsert.setString(6, tilaaja.getPostinro());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+
+			
+			for (int i = 0; i < tilaus.getTilausrivit().size(); i++) {
 			stmtInsert = connection.prepareStatement("INSERT INTO tuotteentilaus (tilaus_id, lkm, tuote_id) VALUES ('last_insert_id()', ?, ?);");
-			stmtInsert.setInt(1, tilausrivi.getLkm());
-			stmtInsert.setInt(2, tilausrivi.getTilattuTuote().getId());
-			
-			
+			stmtInsert.setInt(1, tilaus.getTilausrivit().get(i).getLkm());
+			stmtInsert.setInt(2, tilaus.getTilausrivit().get(i).getTilattuTuote().getId());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+			}
 			
 			
 		} catch (SQLException e) {
