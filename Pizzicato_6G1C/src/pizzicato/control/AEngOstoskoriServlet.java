@@ -40,7 +40,7 @@ public class AEngOstoskoriServlet extends HttpServlet {
 
 		request.setAttribute("ostoskori", tilausrivit);
 
-		String jsp = "/view/ostoskori.jsp";
+		String jsp = "/view/aeng-ostoskori.jsp";
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
@@ -137,6 +137,6 @@ public class AEngOstoskoriServlet extends HttpServlet {
 
 		request.setAttribute("pizzat", pizzat);
 
-		response.sendRedirect("ListaaPizzatServlet");
+		response.sendRedirect("AEngListaaPizzatServlet");
 	}
 }

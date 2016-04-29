@@ -31,7 +31,7 @@ public class EngRekisterointiServlet extends HttpServlet {
 				request.setAttribute("kayttajat", kayttajat);
 
 				// Lähetetään jsp:lle
-				String jsp = "/view/rekisterointi.jsp";
+				String jsp = "/view/eng-rekisterointi.jsp";
 				RequestDispatcher dispatcher = getServletContext()
 						.getRequestDispatcher(jsp);
 				dispatcher.forward(request, response);
@@ -47,7 +47,7 @@ public class EngRekisterointiServlet extends HttpServlet {
 				request.setAttribute("kayttajat", kayttajat);
 				
 				RequestDispatcher jsp = getServletContext().getRequestDispatcher(
-						"/view/rekisterointi.jsp");
+						"/view/eng-rekisterointi.jsp");
 				
 				
 				HashMap<String, String> errors = validateRekisteroi(request);
@@ -87,7 +87,7 @@ public class EngRekisterointiServlet extends HttpServlet {
 						kayttajadao.create(uusiKayttaja);
 
 						// Uudelleenohjataan Etusivulle
-						response.sendRedirect("ListaaPizzatServlet");
+						response.sendRedirect("EngListaaPizzatServlet");
 
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
