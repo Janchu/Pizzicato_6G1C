@@ -59,18 +59,21 @@
 				<%=korityhja%>
 				<a href="ListaaPizzatServlet" class="button2">Etusivulle</a>
 
-				<table>
-
-					<tr>
-						<td>Nimi</td>
-						<td>Hinta</td>
-						<td>Lkm</td>
-						<td>Mausteet</td>
-						<td></td>
-					</tr>	
+				
 
 						<%
 							} else {
+								
+								%>
+								<table>
+
+								<tr>
+									<th>Nimi</th>
+									<th>Hinta</th>
+									<th>Lkm</th>
+									<th>Mausteet</th>
+									<th></th>
+								</tr>	<%
 								
 								ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
 
@@ -82,8 +85,10 @@
 								}
 						%>
 					
+					
+					
 					<tr>
-						<td><%=ostoskori.get(i).getTilattuTuote().getNimi()%> <% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }} %></td>
+						<td><b><%=ostoskori.get(i).getTilattuTuote().getNimi()%></b><br> <% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }} %></td>
 						<td><%=ostoskori.get(i).getTilattuTuote().getHinta()%></td>
 						<td><%=ostoskori.get(i).getLkm()%></td>
 						<td><% for (int j = 0; j < ostoskori.get(i).getMaustelista().size(); j++) {%> <%=ostoskori.get(i).getMaustelista().get(j).getNimi() %> <% } %></td>
@@ -93,16 +98,20 @@
 									type="submit" value="Poista korista" name="poista">
 							</form>
 						</td>
+						
+						
+						
+						
 					</tr>
 					
 
-				</table>
+				
 
 
 
 				<%
 					}
-				%><a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
+				%></table><a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
 					href="TeeTilausServlet" class="button2">Jatka tilausta</a>
 				<%
 					}
