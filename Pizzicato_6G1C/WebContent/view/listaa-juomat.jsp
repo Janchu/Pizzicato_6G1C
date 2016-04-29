@@ -6,8 +6,10 @@
 <%@ page import="pizzicato.model.Juoma"%>
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
+<%@ page import="pizzicato.model.Kayttaja"%>
 <jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>" scope="request" />
 <jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
+<jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,7 +35,13 @@
 		</div>
 
 		<div id="lootaoikea">
+			<% if (kayttaja.getTyyppi() != null) { %>
+			<span class="valkoinen">Tervetuloa, <%=kayttaja.getEtunimi() %></span>
 			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+		<% } else { %>
+			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
+			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
+		<% } %>
 			<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<div id="ostoskoributton2">
@@ -99,7 +107,8 @@
 				<td width="5%"><%=decimal.format(juomat.get(i).getHinta())%></td>
 				<td width="5%"><form action="OstoskoriServlet" method="post"><div class="lisaakoriin"><input type="text" size=2 maxlength="2"
 							name="maara" value="1"> Määrä<input type="hidden" value="<%=juomat.get(i).getId()%>"
-									name="koriin"><input type="submit"
+									name="koriin"><input type="hidden" value="juoma"
+									name="tyyppi"><input type="submit"
 							value='  Lisää ostoskoriin  '></div></form></td>
 			</tr>
 
