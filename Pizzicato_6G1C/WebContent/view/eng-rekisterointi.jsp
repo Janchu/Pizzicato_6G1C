@@ -147,7 +147,7 @@
 			<p>
 				Pizzeria Pizzicato<br> Phone: +358 40 666 666<br>
 				Email: pizzeria.pizzicato@gmail.com<br> Street address:
-				Kuusitie 66 <br> Postal area: Meilahti, 00270 <br>
+				Kuusitie  66 <br> Postal area: Meilahti, 00270 <br>
 			</p>
 		</div>
 	</div>
