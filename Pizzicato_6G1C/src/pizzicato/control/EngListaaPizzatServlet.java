@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pizzicato.model.Kayttaja;
+import pizzicato.model.Mauste;
 import pizzicato.model.Pizza;
-import pizzicato.model.Tayte;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
+import pizzicato.model.dao.MausteDAO;
 import pizzicato.model.dao.PizzaDAO;
-import pizzicato.model.dao.TayteDAO;
 
 /**
  * Servlet implementation class ListaaPizzatServlet
@@ -32,6 +33,9 @@ public class EngListaaPizzatServlet extends HttpServlet {
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
 
+		MausteDAO maustedao = new MausteDAO();
+		ArrayList<Mauste> mausteet = maustedao.findAll();
+
 		HttpSession session = request.getSession();
 		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
 
@@ -42,10 +46,19 @@ public class EngListaaPizzatServlet extends HttpServlet {
 
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 
-		System.out.println(tilausrivit);
+		// Käyttäjän checkaus
+		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
+		System.out.println(kayttaja);
+		if (kayttaja == null) {
+			kayttaja = new Kayttaja();
+			System.out.println(kayttaja);
+		}
+		request.setAttribute("kayttaja", kayttaja);
 
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		// Tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("pizzat", pizzat);
+		request.setAttribute("mausteet", mausteet);
+		request.setAttribute("ostoskori", tilausrivit);
 
 		// Lähetetään jsp:lle
 		String jsp = "/view/eng-listaa-pizzat.jsp";

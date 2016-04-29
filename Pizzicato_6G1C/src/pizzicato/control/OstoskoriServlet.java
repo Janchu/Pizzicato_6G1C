@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pizzicato.model.Juoma;
 import pizzicato.model.Mauste;
 import pizzicato.model.Pizza;
 import pizzicato.model.Tayte;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
+import pizzicato.model.dao.JuomaDAO;
 import pizzicato.model.dao.MausteDAO;
 import pizzicato.model.dao.PizzaDAO;
 
@@ -56,11 +58,10 @@ public class OstoskoriServlet extends HttpServlet {
 
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
-
-		Pizza tilattuPizza = new Pizza();
-
 		MausteDAO maustedao = new MausteDAO();
 		ArrayList<Mauste> maustelista = maustedao.findAll();
+		JuomaDAO juomadao = new JuomaDAO();
+		ArrayList<Juoma> juomat = juomadao.findAll();
 
 		HttpSession session = request.getSession();
 		ostoskori = (Tilaus) session.getAttribute("ostoskori");
@@ -72,11 +73,15 @@ public class OstoskoriServlet extends HttpServlet {
 
 		String idStr = request.getParameter("koriin");
 		int id = new Integer(idStr);
-
-		System.out.println(idStr);
+		String tyyppi = request.getParameter("tyyppi");
 
 		Tilausrivi uusiTilausrivi = new Tilausrivi();
 
+		
+		
+		if (tyyppi.equalsIgnoreCase("pizza")) {
+		
+		Pizza tilattuPizza = new Pizza();
 		String[] mausteet = request.getParameterValues("mauste");
 		ArrayList<Mauste> uudetMausteet = new ArrayList<Mauste>();
 
@@ -88,6 +93,7 @@ public class OstoskoriServlet extends HttpServlet {
 				tilattuPizza.setHinta(pizzat.get(i).getHinta());
 				tilattuPizza.setNimi(pizzat.get(i).getNimi());
 				tilattuPizza.setTyyppi(pizzat.get(i).getTyyppi());
+				System.out.println("Ahuehue" + tilattuPizza.getTyyppi());
 
 				if (tilattuPizza.getTyyppi().equalsIgnoreCase("pizza")) {
 					for (int j = 0; j < pizzat.size(); j++) {
@@ -110,9 +116,7 @@ public class OstoskoriServlet extends HttpServlet {
 										.getNimi();
 								Mauste mauste = new Mauste();
 								mauste.setNimi(mausteNimi);
-								System.out.println(mauste);
 								uudetMausteet.add(mauste);
-								System.out.println(uudetMausteet);
 							}
 						}
 
@@ -129,10 +133,27 @@ public class OstoskoriServlet extends HttpServlet {
 
 			}
 		}
+		} else if (tyyppi.equalsIgnoreCase("juoma")) {
+			
+			Juoma tilattuJuoma = new Juoma();
+			
+			for (int i = 0; i < juomat.size(); i++) {
+				if (juomat.get(i).getId() == id) {
+					tilattuJuoma.setId(id);
+					tilattuJuoma.setNimi(juomat.get(i).getNimi());
+					tilattuJuoma.setHinta(juomat.get(i).getHinta());
+					tilattuJuoma.setTyyppi(juomat.get(i).getTyyppi());
+				}
+			}
+			
+			String lkmStr = request.getParameter("maara");
+			int lkm = new Integer(lkmStr);
+			
+			uusiTilausrivi.setLkm(lkm);
+			uusiTilausrivi.setTilattuTuote(tilattuJuoma);
+			ostoskori.addTilausrivi(uusiTilausrivi);
+		}
 
-		System.out.println(ostoskori);
-
-		System.out.println(ostoskori.getTilausrivit().get(0).getMaustelista());
 
 		session.setAttribute("ostoskori", ostoskori);
 

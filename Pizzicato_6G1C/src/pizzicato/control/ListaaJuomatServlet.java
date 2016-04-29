@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Juoma;
+import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
 import pizzicato.model.dao.JuomaDAO;
@@ -40,9 +41,14 @@ public class ListaaJuomatServlet extends HttpServlet {
 
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 
-		System.out.println(tilausrivit);
-
-		System.out.println(juomat);
+		// Käyttäjän checkaus
+		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
+		System.out.println(kayttaja);
+		if (kayttaja == null) {
+			kayttaja = new Kayttaja();
+			System.out.println(kayttaja);
+		}
+		request.setAttribute("kayttaja", kayttaja);
 
 		// Arraylist tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("juomat", juomat);

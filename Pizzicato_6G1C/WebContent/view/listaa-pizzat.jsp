@@ -28,6 +28,11 @@
 
 	<div id="logoloota">
 		<div id="lootavasen">
+		<a
+				href="EngListaaPizzatServlet"><img alt="lib"
+				src="images/uklib4.png" width="32" height="32"></a> <a
+				href="ListaaPizzatServlet"><img alt="lib"
+				src="images/finlib.png" width="32" height="32"></a>
 			<div class="logo">
 				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
 					src="images/pizzalogofin.png" height="100%" width="100%"></a>
@@ -50,12 +55,8 @@
 			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
 		<% } %>
 
-			
-			 <a
-				href="EngListaaPizzatServlet"><img alt="lib"
-				src="images/uklib4.png" width="32" height="32"></a> <a
-				href="ListaaPizzatServlet"><img alt="lib"
-				src="images/finlib.png" width="32" height="32"></a><br>
+			<br>
+			 
 			<div id="ostoskoributton2">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
@@ -141,8 +142,9 @@
 							
 						<%} %></div>
 						<div class="lisaakoriin"><input type="text" size=2 maxlength="2"
-							name="maara" value="1"> Määrä<input type="hidden" value="<%=pizzat.get(i).getId()%>"
-									name="koriin"><input type="submit"
+							name="maara" value="1"> kpl<input type="hidden" value="<%=pizzat.get(i).getId()%>"
+									name="koriin"><input type="hidden" value="pizza"
+									name="tyyppi"><input type="submit"
 							value='  Lisää ostoskoriin  '></div></form>
 							</td>
 

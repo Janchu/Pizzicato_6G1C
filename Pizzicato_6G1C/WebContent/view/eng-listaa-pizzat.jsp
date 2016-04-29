@@ -6,10 +6,12 @@
 <%@ page import="pizzicato.model.Tayte"%>
 <%@ page import="pizzicato.model.Mauste"%>
 <%@ page import="pizzicato.model.Tilaus"%>
+<%@ page import="pizzicato.model.Kayttaja"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
 <jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
 <jsp:useBean id="mausteet" type="java.util.ArrayList<Mauste>" scope="request" />
+<jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,7 +39,13 @@ Meilahti, 00270
 </div>
 
 <div id="lootaoikea">
-<a href="LoginServlet" class="button2">Log In</a>
+<% if (kayttaja.getTyyppi() != null) { %>
+			<span class="valkoinen">Welcome, <%=kayttaja.getEtunimi() %></span>
+			<a href="LogoutServlet" class="button2">Log out</a>
+		<% } else { %>
+			<a href="RekisterointiServlet" class="button2">Register</a>
+			<a href="LoginServlet" class="button2">Log in</a>
+		<% } %>
 <a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
 <a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
 <div id="ostoskoributton2">
@@ -67,7 +75,7 @@ Meilahti, 00270
 
 <div id="otsikkoloota"> <%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
 <a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizza menu</u></p2></a>
-<a href="ListaaJuomatServlet" class="juomabutton"><p2>Drinks</p2></a>
+<a href="EngListaaJuomatServlet" class="juomabutton"><p2>Drinks</p2></a>
 </div>
 
 <div id="loota1">
@@ -107,13 +115,13 @@ Meilahti, 00270
 						<% for (int j = 0; j < mausteet.size(); j++) { %>
 							
 							
-							<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>"><%=mausteet.get(j).getNimi() %></div>
+							<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>"><%=mausteet.get(j).getNimi_eng() %></div>
 							
 						<%} %></div>
 						<div class="lisaakoriin"><input type="text" size=2 maxlength="2"
-							name="maara" value="1"> Määrä<input type="hidden" value="<%=pizzat.get(i).getId()%>"
+							name="maara" value="1"> pc<input type="hidden" value="<%=pizzat.get(i).getId()%>"
 									name="koriin"><input type="submit"
-							value='  Lisää ostoskoriin  '></div></form>
+							value='  Add to cart  '></div></form>
 							</td>
 				</tr>
 				<%

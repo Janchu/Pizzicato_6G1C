@@ -5,8 +5,10 @@
 <%@ page import="pizzicato.model.Juoma"%>
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
+<%@ page import="pizzicato.model.Kayttaja"%>
 <jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>" scope="request" />
 <jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
+<jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -32,8 +34,14 @@
 		</div>
 
 		<div id="lootaoikea">
-			<a href="LoginServlet" class="button2">Log In</a> <a
-				href="EngListaaJuomatServlet"><img alt="lib"
+			<% if (kayttaja.getTyyppi() != null) { %>
+			<span class="valkoinen">Welcome, <%=kayttaja.getEtunimi() %></span>
+			<a href="LogoutServlet" class="button2">Log out</a>
+		<% } else { %>
+			<a href="RekisterointiServlet" class="button2">Register</a>
+			<a href="LoginServlet" class="button2">Log in</a>
+		<% } %>
+				<a href="EngListaaJuomatServlet"><img alt="lib"
 				src="images/uklib4.png" width="32" height="32"></a> <a
 				href="ListaaJuomatServlet"><img alt="lib"
 				src="images/finlib.png" width="32" height="32"></a>
@@ -96,9 +104,9 @@
 						<td><b><%=juomat.get(i).getNimi()%></b></td>
 						<td width="50px"><%=decimal.format(juomat.get(i).getHinta())%></td>
 						<td><form action="OstoskoriServlet" method="post"><div class="lisaakoriin"><input type="text" size=2 maxlength="2"
-							name="maara" value="1"> Määrä<input type="hidden" value="<%=juomat.get(i).getId()%>"
+							name="maara" value="1"> pc<input type="hidden" value="<%=juomat.get(i).getId()%>"
 									name="koriin"><input type="submit"
-							value='  Lisää ostoskoriin  '></div></form></td>
+							value='  Add to cart  '></div></form></td>
 					</tr>
 					<%
 						}

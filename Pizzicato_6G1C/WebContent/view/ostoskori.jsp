@@ -88,10 +88,10 @@
 					
 					
 					<tr>
-						<td><b><%=ostoskori.get(i).getTilattuTuote().getNimi()%></b><br> <% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }} %></td>
+						<td><b><%=ostoskori.get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
 						<td><%=ostoskori.get(i).getTilattuTuote().getHinta()%></td>
 						<td><%=ostoskori.get(i).getLkm()%></td>
-						<td><% for (int j = 0; j < ostoskori.get(i).getMaustelista().size(); j++) {%> <%=ostoskori.get(i).getMaustelista().get(j).getNimi() %> <% } %></td>
+						<td><% if (ostoskori.get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.get(i).getMaustelista().size(); j++) {%> <%=ostoskori.get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>
 						<td>
 							<form action="PoistaKoristaServlet" method="post">
 								<input type="hidden" value="<%=i%>" name="id"><input

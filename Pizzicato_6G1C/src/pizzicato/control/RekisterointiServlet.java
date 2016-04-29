@@ -12,8 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Kayttaja;
+import pizzicato.model.Tilaus;
+import pizzicato.model.Tilausrivi;
 import pizzicato.model.dao.KayttajaDAO;
 
 /**
@@ -26,6 +29,16 @@ public class RekisterointiServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		// Sessio
+		HttpSession session = request.getSession();
+		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
+		if (ostoskori == null) {
+			ostoskori = new Tilaus();
+		}
+		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
+		request.setAttribute("ostoskori", tilausrivit);
+		
+		
 		// Luodaan KayttajaDAO, ja molemmille ArrayListit
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		ArrayList<Kayttaja> kayttajat = kayttajadao.findAll();
