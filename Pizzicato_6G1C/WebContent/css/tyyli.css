@@ -54,12 +54,13 @@ font-weight:bold;
 /* td padding lisää tilaa taulukon vaakasolun ympärillä */
 #tuotelistataulukko	td {
 padding:20px;
+padding-left:10px;
 }
 
 /* th padding-left siirtää taulukon otsikkosolua samalle tasolle muun tekstin kanssa*/
 #tuotelistataulukko th, td {
     text-align: left;
-	padding-left:20px;  
+	padding-left:10px;  
 }
 
 /* TÄRKEÄ, tekee PIZZALISTATAULUKON joka toisen vaakarivin eriväriseksi*/
@@ -146,6 +147,10 @@ position:fixed;
 top: 50%;
 right:15.5%;
 }
+
+#nappulasijainti2 {
+margin-left:15%;
+}
 	
 /* Vihreän nappulan class, joka määrittää sen ominaisuudet */
 	.button {
@@ -156,7 +161,7 @@ right:15.5%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 0.8vw;
     margin: 4px 2px;
     cursor: pointer;
 	border-radius:10px;
@@ -170,7 +175,7 @@ right:15.5%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1vw;
     margin: 4px 2px;
     cursor: pointer;
 	border-radius:10px;
@@ -224,11 +229,11 @@ div.pakollinenLoota {
     background-color: #6FD630;
     border: none;
     color: white;
-    padding: 13px 10px;
+    padding: 1px 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+
     margin: 4px 2px;
     cursor: pointer;
 	
@@ -241,11 +246,11 @@ div.pakollinenLoota {
  background-color: #6FD630;
     border: none;
     color: white;
-    padding: 5px 10px;
+    padding: 2px 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+ 
     margin: 4px 2px;
 	border-radius:10px;
 	position:fixed;
@@ -253,9 +258,9 @@ div.pakollinenLoota {
 	right:15.5%;
 	
 }
+p4 	{font-size: 1vw;}
 	
-	
-p2 {font-size: 4vw;}
+p2 {font-size: 2vw;}
 
 p3 {font-size: 1.5vw;
 font-family:Kozuka Gothic Pro EL;
@@ -318,11 +323,46 @@ div.mausteet {
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-@media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    [class*="col-"] {
-        width: 100%;
-    }
+
    .showcss{ display:block;}
+
   .hidecss{ display:none;}
+  
+  @media only screen and (max-width: 1680px) {
+#nappulasijainti {
+display:none;}}
+
+@media only screen and (max-width: 1000px) {
+
+#logoloota {width:100%;
+height:22%;
+margin-left:0;}
+#otsikkoloota {width:100%;
+margin-left:0;}
+#loota1 {width:100%;
+margin-left:0;}
+#footer {width:100%;
+margin-left:0;}
+#tuotelistataulukko table {width:100%;
+margin-left:0;}
+#tuotelistataulukko	td {
+padding:0;
+padding-left:10px;
+}
+#tuotelistataulukko th, td {
+	padding-left:10px;  
+}
+
+p4 	{font-size: 3vw;}
+p2 {font-size: 16px;}
+p3 {font-size: 1em;}
+
+.button2 {font-size:3vw;}
+.button {font-size:3vw;}
+}
+
+@media only screen and (min-width: 1681px) {
+#nappulasijainti2 {
+display:none;}
+}
 
