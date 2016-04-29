@@ -137,7 +137,7 @@ public class RekisterointiServlet extends HttpServlet {
 				String uusiEtunimi = etunimi.replace('ä', 'a');
 				uusiEtunimi = etunimi.replace('å', 'a');
 				uusiEtunimi = etunimi.replace('ö', 'o');
-				request.setAttribute("etunimi", uusiEtunimi);
+				uusiKayttaja.setEtunimi(uusiEtunimi);
 
 			}
 		}
@@ -159,7 +159,7 @@ public class RekisterointiServlet extends HttpServlet {
 				String uusiSukunimi = sukunimi.replace('ä', 'a');
 				uusiSukunimi = sukunimi.replace('å', 'a');
 				uusiSukunimi = sukunimi.replace('ö', 'o');
-				request.setAttribute("sukunimi", uusiSukunimi);
+				uusiKayttaja.setSukunimi(uusiSukunimi);
 			}
 		}
 
@@ -174,7 +174,7 @@ public class RekisterointiServlet extends HttpServlet {
 				errors.put("salasana", "Salasana saa olla 5-20 merkkiä");
 			}
 
-			request.setAttribute("salasana", salasana);
+			uusiKayttaja.setSalasana(salasana);
 		}
 
 		// Haetaan syötetty puh validointia varten
@@ -193,7 +193,7 @@ public class RekisterointiServlet extends HttpServlet {
 				if (puh.length() < 10 || puh.length() > 13) {
 					errors.put("puh", "Puhelinnumero 10-13 merkillä");
 				} else {
-					request.setAttribute("puh", puh);
+					uusiKayttaja.setPuh(puh);
 				}
 			}
 		}
@@ -218,7 +218,7 @@ public class RekisterointiServlet extends HttpServlet {
 					String uusiOsoite = osoite.replace('ä', 'a');
 					uusiOsoite = osoite.replace('å', 'a');
 					uusiOsoite = osoite.replace('ö', 'o');
-					request.setAttribute("osoite", uusiOsoite);
+					uusiKayttaja.setOsoite(uusiOsoite);
 				}
 			}
 		}
@@ -241,7 +241,7 @@ public class RekisterointiServlet extends HttpServlet {
 					errors.put("postinro",
 							"Postinumero saa sisältää vain numeroita");
 				} else {
-					request.setAttribute("postinro", postinro);
+					uusiKayttaja.setPostinro(postinro);
 				}
 			}
 		}
@@ -267,7 +267,7 @@ public class RekisterointiServlet extends HttpServlet {
 					String uusiPostitmp = postitmp.replace('ä', 'a');
 					uusiPostitmp = postitmp.replace('å', 'a');
 					uusiPostitmp = postitmp.replace('ö', 'o');
-					request.setAttribute("postitmp", uusiPostitmp);
+					uusiKayttaja.setPostitmp(uusiPostitmp);
 				}
 			}
 		}
@@ -286,7 +286,7 @@ public class RekisterointiServlet extends HttpServlet {
 				if (email.trim().length() > 60) {
 					errors.put("email", "Sähköposti on liian pitkä");
 				} else {
-					request.setAttribute("email", email);
+					uusiKayttaja.setEmail(email);
 				}
 			}
 		}
