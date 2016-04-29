@@ -1,6 +1,6 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
@@ -15,7 +15,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Pizzamenu</title>
 </head>
 <body>
@@ -29,11 +28,10 @@
 
 		</div>
 		<div id="lootakeski">
-			<p
-				style="margin-top: 100px; font-size: 170%; font-family: Kozuka Gothic Pro EL;">
+			<p3>
 				Open: Mon-Sat 11-21, Sun 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
-			</p>
+			</p3>
 		</div>
 
 		<div id="lootaoikea">
@@ -47,9 +45,9 @@
 	</div>
 
 	<div id="otsikkoloota">
-		<%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
-		<a href="AEngListaaPizzatServlet" class="pizzalistabutton">Pizza
-			menu</a> <a href="AEngListaaJuomatServlet" class="juomabutton">Drinks</a>
+		<%-- lootan sisÃ¤llÃ¤ on pÃ¤Ã¤sisÃ¤ltÃ¶, kuten pizzalista ja nappulat --%>
+		<a href="AEngListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizza</u>
+			menu</p2></a> <a href="AEngListaaJuomatServlet" class="juomabutton"><p2>Drinks</p2></a>
 	</div>
 
 	<div id="loota1">
@@ -60,7 +58,7 @@
 				<table>
 
 					<tr>
-						<th>Number</th>
+						<th>#</th>
 						<th>Name</th>
 						<th>Price</th>
 					</tr>
@@ -99,8 +97,8 @@
 	</div>
 
 	<div id="footer">
-		<%-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. --%>
-		<div id="footer_sisältö">
+		<%-- footer_sisÃ¤ltÃ¶ divillÃ¤ pystyy liikuttamaan sisÃ¤llÃ¶n sijaintia ym. --%>
+		<div id="footer_sisÃ¤ltÃ¶">
 			<p>
 				Pizzeria Pizzicato<br> Phone: +358 40 666 666<br> Email:
 				pizzeria.pizzicato@gmail.com<br> Address: Kuusitie 66 <br>
