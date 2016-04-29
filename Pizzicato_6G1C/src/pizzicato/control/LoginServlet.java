@@ -33,13 +33,13 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String kayttajatunnus = request.getParameter("kayttajatunnus");
 		String salasana = request.getParameter("salasana");
-		
+
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		Kayttaja kayttaja = kayttajadao.etsiTunnuksella(kayttajatunnus);
-		
+
 		if (kayttaja == null) {
 			request.setAttribute("message", "Kirjautuminen epäonnistui.");
 			jsp.forward(request, response);
@@ -48,17 +48,15 @@ public class LoginServlet extends HttpServlet {
 			jsp.forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
-			int idInt = kayttaja.getId();
-			Long id = new Long(idInt);
-			session.setAttribute("id", id);
-			System.out.println("Sessiossa id:n arvo on: " + session.getAttribute("id"));
-			if(kayttaja.getTyyppi().equalsIgnoreCase("omistaja")) {
-			response.sendRedirect("OmistajaListaaPizzatServlet");
-			}else {
-				response.sendRedirect("AListaaPizzatServlet");
+			session.setAttribute("kayttaja", kayttaja);
+			
+			if (kayttaja.getTyyppi().equalsIgnoreCase("omistaja")) {
+				response.sendRedirect("OmistajaListaaPizzatServlet");
+			} else {
+				response.sendRedirect("ListaaPizzatServlet");
 			}
 		}
-		
+
 	}
 
 }
