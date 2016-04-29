@@ -55,7 +55,7 @@
 		<p2 style="margin-left: 15%;">Ostoskori</p2>
 	</div>
 
-	<%--- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
+	<%--- lootan sisällä on pääsisältö,  kuten pizzalista ja nappulat --%>
 
 	<div id="loota1">
 		<div id="tuotelistataulukko">
