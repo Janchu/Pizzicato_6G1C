@@ -1,6 +1,7 @@
 package pizzicato.control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
+import pizzicato.model.dao.TilausDAO;
 
 /**
  * Servlet implementation class YhteenvetoServlet
@@ -41,6 +43,13 @@ public class YhteenvetoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		TilausDAO tilausdao = new TilausDAO();
+		ArrayList<Tilaus> tilaukset = tilausdao.findAll();
+		
+		request.setAttribute("tilaukset", tilaukset);
+		
+		RequestDispatcher jsp = getServletContext().getRequestDispatcher("/view/yhteenveto.jsp");
 		response.sendRedirect("ListaaPizzatServlet");
 		
 	}
