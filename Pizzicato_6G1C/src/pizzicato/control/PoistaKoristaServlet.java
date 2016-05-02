@@ -33,8 +33,12 @@ public class PoistaKoristaServlet extends HttpServlet {
 		String idStr = request.getParameter("id");
 		int id = new Integer(idStr);
 		
-		System.out.println(id);
-		System.out.println(ostoskori.getTilausrivit().get(id));
+		double yhthinta = ostoskori.getYhthinta();
+		int yhtlkm = ostoskori.getYhtlkm();
+		
+		double rivihinta = ostoskori.getTilausrivit().get(id).getTilattuTuote().getHinta();
+		
+		
 		ostoskori.getTilausrivit().remove(id);
 		
 		response.sendRedirect("OstoskoriServlet");

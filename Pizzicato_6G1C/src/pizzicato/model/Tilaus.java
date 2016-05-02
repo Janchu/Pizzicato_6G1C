@@ -13,6 +13,7 @@ public class Tilaus {
 	private String lisatiedot;
 	private ArrayList<Tilausrivi> tilausrivit;
 	private double yhthinta;
+	private int yhtlkm;
 	
 	
 	// Oletuskonstruktori
@@ -25,12 +26,13 @@ public class Tilaus {
 		this.lisatiedot = null;
 		this.tilausrivit = new ArrayList<Tilausrivi>();
 		this.yhthinta = 0;
+		this.yhtlkm = 0;
 	}
 
 	// Parametrillinen konstruktori
 	
 	public Tilaus(int id, String tila, String maksutapa, String toimitus,
-			String lisatiedot, ArrayList<Tilausrivi> tilausrivit, double yhthinta) {
+			String lisatiedot, ArrayList<Tilausrivi> tilausrivit, double yhthinta, int yhtlkm) {
 		super();
 		this.id = id;
 		this.tila = tila;
@@ -39,6 +41,7 @@ public class Tilaus {
 		this.lisatiedot = lisatiedot;
 		this.tilausrivit = tilausrivit;
 		this.yhthinta = yhthinta;
+		this.yhtlkm = yhtlkm;
 
 	}
 	
@@ -105,7 +108,14 @@ public class Tilaus {
 		this.yhthinta = yhthinta;
 	}
 	
+	public int getYhtlkm() {
+		return yhtlkm;
+	}
 	
+	public void setYhtlkm(int yhtlkm) {
+		this.yhtlkm = yhtlkm;
+	}
+		
 	// ToString
 	@Override
 	public String toString() {

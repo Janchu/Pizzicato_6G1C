@@ -9,7 +9,7 @@
 <%@ page import="pizzicato.model.Kayttaja"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
-<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
+<jsp:useBean id="ostoskori" class="pizzicato.model.Tilaus" scope="request" />
 <jsp:useBean id="mausteet" type="java.util.ArrayList<Mauste>" scope="request" />
 <jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <html>
@@ -55,8 +55,8 @@
 			<div id="ostoskoributton2">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
-				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
-				kpl, yht. 
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+				kpl, yht. <%=ostoskori.getYhthinta() %> €
 				<div id="ostoskoributton1">
 					<a href="OstoskoriServlet">Ostoskoriin</a>
 				</div>
@@ -69,8 +69,8 @@
 	<div id="ostoskoributton3">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
-				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
-				kpl, yht. 
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+				kpl, yht. <%=ostoskori.getYhthinta() %> €
 				<div id="ostoskoributton4">
 					<a href="OstoskoriServlet">Ostoskoriin</a>
 				</div>

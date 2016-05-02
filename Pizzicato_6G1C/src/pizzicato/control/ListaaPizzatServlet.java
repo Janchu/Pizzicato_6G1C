@@ -39,8 +39,6 @@ public class ListaaPizzatServlet extends HttpServlet {
 			ostoskori = new Tilaus();
 		}
 
-		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
-
 		// Käyttäjän checkaus
 		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
 		if (kayttaja == null) {
@@ -52,7 +50,7 @@ public class ListaaPizzatServlet extends HttpServlet {
 		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("pizzat", pizzat);
 		request.setAttribute("mausteet", mausteet);
-		request.setAttribute("ostoskori", tilausrivit);
+		request.setAttribute("ostoskori", ostoskori);
 
 		// Lähetetään jsp:lle
 		String jsp = "/view/listaa-pizzat.jsp";
