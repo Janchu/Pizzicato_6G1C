@@ -10,10 +10,8 @@ import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
 
-
-
 public class TilausDAO extends DataAccessObject {
-	
+
 	public ArrayList<Tilaus> findAll() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -21,24 +19,24 @@ public class TilausDAO extends DataAccessObject {
 		ArrayList<Tilaus> tilauslista = new ArrayList<Tilaus>();
 		Tilaus tilaus = null;
 		int tilausIdEdellinen = 0;
-		
+
 		try {
 			conn = getConnection();
 			String sqlSelect = "SELECT tilaus.id, tilaus.tila, tilaus.maksutapa, tilaus.toimitus, tilaus.lisatiedot, tilaus.kayttaja_id, tilaus.yhthinta FROM tilaus;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				int tilausId = rs.getInt("tilaus.id");
-				if(tilausId != tilausIdEdellinen) {
+				if (tilausId != tilausIdEdellinen) {
 					tilaus = readTilaus(rs);
 					tilauslista.add(tilaus);
 				}
 				tilausIdEdellinen = rs.getInt("tilaus.id");
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(rs, stmt, conn);
 		}
 		return tilauslista;
@@ -60,14 +58,16 @@ public class TilausDAO extends DataAccessObject {
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
-
-			stmtInsert = connection.prepareStatement("INSERT INTO tilaavaasiakas (id, etunimi, sukunimi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?);");
+		
+			stmtInsert = connection.prepareStatement("INSERT INTO kayttaja (id, etunimi, sukunimi, salasana, tyyppi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?, ?, ?);");
 			stmtInsert.setString(1, tilaaja.getEtunimi());
 			stmtInsert.setString(2, tilaaja.getSukunimi());
-			stmtInsert.setString(3, tilaaja.getOsoite());
-			stmtInsert.setString(4, tilaaja.getPuh());
-			stmtInsert.setString(5, tilaaja.getEmail());
-			stmtInsert.setString(6, tilaaja.getPostinro());
+			stmtInsert.setString(3, tilaaja.getSalasana());
+			stmtInsert.setString(4, tilaaja.getTyyppi());
+			stmtInsert.setString(5, tilaaja.getOsoite());
+			stmtInsert.setString(6, tilaaja.getPuh());
+			stmtInsert.setString(7, tilaaja.getEmail());
+			stmtInsert.setString(8, tilaaja.getPostinro());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
@@ -81,10 +81,15 @@ public class TilausDAO extends DataAccessObject {
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
+
+			
+			
+
 			for (int i = 0; i < tilaus.getTilausrivit().size(); i++) {
-			stmtInsert = connection.prepareStatement("INSERT INTO tuotteentilaus (tilaus_id, lkm, tuote_id) VALUES ('last_insert_id()', ?, ?);");
-			stmtInsert.setInt(1, tilaus.getTilausrivit().get(i).getLkm());
-			stmtInsert.setInt(2, tilaus.getTilausrivit().get(i).getTilattuTuote().getId());
+			stmtInsert = connection.prepareStatement("INSERT INTO tilausrivi (rivinumero, tilaus_id, lkm, tuote_id) VALUES (?, 'last_insert_id()', ?, ?);");
+			stmtInsert.setInt(1, tilaus.getTilausrivit().get(i).getRivinumero());
+			stmtInsert.setInt(2, tilaus.getTilausrivit().get(i).getLkm());
+			stmtInsert.setInt(3, tilaus.getTilausrivit().get(i).getTilattuTuote().getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			}
@@ -102,7 +107,7 @@ public class TilausDAO extends DataAccessObject {
 		
 		
 	}
-	
+
 	private Tilaus readTilaus(ResultSet rs) {
 		try {
 			int id = rs.getInt("tilaus.id");
@@ -112,14 +117,13 @@ public class TilausDAO extends DataAccessObject {
 			String lisatiedot = rs.getString("tilaus.lisatiedot");
 			ArrayList<Tilausrivi> tilausrivit = new ArrayList<Tilausrivi>();
 			double yhthinta = rs.getDouble("tilaus.lisatiedot");
-			
-			return new Tilaus(id, tila, maksutapa, toimitus, lisatiedot, tilausrivit, yhthinta);
-			
-			
-		}catch (SQLException e) {
+
+			return new Tilaus(id, tila, maksutapa, toimitus, lisatiedot,
+					tilausrivit, yhthinta);
+
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
+
 }

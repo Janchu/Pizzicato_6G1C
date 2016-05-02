@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 public class Tilausrivi {
+	private int rivinumero;
 	private Tuote tilattuTuote;
 	private int lkm;
 	private ArrayList<Mauste> maustelista;
@@ -14,13 +15,20 @@ public class Tilausrivi {
 	}
 
 
-	public Tilausrivi(Tuote tilattuTuote, int lkm, ArrayList<Mauste> maustelista) {	
+	public Tilausrivi(int rivinumero, Tuote tilattuTuote, int lkm, ArrayList<Mauste> maustelista) {
+		this.rivinumero = rivinumero;
 		this.tilattuTuote = tilattuTuote;
 		this.lkm = lkm;
 		this.maustelista = maustelista;
 	}
 
-
+	public int getRivinumero() {
+		return rivinumero;
+	}
+	
+	public void setRivinumero (int rivinumero) {
+		this.rivinumero = rivinumero;
+	}
 
 
 
@@ -56,7 +64,7 @@ public class Tilausrivi {
 
 	@Override
 	public String toString() {
-		return "Tilausrivi [tilattuTuote=" + tilattuTuote + ", lkm=" + lkm
+		return "Tilausrivi [rivinumero=" + rivinumero +", tilattuTuote=" + tilattuTuote + ", lkm=" + lkm
 				+ "]";
 	}
 	
