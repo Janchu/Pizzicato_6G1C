@@ -28,7 +28,7 @@ public class KayttajaDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT kayttaja.id, kayttaja.etunimi, kayttaja.sukunimi, kayttaja.salasana, kayttaja.tyyppi, kayttaja.puh, kayttaja.osoite, kayttaja.postinro, posti.postinro, posti.postitmp, kayttaja.email FROM kayttaja JOIN posti ON kayttaja.postinro = posti.postinro;";
+			String sqlSelect = "SELECT kayttaja.id, kayttaja.etunimi, kayttaja.sukunimi, kayttaja.salasana, kayttaja.tyyppi, kayttaja.puh, kayttaja.osoite, kayttaja.postinro, kayttaja.postitmp, kayttaja.email FROM kayttaja;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
@@ -63,7 +63,7 @@ public class KayttajaDAO extends DataAccessObject {
 		String puh = rs.getString("kayttaja.puh");
 		String osoite = rs.getString("kayttaja.osoite");
 		String postinro = rs.getString("kayttaja.postinro");
-		String postitmp = rs.getString("posti.postitmp");
+		String postitmp = rs.getString("kayttaja.postitmp");
 		String email = rs.getString("kayttaja.email");
 
 		// Palautetaan kayttaja
@@ -82,16 +82,8 @@ public class KayttajaDAO extends DataAccessObject {
 		PreparedStatement stmtInsert = null;
 
 		try {
-			connection = getConnection();
 			stmtInsert = connection
-					.prepareStatement("INSERT INTO posti(postinro, postitmp) VALUES(?, ?);");
-			stmtInsert.setString(1, kayttaja.getPostinro());
-			stmtInsert.setString(2, kayttaja.getPostitmp());
-			stmtInsert.executeUpdate();
-			stmtInsert.close();
-
-			stmtInsert = connection
-					.prepareStatement("INSERT INTO kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh, osoite, postinro, email) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?);");
+					.prepareStatement("INSERT INTO kayttaja(id, etunimi, sukunimi, salasana, tyyppi, puh, osoite, postinro, email, postitmp) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			stmtInsert.setString(1, kayttaja.getEtunimi());
 			stmtInsert.setString(2, kayttaja.getSukunimi());
 			stmtInsert.setString(3, kayttaja.getSalasana());
@@ -99,7 +91,8 @@ public class KayttajaDAO extends DataAccessObject {
 			stmtInsert.setString(5, kayttaja.getPuh());
 			stmtInsert.setString(6, kayttaja.getOsoite());
 			stmtInsert.setString(7, kayttaja.getPostinro());
-			stmtInsert.setString(8, kayttaja.getEmail());
+			stmtInsert.setString(9, kayttaja.getEmail());
+			stmtInsert.setString(8, kayttaja.getPostitmp());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
@@ -119,7 +112,7 @@ public class KayttajaDAO extends DataAccessObject {
 
 		try {
 			connection = getConnection();
-			String sql = "SELECT kayttaja.id, kayttaja.etunimi, kayttaja.sukunimi, kayttaja.salasana, kayttaja.tyyppi, kayttaja.puh, kayttaja.osoite, kayttaja.postinro, posti.postinro, posti.postitmp, kayttaja.email FROM kayttaja JOIN posti ON kayttaja.postinro = posti.postinro WHERE email = (?);";
+			String sql = "SELECT kayttaja.id, kayttaja.etunimi, kayttaja.sukunimi, kayttaja.salasana, kayttaja.tyyppi, kayttaja.puh, kayttaja.osoite, kayttaja.postinro, kayttaja.postitmp, kayttaja.email FROM kayttaja WHERE email = (?);";
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, kayttajatunnus);
 			rs = stmt.executeQuery();
