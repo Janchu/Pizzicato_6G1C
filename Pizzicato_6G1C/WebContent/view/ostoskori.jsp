@@ -7,6 +7,8 @@
 <%@ page import="pizzicato.model.Tayte"%>
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
+<%@ page import="pizzicato.model.Kayttaja"%>
+<jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
 <jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
 
@@ -30,6 +32,8 @@
 			</div>
 		</div>
 		<div id="lootakeski">
+		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
@@ -37,7 +41,13 @@
 		</div>
 
 		<div id="lootaoikea">
+			<% if (kayttaja.getTyyppi() != null) { %>
+			<span class="valkoinen">Tervetuloa, <%=kayttaja.getEtunimi() %></span>
 			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+		<% } else { %>
+			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
+			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
+		<% } %>
 		</div>
 	</div>
 
@@ -45,7 +55,7 @@
 		<p2 style="margin-left: 15%;">Ostoskori</p2>
 	</div>
 
-	<%--- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
+	<%--- lootan sisällä on pääsisältö,  kuten pizzalista ja nappulat --%>
 
 	<div id="loota1">
 		<div id="tuotelistataulukko">
@@ -98,20 +108,21 @@
 									type="submit" value="Poista korista" name="poista">
 							</form>
 						</td>
-						
-						
-						
-						
 					</tr>
 					
+					<%
+					}
+				%>
+					<tr >
+					<td bgcolor="#ccffcc"><b>Hinta yhteensä:</b></td>
+					<td bgcolor="#ccffcc"><b>€</b></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td>
+					</tr>					
 
 				
 
 
 
-				<%
-					}
-				%></table><a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
+				</table><a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
 					href="TeeTilausServlet" class="button2">Jatka tilausta</a>
 				<%
 					}

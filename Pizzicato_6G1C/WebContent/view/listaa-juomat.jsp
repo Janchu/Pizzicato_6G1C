@@ -28,6 +28,8 @@
 			</div>
 		</div>
 		<div id="lootakeski">
+		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
@@ -42,8 +44,7 @@
 			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
 			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
 		<% } %>
-			<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
+			<br>
 			<div id="ostoskoributton2">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">

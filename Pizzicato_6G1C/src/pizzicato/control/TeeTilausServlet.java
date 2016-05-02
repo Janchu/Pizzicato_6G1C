@@ -26,6 +26,16 @@ public class TeeTilausServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		
+		HttpSession session = request.getSession();
+		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
+
+		if (ostoskori == null) {
+			ostoskori = new Tilaus();
+		}
+
+		
+		
 		HashMap<String, String> errors = new HashMap<String, String>();
 
 		request.setAttribute("errors", errors);
@@ -39,6 +49,15 @@ public class TeeTilausServlet extends HttpServlet {
 		request.setAttribute("postinro", "");
 		request.setAttribute("postitmp", "");
 		request.setAttribute("lisatiedot", "");
+
+		// Käyttäjän checkaus
+		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
+		System.out.println(kayttaja);
+		if (kayttaja == null) {
+			kayttaja = new Kayttaja();
+			System.out.println(kayttaja);
+		}
+		request.setAttribute("kayttaja", kayttaja);
 
 		// Lähetetään jsp:lle
 		String jsp = "/view/tee-tilaus.jsp";

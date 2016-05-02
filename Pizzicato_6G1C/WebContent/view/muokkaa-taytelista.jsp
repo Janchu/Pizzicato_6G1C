@@ -30,7 +30,7 @@ Meilahti, 00270</p3>
 </div>
 
 <div id="lootaoikea">
-<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+<span class="valkoinen">Tervetuloa, Outi  </span><a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 </div>
 </div>
 
@@ -50,7 +50,7 @@ Meilahti, 00270</p3>
 				
 				<tr>
 
-					<th>Numero</th>
+					<th>#</th>
 					<th>Nimi</th>
 					<th>Englanninkielinen nimi</th>
 					<th>Hinta</th>
@@ -78,9 +78,9 @@ Meilahti, 00270</p3>
 					<td><%=taytteet.get(i).getNimi_eng()%></td>
 					<td width="100px"><%=decimal.format(taytteet.get(i).getHinta())%></td>
 					<td width="100px"><%=decimal.format(taytteet.get(i).getKilohinta())%> €/kg</td>
-					<td width="50px"><a href="MuokkaaTayteServlet?TId=<%=taytteet.get(i).getId()%>"><img alt="lib" src="images/muokkaaicon.png" width="32" height="32"></a></td>
+					<td width="50px"><a href="MuokkaaTayteServlet?TId=<%=taytteet.get(i).getId()%>"><img alt="lib" src="images/muokkaaicon.png" title="muokkaa" width="32" height="32"></a></td>
 					<td width="50px"><a href="PoistaTayteServlet?TayId=<%=taytteet.get(i).getId()%>"
-						onclick="return confirm('Haluatko varmasti poistaa Täytteen?')"><img alt="lib" src="images/remove.png" width="32" height="32"></a></td>
+						onclick="return confirm('Haluatko varmasti poistaa Täytteen?')"><img alt="lib" src="images/remove.png" title="poista" width="32" height="32"></a></td>
 				</tr>
 
 				<%

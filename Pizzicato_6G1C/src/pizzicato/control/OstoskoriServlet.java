@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pizzicato.model.Juoma;
+import pizzicato.model.Kayttaja;
 import pizzicato.model.Mauste;
 import pizzicato.model.Pizza;
 import pizzicato.model.Tayte;
@@ -33,7 +34,7 @@ public class OstoskoriServlet extends HttpServlet {
 
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
-		
+
 		HttpSession session = request.getSession();
 		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
 
@@ -42,6 +43,15 @@ public class OstoskoriServlet extends HttpServlet {
 		}
 
 		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
+
+		// Käyttäjän checkaus
+		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
+		System.out.println(kayttaja);
+		if (kayttaja == null) {
+			kayttaja = new Kayttaja();
+			System.out.println(kayttaja);
+		}
+		request.setAttribute("kayttaja", kayttaja);
 
 		request.setAttribute("ostoskori", tilausrivit);
 		request.setAttribute("pizzat", pizzat);
@@ -77,66 +87,64 @@ public class OstoskoriServlet extends HttpServlet {
 
 		Tilausrivi uusiTilausrivi = new Tilausrivi();
 
-		
-		
 		if (tyyppi.equalsIgnoreCase("pizza")) {
-		
-		Pizza tilattuPizza = new Pizza();
-		String[] mausteet = request.getParameterValues("mauste");
-		ArrayList<Mauste> uudetMausteet = new ArrayList<Mauste>();
 
-		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
+			Pizza tilattuPizza = new Pizza();
+			String[] mausteet = request.getParameterValues("mauste");
+			ArrayList<Mauste> uudetMausteet = new ArrayList<Mauste>();
 
-		for (int i = 0; i < pizzat.size(); i++) {
-			if (pizzat.get(i).getId() == id) {
-				tilattuPizza.setId(id);
-				tilattuPizza.setHinta(pizzat.get(i).getHinta());
-				tilattuPizza.setNimi(pizzat.get(i).getNimi());
-				tilattuPizza.setTyyppi(pizzat.get(i).getTyyppi());
-				System.out.println("Ahuehue" + tilattuPizza.getTyyppi());
+			ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 
-				if (tilattuPizza.getTyyppi().equalsIgnoreCase("pizza")) {
-					for (int j = 0; j < pizzat.size(); j++) {
-						if (tilattuPizza.getId() == pizzat.get(i).getId()) {
-							taytelista = pizzat.get(i).getTaytelista();
-							tilattuPizza.setTaytelista(taytelista);
-						}
-					}
-				}
+			for (int i = 0; i < pizzat.size(); i++) {
+				if (pizzat.get(i).getId() == id) {
+					tilattuPizza.setId(id);
+					tilattuPizza.setHinta(pizzat.get(i).getHinta());
+					tilattuPizza.setNimi(pizzat.get(i).getNimi());
+					tilattuPizza.setTyyppi(pizzat.get(i).getTyyppi());
+					System.out.println("Ahuehue" + tilattuPizza.getTyyppi());
 
-				if (mausteet != null) {
-					for (int j = 0; j < mausteet.length; j++) {
-
-						String mausteIdStr = mausteet[j];
-						int mausteId = new Integer(mausteIdStr);
-						System.out.println(mausteId);
-						for (int k = 0; k < maustelista.size(); k++) {
-							if (mausteId == maustelista.get(k).getId()) {
-								String mausteNimi = maustelista.get(k)
-										.getNimi();
-								Mauste mauste = new Mauste();
-								mauste.setNimi(mausteNimi);
-								uudetMausteet.add(mauste);
+					if (tilattuPizza.getTyyppi().equalsIgnoreCase("pizza")) {
+						for (int j = 0; j < pizzat.size(); j++) {
+							if (tilattuPizza.getId() == pizzat.get(i).getId()) {
+								taytelista = pizzat.get(i).getTaytelista();
+								tilattuPizza.setTaytelista(taytelista);
 							}
 						}
-
 					}
+
+					if (mausteet != null) {
+						for (int j = 0; j < mausteet.length; j++) {
+
+							String mausteIdStr = mausteet[j];
+							int mausteId = new Integer(mausteIdStr);
+							System.out.println(mausteId);
+							for (int k = 0; k < maustelista.size(); k++) {
+								if (mausteId == maustelista.get(k).getId()) {
+									String mausteNimi = maustelista.get(k)
+											.getNimi();
+									Mauste mauste = new Mauste();
+									mauste.setNimi(mausteNimi);
+									uudetMausteet.add(mauste);
+								}
+							}
+
+						}
+					}
+
+					String lkmStr = request.getParameter("maara");
+					int lkm = new Integer(lkmStr);
+
+					uusiTilausrivi.setLkm(lkm);
+					uusiTilausrivi.setTilattuTuote(tilattuPizza);
+					uusiTilausrivi.setMaustelista(uudetMausteet);
+					ostoskori.addTilausrivi(uusiTilausrivi);
+
 				}
-
-				String lkmStr = request.getParameter("maara");
-				int lkm = new Integer(lkmStr);
-
-				uusiTilausrivi.setLkm(lkm);
-				uusiTilausrivi.setTilattuTuote(tilattuPizza);
-				uusiTilausrivi.setMaustelista(uudetMausteet);
-				ostoskori.addTilausrivi(uusiTilausrivi);
-
 			}
-		}
 		} else if (tyyppi.equalsIgnoreCase("juoma")) {
-			
+
 			Juoma tilattuJuoma = new Juoma();
-			
+
 			for (int i = 0; i < juomat.size(); i++) {
 				if (juomat.get(i).getId() == id) {
 					tilattuJuoma.setId(id);
@@ -145,21 +153,19 @@ public class OstoskoriServlet extends HttpServlet {
 					tilattuJuoma.setTyyppi(juomat.get(i).getTyyppi());
 				}
 			}
-			
+
 			String lkmStr = request.getParameter("maara");
 			int lkm = new Integer(lkmStr);
-			
+
 			uusiTilausrivi.setLkm(lkm);
 			uusiTilausrivi.setTilattuTuote(tilattuJuoma);
 			ostoskori.addTilausrivi(uusiTilausrivi);
 		}
 
-
 		session.setAttribute("ostoskori", ostoskori);
 
 		request.setAttribute("ostoskori", ostoskori);
 		request.setAttribute("pizzat", pizzat);
-
 
 		response.sendRedirect("ListaaPizzatServlet");
 	}

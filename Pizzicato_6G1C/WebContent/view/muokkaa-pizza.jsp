@@ -36,7 +36,7 @@
 		</div>
 
 		<div id="lootaoikea">
-			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+			<span class="valkoinen">Tervetuloa, Outi  </span><a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 		</div>
 
 	</div>

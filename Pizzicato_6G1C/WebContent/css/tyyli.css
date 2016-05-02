@@ -101,7 +101,7 @@ margin-left:29%;
  width:33.3%;
  text-align:center;
  color:white;
- padding-top:5%;
+ padding-top:1%;
  
  }
  
@@ -110,7 +110,7 @@ margin-left:29%;
  float:right;
  height:100%;
  width:33.3%;
- text-align:center;
+ text-align:right;
  }
  
 /* M‰‰ritt‰‰ lootan leveyden, v‰rin, korkeuden, sijainnin ja kaiken */			
@@ -159,9 +159,7 @@ margin-left:15%;
     color: white;
     padding: 5px 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 0.8vw;
     margin: 4px 2px;
     cursor: pointer;
 	border-radius:10px;
@@ -169,20 +167,16 @@ margin-left:15%;
 
 .button2 {
     background-color: #6FD630;
-    border: none;
     color: white;
     padding: 5px 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 1vw;
     margin: 4px 2px;
     cursor: pointer;
 	border-radius:10px;
 }
 
 .pizzalistabutton {
-    border: none;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -343,6 +337,9 @@ div.mausteet {
 
   .hidecss{ display:none;}
   
+ /* responsiivisuus */
+ /* -------------------------------------------------------------------------------- */
+  
   @media only screen and (max-width: 1680px) {
 #nappulasijainti {
 display:none;}
@@ -383,8 +380,6 @@ p4 	{font-size: 3vw;}
 p2 {font-size: 16px;}
 p3 {font-size: 1em;}
 
-.button2 {font-size:3vw;}
-.button {font-size:3vw;}
 }
 
 @media only screen and (min-width: 1681px) {
@@ -396,3 +391,4 @@ display:none;}
 display:none;}
 }
 
+/*---------------------------------------------*/
