@@ -60,13 +60,15 @@ public class TilausDAO extends DataAccessObject {
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
-			stmtInsert = connection.prepareStatement("INSERT INTO tilaavaasiakas (id, etunimi, sukunimi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?);");
+			stmtInsert = connection.prepareStatement("INSERT INTO kayttaja (id, etunimi, sukunimi, salasana, tyyppi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?, ?, ?);");
 			stmtInsert.setString(1, tilaaja.getEtunimi());
 			stmtInsert.setString(2, tilaaja.getSukunimi());
-			stmtInsert.setString(3, tilaaja.getOsoite());
-			stmtInsert.setString(4, tilaaja.getPuh());
-			stmtInsert.setString(5, tilaaja.getEmail());
-			stmtInsert.setString(6, tilaaja.getPostinro());
+			stmtInsert.setString(3, tilaaja.getSalasana());
+			stmtInsert.setString(4, tilaaja.getTyyppi());
+			stmtInsert.setString(5, tilaaja.getOsoite());
+			stmtInsert.setString(6, tilaaja.getPuh());
+			stmtInsert.setString(7, tilaaja.getEmail());
+			stmtInsert.setString(8, tilaaja.getPostinro());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
@@ -80,9 +82,10 @@ public class TilausDAO extends DataAccessObject {
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
-			stmtInsert = connection.prepareStatement("INSERT INTO tuotteentilaus (tilaus_id, lkm, tuote_id) VALUES ('last_insert_id()', ?, ?);");
-			stmtInsert.setInt(1, tilausrivi.getLkm());
-			stmtInsert.setInt(2, tilausrivi.getTilattuTuote().getId());
+			stmtInsert = connection.prepareStatement("INSERT INTO tilausrivi (rivinumero, tilaus_id, lkm, tuote_id) VALUES (?, 'last_insert_id()', ?, ?);");
+			stmtInsert.setInt(1, x);
+			stmtInsert.setInt(2, tilausrivi.getLkm());
+			stmtInsert.setInt(3, tilausrivi.getTilattuTuote().getId());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 			
