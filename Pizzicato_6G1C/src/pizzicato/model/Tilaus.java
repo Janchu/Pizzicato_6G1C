@@ -92,6 +92,11 @@ public class Tilaus {
 		this.tilausrivit.add(uusiTilausrivi);
 	}
 	
+	public void setTilausrivit(ArrayList<Tilausrivi> tilausrivit) {
+		this.tilausrivit = tilausrivit;
+	}
+
+	
 	public double getYhthinta() {
 		return yhthinta;
 	}

@@ -43,10 +43,8 @@ public class ListaaPizzatServlet extends HttpServlet {
 
 		// Käyttäjän checkaus
 		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
-		System.out.println(kayttaja);
 		if (kayttaja == null) {
 			kayttaja = new Kayttaja();
-			System.out.println(kayttaja);
 		}	
 		request.setAttribute("kayttaja", kayttaja);
 		

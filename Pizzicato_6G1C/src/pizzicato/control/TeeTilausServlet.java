@@ -25,9 +25,19 @@ public class TeeTilausServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		
+		HttpSession session = request.getSession();
+		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
+
+		if (ostoskori == null) {
+			ostoskori = new Tilaus();
+		}
+
+		
 		
 		HashMap<String, String> errors = new HashMap<String, String>();
-		
+
 		request.setAttribute("errors", errors);
 		request.setAttribute("toimitus", "");
 		request.setAttribute("maksutapa", "");
@@ -40,6 +50,15 @@ public class TeeTilausServlet extends HttpServlet {
 		request.setAttribute("postitmp", "");
 		request.setAttribute("lisatiedot", "");
 
+		// Käyttäjän checkaus
+		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
+		System.out.println(kayttaja);
+		if (kayttaja == null) {
+			kayttaja = new Kayttaja();
+			System.out.println(kayttaja);
+		}
+		request.setAttribute("kayttaja", kayttaja);
+
 		// Lähetetään jsp:lle
 		String jsp = "/view/tee-tilaus.jsp";
 		RequestDispatcher dispatcher = getServletContext()
@@ -47,13 +66,10 @@ public class TeeTilausServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-
-
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-
 
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
 				"/view/tee-tilaus.jsp");
@@ -84,7 +100,6 @@ public class TeeTilausServlet extends HttpServlet {
 		request.setAttribute("toimitus", tilaus.getToimitus());
 		request.setAttribute("maksutapa", tilaus.getMaksutapa());
 
-
 		tilaus.setLisatiedot(lisatiedot);
 
 		System.out.println(tilaus);
@@ -96,8 +111,6 @@ public class TeeTilausServlet extends HttpServlet {
 		tilaaja.setOsoite(osoite);
 		tilaaja.setPostinro(postinro);
 		tilaaja.setPostitmp(postitmp);
-
-
 
 		session.setAttribute("tilaus", tilaus);
 		session.setAttribute("tilaaja", tilaaja);
@@ -117,17 +130,22 @@ public class TeeTilausServlet extends HttpServlet {
 		if (etunimi == null || etunimi.trim().length() == 0) {
 			errors.put("etunimi", "Etunimi vaaditaan");
 		} else {
-
-			Pattern p = Pattern.compile("^[a-zA-ZÅÄÖåäö\\- ]+$");
-			Matcher m = p.matcher(etunimi);
-
-			if (m.find() == false) {
-				errors.put("etunimi", "Etunimi sisältää kiellettyjä merkkejä");
+			if (etunimi.trim().length() > 30) {
+				errors.put("etunimi", "Max 30 merkkiä");
 			} else {
-				String uusiEtunimi = etunimi.replace('ä', 'a');
-				uusiEtunimi = etunimi.replace('å', 'a');
-				uusiEtunimi = etunimi.replace('ö', 'o');
-				request.setAttribute("etunimi", uusiEtunimi);
+
+				Pattern p = Pattern.compile("^[a-zA-ZÅÄÖåäö\\- ]+$");
+				Matcher m = p.matcher(etunimi);
+
+				if (m.find() == false) {
+					errors.put("etunimi",
+							"Etunimi sisältää kiellettyjä merkkejä");
+				} else {
+					String uusiEtunimi = etunimi.replace('ä', 'a');
+					uusiEtunimi = etunimi.replace('å', 'a');
+					uusiEtunimi = etunimi.replace('ö', 'o');
+					request.setAttribute("etunimi", uusiEtunimi);
+				}
 			}
 		}
 
@@ -137,17 +155,22 @@ public class TeeTilausServlet extends HttpServlet {
 		if (sukunimi == null || sukunimi.trim().length() == 0) {
 			errors.put("sukunimi", "Sukunimi vaaditaan");
 		} else {
-
-			Pattern p = Pattern.compile("^[a-zA-ZÅÄÖåäö\\- ]+$");
-			Matcher m = p.matcher(sukunimi);
-
-			if (m.find() == false) {
-				errors.put("sukunimi", "Sukunimi sisältää kiellettyjä merkkejä");
+			if (sukunimi.trim().length() > 30) {
+				errors.put("sukunimi", "Max 30 merkkiä");
 			} else {
-				String uusiSukunimi = sukunimi.replace('ä', 'a');
-				uusiSukunimi = sukunimi.replace('å', 'a');
-				uusiSukunimi = sukunimi.replace('ö', 'o');
-				request.setAttribute("sukunimi", uusiSukunimi);
+
+				Pattern p = Pattern.compile("^[a-zA-ZÅÄÖåäö\\- ]+$");
+				Matcher m = p.matcher(sukunimi);
+
+				if (m.find() == false) {
+					errors.put("sukunimi",
+							"Sukunimi sisältää kiellettyjä merkkejä");
+				} else {
+					String uusiSukunimi = sukunimi.replace('ä', 'a');
+					uusiSukunimi = sukunimi.replace('å', 'a');
+					uusiSukunimi = sukunimi.replace('ö', 'o');
+					request.setAttribute("sukunimi", uusiSukunimi);
+				}
 			}
 		}
 
@@ -265,17 +288,22 @@ public class TeeTilausServlet extends HttpServlet {
 		String lisatiedot = request.getParameter("lisatiedot");
 
 		if (lisatiedot.trim().length() > 0) {
-
-			Pattern p = Pattern.compile("^[0-9a-zA-ZÅÄÖåäö\\-\\.\\, ]+$");
-			Matcher m = p.matcher(osoite);
-
-			if (m.find() == false) {
-				errors.put("lisatiedot", "Lisätiedoissa kiellettyjä merkkejä");
+			if (lisatiedot.trim().length() > 300) {
+				errors.put("lisatiedot", "Max 300 merkkiä");
 			} else {
-				String uusiLisatiedot = lisatiedot.replace('ä', 'a');
-				uusiLisatiedot = lisatiedot.replace('å', 'a');
-				uusiLisatiedot = lisatiedot.replace('ö', 'o');
-				request.setAttribute("lisatiedot", uusiLisatiedot);
+
+				Pattern p = Pattern.compile("^[0-9a-zA-ZÅÄÖåäö\\-\\.\\, ]+$");
+				Matcher m = p.matcher(osoite);
+
+				if (m.find() == false) {
+					errors.put("lisatiedot",
+							"Lisätiedoissa kiellettyjä merkkejä");
+				} else {
+					String uusiLisatiedot = lisatiedot.replace('ä', 'a');
+					uusiLisatiedot = lisatiedot.replace('å', 'a');
+					uusiLisatiedot = lisatiedot.replace('ö', 'o');
+					request.setAttribute("lisatiedot", uusiLisatiedot);
+				}
 			}
 		}
 

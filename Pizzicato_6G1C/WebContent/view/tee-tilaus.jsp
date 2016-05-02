@@ -25,11 +25,10 @@
 			</div>
 		</div>
 		<div id="lootakeski">
-			<p
-				style="margin-top: 100px; font-size: 170%; font-family: Kozuka Gothic Pro EL;">
+			<p3>
 				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
-			</p>
+			</p3>
 		</div>
 
 		<div id="lootaoikea">
@@ -96,8 +95,8 @@
 								name="postitmp" value="<%if (request.getAttribute("postitmp") != null) { %><%=request.getAttribute("postitmp")%><%}%>"><%if (errors.get("postitmp") != null) {%><span class="error"><%=errors.get("postitmp") %></span><%} %>
 						</p>
 						<p>
-							<label>Lisätiedot: </label><textarea rows="4" cols="50" value="<%if (request.getAttribute("lisatiedot") != null) { %><%=request.getAttribute("lisatiedot")%><%}%>"><%if (errors.get("lisatiedot") != null) {%><span class="error"><%=errors.get("lisatiedot") %></span><%} %>
-						</textarea></p>
+							<label>Lisätiedot: </label><textarea name="lisatiedot" rows="4" cols="50">
+						<%if (request.getAttribute("lisatiedot") != null) { %><%=request.getAttribute("lisatiedot")%><%}%></textarea><%if (errors.get("lisatiedot") != null) {%><span class="error"><%=errors.get("lisatiedot") %></span><%} %></p>
 						
 						<a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <input type="submit" value="Jatka tilausta" class="button2">
 						

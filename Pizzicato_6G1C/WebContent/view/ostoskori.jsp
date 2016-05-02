@@ -109,6 +109,10 @@
 							</form>
 						</td>
 					</tr>
+					
+					<%
+					}
+				%>
 					<tr >
 					<td bgcolor="#ccffcc"><b>Hinta yhteensä:</b></td>
 					<td bgcolor="#ccffcc"><b>€</b></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td>
@@ -118,9 +122,7 @@
 
 
 
-				<%
-					}
-				%></table><a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
+				</table><a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
 					href="TeeTilausServlet" class="button2">Jatka tilausta</a>
 				<%
 					}
