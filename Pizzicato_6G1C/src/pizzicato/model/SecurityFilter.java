@@ -51,9 +51,15 @@ public class SecurityFilter implements Filter {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/OstoskoriServlet")) {
 			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/EngOstoskoriServlet")) {
+			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/TeeTilausServlet")) {
 			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/EngTeeTilausServlet")) {
+			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/YhteenvetoServlet")) {
+			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/EngYhteenvetoServlet")) {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/PoistaKoristaServlet")) {
 			chain.doFilter(req, resp);
@@ -62,6 +68,8 @@ public class SecurityFilter implements Filter {
 		} else if (servletPath.equals("/ListaaJuomatServlet")) {
 			chain.doFilter(req, resp);
 		} else if (servletPath.equals("/RekisterointiServlet")) {
+			chain.doFilter(req, resp);
+		} else if (servletPath.equals("/EngRekisterointiServlet")) {
 			chain.doFilter(req, resp);
 		} else {
 			resp.sendRedirect("/Pizzicato_6G1C/LoginServlet");
