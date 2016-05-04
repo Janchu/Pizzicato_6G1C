@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>Pizza menu</title>
+<title>Pizza Menu</title>
 </head>
 <body>
 
@@ -43,10 +43,10 @@ Meilahti, 00270
 <div id="lootaoikea">
 <% if (kayttaja.getTyyppi() != null) { %>
 			<span class="valkoinen">Welcome, <%=kayttaja.getEtunimi() %></span>
-			<a href="LogoutServlet" class="button2">Log out</a>
+			<a href="LogoutServlet" class="button2">Logout</a>
 		<% } else { %>
-			<a href="RekisterointiServlet" class="button2">Register</a>
-			<a href="LoginServlet" class="button2">Log in</a>
+			<a href="EngRekisterointiServlet" class="button2">Register</a>
+			<a href="LoginServlet" class="button2">Login</a>
 		<% } %>
 <br>
 <div id="ostoskoributton2">
@@ -55,7 +55,7 @@ Meilahti, 00270
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
 				kpl, yht. 
 				<div id="ostoskoributton1">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
+					<a href="EngOstoskoriServlet">Shopping Cart</a>
 				</div>
 				</form>
 			</div>
@@ -68,15 +68,15 @@ Meilahti, 00270
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
 				kpl, yht. 
 				<div id="ostoskoributton4">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
+					<a href="EngOstoskoriServlet">Shopping Cart</a>
 				</div>
 				</form>
 			</div>
 
 
 <div id="otsikkoloota"> <%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
-<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizza menu</u></p2></a>
-<a href="EngListaaJuomatServlet" class="juomabutton"><p2>Drinks</p2></a>
+<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizza Menu</u></p2></a>
+<a href="EngListaaJuomatServlet" class="juomabutton"><p2>Drink Menu</p2></a>
 </div>
 
 <div id="loota1">
@@ -89,7 +89,7 @@ Meilahti, 00270
 					<th>#</th>
 					<th>Name</th>
 					<th>Price</th>
-					<th>Spices</th>
+					<th>Condiment</th>
 				</tr>
 
 				<%
@@ -111,7 +111,7 @@ Meilahti, 00270
  					} %>
  					</td>
 					<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%></td>
-					<td width="400px"><form action="OstoskoriServlet" method="post">
+					<td width="400px"><form action="EngOstoskoriServlet" method="post">
 						<div class="mausteet">
 						<% for (int j = 0; j < mausteet.size(); j++) { %>
 							

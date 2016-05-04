@@ -105,10 +105,10 @@ public class TeeTilausServlet extends HttpServlet {
 
 		tilaus.setLisatiedot(lisatiedot);
 
-		
 
 		tilaaja.setEtunimi(etunimi);
 		tilaaja.setSukunimi(sukunimi);
+		tilaaja.setTyyppi("vieras");
 		tilaaja.setPuh(puh);
 		tilaaja.setEmail(email);
 		tilaaja.setOsoite(osoite);

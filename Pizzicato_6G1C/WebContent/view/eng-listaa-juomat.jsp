@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>Drink menu</title>
+<title>Drink Menu</title>
 </head>
 <body>
 
@@ -38,10 +38,10 @@
 		<div id="lootaoikea">
 			<% if (kayttaja.getTyyppi() != null) { %>
 			<span class="valkoinen">Welcome, <%=kayttaja.getEtunimi() %></span>
-			<a href="LogoutServlet" class="button2">Log out</a>
+			<a href="LogoutServlet" class="button2">Logout</a>
 		<% } else { %>
-			<a href="RekisterointiServlet" class="button2">Register</a>
-			<a href="LoginServlet" class="button2">Log in</a>
+			<a href="EngRekisterointiServlet" class="button2">Register</a>
+			<a href="LoginServlet" class="button2">Login</a>
 		<% } %>
 				<br>
 				<div id="ostoskoributton2">
@@ -50,7 +50,7 @@
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
 				kpl, yht. 
 				<div id="ostoskoributton1">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
+					<a href="EngOstoskoriServlet">Shopping Cart</a>
 				</div>
 				</form>
 			</div>
@@ -63,14 +63,14 @@
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
 				kpl, yht. 
 				<div id="ostoskoributton4">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
+					<a href="EngOstoskoriServlet">Shopping Cart</a>
 				</div>
 				</form>
 			</div>
 
 	<div id="otsikkoloota">
 		<%-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat --%>
-		<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2>Pizza menu</p2></a> <a href="ListaaJuomatServlet" class="juomabutton"><p2><u>Drinks</u></p2></a>
+		<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2>Pizza Menu</p2></a> <a href="EngListaaJuomatServlet" class="juomabutton"><p2><u>Drink Menu</u></p2></a>
 	</div>
 
 	<div id="loota1">
@@ -102,7 +102,7 @@
 						<td width="10px"><%=juomanumero%></td>
 						<td><b><%=juomat.get(i).getNimi()%></b></td>
 						<td width="50px"><%=decimal.format(juomat.get(i).getHinta())%></td>
-						<td><form action="OstoskoriServlet" method="post"><div class="lisaakoriin"><input type="text" size=2 maxlength="2"
+						<td><form action="EngOstoskoriServlet" method="post"><div class="lisaakoriin"><input type="text" size=2 maxlength="2"
 							name="maara" value="1"> pc<input type="hidden" value="<%=juomat.get(i).getId()%>"
 									name="koriin"><input type="submit"
 							value='  Add to cart  '></div></form></td>
