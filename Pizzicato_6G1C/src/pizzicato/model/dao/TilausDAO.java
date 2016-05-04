@@ -79,7 +79,6 @@ public class TilausDAO extends DataAccessObject {
 				stmtInsert.setString(6, tilaaja.getPuh());
 				stmtInsert.setString(7, tilaaja.getEmail());
 				stmtInsert.setString(8, tilaaja.getPostinro());
-				stmtInsert.setString(9, tilaaja.getPostitmp());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
 

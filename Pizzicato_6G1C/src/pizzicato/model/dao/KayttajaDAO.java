@@ -82,6 +82,8 @@ public class KayttajaDAO extends DataAccessObject {
 		PreparedStatement stmtInsert = null;
 
 		try {
+			
+			connection = getConnection();
 
 			stmtInsert = connection
 					.prepareStatement("INSERT INTO posti (postinro, postitmp) VALUES(?,?);");
@@ -100,7 +102,7 @@ public class KayttajaDAO extends DataAccessObject {
 			stmtInsert.setString(5, kayttaja.getPuh());
 			stmtInsert.setString(6, kayttaja.getOsoite());
 			stmtInsert.setString(7, kayttaja.getPostinro());
-			stmtInsert.setString(9, kayttaja.getEmail());
+			stmtInsert.setString(8, kayttaja.getEmail());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
 
