@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 import pizzicato.model.Tilaus;
 
 /**
- * Servlet implementation class PoistaKoristaServlet
+ * Servlet implementation class LisaaKoriin
  */
-@WebServlet("/PoistaKoristaServlet")
-public class PoistaKoristaServlet extends HttpServlet {
+@WebServlet("/LisaaKoriinServlet")
+public class LisaaKoriinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
@@ -31,31 +31,26 @@ public class PoistaKoristaServlet extends HttpServlet {
 		ostoskori = (Tilaus) session.getAttribute("ostoskori");
 
 		String idStr = request.getParameter("id");
-		int poistettavaId = new Integer(idStr);
+		int lisattavaId = new Integer(idStr);
 
-		if (ostoskori.getTilausrivit().get(poistettavaId).getLkm() > 1) {
-			int vanhaLkm = ostoskori.getTilausrivit().get(poistettavaId)
-					.getLkm();
-			int uusiLkm = vanhaLkm - 1;
-			ostoskori.getTilausrivit().get(poistettavaId).setLkm(uusiLkm);
-
-		} else {
-			ostoskori.getTilausrivit().remove(poistettavaId);
-		}
+		int vanhaLkm = ostoskori.getTilausrivit().get(lisattavaId).getLkm();
+		int uusiLkm = vanhaLkm + 1;
+		ostoskori.getTilausrivit().get(lisattavaId).setLkm(uusiLkm);
 
 		int yhtlkm = 0;
 		double yhthinta = 0;
-		
+
 		for (int i = 0; i < ostoskori.getTilausrivit().size(); i++) {
 			int rivilkm = ostoskori.getTilausrivit().get(i).getLkm();
 			yhtlkm = yhtlkm + rivilkm;
-			double rivinhinta = rivilkm * ostoskori.getTilausrivit().get(i).getTilattuTuote().getHinta();
+			double rivinhinta = rivilkm
+					* ostoskori.getTilausrivit().get(i).getTilattuTuote()
+							.getHinta();
 			ostoskori.getTilausrivit().get(i).setRivihinta(rivinhinta);
 			yhthinta = yhthinta + rivinhinta;
 		}
 		ostoskori.setYhthinta(yhthinta);
 		ostoskori.setYhtlkm(yhtlkm);
-		
 
 		response.sendRedirect("OstoskoriServlet");
 	}

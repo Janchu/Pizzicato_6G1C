@@ -10,7 +10,7 @@
 <%@ page import="pizzicato.model.Kayttaja"%>
 <jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
-<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
+<jsp:useBean id="ostoskori" class="pizzicato.model.Tilaus" scope="request" />
 
 <html>
 <head>
@@ -27,7 +27,7 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo"
+				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
 					src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
@@ -60,10 +60,8 @@
 	<div id="loota1">
 		<div id="tuotelistataulukko">
 			
-
-
-				<%
-					if (ostoskori.size() < 1) {
+				<% DecimalFormat formatter = new DecimalFormat("#0.00");
+					if (ostoskori.getTilausrivit().size() < 1) {
 						String korityhja = "Ostoskorisi on tyhjä! :(";
 				%>
 				<%=korityhja%>
@@ -87,9 +85,9 @@
 								
 								ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
 
-								for (int i = 0; i < ostoskori.size(); i++) {
+								for (int i = 0; i < ostoskori.getTilausrivit().size(); i++) {
 									for (int j = 0; j < pizzat.size(); j++) {
-										if (ostoskori.get(i).getTilattuTuote().getId() == pizzat.get(j).getId()) {
+										if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getId() == pizzat.get(j).getId()) {
 											taytteet = pizzat.get(j).getTaytelista();
 									}
 								}
@@ -98,15 +96,20 @@
 					
 					
 					<tr>
-						<td><b><%=ostoskori.get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
-						<td><%=ostoskori.get(i).getTilattuTuote().getHinta()%></td>
-						<td><%=ostoskori.get(i).getLkm()%></td>
-						<td><% if (ostoskori.get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.get(i).getMaustelista().size(); j++) {%> <%=ostoskori.get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>
+						<td><b><%=ostoskori.getTilausrivit().get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
+						<td><%=formatter.format(ostoskori.getTilausrivit().get(i).getTilattuTuote().getHinta()) %></td>
+						<td><%=ostoskori.getTilausrivit().get(i).getLkm()%></td>
+						<td><% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.getTilausrivit().get(i).getMaustelista().size(); j++) {%> <%=ostoskori.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>
 						<td>
+							<form action="LisaaKoriinServlet" method="post">
+								<input type="hidden" value="<%=i%>" name="id"><input
+									type="submit" value=" + " name="lisaa">
+							</form>
 							<form action="PoistaKoristaServlet" method="post">
 								<input type="hidden" value="<%=i%>" name="id"><input
-									type="submit" value="Poista korista" name="poista">
+									type="submit" value=" - " name="poista">
 							</form>
+							
 						</td>
 					</tr>
 					
@@ -115,7 +118,7 @@
 				%>
 					<tr >
 					<td bgcolor="#ccffcc"><b>Hinta yhteensä:</b></td>
-					<td bgcolor="#ccffcc"><b>€</b></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td>
+					<td bgcolor="#ccffcc"><b><%=formatter.format(ostoskori.getYhthinta()) %>€</b></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td>
 					</tr>					
 
 				

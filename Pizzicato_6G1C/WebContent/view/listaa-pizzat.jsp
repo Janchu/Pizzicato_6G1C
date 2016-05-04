@@ -54,9 +54,10 @@
 			<br>
 			<div id="ostoskoributton2">
 			<form method="get">
+			<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-				kpl, yht. <%=ostoskori.getYhthinta() %> €
+				kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton1">
 					<a href="OstoskoriServlet">Ostoskoriin</a>
 				</div>
@@ -102,7 +103,6 @@
 					</tr>
 
 					<%
-						DecimalFormat decimal = new DecimalFormat("0.00");
 						int pizzanumero = 0;
 						for (int i = 0; i < pizzat.size(); i++) {
 							if (pizzat.get(i).getTyyppi().equalsIgnoreCase("pizza")
@@ -124,7 +124,7 @@
  				}
  %></td>
 
-						<td width="50px"><%=decimal.format(pizzat.get(i).getHinta())%>
+						<td width="50px"><%=formatter.format(pizzat.get(i).getHinta())%>
 
 						</td>
 						
