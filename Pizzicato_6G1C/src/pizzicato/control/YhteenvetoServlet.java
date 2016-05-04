@@ -47,15 +47,15 @@ public class YhteenvetoServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		Tilaus tilaus = (Tilaus) session.getAttribute("tilaus");
-		//Kayttaja tilaaja = (Kayttaja) session.getAttribute("tilaaja");
+		Kayttaja tilaaja = (Kayttaja) session.getAttribute("tilaaja");
 		
-		//TilausDAO tilausdao = new TilausDAO();
+		TilausDAO tilausdao = new TilausDAO();
 		
-		//try {
-		//tilausdao.addTilaus(tilaus, tilaaja);
-		//} catch (Exception e) {
-		//	response.sendRedirect("/Pizzicato_6G1C/view/virheilmoitus.jsp");
-		//}
+		try {
+		tilausdao.addTilaus(tilaus, tilaaja);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		ArrayList<Tilausrivi> uusiTilausrivit = new ArrayList<Tilausrivi>();
 		
