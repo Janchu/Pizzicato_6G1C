@@ -53,17 +53,24 @@
 		<legend>Tilatut tuotteet:</legend>
 		
 		<% for (int i = 0; i < tilaus.getTilausrivit().size(); i++) { %>
-		<%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %>
-		<%=tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta() %>
+		<b><%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %></b>
+		<%=tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta() %> <b>€</b> x
+		<%=tilaus.getTilausrivit().get(i).getLkm() %>
+		<br>
 		
 		
-		<% } %>
+		
+		<% }
+		 %><b>Yhteensä:</b> 
 		<legend>Tilaajan tiedot:</legend>
 		<p>
 		<label>Tilaaja: </label> <%=tilaaja.getEtunimi() %> <%=tilaaja.getSukunimi() %>
 		</p>
 		<p>
 		<label>Osoite: </label> <%=tilaaja.getOsoite() %>, <%=tilaaja.getPostinro() %> <%=tilaaja.getPostitmp() %>
+		</p>
+		<p>
+		<label>Puhelin:</label> <%=tilaaja.getPuh() %>
 		</p>
 		<p>
 		<label>Email:</label> <%=tilaaja.getEmail() %>
