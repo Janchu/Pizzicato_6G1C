@@ -7,15 +7,19 @@
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
 <%@ page import="pizzicato.model.Kayttaja"%>
-<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>" scope="request" />
-<jsp:useBean id="ostoskori" class="pizzicato.model.Tilaus" scope="request" />
-<jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>"
+	scope="request" />
+<jsp:useBean id="ostoskori" class="pizzicato.model.Tilaus"
+	scope="request" />
+<jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja"
+	scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Listaa juomat</title>
 </head>
 <body>
@@ -28,110 +32,117 @@
 			</div>
 		</div>
 		<div id="lootakeski">
-		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
-			<p3>
-				Avoinna: Ma-La 11-21, Su 12-18<br> +358 40 666 666<br>
-				Kuusitie 66<br> Meilahti, 00270
-			</p3>
+			<a href="EngListaaJuomatServlet"><img alt="lib"
+				src="images/uklib4.png" width="32" height="32"></a> <a
+				href="ListaaJuomatServlet"><img alt="lib"
+				src="images/finlib.png" width="32" height="32"></a><br>
+			<p3> Avoinna: Ma-La 11-21, Su 12-18<br>
+			+358 40 666 666<br>
+			Kuusitie 66<br>
+			Meilahti, 00270 </p3>
 		</div>
 
 		<div id="lootaoikea">
-			<% if (kayttaja.getTyyppi() != null) { %>
-			<span class="valkoinen">Tervetuloa, <%=kayttaja.getEtunimi() %></span>
+			<%
+				if (kayttaja.getTyyppi() != null) {
+			%>
+			<span class="valkoinen">Tervetuloa, <%=kayttaja.getEtunimi()%></span>
 			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
-		<% } else { %>
-			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
-			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
-		<% } %>
+			<%
+				} else {
+			%>
+			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a> <a
+				href="LoginServlet" class="button2">Kirjaudu Sisään</a>
+			<%
+				}
+			%>
 			<br>
-			<div id="ostoskoributton2">
-			<form method="get">
-				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
-				<img src="images/ostoskoriicon.png" width="40" height="40"><%=%>
-				kpl, yht. 
-				<div id="ostoskoributton1">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
-				</div>
-				</form>
+			<div id="ostoskoributton2">				
+					<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+					kpl, yht. <%=ostoskori.getYhthinta()%> €
+					<div id="ostoskoributton1">
+						<a href="OstoskoriServlet">Ostoskoriin</a>
+					</div>
 			</div>
 		</div>
 	</div>
-	</div>
 	
+
 	<div id="ostoskoributton3">
-			<form method="get">
-				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
-				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-				kpl, yht. <%=ostoskori.getYhthinta() %> €
-				<div id="ostoskoributton4">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
-				</div>
-				</form>
-			</div>
+		<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+		kpl, yht.
+		<%=ostoskori.getYhthinta()%>
+		€
+		<div id="ostoskoributton4">
+			<a href="OstoskoriServlet">Ostoskoriin</a>
+		</div>
+	</div>
 
 	<div id="otsikkoloota">
-	
-<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2>Pizzalista</p2></a>
-<a href="ListaaJuomatServlet" class="juomabutton"><u><p2>Juomat</p2></u></a>
 
-</div>
+		<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2>Pizzalista</p2></a>
+		<a href="ListaaJuomatServlet" class="juomabutton"><u><p2>Juomat</p2></u></a>
 
-<div id="loota1">
-<div id="tuotelistataulukko">
-<div id="tablescoller">
+	</div>
 
-		<table>
-		
-			<tr>
-				<th>#</th>
-				<th>Nimi</th>
-				<th>Hinta</th>
-				<th></th>
-			
-			</tr>
+	<div id="loota1">
+		<div id="tuotelistataulukko">
+			<div id="tablescoller">
 
-			<%
-				DecimalFormat decimal = new DecimalFormat("0.00");
-				int juomanumero = 0;
-				for (int i = 0; i < juomat.size(); i++) {
+				<table>
 
-					if (juomat.get(i).getTyyppi().equalsIgnoreCase("juoma")) {
+					<tr>
+						<th>#</th>
+						<th>Nimi</th>
+						<th>Hinta</th>
+						<th></th>
 
-						if (juomat.get(i).getNakyvyys() == 1) {
-							juomanumero++;
-			%>
+					</tr>
 
-			<tr>
-				<td width="5%"><%=juomanumero%></td>
-				<td width="40%"><b><%=juomat.get(i).getNimi()%></b>
-				<td width="5%"><%=decimal.format(juomat.get(i).getHinta())%></td>
-				<td width="5%"><form action="OstoskoriServlet" method="post"><div class="lisaakoriin"><input type="text" size=2 maxlength="2"
-							name="maara" value="1"> Määrä<input type="hidden" value="<%=juomat.get(i).getId()%>"
-									name="koriin"><input type="hidden" value="juoma"
-									name="tyyppi"><input type="submit"
-							value='  Lisää ostoskoriin  '></div></form></td>
-			</tr>
+					<%
+						DecimalFormat decimal = new DecimalFormat("0.00");
+						int juomanumero = 0;
+						for (int i = 0; i < juomat.size(); i++) {
 
-			<%
-				}
-					}
-				}
-			%>
-			</table>
+							if (juomat.get(i).getTyyppi().equalsIgnoreCase("juoma")) {
+
+								if (juomat.get(i).getNakyvyys() == 1) {
+									juomanumero++;
+					%>
+
+					<tr>
+						<td width="5%"><%=juomanumero%></td>
+						<td width="40%"><b><%=juomat.get(i).getNimi()%></b>
+						<td width="5%"><%=decimal.format(juomat.get(i).getHinta())%></td>
+						<td width="5%"><form action="OstoskoriServlet" method="post">
+								<div class="lisaakoriin">
+									<input type="text" size=2 maxlength="2" name="maara" value="1">
+									Määrä<input type="hidden" value="<%=juomat.get(i).getId()%>"
+										name="koriin"><input type="hidden" value="juoma"
+										name="tyyppi"><input type="submit"
+										value='  Lisää ostoskoriin  '>
+								</div>
+							</form></td>
+					</tr>
+
+					<%
+						}
+							}
+						}
+					%>
+				</table>
 			</div>
-			</div>
-			</div>
-			
-			<div id="footer">
-				<div id="footer_sisältö">
-					<p>
-						Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
-						Sähköpostiosoite: pizzeria.pizzicato@gmail.com<br>
-						Katuosoite: Kuusitie 66 <br> Postitoimipaikka: Meilahti,
-						00270 <br>
-					</p>
-				</div>
-			</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		<div id="footer_sisältö">
+			<p>
+				Pizzeria Pizzicato<br> Puhelin: +358 40 666 666<br>
+				Sähköpostiosoite: pizzeria.pizzicato@gmail.com<br> Katuosoite:
+				Kuusitie 66 <br> Postitoimipaikka: Meilahti, 00270 <br>
+			</p>
+		</div>
+	</div>
 </body>
 </html>

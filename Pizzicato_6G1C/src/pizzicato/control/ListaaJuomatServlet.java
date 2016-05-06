@@ -36,10 +36,7 @@ public class ListaaJuomatServlet extends HttpServlet {
 
 		if (ostoskori == null) {
 			ostoskori = new Tilaus();
-			System.out.println(ostoskori);
 		}
-
-		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 
 		// Käyttäjän checkaus
 		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
@@ -52,7 +49,7 @@ public class ListaaJuomatServlet extends HttpServlet {
 
 		// Arraylist tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("juomat", juomat);
-		request.setAttribute("ostoskori", tilausrivit);
+		request.setAttribute("ostoskori", ostoskori);
 
 		// Lähetetään jsp:lle
 		String jsp = "/view/listaa-juomat.jsp";

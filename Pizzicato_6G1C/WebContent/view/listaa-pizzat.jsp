@@ -144,7 +144,7 @@
 						<div class="tuotelistaoikea">
 						<b><%=formatter.format(pizzat.get(i).getHinta())%>€</b><br><br>
 						
-						<div class="tilaasaatana"><input type='text' value="1" name='qty' id='qty' size=2 maxlength="2"/>
+						<div class="tilaasaatana"><input type='text' value="1" name='maara' id='qty' size=2 maxlength="2"/>
 						<input type='button' name='subtract' onclick='javascript: subtractQty();' value='-'/> 
 						<input type='button' name='add' onclick='javascript: document.getElementById("qty").value++;' value='+'/></div> 
 						<input type="hidden" value="<%=pizzat.get(i).getId()%>"
