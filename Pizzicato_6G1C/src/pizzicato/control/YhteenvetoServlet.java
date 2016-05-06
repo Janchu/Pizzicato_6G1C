@@ -1,7 +1,9 @@
 package pizzicato.control;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,6 +50,11 @@ public class YhteenvetoServlet extends HttpServlet {
 		
 		Tilaus tilaus = (Tilaus) session.getAttribute("tilaus");
 		Kayttaja tilaaja = (Kayttaja) session.getAttribute("tilaaja");
+		
+		Date pvmaika = new Date();
+		SimpleDateFormat asettelu = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String tilausaika = asettelu.format(pvmaika);
+		tilaus.setTilausaika(tilausaika);
 		
 		TilausDAO tilausdao = new TilausDAO();
 		

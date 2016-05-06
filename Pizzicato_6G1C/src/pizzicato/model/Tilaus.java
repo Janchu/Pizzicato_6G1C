@@ -13,24 +13,20 @@ public class Tilaus {
 	private String lisatiedot;
 	private ArrayList<Tilausrivi> tilausrivit;
 	private double yhthinta;
+	private int yhtlkm;
+	private String tilausaika;
 	
 	
 	// Oletuskonstruktori
 	
 	public Tilaus() {
-		this.id = 0;
-		this.tila = null;
-		this.maksutapa = null;
-		this.toimitus = null;
-		this.lisatiedot = null;
-		this.tilausrivit = new ArrayList<Tilausrivi>();
-		this.yhthinta = 0;
+		
 	}
 
 	// Parametrillinen konstruktori
 	
 	public Tilaus(int id, String tila, String maksutapa, String toimitus,
-			String lisatiedot, ArrayList<Tilausrivi> tilausrivit, double yhthinta) {
+			String lisatiedot, ArrayList<Tilausrivi> tilausrivit, double yhthinta, int yhtlkm, String tilausaika) {
 		super();
 		this.id = id;
 		this.tila = tila;
@@ -39,7 +35,8 @@ public class Tilaus {
 		this.lisatiedot = lisatiedot;
 		this.tilausrivit = tilausrivit;
 		this.yhthinta = yhthinta;
-
+		this.yhtlkm = yhtlkm;
+		this.tilausaika = tilausaika;
 	}
 	
 	// Getters & Setters
@@ -105,7 +102,22 @@ public class Tilaus {
 		this.yhthinta = yhthinta;
 	}
 	
+	public int getYhtlkm() {
+		return yhtlkm;
+	}
 	
+	public void setYhtlkm(int yhtlkm) {
+		this.yhtlkm = yhtlkm;
+	}
+	
+	public String getTilausaika() {
+		return tilausaika;
+	}
+
+	public void setTilausaika(String tilausaika) {
+		this.tilausaika = tilausaika;
+	}
+		
 	// ToString
 	@Override
 	public String toString() {

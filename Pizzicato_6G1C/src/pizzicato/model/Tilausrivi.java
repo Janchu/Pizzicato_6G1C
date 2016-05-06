@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Tilausrivi {
 	private int rivinumero;
+	private double rivihinta;
 	private Tuote tilattuTuote;
 	private int lkm;
 	private ArrayList<Mauste> maustelista;
@@ -15,8 +16,9 @@ public class Tilausrivi {
 	}
 
 
-	public Tilausrivi(int rivinumero, Tuote tilattuTuote, int lkm, ArrayList<Mauste> maustelista) {
+	public Tilausrivi(int rivinumero, double rivihinta, Tuote tilattuTuote, int lkm, ArrayList<Mauste> maustelista) {
 		this.rivinumero = rivinumero;
+		this.rivihinta = rivihinta;
 		this.tilattuTuote = tilattuTuote;
 		this.lkm = lkm;
 		this.maustelista = maustelista;
@@ -30,7 +32,13 @@ public class Tilausrivi {
 		this.rivinumero = rivinumero;
 	}
 
-
+	public double getRivihinta() {
+		return rivihinta;
+	}
+	
+	public void setRivihinta (double rivihinta) {
+		this.rivihinta = rivihinta;
+	}	
 
 	public Tuote getTilattuTuote() {
 		return tilattuTuote;

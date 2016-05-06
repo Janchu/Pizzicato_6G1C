@@ -9,7 +9,7 @@
 <%@ page import="pizzicato.model.Kayttaja"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
-<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
+<jsp:useBean id="ostoskori" class="pizzicato.model.Tilaus" scope="request" />
 <jsp:useBean id="mausteet" type="java.util.ArrayList<Mauste>" scope="request" />
 <jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <html>
@@ -62,9 +62,10 @@
 			<br>
 			<div id="ostoskoributton2">
 			<form method="get">
+			<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
-				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
-				kpl, yht. 
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+				kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton1">
 					<a href="OstoskoriServlet">Ostoskoriin</a>
 				</div>
@@ -77,8 +78,8 @@
 	<div id="ostoskoributton3">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
-				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
-				kpl, yht. 
+				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+				kpl, yht. <%=ostoskori.getYhthinta() %> €
 				<div id="ostoskoributton4">
 					<a href="OstoskoriServlet">Ostoskoriin</a>
 				</div>
@@ -106,8 +107,7 @@
 						<th>#</th>
 						<th>Nimi</th>
 						
-						
-						
+
 					</tr>
 
 					<%
@@ -122,7 +122,7 @@
 					%>
 					<tr>
 						<td width="10px"><%=pizzanumero%></td>
-						<td><div class="tuotelistavasen"><b><%=pizzat.get(i).getNimi()%><br> Täytteet: </b>
+						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=pizzat.get(i).getNimi()%><br> Täytteet: </b>
 						 <%
 							for (int j = 0; j < pizzat.get(i).getTaytelista()
 												.size(); j++) {
@@ -133,15 +133,16 @@
  	}
  				}
  %>
-<br> <form action="OstoskoriServlet" method="post">
+<br> 
 						<div class="mausteet"> <% for (int j = 0; j < mausteet.size(); j++) { %>
 						<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>">  <%=mausteet.get(j).getNimi() %></div>
-						<%} %></div></div></form>
+						<%} %></div></div>
+
 
 						
-						<form action="OstoskoriServlet" method="post">	
+						
 						<div class="tuotelistaoikea">
-						<b><%=decimal.format(pizzat.get(i).getHinta())%>€</b><br><br>
+						<b><%=formatter.format(pizzat.get(i).getHinta())%>€</b><br><br>
 						
 						<div class="tilaasaatana"><input type='text' value="1" name='qty' id='qty' size=2 maxlength="2"/>
 						<input type='button' name='subtract' onclick='javascript: subtractQty();' value='-'/> 

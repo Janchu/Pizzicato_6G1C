@@ -3,7 +3,7 @@
 <%@page import="pizzicato.model.Tayte"%>
 <%@page import="pizzicato.model.Pizza"%>
 <jsp:useBean id="taytteet" type="java.util.ArrayList<pizzicato.model.Tayte>" scope="request" />
-<jsp:useBean id="pizzat" type="java.util.ArrayList<pizzicato.model.Pizza>" scope="request" />
+<jsp:useBean id="uusiPizza" type="pizzicato.model.Pizza" scope="request" />
 <jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
 
@@ -91,9 +91,14 @@
 				<legend>Täytteet:</legend>
 				<%-- checkboxeilla valitaan täytteet --%>
 				<%
-					for (int i = 0; i < taytteet.size(); i++) {
+					for (int i = 0; i < taytteet.size(); i++) {						
 				%>
-				<input type="checkbox" name="tayte"
+				<input type="checkbox" name="tayte" <% for (int j = 0; i < uusiPizza.getTaytelista().size(); i++) { 
+					if (taytteet.get(i).getId() == uusiPizza.getTaytelista().get(j).getId()) {
+						%>checked<%
+					}
+					
+				} %>
 					value="<%=taytteet.get(i).getId()%>">
 				<%=taytteet.get(i).getNimi()%><br>
 				<%

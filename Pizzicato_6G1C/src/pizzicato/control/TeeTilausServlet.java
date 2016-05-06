@@ -52,12 +52,15 @@ public class TeeTilausServlet extends HttpServlet {
 
 		// Käyttäjän checkaus
 		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
-		System.out.println(kayttaja);
+		
 		if (kayttaja == null) {
 			kayttaja = new Kayttaja();
-			System.out.println(kayttaja);
+			
 		}
-		request.setAttribute("kayttaja", kayttaja);
+		
+		request.setAttribute("tilaus", ostoskori);
+		request.setAttribute("tilaaja", kayttaja);
+		
 
 		// Lähetetään jsp:lle
 		String jsp = "/view/tee-tilaus.jsp";
@@ -102,10 +105,10 @@ public class TeeTilausServlet extends HttpServlet {
 
 		tilaus.setLisatiedot(lisatiedot);
 
-		System.out.println(tilaus);
 
 		tilaaja.setEtunimi(etunimi);
 		tilaaja.setSukunimi(sukunimi);
+		tilaaja.setTyyppi("vieras");
 		tilaaja.setPuh(puh);
 		tilaaja.setEmail(email);
 		tilaaja.setOsoite(osoite);
@@ -121,6 +124,13 @@ public class TeeTilausServlet extends HttpServlet {
 
 	public static HashMap<String, String> validateTilaus(
 			HttpServletRequest request) {
+		
+		Tilaus tilaus = new Tilaus();
+		Kayttaja tilaaja = new Kayttaja();
+		
+		// Radiobuttoneilla valitut tiedot
+		tilaus.setToimitus(request.getParameter("toimitus"));
+		tilaus.setMaksutapa(request.getParameter("maksutapa"));
 
 		HashMap<String, String> errors = new HashMap<String, String>();
 
@@ -144,7 +154,7 @@ public class TeeTilausServlet extends HttpServlet {
 					String uusiEtunimi = etunimi.replace('ä', 'a');
 					uusiEtunimi = etunimi.replace('å', 'a');
 					uusiEtunimi = etunimi.replace('ö', 'o');
-					request.setAttribute("etunimi", uusiEtunimi);
+					tilaaja.setEtunimi(uusiEtunimi);
 				}
 			}
 		}
@@ -169,7 +179,7 @@ public class TeeTilausServlet extends HttpServlet {
 					String uusiSukunimi = sukunimi.replace('ä', 'a');
 					uusiSukunimi = sukunimi.replace('å', 'a');
 					uusiSukunimi = sukunimi.replace('ö', 'o');
-					request.setAttribute("sukunimi", uusiSukunimi);
+					tilaaja.setSukunimi(uusiSukunimi);
 				}
 			}
 		}
@@ -190,7 +200,7 @@ public class TeeTilausServlet extends HttpServlet {
 				if (puh.length() < 10 || puh.length() > 13) {
 					errors.put("puh", "Puhelinnumero 10-13 merkillä");
 				} else {
-					request.setAttribute("puh", puh);
+					tilaaja.setPuh(puh);
 				}
 			}
 		}
@@ -208,7 +218,7 @@ public class TeeTilausServlet extends HttpServlet {
 				if (email.trim().length() > 60) {
 					errors.put("email", "Sähköposti on liian pitkä");
 				} else {
-					request.setAttribute("email", email);
+					tilaaja.setEmail(email);
 				}
 			}
 		}
@@ -232,7 +242,7 @@ public class TeeTilausServlet extends HttpServlet {
 					String uusiOsoite = osoite.replace('ä', 'a');
 					uusiOsoite = osoite.replace('å', 'a');
 					uusiOsoite = osoite.replace('ö', 'o');
-					request.setAttribute("osoite", uusiOsoite);
+					tilaaja.setOsoite(uusiOsoite);
 				}
 			}
 		}
@@ -254,7 +264,7 @@ public class TeeTilausServlet extends HttpServlet {
 					errors.put("postinro",
 							"Postinumero saa sisältää vain numeroita");
 				} else {
-					request.setAttribute("postinro", postinro);
+					tilaaja.setPostinro(postinro);
 				}
 			}
 		}
@@ -279,7 +289,7 @@ public class TeeTilausServlet extends HttpServlet {
 					String uusiPostitmp = postitmp.replace('ä', 'a');
 					uusiPostitmp = postitmp.replace('å', 'a');
 					uusiPostitmp = postitmp.replace('ö', 'o');
-					request.setAttribute("postitmp", uusiPostitmp);
+					tilaaja.setPostitmp(uusiPostitmp);
 				}
 			}
 		}
@@ -302,11 +312,14 @@ public class TeeTilausServlet extends HttpServlet {
 					String uusiLisatiedot = lisatiedot.replace('ä', 'a');
 					uusiLisatiedot = lisatiedot.replace('å', 'a');
 					uusiLisatiedot = lisatiedot.replace('ö', 'o');
-					request.setAttribute("lisatiedot", uusiLisatiedot);
+					uusiLisatiedot.trim();
+					tilaus.setLisatiedot(uusiLisatiedot);
 				}
 			}
 		}
 
+		request.setAttribute("tilaus", tilaus);
+		request.setAttribute("tilaaja", tilaaja);
 		request.setAttribute("errors", errors);
 
 		return errors;

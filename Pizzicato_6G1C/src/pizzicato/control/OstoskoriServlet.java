@@ -1,6 +1,7 @@
 package pizzicato.control;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -42,18 +43,15 @@ public class OstoskoriServlet extends HttpServlet {
 			ostoskori = new Tilaus();
 		}
 
-		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
-
 		// Käyttäjän checkaus
 		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
-		System.out.println(kayttaja);
+	
 		if (kayttaja == null) {
 			kayttaja = new Kayttaja();
-			System.out.println(kayttaja);
 		}
 		request.setAttribute("kayttaja", kayttaja);
 
-		request.setAttribute("ostoskori", tilausrivit);
+		request.setAttribute("ostoskori", ostoskori);
 		request.setAttribute("pizzat", pizzat);
 
 		String jsp = "/view/ostoskori.jsp";
@@ -65,6 +63,8 @@ public class OstoskoriServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		Tilaus ostoskori;
+		
+		DecimalFormat formatter = new DecimalFormat("#0.00");
 
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
@@ -80,6 +80,9 @@ public class OstoskoriServlet extends HttpServlet {
 			ostoskori = new Tilaus();
 			session.setAttribute("ostoskori", ostoskori);
 		}
+		
+		int yhtlkm = ostoskori.getYhtlkm();
+		double yhthinta = ostoskori.getYhthinta();
 
 		String idStr = request.getParameter("koriin");
 		int id = new Integer(idStr);
@@ -101,7 +104,8 @@ public class OstoskoriServlet extends HttpServlet {
 					tilattuPizza.setHinta(pizzat.get(i).getHinta());
 					tilattuPizza.setNimi(pizzat.get(i).getNimi());
 					tilattuPizza.setTyyppi(pizzat.get(i).getTyyppi());
-					System.out.println("Ahuehue" + tilattuPizza.getTyyppi());
+					
+					yhthinta = yhthinta + tilattuPizza.getHinta();
 
 					if (tilattuPizza.getTyyppi().equalsIgnoreCase("pizza")) {
 						for (int j = 0; j < pizzat.size(); j++) {
@@ -117,7 +121,6 @@ public class OstoskoriServlet extends HttpServlet {
 
 							String mausteIdStr = mausteet[j];
 							int mausteId = new Integer(mausteIdStr);
-							System.out.println(mausteId);
 							for (int k = 0; k < maustelista.size(); k++) {
 								if (mausteId == maustelista.get(k).getId()) {
 									String mausteNimi = maustelista.get(k)
@@ -134,6 +137,13 @@ public class OstoskoriServlet extends HttpServlet {
 					String lkmStr = request.getParameter("maara");
 					int lkm = new Integer(lkmStr);
 
+					yhtlkm = yhtlkm + lkm;
+					
+					ostoskori.setYhtlkm(yhtlkm);
+					int korinKoko = ostoskori.getTilausrivit().size();
+					
+					int uusiRivi = korinKoko + 1;
+					uusiTilausrivi.setRivinumero(uusiRivi);
 					uusiTilausrivi.setLkm(lkm);
 					uusiTilausrivi.setTilattuTuote(tilattuPizza);
 					uusiTilausrivi.setMaustelista(uudetMausteet);
@@ -151,17 +161,40 @@ public class OstoskoriServlet extends HttpServlet {
 					tilattuJuoma.setNimi(juomat.get(i).getNimi());
 					tilattuJuoma.setHinta(juomat.get(i).getHinta());
 					tilattuJuoma.setTyyppi(juomat.get(i).getTyyppi());
+					
 				}
 			}
 
 			String lkmStr = request.getParameter("maara");
 			int lkm = new Integer(lkmStr);
+			
+			yhtlkm = yhtlkm + lkm;
+			
+			ostoskori.setYhtlkm(yhtlkm);
 
+			
+			int korinKoko = ostoskori.getTilausrivit().size();
+			
+			int uusiRivi = korinKoko + 1;
+			uusiTilausrivi.setRivinumero(uusiRivi);
 			uusiTilausrivi.setLkm(lkm);
 			uusiTilausrivi.setTilattuTuote(tilattuJuoma);
 			ostoskori.addTilausrivi(uusiTilausrivi);
 		}
-
+		
+		// Lasketaan kokonaishinta ja kokonaislkm
+		yhtlkm = 0;
+		yhthinta = 0;		
+		for (int i = 0; i < ostoskori.getTilausrivit().size(); i++) {
+			int rivilkm = ostoskori.getTilausrivit().get(i).getLkm();
+			yhtlkm = yhtlkm + rivilkm;
+			double rivinhinta = rivilkm * ostoskori.getTilausrivit().get(i).getTilattuTuote().getHinta();
+			ostoskori.getTilausrivit().get(i).setRivihinta(rivinhinta);
+			yhthinta = yhthinta + rivinhinta;
+		}
+		ostoskori.setYhthinta(yhthinta);
+		ostoskori.setYhtlkm(yhtlkm);
+		
 		session.setAttribute("ostoskori", ostoskori);
 
 		request.setAttribute("ostoskori", ostoskori);

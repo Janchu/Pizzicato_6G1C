@@ -79,18 +79,18 @@ public class TilausDAO extends DataAccessObject {
 				stmtInsert.setString(6, tilaaja.getPuh());
 				stmtInsert.setString(7, tilaaja.getEmail());
 				stmtInsert.setString(8, tilaaja.getPostinro());
-				stmtInsert.setString(9, tilaaja.getPostitmp());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
 
 				stmtInsert = connection
-						.prepareStatement("INSERT INTO tilaus (id, tila, maksutapa, toimitus, lisatiedot, kayttaja_id, yhthinta, tilausaika) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?, ?);");
+						.prepareStatement("INSERT INTO tilaus (id, tila, maksutapa, toimitus, lisatiedot, yhthinta, kayttaja_id, tilausaika) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?, ?);");
 				stmtInsert.setString(1, tilaus.getTila());
 				stmtInsert.setString(2, tilaus.getMaksutapa());
 				stmtInsert.setString(3, tilaus.getToimitus());
 				stmtInsert.setString(4, tilaus.getLisatiedot());
-				stmtInsert.setInt(5, tilaaja.getId());
-				stmtInsert.setDouble(6, tilaus.getYhthinta());
+				stmtInsert.setDouble(5, tilaus.getYhthinta());
+				stmtInsert.setInt(6, tilaaja.getId());
+				stmtInsert.setString(7, tilaus.getTilausaika());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
 
@@ -125,9 +125,12 @@ public class TilausDAO extends DataAccessObject {
 			String lisatiedot = rs.getString("tilaus.lisatiedot");
 			ArrayList<Tilausrivi> tilausrivit = new ArrayList<Tilausrivi>();
 			double yhthinta = rs.getDouble("tilaus.lisatiedot");
+			int yhtlkm = rs.getInt("tilausrivi.lkm");
+			String tilausaika = rs.getString("tilaus.tilausaika");
+			
 
 			return new Tilaus(id, tila, maksutapa, toimitus, lisatiedot,
-					tilausrivit, yhthinta);
+					tilausrivit, yhthinta, yhtlkm, tilausaika);
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
