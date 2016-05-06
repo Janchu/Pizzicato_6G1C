@@ -220,7 +220,12 @@ public class OstoskoriServlet extends HttpServlet {
 
 		request.setAttribute("ostoskori", ostoskori);
 		request.setAttribute("pizzat", pizzat);
-
-		response.sendRedirect("ListaaPizzatServlet");
+		
+		if (tyyppi.equalsIgnoreCase("juoma")) {
+		response.sendRedirect("ListaaJuomatServlet");
+		} else {
+			response.sendRedirect("ListaaPizzatServlet");
+		}
+		
 	}
 }

@@ -76,14 +76,11 @@
 	
 	<%-- tämä tulee näkyville, kun menee 1000px  alle --%>
 	<div id="ostoskoributton3">
-			<form method="get">
-				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-				kpl, yht. <%=ostoskori.getYhthinta() %> €
+				kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton4">
 					<a href="OstoskoriServlet">Ostoskoriin</a>
 				</div>
-				</form>
 			</div>
 
 

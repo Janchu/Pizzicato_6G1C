@@ -28,10 +28,10 @@ public class TeeTilausServlet extends HttpServlet {
 
 		
 		HttpSession session = request.getSession();
-		Tilaus ostoskori = (Tilaus) session.getAttribute("ostoskori");
+		Tilaus tilaus = (Tilaus) session.getAttribute("ostoskori");
 
-		if (ostoskori == null) {
-			ostoskori = new Tilaus();
+		if (tilaus == null) {
+			tilaus = new Tilaus();
 		}
 
 		
@@ -58,7 +58,7 @@ public class TeeTilausServlet extends HttpServlet {
 			
 		}
 		
-		request.setAttribute("tilaus", ostoskori);
+		request.setAttribute("tilaus", tilaus);
 		request.setAttribute("tilaaja", kayttaja);
 		
 

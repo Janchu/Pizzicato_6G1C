@@ -57,9 +57,10 @@
 				}
 			%>
 			<br>
-			<div id="ostoskoributton2">				
+			<div id="ostoskoributton2">		
+			<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>		
 					<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-					kpl, yht. <%=ostoskori.getYhthinta()%> €
+					kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
 					<div id="ostoskoributton1">
 						<a href="OstoskoriServlet">Ostoskoriin</a>
 					</div>
@@ -71,7 +72,7 @@
 	<div id="ostoskoributton3">
 		<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
 		kpl, yht.
-		<%=ostoskori.getYhthinta()%>
+		<%=formatter.format(ostoskori.getYhthinta())%>
 		€
 		<div id="ostoskoributton4">
 			<a href="OstoskoriServlet">Ostoskoriin</a>
