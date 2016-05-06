@@ -74,7 +74,7 @@
 		</div>
 	</div>
 	
-	<%-- tämä tulee näkyville, kun menee 1000px alle --%>
+	<%-- tämä tulee näkyville, kun menee 1000px  alle --%>
 	<div id="ostoskoributton3">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
