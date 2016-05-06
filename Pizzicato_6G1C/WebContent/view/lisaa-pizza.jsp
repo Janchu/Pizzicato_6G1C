@@ -93,11 +93,11 @@
 				<%
 					for (int i = 0; i < taytteet.size(); i++) {						
 				%>
-				<input type="checkbox" name="tayte" <% for (int j = 0; i < uusiPizza.getTaytelista().size(); i++) { 
+				<input type="checkbox" name="tayte" <%if (uusiPizza.getTaytelista() != null) { for (int j = 0; j < uusiPizza.getTaytelista().size(); j++) { 
 					if (taytteet.get(i).getId() == uusiPizza.getTaytelista().get(j).getId()) {
-						%>checked<%
+						%> checked <%
 					}
-					
+				}
 				} %>
 					value="<%=taytteet.get(i).getId()%>">
 				<%=taytteet.get(i).getNimi()%><br>
