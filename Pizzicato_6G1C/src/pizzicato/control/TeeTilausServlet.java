@@ -85,7 +85,7 @@ public class TeeTilausServlet extends HttpServlet {
 
 		Tilaus tilaus = new Tilaus();
 		Kayttaja tilaaja = new Kayttaja();
-
+		
 		tilaus = (Tilaus) session.getAttribute("ostoskori");
 
 		String etunimi = request.getParameter("etunimi");
