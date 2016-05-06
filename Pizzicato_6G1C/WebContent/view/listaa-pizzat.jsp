@@ -14,6 +14,14 @@
 <jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <html>
 <head>
+<script type="text/javascript">
+		function subtractQty(){
+			if(document.getElementById("qty").value - 1 < 1)
+				return;
+			else
+				 document.getElementById("qty").value--;
+		}
+		</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -66,7 +74,7 @@
 		</div>
 	</div>
 	
-	<%-- tämä tulee näkyville, kun menee 1000px alle --%>
+	<%-- tämä tulee näkyville, kun menee 1000px  alle --%>
 	<div id="ostoskoributton3">
 			<form method="get">
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
@@ -87,9 +95,10 @@
 	</div>
 
 	<div id="loota1">
+		
 		<%-- Lootan sisällä on kaikki itse sisältö --%>
 		<div id="tuotelistataulukko">
-			<%-- Pizzalista on toteutettu taulukkona --%>
+			<%-- Tuotelista on toteutettu taulukkona --%>
 			<div id="tablescoller">
 				<%-- Tablescoller on taulukon oikean reunan scollbar --%>
 				
@@ -97,12 +106,12 @@
 					<tr>
 						<th>#</th>
 						<th>Nimi</th>
-						<th>Hinta</th>
-						<th>Mausteet</th>
 						
+
 					</tr>
 
 					<%
+						DecimalFormat decimal = new DecimalFormat("0.00");
 						int pizzanumero = 0;
 						for (int i = 0; i < pizzat.size(); i++) {
 							if (pizzat.get(i).getTyyppi().equalsIgnoreCase("pizza")
@@ -113,7 +122,8 @@
 					%>
 					<tr>
 						<td width="10px"><%=pizzanumero%></td>
-						<td><b><%=pizzat.get(i).getNimi()%></b><br> Täytteet: <%
+						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=pizzat.get(i).getNimi()%><br> Täytteet: </b>
+						 <%
 							for (int j = 0; j < pizzat.get(i).getTaytelista()
 												.size(); j++) {
 						%> <%=pizzat.get(i).getTaytelista().get(j)
@@ -122,22 +132,22 @@
  %>, <%
  	}
  				}
- %></td>
+ %>
+<br> 
+						<div class="mausteet"> <% for (int j = 0; j < mausteet.size(); j++) { %>
+						<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>">  <%=mausteet.get(j).getNimi() %></div>
+						<%} %></div></div>
 
-						<td width="50px"><%=formatter.format(pizzat.get(i).getHinta())%>
 
-						</td>
 						
-						<td width="400px"><form action="OstoskoriServlet" method="post">
-						<div class="mausteet">
-						<% for (int j = 0; j < mausteet.size(); j++) { %>
-							
-							
-							<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>"><%=mausteet.get(j).getNimi() %></div>
-							
-						<%} %></div>
-						<div class="lisaakoriin"><input type="text" size=2 maxlength="2"
-							name="maara" value="1"> kpl<input type="hidden" value="<%=pizzat.get(i).getId()%>"
+						
+						<div class="tuotelistaoikea">
+						<b><%=formatter.format(pizzat.get(i).getHinta())%>€</b><br><br>
+						
+						<div class="tilaasaatana"><input type='text' value="1" name='maara' id='qty' size=2 maxlength="2"/>
+						<input type='button' name='subtract' onclick='javascript: subtractQty();' value='-'/> 
+						<input type='button' name='add' onclick='javascript: document.getElementById("qty").value++;' value='+'/></div> 
+						<input type="hidden" value="<%=pizzat.get(i).getId()%>"
 									name="koriin"><input type="hidden" value="pizza"
 									name="tyyppi"><input type="submit"
 							value='  Lisää ostoskoriin  '></div></form>

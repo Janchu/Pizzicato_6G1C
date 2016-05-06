@@ -53,7 +53,7 @@ font-weight:bold;
 
 /* td padding lis‰‰ tilaa taulukon vaakasolun ymp‰rill‰ */
 #tuotelistataulukko	td {
-padding:20px;
+padding:10px;
 padding-left:10px;
 }
 
@@ -283,10 +283,6 @@ font-family:Kozuka Gothic Pro EL;
 
 }
 
-
-	
-	
-	
 	
 /* Janen jutut */	
 /* ---------------------------------------------------------------- */
@@ -297,6 +293,9 @@ label {
 	float: left;
 	width: 175px;
 }
+
+div.tilaasaatana {
+	margin-bottom:4px;}
 
 input.text {
 	width: 200px;
@@ -310,20 +309,35 @@ fieldset {
 
 div.mauste {
 	float: left;
-	display: inline-block;
-	width: 96px;
-}	
-
-div.lisaakoriin {
 	display:inline-block;
-	float:left;
-	width: 100px;
-}
+	width: 94px;
+}	
 
 div.mausteet {
 	display: inline-block;
 	float: left;
-	max-width: 192px;
+	width:350px
+	border:solid 1px;
+}
+
+div.tuotelistaoikea {
+	display:inline-block;
+	float:left;
+	width:15%;
+	
+}
+
+div.tuotelistavasen {display:inline-block;
+width:85%;
+float:left;
+
+}
+
+div.hinta {display:inline-block;
+float:left;
+
+margin-left:25%;
+
 }
 
 .valkoinen {

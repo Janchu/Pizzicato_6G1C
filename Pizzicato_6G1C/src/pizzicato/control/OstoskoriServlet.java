@@ -1,7 +1,6 @@
 package pizzicato.control;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -63,8 +62,6 @@ public class OstoskoriServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		Tilaus ostoskori;
-
-		DecimalFormat formatter = new DecimalFormat("#0.00");
 
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
@@ -146,6 +143,16 @@ public class OstoskoriServlet extends HttpServlet {
 					yhtlkm = yhtlkm + lkm;
 
 					ostoskori.setYhtlkm(yhtlkm);
+					
+					int korinKoko;
+					
+					if (ostoskori.getTilausrivit() == null) {
+						korinKoko = 0;
+					} else {
+					korinKoko = ostoskori.getTilausrivit().size();
+					}
+
+					uusiRivi = korinKoko + 1;
 
 					uusiTilausrivi.setRivinumero(uusiRivi);
 					uusiTilausrivi.setLkm(lkm);
@@ -175,7 +182,13 @@ public class OstoskoriServlet extends HttpServlet {
 
 			ostoskori.setYhtlkm(yhtlkm);
 
-			int korinKoko = ostoskori.getTilausrivit().size();
+			int korinKoko;
+			
+			if (ostoskori.getTilausrivit() == null) {
+				korinKoko = 0;
+			} else {
+			korinKoko = ostoskori.getTilausrivit().size();
+			}
 
 			uusiRivi = korinKoko + 1;
 			uusiTilausrivi.setRivinumero(uusiRivi);
