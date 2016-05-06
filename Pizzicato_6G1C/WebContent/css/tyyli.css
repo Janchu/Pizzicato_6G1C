@@ -283,6 +283,32 @@ font-family:Kozuka Gothic Pro EL;
 
 }
 
+#hal_loota {
+		width:72%;
+    	height:100%;
+      	padding:15px;
+		margin-left:15%;
+		background-size: 100% 100%;
+		background-color: rgba(255,255,255,0.95);
+		}
+
+#hal_kirjautuminen {float:right;}
+
+.button3 {
+	width:60%;
+	height:10%;
+    background-color: white;
+    border:solid 2px black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    margin-top:30px;
+    cursor: pointer;
+	margin-left:20%;
+}
+
 	
 /* Janen jutut */	
 /* ---------------------------------------------------------------- */

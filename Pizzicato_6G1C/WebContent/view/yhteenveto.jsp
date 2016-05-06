@@ -79,7 +79,7 @@
 		
 		<form method="post">
 		
-		<input type="submit" value="Tee tilaus" class="button2">
+		<input type="submit" value="Tee tilaus" class="button2" onclick="return confirm('Kiitos tilauksesta!')"> <a href="ListaaPizzatServlet" class="button">Peruuta</a>
 		</form>
 	</div>
 
