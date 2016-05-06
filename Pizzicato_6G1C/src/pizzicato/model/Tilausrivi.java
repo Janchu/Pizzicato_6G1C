@@ -72,9 +72,13 @@ public class Tilausrivi {
 
 	@Override
 	public String toString() {
-		return "Tilausrivi [rivinumero=" + rivinumero +", tilattuTuote=" + tilattuTuote + ", lkm=" + lkm
-				+ "]";
+		return "Tilausrivi [rivinumero=" + rivinumero + ", rivihinta="
+				+ rivihinta + ", tilattuTuote=" + tilattuTuote + ", lkm=" + lkm
+				+ ", maustelista=" + maustelista + "]";
 	}
+
+
+
 	
 
 	

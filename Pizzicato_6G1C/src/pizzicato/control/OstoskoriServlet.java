@@ -45,7 +45,7 @@ public class OstoskoriServlet extends HttpServlet {
 
 		// Käyttäjän checkaus
 		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
-	
+
 		if (kayttaja == null) {
 			kayttaja = new Kayttaja();
 		}
@@ -63,7 +63,7 @@ public class OstoskoriServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		Tilaus ostoskori;
-		
+
 		DecimalFormat formatter = new DecimalFormat("#0.00");
 
 		PizzaDAO pizzadao = new PizzaDAO();
@@ -80,7 +80,7 @@ public class OstoskoriServlet extends HttpServlet {
 			ostoskori = new Tilaus();
 			session.setAttribute("ostoskori", ostoskori);
 		}
-		
+
 		int yhtlkm = ostoskori.getYhtlkm();
 		double yhthinta = ostoskori.getYhthinta();
 
@@ -89,6 +89,12 @@ public class OstoskoriServlet extends HttpServlet {
 		String tyyppi = request.getParameter("tyyppi");
 
 		Tilausrivi uusiTilausrivi = new Tilausrivi();
+
+		ArrayList<Tilausrivi> uudetTilausrivit = new ArrayList<Tilausrivi>();
+		if (ostoskori.getTilausrivit() != null) {
+			uudetTilausrivit = ostoskori.getTilausrivit();
+		}
+		int uusiRivi = 0;
 
 		if (tyyppi.equalsIgnoreCase("pizza")) {
 
@@ -104,7 +110,7 @@ public class OstoskoriServlet extends HttpServlet {
 					tilattuPizza.setHinta(pizzat.get(i).getHinta());
 					tilattuPizza.setNimi(pizzat.get(i).getNimi());
 					tilattuPizza.setTyyppi(pizzat.get(i).getTyyppi());
-					
+
 					yhthinta = yhthinta + tilattuPizza.getHinta();
 
 					if (tilattuPizza.getTyyppi().equalsIgnoreCase("pizza")) {
@@ -138,16 +144,13 @@ public class OstoskoriServlet extends HttpServlet {
 					int lkm = new Integer(lkmStr);
 
 					yhtlkm = yhtlkm + lkm;
-					
+
 					ostoskori.setYhtlkm(yhtlkm);
-					int korinKoko = ostoskori.getTilausrivit().size();
-					
-					int uusiRivi = korinKoko + 1;
+
 					uusiTilausrivi.setRivinumero(uusiRivi);
 					uusiTilausrivi.setLkm(lkm);
 					uusiTilausrivi.setTilattuTuote(tilattuPizza);
 					uusiTilausrivi.setMaustelista(uudetMausteet);
-					ostoskori.addTilausrivi(uusiTilausrivi);
 
 				}
 			}
@@ -161,40 +164,45 @@ public class OstoskoriServlet extends HttpServlet {
 					tilattuJuoma.setNimi(juomat.get(i).getNimi());
 					tilattuJuoma.setHinta(juomat.get(i).getHinta());
 					tilattuJuoma.setTyyppi(juomat.get(i).getTyyppi());
-					
+
 				}
 			}
 
 			String lkmStr = request.getParameter("maara");
 			int lkm = new Integer(lkmStr);
-			
+
 			yhtlkm = yhtlkm + lkm;
-			
+
 			ostoskori.setYhtlkm(yhtlkm);
 
-			
 			int korinKoko = ostoskori.getTilausrivit().size();
-			
-			int uusiRivi = korinKoko + 1;
+
+			uusiRivi = korinKoko + 1;
 			uusiTilausrivi.setRivinumero(uusiRivi);
 			uusiTilausrivi.setLkm(lkm);
 			uusiTilausrivi.setTilattuTuote(tilattuJuoma);
-			ostoskori.addTilausrivi(uusiTilausrivi);
+
 		}
-		
+
+		uudetTilausrivit.add(uusiTilausrivi);
+
+		ostoskori.setTilausrivit(uudetTilausrivit);
+
 		// Lasketaan kokonaishinta ja kokonaislkm
 		yhtlkm = 0;
-		yhthinta = 0;		
+		yhthinta = 0;
 		for (int i = 0; i < ostoskori.getTilausrivit().size(); i++) {
 			int rivilkm = ostoskori.getTilausrivit().get(i).getLkm();
 			yhtlkm = yhtlkm + rivilkm;
-			double rivinhinta = rivilkm * ostoskori.getTilausrivit().get(i).getTilattuTuote().getHinta();
+			double rivinhinta = rivilkm
+					* ostoskori.getTilausrivit().get(i).getTilattuTuote()
+							.getHinta();
 			ostoskori.getTilausrivit().get(i).setRivihinta(rivinhinta);
 			yhthinta = yhthinta + rivinhinta;
 		}
 		ostoskori.setYhthinta(yhthinta);
 		ostoskori.setYhtlkm(yhtlkm);
-		
+
 		session.setAttribute("ostoskori", ostoskori);
 
 		request.setAttribute("ostoskori", ostoskori);
