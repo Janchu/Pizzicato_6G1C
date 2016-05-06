@@ -19,40 +19,23 @@
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>Insert title here</title>
+<title>Hallinnointinäkymä</title>
 </head>
 <body>
+<div id="otsikkoloota">
+<p2 style="margin-left:5%;"><u>Hallinnointinäkymä</u></p2>
+		<a href="OmistajaListaaPizzatServlet" class="juomabutton"><p2>Edelliseen</p2></a>
+</div>
+<div id="hal_loota">
+<div id="hal_kirjautuminen">Tervetuloa, Outi  </span><a href="" class="button2">Kirjaudu Ulos</a></div>
+<a href="KokkiServlet" class="button3">Kokki</a>
 
-<div id="lootaoikea">
-		<% if (kayttaja.getTyyppi() != null) { %>
-			<span class="valkoinen">Tervetuloa, <%=kayttaja.getEtunimi() %></span>
-			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
-		<% } else { %>
-			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
-			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
-		<% } %>
+<a href="KuskiServlet" class="button3">Kuski</a>
 
-			<br>
-			<div id="ostoskoributton2">
-			<form method="get">
-				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
-				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.size()%>
-				kpl, yht. 
-				<div id="ostoskoributton1">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
-				</div>
-				</form>
-			</div>
-		</div>
+<a href="AvoimettilauksetServlet" class="button3">Avoimet tilaukset</a>
+
+<a href="ValmiittilauksetServlet" class="button3">Valmiit tilaukset</a>
+			
 	</div>
-	
-	<loota2>
-	
-	
-	
-	
-	
-	</loota2>
-	
 </body>
 </html>
