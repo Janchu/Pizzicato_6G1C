@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -51,17 +52,20 @@
 		
 		<fieldset>
 		<legend>Tilatut tuotteet:</legend>
-		
+		<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>
 		<% for (int i = 0; i < tilaus.getTilausrivit().size(); i++) { %>
-		<b><%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %></b>
-		<%=tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta() %> <b>€</b> x
+		<p><b><%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %></b>
+		<%=formatter.format(tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta()) %> <b>€</b> x
 		<%=tilaus.getTilausrivit().get(i).getLkm() %>
 		<br>
-		
+		<%for (int j = 0; j < tilaus.getTilausrivit().get(i).getMaustelista().size(); j++) {%><%=tilaus.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %><%if (j+1 < tilaus.getTilausrivit().get(i).getMaustelista().size()) {%>,<%} %>
 		
 		
 		<% }
-		 %><b>Yhteensä:</b> 
+		%></p><%
+		}
+		 %><br><p><b>Yhteensä: <%=formatter.format(tilaus.getYhthinta()) %> €</b></p><br>
+		 
 		<legend>Tilaajan tiedot:</legend>
 		<p>
 		<label>Tilaaja: </label> <%=tilaaja.getEtunimi() %> <%=tilaaja.getSukunimi() %>
@@ -70,11 +74,26 @@
 		<label>Osoite: </label> <%=tilaaja.getOsoite() %>, <%=tilaaja.getPostinro() %> <%=tilaaja.getPostitmp() %>
 		</p>
 		<p>
-		<label>Puhelin:</label> <%=tilaaja.getPuh() %>
+		<label>Puhelin: </label> <%=tilaaja.getPuh() %>
 		</p>
 		<p>
-		<label>Email:</label> <%=tilaaja.getEmail() %>
+		<label>Email: </label> <%=tilaaja.getEmail() %>
 		</p>
+		<br>
+		
+		<legend>Tilauksen tiedot:</legend>
+		<p>
+		<label>Toimitustapa: </label> <%=tilaus.getToimitus()%>
+		</p>
+		<p>
+		<label>Maksutapa: </label> <%=tilaus.getMaksutapa() %>
+		</p>
+		<p>
+		<label>Lisätiedot: </label> <%=tilaus.getLisatiedot() %>
+		<br>
+		</p>
+		
+		
 		</fieldset>
 		
 		<form method="post">
