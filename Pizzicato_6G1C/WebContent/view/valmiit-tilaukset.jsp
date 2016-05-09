@@ -34,15 +34,36 @@
 </tr>
 
 <tr>
-<% for (int i = 0; i < tilaus.getTilausrivit().size(); i++) { %>
-<td width="400px"><label><input type="checkbox" /><div class="content">ID: <%=pizzanumero%>
-<br>Tuotteet: <%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %>
-<br>Mausteet:Pasket ku näide mausteide pitäis tulostoo jo tuotteista :D 
-<br>Aika:
-<br>Tilaaja:  <%=tilaaja.getEtunimi() %> <%=tilaaja.getSukunimi() %>
-<br>Osoite:  <%=tilaaja.getOsoite() %>, <%=tilaaja.getPostinro() %> <%=tilaaja.getPostitmp() %>
-<br>Puhelin: <%=tilaaja.getPuh() %>
-<br>Hinta: <%=tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta() %></span>
+
+<td width="400px"><label><input type="checkbox"/> Klikkaa laajentaaksesi<div class="content">
+<fieldset>
+		<legend>Tilatut tuotteet:</legend>
+		
+		<% for (int i = 0; i < tilaus.getTilausrivit().size(); i++) { %>
+		<b><%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %></b>
+		<%=tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta() %> <b>€</b> x
+		<%=tilaus.getTilausrivit().get(i).getLkm() %>
+		<br>
+		
+		
+		
+		<% }
+		 %><b>Yhteensä:</b> 
+		<legend>Tilaajan tiedot:</legend>
+		<p>
+		<label>Tilaaja: </label> <%=tilaaja.getEtunimi() %> <%=tilaaja.getSukunimi() %>
+		</p>
+		<p>
+		<label>Osoite: </label> <%=tilaaja.getOsoite() %>, <%=tilaaja.getPostinro() %> <%=tilaaja.getPostitmp() %>
+		</p>
+		<p>
+		<label>Puhelin:</label> <%=tilaaja.getPuh() %>
+		</p>
+		<p>
+		<label>Email:</label> <%=tilaaja.getEmail() %>
+		</p>
+		</fieldset>
+		
 </div></label>
 </td>
 

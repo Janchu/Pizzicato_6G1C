@@ -38,7 +38,8 @@
 
 <tr>
 <% for (int i = 0; i < tilaus.getTilausrivit().size(); i++) { %>
-<td width="400px"><label><input type="checkbox" /><div class="content">ID: <%=pizzanumero%>
+<td width="400px"><label><input type="checkbox" /> Klikkaa laajentaaksesi<div class="content">
+<br>ID: <%=pizzanumero%>
 <br>Tuotteet: <%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %>
 <br>Aika:
 <br>Osoite:  <%=tilaaja.getOsoite() %>, <%=tilaaja.getPostinro() %> <%=tilaaja.getPostitmp() %>

@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>List Pizzas</title>
+<title>Pizza menu</title>
 </head>
 <body>
 
@@ -87,7 +87,7 @@
 	<%-- Otsikkoloota on ainoastaan sitä varten, että saa taulukon otsikon kokoa ja sijaintia muutettua--%>
 
 	<div id="otsikkoloota">
-		<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizzalist</u></p2></a>
+		<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizza menu</u></p2></a>
 		<a href="ListaaJuomatServlet" class="juomabutton"><p2>Drinks</p2></a>
 	</div>
 
