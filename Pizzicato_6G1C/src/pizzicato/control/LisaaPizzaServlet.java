@@ -183,11 +183,13 @@ public class LisaaPizzaServlet extends HttpServlet {
 		if (tayte == null) {
 			errors.put("taytteet", "Valitse vähintään yksi täyte");
 		} else {
+			ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 			for (int i = 0; i < tayte.length; i++) {
 				int tayteId = new Integer(tayte[i]);
 				Tayte uusiTayte = new Tayte();
 				uusiTayte.setId(tayteId);
-				uusiPizza.getTaytelista().add(uusiTayte);
+				taytelista.add(uusiTayte);
+				uusiPizza.setTaytelista(taytelista);
 			}
 		}
 

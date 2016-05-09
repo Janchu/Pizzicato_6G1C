@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,12 +35,19 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 
-		String muokattavaPizzaId = request.getParameter("PizId");
-		int PId = new Integer(muokattavaPizzaId);
-		request.setAttribute("muokattavaPizzaId", PId);
+		String muokattavaPizzaIdStr = request.getParameter("PizId");
+		int id = new Integer(muokattavaPizzaIdStr);
+		
+		Pizza muokattavaPizza = new Pizza();
+		
+		for (int i = 0; i < pizzat.size(); i++) {
+			if (pizzat.get(i).getId() == id) {
+				muokattavaPizza = pizzat.get(i);
+			}
+		}		
 
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
-		request.setAttribute("pizzat", pizzat);
+		// Kamat requestiin jsp:lle vietäväksi
+		request.setAttribute("muokattavaPizza", muokattavaPizza);
 		request.setAttribute("taytteet", taytteet);
 
 		// Lähetetään jsp:lle
@@ -71,7 +80,7 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
 				"/view/muokkaa-pizza.jsp");
 
-		HashMap<String, String> errors = validateMuokkaa(request, id);
+		HashMap<String, String> errors = validateMuokkaa(request);
 		if (!errors.isEmpty()) {
 			request.setAttribute("muokattavaPizzaId", id);
 			jsp.forward(request, response);
@@ -129,62 +138,89 @@ public class MuokkaaPizzaServlet extends HttpServlet {
 	}
 
 	public static HashMap<String, String> validateMuokkaa(
-			HttpServletRequest request, int id) {
+			HttpServletRequest request) {
 		DecimalFormat formatter = new DecimalFormat("#0.00");
-		Pizza uusiPizza = new Pizza();
+		Pizza muokattavaPizza = new Pizza();
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzat = pizzadao.findAll();
 		HashMap<String, String> errors = new HashMap<String, String>();
+		
+		String muokattavanIdStr = request.getParameter("pizzaId");
+		int muokattavanId = new Integer(muokattavanIdStr);
+		muokattavaPizza.setId(muokattavanId);
 
 		// Haetaan syötetty nimi validointia varten
 		String nimi = request.getParameter("pizzaNimi");
+		
 		if (nimi == null || nimi.trim().length() == 0) {
-			errors.put("nimi", "Nimi vaaditaan.");
+			errors.put("nimi", "Nimi vaaditaan");
 		} else {
 			for (int i = 0; i < pizzat.size(); i++) {
-				if (nimi.equalsIgnoreCase(pizzat.get(i).getNimi())) {
-					if (id != pizzat.get(i).getId()) {
-						errors.put("nimi", "Nimi on jo käytössä.");
+				if (nimi.equalsIgnoreCase(pizzat.get(i).getNimi()) && pizzat.get(i).getId() != muokattavanId) {
+					errors.put("nimi", "Nimi on jo käytössä");
+				} else {
+					if (nimi.trim().length() > 20) {
+						errors.put("nimi", "Max 20 merkkiä");
+					} else {
+						Pattern p = Pattern.compile("^[a-zA-ZÅÄÖåäö\\- ]+$");
+						Matcher m = p.matcher(nimi);						
+						if (m.find() == false) {
+							errors.put("nimi", "Nimi sisältää kiellettyjä merkkejä");
+						} else {
+							String uusiNimi = nimi.replace('ä', 'a');
+							uusiNimi = nimi.replace('å', 'a');
+							uusiNimi = nimi.replace('ö', 'o');
+							muokattavaPizza.setNimi(uusiNimi);
+						}
 					}
 				}
 			}
 		}
-		int maxLength = (nimi.length() < 20) ? nimi.length() : 20;
-		String rajattuNimi = nimi.substring(0, maxLength);
-		nimi = rajattuNimi;
-		uusiPizza.setNimi(nimi);
+		
 
 		// Haetaan syötetty hinta validointia varten
 		String hintaStr = request.getParameter("pizzaHinta");
+				
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hinta", "Hinta vaaditaan.");
-		} else {
-			if (hintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
-				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
+		} else {			
+			Pattern p = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
+			Matcher m = p.matcher(hintaStr);
+			if (m.find() == false) {
+				errors.put("hinta", "Hinta on väärää muotoa");
 			} else {
 				String uusiHintaStr = hintaStr.replace(',', '.');
-				double hinta = 0;
-				hinta = new Double(uusiHintaStr);
+				
+				double hinta = new Double(uusiHintaStr);
 				formatter.format(hinta);
 
 				if (hinta < 6 || hinta > 99.99) {
 					errors.put("hinta",
-							"Hinta sallittujen rajojen ulkopuolella.");
+							"Hinta sallittujen rajojen ulkopuolella");
 				} else {
-					uusiPizza.setHinta(hinta);
-					request.setAttribute("uusiPizza", uusiPizza);
+					muokattavaPizza.setHinta(hinta);
 				}
 			}
 		}
-
+		
 		// Haetaan täytteet validointia varten
 		String[] tayte = request.getParameterValues("tayte");
-		System.out.println(tayte);
+		
 		if (tayte == null) {
 			errors.put("taytteet", "Valitse vähintään yksi täyte");
+		} else {
+			ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
+			for (int i = 0; i < tayte.length; i++) {
+				int tayteId = new Integer(tayte[i]);
+				Tayte uusiTayte = new Tayte();
+				uusiTayte.setId(tayteId);
+				taytelista.add(uusiTayte);
+				muokattavaPizza.setTaytelista(taytelista);
+			}
 		}
 
 		request.setAttribute("errors", errors);
+		request.setAttribute("muokattavaPizza", muokattavaPizza);
 
 		return errors;
 	}

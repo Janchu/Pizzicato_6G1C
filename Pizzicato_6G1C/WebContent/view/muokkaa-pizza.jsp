@@ -5,9 +5,8 @@
 <%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
 <%@ page import="pizzicato.model.Tayte"%>
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
 <jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte>" scope="request" />
-<jsp:useBean id="muokattavaPizzaId" scope="request" type="java.lang.Integer" />
+<jsp:useBean id="muokattavaPizza" scope="request" class="pizzicato.model.Pizza" />
 <jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
 <head>
@@ -47,20 +46,6 @@
 	</div>
 
 	<div id="loota1">
-		<%
-			int id = muokattavaPizzaId;
-			double pizzaHinta = 0;
-			String pizzaNimi = "";
-			int taytemaara = 0;
-			ArrayList<Tayte> vanhatTaytteet = new ArrayList<Tayte>();
-			for (int i = 0; i < pizzat.size(); i++) {
-				if (pizzat.get(i).getId() == muokattavaPizzaId) {
-					pizzaNimi = pizzat.get(i).getNimi();
-					pizzaHinta = pizzat.get(i).getHinta();
-					vanhatTaytteet = pizzat.get(i).getTaytelista();
-				}
-			}
-		%>
 		<form method="post">
 			<fieldset>
 
@@ -94,7 +79,7 @@
 
 				<p>
 					<label>Pizzan nimi: <span class="pakollinen">*</span></label>
-					<input type="text" name="pizzaNimi" value="<%=pizzaNimi%>" 
+					<input type="text" name="pizzaNimi" value="<%=muokattavaPizza.getNimi()%>" 
 					required maxlength="20">
 					<%
 						if (errors.containsKey("nimi")) {
@@ -107,7 +92,7 @@
 				<p>
 					<label>Hinta: <span class="pakollinen">*</span></label> <input
 						type="text" name="pizzaHinta" maxlength="5" step="any" min="6"
-						max="99.99" value="<%=pizzaHinta%>" required>
+						max="99.99" value="<%=muokattavaPizza.getHinta()%>" required>
 					<%
 						if (errors.containsKey("hinta")) {
 							out.println("<span class=\"error\">" + errors.get("hinta")
@@ -122,34 +107,23 @@
 				<legend>Täytteet:</legend>
 
 				<%
-					for (int i = 0; i < taytteet.size(); i++) {
-						for (int j = 0; j < vanhatTaytteet.size(); j++) {
-
-							if (vanhatTaytteet.get(j).getId() == taytteet.get(i)
-									.getId()) {
+					for (int i = 0; i < taytteet.size(); i++) {						
 				%>
-				<input type="checkbox" name="tayte" checked
-					value="<%=taytteet.get(i).getId()%>">
-				<%=taytteet.get(i).getNimi()%><br>
-
-				<%
-					taytemaara++;
-							}
-
-						}
-
-						if (taytemaara <= i) {
-				%>
-				<input type="checkbox" name="tayte"
+				<input type="checkbox" name="tayte" <%if (muokattavaPizza.getTaytelista() != null) { for (int j = 0; j < muokattavaPizza.getTaytelista().size(); j++) { 
+					if (taytteet.get(i).getId() == muokattavaPizza.getTaytelista().get(j).getId()) {
+						%> checked <%
+					}
+				}
+				} %>
 					value="<%=taytteet.get(i).getId()%>">
 				<%=taytteet.get(i).getNimi()%><br>
 				<%
-					taytemaara++;
-						}
 					}
 				%>
+
+
 				<%-- seuraavassa koodinpätkässä on nappulat jes --%>
-				<br><input type="hidden" name="pizzaId" value="<%=id%>"> <input
+				<br><input type="hidden" name="pizzaId" value="<%=muokattavaPizza.getId()%>"> <input
 					type="submit" class="button" value="Pizza valmis!"> <a
 					href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
 			</fieldset>
