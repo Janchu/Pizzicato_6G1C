@@ -72,7 +72,7 @@ public class TilausDAO extends DataAccessObject {
 			
 				if (tilaaja.getTyyppi().equalsIgnoreCase("asiakas")) {
 				stmtInsert = connection
-						.prepareStatement("INSERT INTO kayttaja (id, etunimi, sukunimi, salasana, tyyppi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?, ?, ?);");
+						.prepareStatement("INSERT INTO kayttaja (id, etunimi, sukunimi, salasana, tyyppi, osoite, puh, email, postinro) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?);");
 				stmtInsert.setString(1, tilaaja.getEtunimi());
 				stmtInsert.setString(3, tilaaja.getSalasana());
 				stmtInsert.setString(4, tilaaja.getTyyppi());
@@ -89,24 +89,19 @@ public class TilausDAO extends DataAccessObject {
 				stmtInsert = connection
 						.prepareStatement("INSERT INTO tilaus (id, tila, maksutapa, toimitus, lisatiedot, yhthinta, etunimi, sukunimi, osoite, puh, email, postinro, kayttaja_id, tilausaika) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 				stmtInsert.setString(1, tilaus.getTila());
-				System.out.println(tilaus.getTila());
 				stmtInsert.setString(2, tilaus.getMaksutapa());
-				System.out.println(tilaus.getMaksutapa());
 				stmtInsert.setString(3, tilaus.getToimitus());
-				System.out.println(tilaus.getToimitus());
 				stmtInsert.setString(4, tilaus.getLisatiedot());
-				System.out.println(tilaus.getLisatiedot());
 				stmtInsert.setDouble(5, tilaus.getYhthinta());
-				System.out.println(tilaus.getYhthinta());
 				stmtInsert.setString(6, tilaaja.getEtunimi());
 				stmtInsert.setString(7, tilaaja.getSukunimi());
 				stmtInsert.setString(8, tilaaja.getOsoite());
 				stmtInsert.setString(9, tilaaja.getPuh());
 				stmtInsert.setString(10, tilaaja.getEmail());
 				stmtInsert.setString(11, tilaaja.getPostinro());
-				if (tilaus.getId() == 0) {
+				if (tilaaja.getId() == 0) {
 					stmtInsert.setString(12, null);
-				} else {
+				}else {
 				stmtInsert.setInt(12, tilaaja.getId());
 				}
 				System.out.println(tilaaja.getId());
@@ -118,7 +113,7 @@ public class TilausDAO extends DataAccessObject {
 
 				for (int i = 0; i < tilaus.getTilausrivit().size(); i++) {
 					stmtInsert = connection
-							.prepareStatement("INSERT INTO tilausrivi (rivinumero, tilaus_id, lkm, tuote_id) VALUES (?, 'last_insert_id()', ?, ?);");
+							.prepareStatement("INSERT INTO tilausrivi (rivinumero, tilaus_id, lkm, tuote_id) VALUES (?, last_insert_id(), ?, ?);");
 					stmtInsert.setInt(1, tilaus.getTilausrivit().get(i)
 							.getRivinumero());
 					stmtInsert.setInt(2, tilaus.getTilausrivit().get(i)
