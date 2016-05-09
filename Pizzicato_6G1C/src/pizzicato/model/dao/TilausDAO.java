@@ -70,20 +70,20 @@ public class TilausDAO extends DataAccessObject {
 				stmtInsert.close();
 			}
 			
-			//	if (tilaaja.getTyyppi().equalsIgnoreCase("asiakas") == false) {
-			//	stmtInsert = connection
-			//			.prepareStatement("INSERT INTO kayttaja (id, etunimi, sukunimi, salasana, tyyppi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?, ?, ?);");
-			//	stmtInsert.setString(1, tilaaja.getEtunimi());
-			//	stmtInsert.setString(3, tilaaja.getSalasana());
-			//	stmtInsert.setString(4, tilaaja.getTyyppi());
-			//	stmtInsert.setString(5, tilaaja.getOsoite());
-			//	stmtInsert.setString(6, tilaaja.getPuh());
-			//	stmtInsert.setString(7, tilaaja.getEmail());
-			//	stmtInsert.setString(8, tilaaja.getPostinro());
-			//	stmtInsert.executeUpdate();
-			//	stmtInsert.close();
-			//	
-			//	}
+				if (tilaaja.getTyyppi().equalsIgnoreCase("asiakas")) {
+				stmtInsert = connection
+						.prepareStatement("INSERT INTO kayttaja (id, etunimi, sukunimi, salasana, tyyppi, osoite, puh, email, postinro) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?, ?, ?);");
+				stmtInsert.setString(1, tilaaja.getEtunimi());
+				stmtInsert.setString(3, tilaaja.getSalasana());
+				stmtInsert.setString(4, tilaaja.getTyyppi());
+				stmtInsert.setString(5, tilaaja.getOsoite());
+				stmtInsert.setString(6, tilaaja.getPuh());
+				stmtInsert.setString(7, tilaaja.getEmail());
+				stmtInsert.setString(8, tilaaja.getPostinro());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
+				
+				}
 
 
 				stmtInsert = connection
@@ -104,7 +104,11 @@ public class TilausDAO extends DataAccessObject {
 				stmtInsert.setString(9, tilaus.getPuh());
 				stmtInsert.setString(10, tilaus.getEmail());
 				stmtInsert.setString(11, tilaus.getPostinro());
+				if (tilaus.getId() == 0) {
+					stmtInsert.setString(12, null);
+				} else {
 				stmtInsert.setInt(12, tilaaja.getId());
+				}
 				System.out.println(tilaaja.getId());
 				stmtInsert.setString(13, tilaus.getTilausaika());
 				System.out.println(tilaus.getTilausaika());
