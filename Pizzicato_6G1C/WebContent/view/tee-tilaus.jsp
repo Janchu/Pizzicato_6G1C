@@ -191,14 +191,7 @@
 							</p>
 							<p>
 								<label>Lisätiedot: </label>
-								<textarea name="lisatiedot" rows="4" cols="50">
-						<%
-							if (tilaus.getLisatiedot() != null) {
-						%><%=tilaus.getLisatiedot()%>
-									<%
-										}
-									%>
-								</textarea>
+								<textarea name="lisatiedot" rows="4" cols="50"><%if (tilaus.getLisatiedot() != null) {%><%=tilaus.getLisatiedot()%><%}%></textarea>
 								<%
 									if (errors.get("lisatiedot") != null) {
 								%><span class="error"><%=errors.get("lisatiedot")%></span>

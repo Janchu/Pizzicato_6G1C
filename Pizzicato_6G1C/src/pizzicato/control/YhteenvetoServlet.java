@@ -60,13 +60,16 @@ public class YhteenvetoServlet extends HttpServlet {
 		
 		try {
 		tilausdao.addTilaus(tilaus, tilaaja);
+		ArrayList<Tilausrivi> uusiTilausrivit = new ArrayList<Tilausrivi>();
+		tilaus.setYhthinta(0);
+		tilaus.setYhtlkm(0);
+		tilaus.setTilausrivit(uusiTilausrivit);		
+		session.setAttribute("ostoskori", tilaus);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
-		ArrayList<Tilausrivi> uusiTilausrivit = new ArrayList<Tilausrivi>();
 		
-		tilaus.setTilausrivit(uusiTilausrivit);
 				
 		response.sendRedirect("ListaaPizzatServlet");
 		
