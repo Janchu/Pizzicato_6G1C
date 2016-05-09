@@ -309,6 +309,29 @@ font-family:Kozuka Gothic Pro EL;
 	margin-left:20%;
 }
 
+.kuski table{
+    
+    border-collapse:collapse;
+	
+}
+
+.kuski td,th{
+    padding:3px 3px;
+    margin:0px;
+    border:1px solid #BBB;
+    white-space:nowrap;
+	
+}
+
+.content{
+    height:15px;
+    width:100px;
+    overflow:hidden;
+    text-overflow:ellipsis
+}
+
+input[type='checkbox'] { visibility: hidden; position: absolute; }
+input[type='checkbox']:checked + .content { height: auto; width: auto;}
 	
 /* Janen jutut */	
 /* ---------------------------------------------------------------- */
