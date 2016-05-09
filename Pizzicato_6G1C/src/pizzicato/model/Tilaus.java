@@ -15,12 +15,6 @@ public class Tilaus {
 	private double yhthinta;
 	private int yhtlkm;
 	private String tilausaika;
-	private String etunimi;
-	private String sukunimi;
-	private String osoite;
-	private String puh;
-	private String email;
-	private String postinro;
 
 	// Oletuskonstruktori
 
@@ -32,9 +26,7 @@ public class Tilaus {
 
 	public Tilaus(int id, String tila, String maksutapa, String toimitus,
 			String lisatiedot, ArrayList<Tilausrivi> tilausrivit,
-			double yhthinta, int yhtlkm, String tilausaika, String etunimi,
-			String sukunimi, String osoite, String puh, String email,
-			String postinro) {
+			double yhthinta, int yhtlkm, String tilausaika) {
 		super();
 		this.id = id;
 		this.tila = tila;
@@ -45,12 +37,6 @@ public class Tilaus {
 		this.yhthinta = yhthinta;
 		this.yhtlkm = yhtlkm;
 		this.tilausaika = tilausaika;
-		this.etunimi = etunimi;
-		this.sukunimi = sukunimi;
-		this.osoite = osoite;
-		this.puh = puh;
-		this.email = email;
-		this.postinro = postinro;
 	}
 
 	// Getters & Setters
@@ -131,53 +117,6 @@ public class Tilaus {
 		this.tilausaika = tilausaika;
 	}
 
-	public String getEtunimi() {
-		return etunimi;
-	}
-
-	public void setEtunimi(String etunimi) {
-		this.etunimi = etunimi;
-	}
-
-	public String getSukunimi() {
-		return sukunimi;
-	}
-
-	public void setSukunimi(String sukunimi) {
-		this.sukunimi = sukunimi;
-	}
-
-	public String getOsoite() {
-		return osoite;
-	}
-
-	public void setOsoite(String osoite) {
-		this.osoite = osoite;
-	}
-
-	public String getPuh() {
-		return puh;
-	}
-
-	public void setPuh(String puh) {
-		this.puh = puh;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPostinro() {
-		return postinro;
-	}
-
-	public void setPostinro(String postinro) {
-		this.postinro = postinro;
-	}
 
 	// ToString
 	@Override
@@ -186,8 +125,6 @@ public class Tilaus {
 				+ maksutapa + ", toimitus=" + toimitus + ", lisatiedot="
 				+ lisatiedot + ", tilausrivit=" + tilausrivit + ", yhthinta="
 				+ yhthinta + ", yhtlkm=" + yhtlkm + ", tilausaika="
-				+ tilausaika + ", etunimi=" + etunimi + ", sukunimi="
-				+ sukunimi + ", osoite=" + osoite + ", puh=" + puh + ", email="
-				+ email + ", postinro=" + postinro + "]";
+				+ tilausaika + "]";
 	}
 }

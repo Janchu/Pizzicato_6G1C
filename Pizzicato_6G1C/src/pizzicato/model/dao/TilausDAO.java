@@ -98,12 +98,12 @@ public class TilausDAO extends DataAccessObject {
 				System.out.println(tilaus.getLisatiedot());
 				stmtInsert.setDouble(5, tilaus.getYhthinta());
 				System.out.println(tilaus.getYhthinta());
-				stmtInsert.setString(6, tilaus.getEtunimi());
-				stmtInsert.setString(7, tilaus.getSukunimi());
-				stmtInsert.setString(8, tilaus.getOsoite());
-				stmtInsert.setString(9, tilaus.getPuh());
-				stmtInsert.setString(10, tilaus.getEmail());
-				stmtInsert.setString(11, tilaus.getPostinro());
+				stmtInsert.setString(6, tilaaja.getEtunimi());
+				stmtInsert.setString(7, tilaaja.getSukunimi());
+				stmtInsert.setString(8, tilaaja.getOsoite());
+				stmtInsert.setString(9, tilaaja.getPuh());
+				stmtInsert.setString(10, tilaaja.getEmail());
+				stmtInsert.setString(11, tilaaja.getPostinro());
 				if (tilaus.getId() == 0) {
 					stmtInsert.setString(12, null);
 				} else {
@@ -149,16 +149,11 @@ public class TilausDAO extends DataAccessObject {
 			double yhthinta = rs.getDouble("tilaus.lisatiedot");
 			int yhtlkm = rs.getInt("tilausrivi.lkm");
 			String tilausaika = rs.getString("tilaus.tilausaika");
-			String etunimi = rs.getString("tilaus.etunimi");
-			String sukunimi = rs.getString("tilaus.sukunimi");
-			String osoite = rs.getString("tilaus.osoite");
-			String puh = rs.getString("tilaus.puh");
-			String email = rs.getString("tilaus.email");
-			String postinro = rs.getString("tilaus.postinro");
+
 			
 
 			return new Tilaus(id, tila, maksutapa, toimitus, lisatiedot,
-					tilausrivit, yhthinta, yhtlkm, tilausaika, etunimi, sukunimi, osoite, puh, email, postinro);
+					tilausrivit, yhthinta, yhtlkm, tilausaika);
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
