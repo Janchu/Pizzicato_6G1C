@@ -100,11 +100,11 @@
 				<%-- Tablescoller on taulukon oikean reunan scollbar --%>
 				
 				<table>
+				
 					<tr>
 						<th>#</th>
 						<th>Nimi</th>
 						
-
 					</tr>
 
 					<%

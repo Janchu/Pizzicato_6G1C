@@ -88,6 +88,7 @@
 
 	<div id="loota1">
 		<div id="tuotelistataulukko">
+			<%-- juomalista on toteutettu taulukkona --%>
 			<div id="tablescoller">
 
 				<table>

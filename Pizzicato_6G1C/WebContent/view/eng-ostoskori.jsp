@@ -1,18 +1,16 @@
-<%@page import="pizzicato.model.Tayte"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="pizzicato.model.Tilausrivi"%>
-<%@page import="pizzicato.model.Pizza"%>
 <%@page import="java.text.DecimalFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="pizzicato.model.Pizza"%>
 <%@ page import="pizzicato.model.Tuote"%>
+<%@ page import="pizzicato.model.Tayte"%>
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
 <%@ page import="pizzicato.model.Kayttaja"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
-<jsp:useBean id="pizzat" type="java.util.ArrayList<pizzicato.model.Pizza>" scope="request" />
-<jsp:useBean id="ostoskori" type="java.util.ArrayList<pizzicato.model.Tilausrivi>" scope="request" />
-
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
+<jsp:useBean id="ostoskori" class="pizzicato.model.Tilaus" scope="request" />
 
 <html>
 <head>
@@ -22,7 +20,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-
 <title>Shopping Cart</title>
 </head>
 <body>
@@ -30,9 +27,8 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo"
+				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
 					src="images/pizzalogofin.png" height="100%" width="100%"></a>
-					
 			</div>
 		</div>
 		<div id="lootakeski">
@@ -49,12 +45,32 @@
 			<span class="valkoinen"> Welcome, <%=kayttaja.getEtunimi() %></span>
 			<a href="LogoutServlet" class="button2">Logout</a>
 		<% } else { %>
-			<a href="EngRekisterointiServlet" class="button2"> Register</a>
-			<a href="LoginServlet" class="button2"></a>
+			<a href="EngRekisterointiServlet" class="button2">Register</a>
+			<a href="LoginServlet" class="button2">Login</a>
 		<% } %>
+		<br>
+			<div id="ostoskoributton2">		
+			<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>		
+					<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+					kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
+					<div id="ostoskoributton1">
+						<a href="OstoskoriServlet">Shopping Cart</a>
+					</div>
+			</div>
 		</div>
 	</div>	
 
+
+	<div id="ostoskoributton3">
+		<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+		kpl, yht.
+		<%=formatter.format(ostoskori.getYhthinta())%>
+		€
+		<div id="ostoskoributton4">
+			<a href="OstoskoriServlet">Ostoskoriin</a>
+		</div>
+	</div>
+	
 	<div id="otsikkoloota">
 	<p2 style="margin-left: 15%;">Shopping Cart</p2>
 	</div>
@@ -64,11 +80,8 @@
 <div id="loota1">
 		<div id="tuotelistataulukko">
 			
-
-
-				<%
-					if (ostoskori.size() < 1) {
-						String korityhja = "Your shopping cart is empty.";
+				<% if (ostoskori.getTilausrivit().size() < 1) {
+						String korityhja = "The shopping cart is empty!";
 				%>
 				<%=korityhja%>
 				<a href="EngListaaPizzatServlet" class="button2">Front Page</a>
@@ -91,9 +104,9 @@
 								
 								ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
 
-								for (int i = 0; i < ostoskori.size(); i++) {
+								for (int i = 0; i < ostoskori.getTilausrivit().size(); i++) {
 									for (int j = 0; j < pizzat.size(); j++) {
-										if (ostoskori.get(i).getTilattuTuote().getId() == pizzat.get(j).getId()) {
+										if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getId() == pizzat.get(j).getId()) {
 											taytteet = pizzat.get(j).getTaytelista();
 									}
 								}
@@ -102,15 +115,20 @@
 					
 					
 					<tr>
-						<td><b><%=ostoskori.get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
-						<td><%=ostoskori.get(i).getTilattuTuote().getHinta()%></td>
-						<td><%=ostoskori.get(i).getLkm()%></td>
-						<td><% if (ostoskori.get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.get(i).getMaustelista().size(); j++) {%> <%=ostoskori.get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>
+						<td><b><%=ostoskori.getTilausrivit().get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
+						<td><%=formatter.format(ostoskori.getTilausrivit().get(i).getTilattuTuote().getHinta()) %></td>
+						<td><%=ostoskori.getTilausrivit().get(i).getLkm()%></td>
+						<td><% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.getTilausrivit().get(i).getMaustelista().size(); j++) {%> <%=ostoskori.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>
 						<td>
+							<form action="LisaaKoriinServlet" method="post">
+								<input type="hidden" value="<%=i%>" name="id"><input
+									type="submit" value=" + " name="lisaa">
+							</form>
 							<form action="PoistaKoristaServlet" method="post">
 								<input type="hidden" value="<%=i%>" name="id"><input
-									type="submit" value="Remove from cart" name="remove">
+									type="submit" value=" - " name="poista">
 							</form>
+							
 						</td>
 					</tr>
 					
@@ -118,9 +136,9 @@
 					}
 				%>
 					<tr >
-					<td bgcolor="#ccffcc"><b>Price:</b></td>
-					<td bgcolor="#ccffcc"><b>€</b></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td>
-					</tr>					
+					<td bgcolor="#ccffcc"><b>Price total:</b></td>
+					<td bgcolor="#ccffcc"><b><%=formatter.format(ostoskori.getYhthinta()) %>€</b></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td><td bgcolor="#ccffcc"></td>
+					</tr>						
 
 				
 
