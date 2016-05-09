@@ -81,6 +81,11 @@ public class TilausDAO extends DataAccessObject {
 				stmtInsert.setString(8, tilaaja.getPostinro());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
+				
+				stmtInsert = connection.prepareStatement("INSERT INTO asiakkaantilaus (kayttaja_id, tilaus_id) VALUES(?, 'last_insert_id()')");
+				stmtInsert.setInt(1, tilaaja.getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
 
 				stmtInsert = connection
 						.prepareStatement("INSERT INTO tilaus (id, tila, maksutapa, toimitus, lisatiedot, yhthinta, kayttaja_id, tilausaika) VALUES ('last_insert_id()', ?, ?, ?, ?, ?, ?, ?);");
@@ -100,6 +105,7 @@ public class TilausDAO extends DataAccessObject {
 				System.out.println(tilaus.getTilausaika());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
+				
 
 				for (int i = 0; i < tilaus.getTilausrivit().size(); i++) {
 					stmtInsert = connection
