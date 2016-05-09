@@ -23,7 +23,7 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo"
+				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
 					src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
@@ -79,7 +79,7 @@
 		
 		<form method="post">
 		
-		<input type="submit" value="Tee tilaus" class="button2">
+		<input type="submit" value="Tee tilaus" class="button2" onclick="return confirm('Kiitos tilauksesta!')"> <a href="ListaaPizzatServlet" class="button">Peruuta</a>
 		</form>
 	</div>
 

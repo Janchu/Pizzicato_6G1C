@@ -48,6 +48,26 @@
 			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
 			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
 		<% } %>
+		<br>
+			<div id="ostoskoributton2">		
+			<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>		
+					<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+					kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
+					<div id="ostoskoributton1">
+						<a href="OstoskoriServlet">Ostoskoriin</a>
+					</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="ostoskoributton3">
+		<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
+		kpl, yht.
+		<%=formatter.format(ostoskori.getYhthinta())%>
+		€
+		<div id="ostoskoributton4">
+			<a href="OstoskoriServlet">Ostoskoriin</a>
 		</div>
 	</div>
 
@@ -60,8 +80,7 @@
 	<div id="loota1">
 		<div id="tuotelistataulukko">
 			
-				<% DecimalFormat formatter = new DecimalFormat("#0.00");
-					if (ostoskori.getTilausrivit().size() < 1) {
+				<% if (ostoskori.getTilausrivit().size() < 1) {
 						String korityhja = "Ostoskorisi on tyhjä! :(";
 				%>
 				<%=korityhja%>
