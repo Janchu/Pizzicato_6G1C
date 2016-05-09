@@ -118,7 +118,7 @@ public class TilausDAO extends DataAccessObject {
 
 				for (int i = 0; i < tilaus.getTilausrivit().size(); i++) {
 					stmtInsert = connection
-							.prepareStatement("INSERT INTO tilausrivi (rivinumero, tilaus_id, lkm, tuote_id) VALUES (?, 'last_insert_id()', ?, ?);");
+							.prepareStatement("INSERT INTO tilausrivi (rivinumero, tilaus_id, lkm, tuote_id) VALUES (?, last_insert_id(), ?, ?);");
 					stmtInsert.setInt(1, tilaus.getTilausrivit().get(i)
 							.getRivinumero());
 					stmtInsert.setInt(2, tilaus.getTilausrivit().get(i)
