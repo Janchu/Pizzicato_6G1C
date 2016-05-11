@@ -37,13 +37,13 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 
 		<div id="lootakeski">
-		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
+		<a href="EngListaaPizzatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+		<a href="ListaaPizzatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<p3>
 				Open: Mon-Sat 11-21, Sun 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
@@ -87,8 +87,8 @@
 	<%-- Otsikkoloota on ainoastaan sitä varten, että saa taulukon otsikon kokoa ja sijaintia muutettua--%>
 
 	<div id="otsikkoloota">
-		<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizza menu</u></p2></a>
-		<a href="ListaaJuomatServlet" class="juomabutton"><p2>Drinks</p2></a>
+		<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2><u>Pizza menu</u></p2></a>
+		<a href="EngListaaJuomatServlet" class="juomabutton"><p2>Drink menu</p2></a>
 	</div>
 
 	<div id="loota1">
@@ -119,12 +119,12 @@
 					%>
 					<tr>
 					<td width="10px"><%=pizzanumero%></td>
-						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=pizzat.get(i).getNimi()%><br> Täytteet: </b>
+						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=pizzat.get(i).getNimi()%><br> Toppings: </b>
 						 <%
 							for (int j = 0; j < pizzat.get(i).getTaytelista()
 												.size(); j++) {
 						%> <%=pizzat.get(i).getTaytelista().get(j)
-									.getNimi()%><%
+									.getNimi_eng()%><%
  	if (j + 1 < pizzat.get(i).getTaytelista().size()) {
  %>, <%
  	}
@@ -132,7 +132,7 @@
  %>
 <br> 
 						<div class="mausteet"> <% for (int j = 0; j < mausteet.size(); j++) { %>
-						<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>">  <%=mausteet.get(j).getNimi() %></div>
+						<div class="mauste"><input type="checkbox" name="mauste" value="<%=mausteet.get(j).getId()%>">  <%=mausteet.get(j).getNimi_eng() %></div>
 						<%} %></div></div>
 
 
@@ -147,7 +147,7 @@
 						<input type="hidden" value="<%=pizzat.get(i).getId()%>"
 									name="koriin"><input type="hidden" value="pizza"
 									name="tyyppi"><input type="submit"
-							value='  Add to shopping cart  '></div></form>
+							value='  Add to cart  '></div></form>
 							</td>
 
 					</tr>

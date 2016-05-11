@@ -32,8 +32,7 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="EngListaaJuomatServlet"><img alt="Pizzerian logo" 
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaJuomatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">
@@ -67,7 +66,7 @@
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
 				kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton1">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
+					<a href="OstoskoriServlet">Shopping cart</a>
 				</div>
 				</form>
 			</div>
@@ -81,14 +80,14 @@
 		<%=formatter.format(ostoskori.getYhthinta())%>
 		€
 		<div id="ostoskoributton4">
-			<a href="OstoskoriServlet">Ostoskoriin</a>
+			<a href="OstoskoriServlet">Shopping cart</a>
 		</div>
 	</div>
 
 	<div id="otsikkoloota">
 
-		<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2>Pizzalista</p2></a>
-		<a href="ListaaJuomatServlet" class="juomabutton"><u><p2>Juomat</p2></u></a>
+		<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2>Pizza menu</p2></a>
+		<a href="EngListaaJuomatServlet" class="juomabutton"><u><p2>Drink menu</p2></u></a>
 
 	</div>
 
@@ -101,7 +100,7 @@
 
 					<tr>
 						<th>#</th>
-						<th>Nimi</th>
+						<th>Name</th>
 
 					</tr>
 
@@ -118,7 +117,7 @@
 
 					<tr>
 						<td width="10px"><%=juomanumero%></td>
-						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=juomat.get(i).getNimi()%></b>
+						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=juomat.get(i).getNimi_eng()%></b>
 						</div>
 						<div class="tuotelistaoikea">
 						<b><%=decimal.format(juomat.get(i).getHinta())%>€</b><br><br>
@@ -128,7 +127,7 @@
 						<input type="hidden" value="<%=juomat.get(i).getId()%>"
 									name="koriin"><input type="hidden" value="juoma"
 									name="tyyppi"><input type="submit"
-							value='  Lisää ostoskoriin  '></div></form>
+							value='  Add to cart  '></div></form>
 							</td>
 					</tr>
 
