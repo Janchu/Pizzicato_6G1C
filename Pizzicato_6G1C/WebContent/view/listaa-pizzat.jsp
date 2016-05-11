@@ -14,14 +14,7 @@
 <jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
 <html>
 <head>
-<script type="text/javascript">
-		function subtractQty(){
-			if(document.getElementById("qty").value - 1 < 1)
-				return;
-			else
-				 document.getElementById("qty").value--;
-		}
-		</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
