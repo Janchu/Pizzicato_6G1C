@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,8 +24,7 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo"
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">
@@ -43,7 +43,7 @@
 	</div>
 
 	<div id="otsikkoloota">
-		<p2 style="margin-left: 15%;">Order Details</p2>
+		<p2>Order Details</p2>
 
 	</div>
 
@@ -54,13 +54,21 @@
 		<fieldset>
 		<legend>Ordered Products:</legend>
 		
+		<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>
 		<% for (int i = 0; i < tilaus.getTilausrivit().size(); i++) { %>
-		<%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %>
-		<%=tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta() %>
+		<p><b><%=tilaus.getTilausrivit().get(i).getTilattuTuote().getNimi() %></b>
+		<%=formatter.format(tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta()) %> <b>€</b> x
+		<%=tilaus.getTilausrivit().get(i).getLkm() %>
+		<br>
+		<%for (int j = 0; j < tilaus.getTilausrivit().get(i).getMaustelista().size(); j++) {%><%=tilaus.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %><%if (j+1 < tilaus.getTilausrivit().get(i).getMaustelista().size()) {%>,<%} %>
 		
 		
-		<% } %>
-		<legend>Details:</legend>
+		<% }
+		%></p><%
+		}
+		 %><br><p><b>In Total: <%=formatter.format(tilaus.getYhthinta()) %> €</b></p><br>
+		 
+		<legend>Customer Details:</legend>
 		<p>
 		<label>Orderer: </label> <%=tilaaja.getEtunimi() %> <%=tilaaja.getSukunimi() %>
 		</p>
@@ -68,13 +76,30 @@
 		<label>Address: </label> <%=tilaaja.getOsoite() %>, <%=tilaaja.getPostinro() %> <%=tilaaja.getPostitmp() %>
 		</p>
 		<p>
+		<label>Phone: </label> <%=tilaaja.getPuh() %>
+		</p>
+		<p>
 		<label>Email:</label> <%=tilaaja.getEmail() %>
 		</p>
 		</fieldset>
 		
+		<legend>Order Details:</legend>
+		<p>
+		<label>Delivery Method: </label> <%=tilaus.getToimitus()%>
+		</p>
+		<p>
+		<label>Payment Method: </label> <%=tilaus.getMaksutapa() %>
+		</p>
+		<p>
+		<label>Additional information: </label> <%=tilaus.getLisatiedot() %>
+		<br>
+		</p>
+		
+		</fieldset>
+		
 		<form method="post">
 		
-		<input type="submit" value="Order" class="button2">
+		<input type="submit" value="Finish Order" class="button2" onclick="return confirm('Ty')"> <a href="EngListaaPizzatServlet" class="button">Cancel</a>
 		</form>
 	</div>
 

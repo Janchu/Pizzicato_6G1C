@@ -24,8 +24,7 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">
@@ -42,7 +41,7 @@
 	</div>
 
 	<div id="otsikkoloota">
-		<p2 style="margin-left: 15%;">Tilauksen yhteenveto</p2>
+		<p2>Tilauksen yhteenveto</p2>
 
 	</div>
 
@@ -92,7 +91,6 @@
 		<label>Lisätiedot: </label> <%=tilaus.getLisatiedot() %>
 		<br>
 		</p>
-		
 		
 		</fieldset>
 		
