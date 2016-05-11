@@ -15,15 +15,6 @@
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-<script type="text/javascript">
-		function subtractQty(){
-			if(document.getElementById("qty").value - 1 < 1)
-				return;
-			else
-				 document.getElementById("qty").value--;
-		}
-		</script>
 		
 <title>Juomalista</title>
 </head>
@@ -121,9 +112,9 @@
 						</div>
 						<div class="tuotelistaoikea">
 						<b><%=decimal.format(juomat.get(i).getHinta())%>€</b><br><br>
-						<div class="tilaasaatana"><input type='text' value="1" name='maara' id='qty' size=2 maxlength="2"/>
-						<input type='button' name='subtract' onclick='javascript: subtractQty();' value='-'/> 
-						<input type='button' name='add' onclick='javascript: document.getElementById("qty").value++;' value='+'/></div> 
+						<div class="tilaasaatana"><input type='text' value="1" name='maara' id='qty<%=i %>' size=2 maxlength="2"/>
+						<input type='button' name='subtract' onclick='javascript: document.getElementById("qty<%=i %>").value--;' value='-'/> 
+						<input type='button' name='add' onclick='javascript: document.getElementById("qty<%=i %>").value++;' value='+'/></div> 
 						<input type="hidden" value="<%=juomat.get(i).getId()%>"
 									name="koriin"><input type="hidden" value="juoma"
 									name="tyyppi"><input type="submit"

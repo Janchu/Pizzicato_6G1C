@@ -15,15 +15,6 @@
 <link rel="stylesheet" href="css/tyyli.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-<script type="text/javascript">
-		function subtractQty(){
-			if(document.getElementById("qty").value - 1 < 1)
-				return;
-			else
-				 document.getElementById("qty").value--;
-		}
-		</script>
 		
 <title>Drink menu</title>
 </head>
@@ -32,13 +23,12 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="EngListaaJuomatServlet"><img alt="Pizzerian logo" 
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaJuomatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">
 		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-		<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
+		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 		<p3> Open: Mon-Sat 11-21, Sun 12-18<br> 
 		+358 40 666 666<br>
 		Kuusitie 66<br> 
@@ -67,7 +57,7 @@
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
 				kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton1">
-					<a href="OstoskoriServlet">Ostoskoriin</a>
+					<a href="OstoskoriServlet">Shopping cart</a>
 				</div>
 				</form>
 			</div>
@@ -81,14 +71,14 @@
 		<%=formatter.format(ostoskori.getYhthinta())%>
 		€
 		<div id="ostoskoributton4">
-			<a href="OstoskoriServlet">Ostoskoriin</a>
+			<a href="OstoskoriServlet">Shopping cart</a>
 		</div>
 	</div>
 
 	<div id="otsikkoloota">
 
-		<a href="ListaaPizzatServlet" class="pizzalistabutton"><p2>Pizzalista</p2></a>
-		<a href="ListaaJuomatServlet" class="juomabutton"><u><p2>Juomat</p2></u></a>
+		<a href="EngListaaPizzatServlet" class="pizzalistabutton"><p2>Pizza menu</p2></a>
+		<a href="EngListaaJuomatServlet" class="juomabutton"><u><p2>Drink menu</p2></u></a>
 
 	</div>
 
@@ -101,7 +91,7 @@
 
 					<tr>
 						<th>#</th>
-						<th>Nimi</th>
+						<th>Name</th>
 
 					</tr>
 
@@ -118,17 +108,17 @@
 
 					<tr>
 						<td width="10px"><%=juomanumero%></td>
-						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=juomat.get(i).getNimi()%></b>
+						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=juomat.get(i).getNimi_eng()%></b>
 						</div>
 						<div class="tuotelistaoikea">
 						<b><%=decimal.format(juomat.get(i).getHinta())%>€</b><br><br>
-						<div class="tilaasaatana"><input type='text' value="1" name='maara' id='qty' size=2 maxlength="2"/>
-						<input type='button' name='subtract' onclick='javascript: subtractQty();' value='-'/> 
-						<input type='button' name='add' onclick='javascript: document.getElementById("qty").value++;' value='+'/></div> 
+						<div class="tilaasaatana"><input type='text' value="1" name='maara' id='qty<%=i %>' size=2 maxlength="2"/>
+						<input type='button' name='subtract' onclick='javascript: document.getElementById("qty<%=i %>").value--;' value='-'/> 
+						<input type='button' name='add' onclick='javascript: document.getElementById("qty<%=i %>").value++;' value='+'/></div> 
 						<input type="hidden" value="<%=juomat.get(i).getId()%>"
 									name="koriin"><input type="hidden" value="juoma"
 									name="tyyppi"><input type="submit"
-							value='  Lisää ostoskoriin  '></div></form>
+							value='  Add to cart  '></div></form>
 							</td>
 					</tr>
 
