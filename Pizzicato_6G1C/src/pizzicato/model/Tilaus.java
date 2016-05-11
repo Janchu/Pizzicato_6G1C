@@ -19,7 +19,7 @@ public class Tilaus {
 	// Oletuskonstruktori
 
 	public Tilaus() {
-
+		this.tilausrivit = new ArrayList<Tilausrivi>();
 	}
 
 	// Parametrillinen konstruktori
