@@ -80,7 +80,7 @@
 	<div id="loota1">
 		<div id="tuotelistataulukko">
 			
-				<% if (ostoskori.getTilausrivit().size() < 1) {
+				<% if (ostoskori.getTilausrivit().size() < 1 || ostoskori.getTilausrivit() == null) {
 						String korityhja = "Ostoskorisi on tyhjä!";
 				%>
 				<%=korityhja%>
@@ -115,7 +115,7 @@
 					
 					
 					<tr>
-						<td><b><%=ostoskori.getTilausrivit().get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
+						<td><b><%=ostoskori.getTilausrivit().get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j+1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}}%> </td>
 						<td><%=formatter.format(ostoskori.getTilausrivit().get(i).getTilattuTuote().getHinta()) %></td>
 						<td><%=ostoskori.getTilausrivit().get(i).getLkm()%></td>
 						<td><% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.getTilausrivit().get(i).getMaustelista().size(); j++) {%> <%=ostoskori.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>
