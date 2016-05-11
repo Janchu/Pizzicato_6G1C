@@ -97,7 +97,7 @@ public class TeeTilausServlet extends HttpServlet {
 		String postitmp = request.getParameter("postitmp");
 		String lisatiedot = request.getParameter("lisatiedot");
 
-		tilaus.setTila("Valmis");
+		tilaus.setTila("Vastaanotettu");
 		tilaus.setToimitus(request.getParameter("toimitus"));
 		tilaus.setMaksutapa(request.getParameter("maksutapa"));
 		request.setAttribute("toimitus", tilaus.getToimitus());
