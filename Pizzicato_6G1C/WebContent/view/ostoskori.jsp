@@ -81,7 +81,7 @@
 		<div id="tuotelistataulukko">
 			
 				<% if (ostoskori.getTilausrivit().size() < 1) {
-						String korityhja = "Ostoskorisi on tyhjä! :(";
+						String korityhja = "Ostoskorisi on tyhjä!";
 				%>
 				<%=korityhja%>
 				<a href="ListaaPizzatServlet" class="button2">Etusivulle</a>

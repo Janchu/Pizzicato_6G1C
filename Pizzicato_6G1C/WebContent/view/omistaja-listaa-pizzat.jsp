@@ -40,12 +40,15 @@ Meilahti, 00270</p3>
 
 <div id="otsikkoloota">
 	<p2 style="margin-left:15%;">Pizzalista</p2>
+	<a href="HallinnointiServlet" class="button">Hallinnointinäkymä</a>
+	
 	
 	</div>
 
 <!-- lootan sisällä on pääsisältö, kuten pizzalista ja nappulat! -->
 
 	<div id="loota1">
+	
 	
 	<div id="nappulasijainti2">
 			<a href="MuokkaaPizzalistaServlet" class="button">Siirry

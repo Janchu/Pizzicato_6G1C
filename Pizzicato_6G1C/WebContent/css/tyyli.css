@@ -330,7 +330,7 @@ font-family:Kozuka Gothic Pro EL;
     text-overflow:ellipsis
 }
 
-input[type='checkbox'] { visibility: hidden; position: absolute; }
+
 input[type='checkbox']:checked + .content { height: auto; width: auto;}
 	
 /* Janen jutut */	
