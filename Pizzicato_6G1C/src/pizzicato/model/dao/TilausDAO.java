@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
 import pizzicato.model.Tilausrivi;
+import pizzicato.model.Tuote;
 
 public class TilausDAO extends DataAccessObject {
 
@@ -22,7 +23,7 @@ public class TilausDAO extends DataAccessObject {
 
 		try {
 			conn = getConnection();
-			String sqlSelect = "SELECT tilaus.id, tilaus.tila, tilaus.maksutapa, tilaus.toimitus, tilaus.lisatiedot, tilaus.kayttaja_id, tilaus.yhthinta FROM tilaus;";
+			String sqlSelect = "SELECT tilaus.id, tilaus.tila, tilaus.maksutapa, tilaus.toimitus, tilaus.lisatiedot, tilaus.yhthinta, tilausrivi.lkm, tilaus.tilausaika FROM tilaus;";
 			stmt = conn.prepareStatement(sqlSelect);
 			rs = stmt.executeQuery(sqlSelect);
 
@@ -132,6 +133,65 @@ public class TilausDAO extends DataAccessObject {
 		}
 
 	}
+	
+	public ArrayList<Tilaus> findAll2() {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ArrayList<Tilaus> tilauslista = new ArrayList<Tilaus>();
+		Tilaus tilaus = null;
+		int tilausIdEdellinen = 0;
+
+		try {
+			conn = getConnection();
+			String sqlSelect = "SELECT tilausrivi.tilaus_id, tilausrivi.tuote_id, tilausrivi.lkm, tilaus.tilausaika, tilaus.tila FROM tilausrivi JOIN tilaus ON tilausrivi.tilaus_id = tilaus.id ORDER BY tilausaika DESC;";
+			stmt = conn.prepareStatement(sqlSelect);
+			rs = stmt.executeQuery(sqlSelect);
+
+			while (rs.next()) {
+				int tilausId = rs.getInt("tilausrivi.tilaus_id");
+				if (tilausId != tilausIdEdellinen) {
+					tilaus = readTilaus2(rs);
+					tilauslista.add(tilaus);
+				}
+				tilausIdEdellinen = rs.getInt("tilausrivi.tilaus_id");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return tilauslista;
+	}
+	
+	private Tilaus readTilaus2(ResultSet rs) {
+		try {
+			int tilausId = rs.getInt("tilausrivi.tilaus_id");
+			int tuoteId = rs.getInt("tilausrivi.tuote_id");
+			String tila = rs.getString("tilaus.tila");
+			int lkm = rs.getInt("tilausrivi.lkm");
+			String tilausaika = rs.getString("tilaus.tilausaika");
+
+			Tilaus tilaus = new Tilaus();
+			tilaus.setId(tilausId);
+			tilaus.setTila(tila);
+			tilaus.setTilausaika(tilausaika);
+			ArrayList<Tilausrivi> tilausrivit = new ArrayList<Tilausrivi>();
+			Tilausrivi tilausrivi = new Tilausrivi();
+			tilausrivi.setLkm(lkm);
+			Tuote tuote = new Tuote();
+			tuote.setId(tuoteId);
+			tilausrivi.setTilattuTuote(tuote);
+			tilausrivit.add(tilausrivi);
+			
+			
+
+			return tilaus;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	private Tilaus readTilaus(ResultSet rs) {
 		try {
@@ -141,7 +201,7 @@ public class TilausDAO extends DataAccessObject {
 			String toimitus = rs.getString("tilaus.toimitus");
 			String lisatiedot = rs.getString("tilaus.lisatiedot");
 			ArrayList<Tilausrivi> tilausrivit = new ArrayList<Tilausrivi>();
-			double yhthinta = rs.getDouble("tilaus.lisatiedot");
+			double yhthinta = rs.getDouble("tilaus.yhthinta");
 			int yhtlkm = rs.getInt("tilausrivi.lkm");
 			String tilausaika = rs.getString("tilaus.tilausaika");
 

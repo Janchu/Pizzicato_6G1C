@@ -2,17 +2,8 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="pizzicato.model.Pizza"%>
-<%@ page import="pizzicato.model.Tuote"%>
-<%@ page import="pizzicato.model.Tayte"%>
-<%@ page import="pizzicato.model.Mauste"%>
-<%@ page import="pizzicato.model.Tilaus"%>
-<%@ page import="pizzicato.model.Kayttaja"%>
-<%@ page import="pizzicato.model.Tilausrivi"%>
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>" scope="request" />
-<jsp:useBean id="ostoskori" type="java.util.ArrayList<Tilausrivi>" scope="request" />
-<jsp:useBean id="mausteet" type="java.util.ArrayList<Mauste>" scope="request" />
-<jsp:useBean id="kayttaja" class="pizzicato.model.Kayttaja" scope="request" />
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

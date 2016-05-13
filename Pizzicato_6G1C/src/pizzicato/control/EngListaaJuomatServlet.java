@@ -34,23 +34,19 @@ public class EngListaaJuomatServlet extends HttpServlet {
 
 		if (ostoskori == null) {
 			ostoskori = new Tilaus();
-			System.out.println(ostoskori);
 		}
-
-		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
 
 		// Käyttäjän checkaus
 		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
 		System.out.println(kayttaja);
 		if (kayttaja == null) {
 			kayttaja = new Kayttaja();
-			System.out.println(kayttaja);
 		}
 		request.setAttribute("kayttaja", kayttaja);
 
 		// Tallennetaan request-olioon jsp:lle vietäväksi
 		request.setAttribute("juomat", juomat);
-		request.setAttribute("ostoskori", tilausrivit);
+		request.setAttribute("ostoskori", ostoskori);
 
 		// Lähetetään jsp:lle
 		String jsp = "/view/eng-listaa-juomat.jsp";

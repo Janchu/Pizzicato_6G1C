@@ -36,9 +36,7 @@ public class EngOstoskoriServlet extends HttpServlet {
 			ostoskori = new Tilaus();
 		}
 
-		ArrayList<Tilausrivi> tilausrivit = ostoskori.getTilausrivit();
-
-		request.setAttribute("ostoskori", tilausrivit);
+		request.setAttribute("ostoskori", ostoskori);
 
 		String jsp = "/view/eng-ostoskori.jsp";
 		RequestDispatcher dispatcher = getServletContext()

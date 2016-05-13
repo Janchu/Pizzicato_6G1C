@@ -10,18 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class KuskiServlet
+ * Servlet implementation class HallinnointiServlet
  */
-@WebServlet("/KuskiServlet")
-public class KuskiServlet extends HttpServlet {
+@WebServlet("/HallinnointiServlet")
+public class HallinnointiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Lähetetään jsp:lle
-				String jsp = "/view/kuski.jsp";
-				RequestDispatcher dispatcher = getServletContext()
-						.getRequestDispatcher(jsp);
-				dispatcher.forward(request, response);
+		String jsp = "/view/hallinnointinakyma.jsp";
+		RequestDispatcher dispatcher = getServletContext()
+				.getRequestDispatcher(jsp);
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
