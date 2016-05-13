@@ -20,8 +20,7 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo"
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">
@@ -69,16 +68,16 @@
 					
 					
 						<p>
-							<label>Delivery: </label><input type="radio" value="nouto" name="toimitus" >Nouto <input type="radio" value="kotiinkuljetus" name="toimitus" >Kotiinkuljetus
+							<label>Delivery: </label><input type="radio" value="nouto" name="toimitus" >Pickup <input type="radio" value="kotiinkuljetus" name="toimitus" >Delivery
 						</p>
 						<p>
-							<label>Payment Method: </label><input type="radio" value="kateinen" name="maksutapa" >Käteinen <input type="radio" value="kortti" name="maksutapa" >Kortti
+							<label>Payment Method: </label><input type="radio" value="kateinen" name="maksutapa" >Cash <input type="radio" value="kortti" name="maksutapa" >Payment Card
 						</p>
 						<p>
 							<label>Name: </label><input type="text" name="etunimi" value="<%if (request.getAttribute("etunimi") != null) { %><%=request.getAttribute("etunimi")%><%}%>"><%if (errors.get("etunimi") != null) {%><span class="error"><%=errors.get("etunimi") %></span><%} %>
 						</p>
 						<p>
-							<label>Surname: </label><input type="text" name="sukunimi" value="<%if (request.getAttribute("sukunimi") != null) { %><%=request.getAttribute("sukunimi")%><%}%>"><%if (errors.get("sukunimi") != null) {%><span class="error"><%=errors.get("sukunimi") %></span><%} %>
+							<label>Last Name: </label><input type="text" name="sukunimi" value="<%if (request.getAttribute("sukunimi") != null) { %><%=request.getAttribute("sukunimi")%><%}%>"><%if (errors.get("sukunimi") != null) {%><span class="error"><%=errors.get("sukunimi") %></span><%} %>
 						</p>
 						<p>
 							<label>Phone: </label><input type="text" name="puh" value="<%if (request.getAttribute("puh") != null) { %><%=request.getAttribute("puh")%><%}%>"><%if (errors.get("puh") != null) {%><span class="error"><%=errors.get("puh") %></span><%} %>

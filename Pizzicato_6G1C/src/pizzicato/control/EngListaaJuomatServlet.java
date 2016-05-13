@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import pizzicato.model.Juoma;
 import pizzicato.model.Kayttaja;
 import pizzicato.model.Tilaus;
-import pizzicato.model.Tilausrivi;
 import pizzicato.model.dao.JuomaDAO;
 
 
@@ -36,11 +35,12 @@ public class EngListaaJuomatServlet extends HttpServlet {
 			ostoskori = new Tilaus();
 		}
 
+
 		// Käyttäjän checkaus
 		Kayttaja kayttaja = (Kayttaja) session.getAttribute("kayttaja");
-		System.out.println(kayttaja);
 		if (kayttaja == null) {
 			kayttaja = new Kayttaja();
+
 		}
 		request.setAttribute("kayttaja", kayttaja);
 

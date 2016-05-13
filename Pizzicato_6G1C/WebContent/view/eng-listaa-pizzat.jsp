@@ -44,7 +44,7 @@
 
 		<div id="lootaoikea">
 		<% if (kayttaja.getTyyppi() != null) { %>
-			<span class="valkoinen">Tervetuloa, <%=kayttaja.getEtunimi() %></span>
+			<span class="valkoinen">Welcome, <%=kayttaja.getEtunimi() %></span>
 			<a href="LogoutServlet" class="button2">Logout</a>
 		<% } else { %>
 			<a href="RekisterointiServlet" class="button2">Register</a>
@@ -57,7 +57,7 @@
 			<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-				kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
+				pcs, in total: <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton1">
 					<a href="EngOstoskoriServlet">Shopping Cart</a>
 				</div>
@@ -69,7 +69,7 @@
 	<%-- tämä tulee näkyville, kun menee 1000px  alle --%>
 	<div id="ostoskoributton3">
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-				kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
+				pcs, in total: <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton4">
 					<a href="OstoskoriServlet">Shopping Cart</a>
 				</div>
@@ -111,7 +111,7 @@
 					%>
 					<tr>
 					<td width="10px"><%=pizzanumero%></td>
-						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=pizzat.get(i).getNimi()%><br> Toppings: </b>
+						<td><form action="EngOstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=pizzat.get(i).getNimi()%><br> Toppings: </b>
 						 <%
 							for (int j = 0; j < pizzat.get(i).getTaytelista()
 												.size(); j++) {

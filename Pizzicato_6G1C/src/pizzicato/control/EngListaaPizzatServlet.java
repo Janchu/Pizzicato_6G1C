@@ -15,7 +15,6 @@ import pizzicato.model.Kayttaja;
 import pizzicato.model.Mauste;
 import pizzicato.model.Pizza;
 import pizzicato.model.Tilaus;
-import pizzicato.model.Tilausrivi;
 import pizzicato.model.dao.MausteDAO;
 import pizzicato.model.dao.PizzaDAO;
 

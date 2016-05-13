@@ -27,13 +27,12 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">
-		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-			<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a>
+		<a href="EngOstoskoriServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
+		<a href="OstoskoriServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 			<p3>
 				Open: Mon-Sat 11-21, Sun 12-18<br> +358 40 666 666<br>
 				Kuusitie 66<br> Meilahti, 00270
@@ -52,7 +51,7 @@
 			<div id="ostoskoributton2">		
 			<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>		
 					<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-					kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
+					pcs, in total: <%=formatter.format(ostoskori.getYhthinta()) %> €
 					<div id="ostoskoributton1">
 						<a href="OstoskoriServlet">Shopping Cart</a>
 					</div>
@@ -63,16 +62,16 @@
 
 	<div id="ostoskoributton3">
 		<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-		kpl, yht.
+		pcs, in total:
 		<%=formatter.format(ostoskori.getYhthinta())%>
 		€
 		<div id="ostoskoributton4">
-			<a href="OstoskoriServlet">Ostoskoriin</a>
+			<a href="OstoskoriServlet">Shopping Cart</a>
 		</div>
 	</div>
 	
 	<div id="otsikkoloota">
-	<p2 style="margin-left: 15%;">Shopping Cart</p2>
+	<p2>Shopping Cart</p2>
 	</div>
 
 	<%--- lootan sisällä on pääsisältö,  kuten pizzalista ja nappulat --%>
@@ -80,7 +79,7 @@
 <div id="loota1">
 		<div id="tuotelistataulukko">
 			
-				<% if (ostoskori.getTilausrivit().size() < 1) {
+				<% if (ostoskori.getTilausrivit().size() < 1 || ostoskori.getTilausrivit() == null) {
 						String korityhja = "The shopping cart is empty!";
 				%>
 				<%=korityhja%>
@@ -115,7 +114,7 @@
 					
 					
 					<tr>
-						<td><b><%=ostoskori.getTilausrivit().get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
+						<td><b><%=ostoskori.getTilausrivit().get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi_eng() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
 						<td><%=formatter.format(ostoskori.getTilausrivit().get(i).getTilattuTuote().getHinta()) %></td>
 						<td><%=ostoskori.getTilausrivit().get(i).getLkm()%></td>
 						<td><% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.getTilausrivit().get(i).getMaustelista().size(); j++) {%> <%=ostoskori.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>

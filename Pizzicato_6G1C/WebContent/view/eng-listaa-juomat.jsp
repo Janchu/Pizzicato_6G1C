@@ -55,7 +55,7 @@
 			<% DecimalFormat formatter = new DecimalFormat("#0.00"); %>
 				<input type="hidden" name="ostoskori" value="<%=ostoskori%>">
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-				kpl, yht. <%=formatter.format(ostoskori.getYhthinta()) %> €
+				pcs, in total: <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton1">
 					<a href="OstoskoriServlet">Shopping cart</a>
 				</div>
@@ -67,7 +67,7 @@
 	
 	<div id="ostoskoributton3">
 		<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
-		kpl, yht.
+		pcs, in total:
 		<%=formatter.format(ostoskori.getYhthinta())%>
 		€
 		<div id="ostoskoributton4">
@@ -108,7 +108,7 @@
 
 					<tr>
 						<td width="10px"><%=juomanumero%></td>
-						<td><form action="OstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=juomat.get(i).getNimi_eng()%></b>
+						<td><form action="EngOstoskoriServlet" method="post"><div class="tuotelistavasen"><b><%=juomat.get(i).getNimi_eng()%></b>
 						</div>
 						<div class="tuotelistaoikea">
 						<b><%=decimal.format(juomat.get(i).getHinta())%>€</b><br><br>
