@@ -123,6 +123,14 @@ public class TilausDAO extends DataAccessObject {
 							.getTilattuTuote().getId());
 					stmtInsert.executeUpdate();
 					stmtInsert.close();
+					
+				}
+				for(int j = 0; j < tilaus.getTilausrivit().size(); j++) {
+				stmtInsert = connection.prepareStatement("INSERT INTO tilausmauste (rivinumero, tilaus_id, mauste_id) VALUES(?,last_insert_id(), ?);");
+				stmtInsert.setInt(1, tilaus.getTilausrivit().get(j).getRivinumero());
+				stmtInsert.setInt(2, tilaus.getTilausrivit().get(j).getMaustelista().get(j).getId());
+				stmtInsert.executeUpdate();
+				stmtInsert.close();
 				}
 
 		} catch (SQLException e) {
