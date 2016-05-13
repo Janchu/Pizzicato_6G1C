@@ -104,8 +104,6 @@
 		</form>
 	</div>
 
-	<%-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. --%>
-
 	<div id="footer">
 		<div id="footer_sisältö">
 
