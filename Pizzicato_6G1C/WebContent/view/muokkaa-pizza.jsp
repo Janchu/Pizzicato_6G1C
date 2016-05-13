@@ -123,9 +123,9 @@
 
 
 				<%-- seuraavassa koodinpätkässä on nappulat jes --%>
-				<br><input type="hidden" name="pizzaId" value="<%=muokattavaPizza.getId()%>"> <input
-					type="submit" class="button" value="Pizza valmis!"> <a
-					href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
+				<br><input type="hidden" name="pizzaId" value="<%=muokattavaPizza.getId()%>">
+				<a href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
+				<input type="submit" class="button" value="Tallenna">
 			</fieldset>
 		</form>
 	</div>

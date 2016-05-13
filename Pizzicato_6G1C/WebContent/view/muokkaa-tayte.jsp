@@ -125,9 +125,9 @@
 
 
 
-				<input type="hidden" name="tayteId" value="<%=id%>"> <input
-					type="submit" class="button" value="Valmis"> <a
-					href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
+				<input type="hidden" name="tayteId" value="<%=id%>">
+				<a href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
+				<input type="submit" class="button" value="Valmis">
 			</fieldset>
 		</form>
 	</div>

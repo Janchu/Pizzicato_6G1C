@@ -80,7 +80,7 @@ Meilahti, 00270</p3>
 					<td width="100px"><%=decimal.format(taytteet.get(i).getKilohinta())%> €/kg</td>
 					<td width="50px"><a href="MuokkaaTayteServlet?TId=<%=taytteet.get(i).getId()%>"><img alt="lib" src="images/muokkaaicon.png" title="muokkaa" width="32" height="32"></a></td>
 					<td width="50px"><a href="PoistaTayteServlet?TayId=<%=taytteet.get(i).getId()%>"
-						onclick="return confirm('Haluatko varmasti poistaa Täytteen?')"><img alt="lib" src="images/remove.png" title="poista" width="32" height="32"></a></td>
+						onclick="return confirm('Haluatko varmasti poistaa täytteen?')"><img alt="lib" src="images/remove.png" title="poista" width="32" height="32"></a></td>
 				</tr>
 
 				<%
