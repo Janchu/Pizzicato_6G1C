@@ -106,7 +106,7 @@
 
 
 					<%-- Nappulat --%>
-					<a href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
+					<a href="MuokkaaTaytelistaServlet"><input type="button" class="button" value="Peruuta"></a>
 					<input type="submit" class="button" value="Tallenna">
 				
 			</fieldset>

@@ -48,8 +48,8 @@ public class OstoskoriServlet extends HttpServlet {
 		if (kayttaja == null) {
 			kayttaja = new Kayttaja();
 		}
+		
 		request.setAttribute("kayttaja", kayttaja);
-
 		request.setAttribute("ostoskori", ostoskori);
 		request.setAttribute("pizzat", pizzat);
 

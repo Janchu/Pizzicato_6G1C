@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,7 +63,7 @@ public class MuokkaaTayteServlet extends HttpServlet {
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
 				"/view/muokkaa-tayte.jsp");
 		// Validointia
-		HashMap<String, String> errors = validateMuokkaa(request, id);
+		HashMap<String, String> errors = validateMuokkaa(request);
 		if (!errors.isEmpty()) {
 			request.setAttribute("muokattavaTayteId", id);
 			jsp.forward(request, response);
@@ -106,96 +108,127 @@ public class MuokkaaTayteServlet extends HttpServlet {
 	}
 
 	public static HashMap<String, String> validateMuokkaa(
-			HttpServletRequest request, int id) {
+			HttpServletRequest request) {
 		DecimalFormat formatter = new DecimalFormat("#0.00");
-		Tayte uusiTayte = new Tayte();
+		Tayte muokattavaTayte = new Tayte();
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 		HashMap<String, String> errors = new HashMap<String, String>();
+		
+		String muokattavanIdStr = request.getParameter("tayteId");
+		int muokattavanId = new Integer(muokattavanIdStr);
+		muokattavaTayte.setId(muokattavanId);
 
 		// Haetaan syötetty nimi validointia varten
 		String nimi = request.getParameter("tayteNimi");
+
 		if (nimi == null || nimi.trim().length() == 0) {
-			errors.put("nimi", "Nimi vaaditaan.");
+			errors.put("nimi", "Nimi vaaditaan");
 		} else {
 			for (int i = 0; i < taytteet.size(); i++) {
-				if (nimi.equalsIgnoreCase(taytteet.get(i).getNimi())) {
-					if (id != taytteet.get(i).getId()) {
-						errors.put("nimi", "Nimi on jo käytössä");
+				if (nimi.equalsIgnoreCase(taytteet.get(i).getNimi()) && taytteet.get(i).getId() != muokattavanId) {
+					errors.put("nimi", "Nimi on jo käytössä");
+				} else {
+					if (nimi.trim().length() > 20) {
+						errors.put("nimi", "Max 20 merkkiä");
+					} else {
+						Pattern p = Pattern.compile("^[a-zA-ZÅÄÖåäö\\- ]+$");
+						Matcher m = p.matcher(nimi);
+						if (m.find() == false) {
+							errors.put("nimi",
+									"Nimi sisältää kiellettyjä merkkejä");
+						} else {
+							String uusiNimi = nimi.replace('ä', 'a');
+							uusiNimi = nimi.replace('å', 'a');
+							uusiNimi = nimi.replace('ö', 'o');
+							muokattavaTayte.setNimi(uusiNimi.trim());
+						}
 					}
 				}
-
 			}
 		}
-		int maxLength = (nimi.length() < 20) ? nimi.length() : 20;
-		String rajattuNimi = nimi.substring(0, maxLength);
-		nimi = rajattuNimi;
-		uusiTayte.setNimi(nimi);
 
-		// Haetaan syötetty nimi_eng validointia varten
-		String nimi_eng = request.getParameter("tayteNimi_eng");
-		if (nimi_eng == null || nimi.trim().length() == 0) {
-			errors.put("nimi_eng", "Nimi vaaditaan.");
+		// Haetaan syötetty englanninkielinen nimi validointia varten
+		String nimiEng = request.getParameter("tayteNimi_eng");
+
+		if (nimiEng == null || nimiEng.trim().length() == 0) {
+			errors.put("nimi_eng", "Englanninkielinen nimi vaaditaan");
 		} else {
 			for (int i = 0; i < taytteet.size(); i++) {
-				if (nimi_eng.equalsIgnoreCase(taytteet.get(i).getNimi_eng())) {
-					if (id != taytteet.get(i).getId()) {
-						errors.put("nimi_eng", "Nimi on jo käytössä");
+				if (nimi.equalsIgnoreCase(taytteet.get(i).getNimi()) && taytteet.get(i).getId() != muokattavanId) {
+					errors.put("nimi_eng",
+							"Englanninkielinen nimi on jo käytössä");
+				} else {
+					if (nimi.trim().length() > 20) {
+						errors.put("nimi_eng", "Max 20 merkkiä");
+					} else {
+						Pattern p = Pattern.compile("^[a-zA-ZÅÄÖåäö\\- ]+$");
+						Matcher m = p.matcher(nimi);
+						if (m.find() == false) {
+							errors.put("nimi_eng",
+									"Englanninkielinen nimi sisältää kiellettyjä merkkejä");
+						} else {
+							String uusiNimi = nimiEng.replace('ä', 'a');
+							uusiNimi = nimi.replace('å', 'a');
+							uusiNimi = nimi.replace('ö', 'o');
+							muokattavaTayte.setNimi(uusiNimi.trim());
+						}
 					}
 				}
-
 			}
 		}
-		int maxLengthEng = (nimi_eng.length() < 20) ? nimi_eng.length() : 20;
-		String rajattuNimi_eng = nimi_eng.substring(0, maxLengthEng);
-		nimi_eng = rajattuNimi_eng;
-		uusiTayte.setNimi_eng(nimi_eng);
 
 		// Haetaan syötetty hinta validointia varten
 		String hintaStr = request.getParameter("tayteHinta");
+
 		if (hintaStr == null || hintaStr.trim().length() == 0) {
 			errors.put("hinta", "Hinta vaaditaan.");
 		} else {
-			if (hintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
-				errors.put("hinta", "Hinta sisältää kiellettyjä merkkejä.");
+			Pattern p = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
+			Matcher m = p.matcher(hintaStr);
+			if (m.find() == false) {
+				errors.put("hinta", "Hinta on väärää muotoa");
 			} else {
 				String uusiHintaStr = hintaStr.replace(',', '.');
-				double hinta = 0;
-				hinta = new Double(uusiHintaStr);
+
+				double hinta = new Double(uusiHintaStr);
 				formatter.format(hinta);
 
-				if (hinta < 0.50 || hinta > 10.00) {
+				if (hinta < 0.5 || hinta > 10.00) {
 					errors.put("hinta",
-							"Hinta sallittujen rajojen ulkopuolella.");
+							"Hinta sallittujen rajojen ulkopuolella");
 				} else {
-					uusiTayte.setHinta(hinta);
-					request.setAttribute("uusiTayte", uusiTayte);
+					muokattavaTayte.setHinta(hinta);
 				}
 			}
 		}
-		// Haetaan syötetty kilohinta validointia varten
+
+		// Haetaan syötetty hinta validointia varten
 		String kilohintaStr = request.getParameter("tayteKilohinta");
+
 		if (kilohintaStr == null || kilohintaStr.trim().length() == 0) {
-			errors.put("kilohinta", "Kilohinta vaaditaan.");
+			errors.put("kilohinta", "Kilointa vaaditaan.");
 		} else {
-			if (kilohintaStr.matches("[0-9]+([,.][0-9]{1,2})?") == false) {
-				errors.put("kilohinta", "Kilohinta sisältää kiellettyjä merkkejä.");
+			Pattern p = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
+			Matcher m = p.matcher(kilohintaStr);
+			if (m.find() == false) {
+				errors.put("kilohinta", "Kilohinta on väärää muotoa");
 			} else {
-				String uusiKiloHintaStr = kilohintaStr.replace(',', '.');
-				double kilohinta = 0;
-				kilohinta = new Double(uusiKiloHintaStr);
+				String uusiHintaStr = kilohintaStr.replace(',', '.');
+
+				double kilohinta = new Double(uusiHintaStr);
 				formatter.format(kilohinta);
 
-				if (kilohinta < 0.50 || kilohinta > 99.99) {
+				if (kilohinta < 0.5 || kilohinta > 99.99) {
 					errors.put("kilohinta",
-							"Kilohinta sallittujen rajojen ulkopuolella.");
+							"Kilohinta sallittujen rajojen ulkopuolella");
 				} else {
-					uusiTayte.setKilohinta(kilohinta);
-					request.setAttribute("uusiTayte", uusiTayte);
+					muokattavaTayte.setHinta(kilohinta);
 				}
 			}
 		}
 		request.setAttribute("errors", errors);
+		request.setAttribute("muokattavaTayte", muokattavaTayte);
 
 		return errors;
 	}
