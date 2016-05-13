@@ -68,10 +68,10 @@
 					
 					
 						<p>
-							<label>Delivery: </label><input type="radio" value="nouto" name="toimitus" >Pickup <input type="radio" value="kotiinkuljetus" name="toimitus" >Delivery
+							<label>Delivery Method: </label><input type="radio" value="Pickup" name="toimitus" >Pickup <input type="radio" value="Delivery" name="toimitus" >Delivery <%if (errors.get("toimitus") != null) {%><span class="error"><%=errors.get("toimitus") %></span><%} %>
 						</p>
 						<p>
-							<label>Payment Method: </label><input type="radio" value="kateinen" name="maksutapa" >Cash <input type="radio" value="kortti" name="maksutapa" >Payment Card
+							<label>Payment Method: </label><input type="radio" value="Cash" name="maksutapa" >Cash <input type="radio" value="Payment card" name="maksutapa" >Payment Card <%if (errors.get("maksutapa") != null) {%><span class="error"><%=errors.get("maksutapa") %></span><%} %>
 						</p>
 						<p>
 							<label>Name: </label><input type="text" name="etunimi" value="<%if (request.getAttribute("etunimi") != null) { %><%=request.getAttribute("etunimi")%><%}%>"><%if (errors.get("etunimi") != null) {%><span class="error"><%=errors.get("etunimi") %></span><%} %>
@@ -99,7 +99,7 @@
 							<label>Additional Details: </label><textarea name="lisatiedot" rows="4" cols="50">
 						<%if (request.getAttribute("lisatiedot") != null) { %><%=request.getAttribute("lisatiedot")%><%}%></textarea><%if (errors.get("lisatiedot") != null) {%><span class="error"><%=errors.get("lisatiedot") %></span><%} %></p>
 						
-						<a href="EngListaaPizzatServlet" class="button2">Front Page</a> <input type="submit" value="Continue Order" class="button2">
+						<a href="EngListaaPizzatServlet"><input type="button" class="button" value="Front Page"></a> <input type="submit" value="Continue" class="button">
 						
 					</fieldset>
 				</form>

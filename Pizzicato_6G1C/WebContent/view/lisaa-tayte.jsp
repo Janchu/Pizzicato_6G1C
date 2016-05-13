@@ -106,8 +106,9 @@
 
 
 					<%-- Nappulat --%>
-					<input type="submit" class="button" value="Valmis">
 					<a href="MuokkaaTaytelistaServlet" class="button">Peruuta</a>
+					<input type="submit" class="button" value="Tallenna">
+				
 			</fieldset>
 		</form>
 	</div>

@@ -38,9 +38,9 @@ Meilahti, 00270</p3>
 
 </div>
 
-<div id="otsikkoloota">
-	<p2 style="margin-left:15%;">Pizzalista</p2>
-	<a href="HallinnointiServlet" class="button">Hallinnointinäkymä</a>
+<div id="otsikkoloota2">
+	<div id="otsikkoleft"><p2>Pizzalista</p2></div>
+	<div id="otsikkoright"><a href="HallinnointiServlet" class="button">Hallinnointinäkymä</a></div>
 	
 	
 	</div>

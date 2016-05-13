@@ -23,12 +23,12 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="EngListaaJuomatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">
 		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/uklib4.png" width="32" height="32"></a>
-		<a href="EngListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
+		<a href="ListaaJuomatServlet"><img alt="lib" src="images/finlib.png" width="32" height="32"></a><br>
 		<p3> Open: Mon-Sat 11-21, Sun 12-18<br> 
 		+358 40 666 666<br>
 		Kuusitie 66<br> 
@@ -71,7 +71,7 @@
 		<%=formatter.format(ostoskori.getYhthinta())%>
 		€
 		<div id="ostoskoributton4">
-			<a href="OstoskoriServlet">Shopping cart</a>
+			<a href="EngOstoskoriServlet">Shopping cart</a>
 		</div>
 	</div>
 
@@ -113,7 +113,7 @@
 						<div class="tuotelistaoikea">
 						<b><%=decimal.format(juomat.get(i).getHinta())%>€</b><br><br>
 						<div class="tilaasaatana"><input type='text' value="1" name='maara' id='qty<%=i %>' size=2 maxlength="2"/>
-						<input type='button' name='subtract' onclick='javascript: document.getElementById("qty<%=i %>").value--;' value='-'/> 
+						<input type='button' name='subtract' onclick='javascript: if(document.getElementById("qty<%=i %>").value > 1) {document.getElementById("qty<%=i %>").value--}' value='-'/> 
 						<input type='button' name='add' onclick='javascript: document.getElementById("qty<%=i %>").value++;' value='+'/></div> 
 						<input type="hidden" value="<%=juomat.get(i).getId()%>"
 									name="koriin"><input type="hidden" value="juoma"

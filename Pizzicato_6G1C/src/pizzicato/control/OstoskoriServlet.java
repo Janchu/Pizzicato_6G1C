@@ -128,8 +128,11 @@ public class OstoskoriServlet extends HttpServlet {
 								if (mausteId == maustelista.get(k).getId()) {
 									String mausteNimi = maustelista.get(k)
 											.getNimi();
+									String mausteNimiEng = maustelista.get(k).getNimi_eng();
 									Mauste mauste = new Mauste();
+									mauste.setId(mausteId);
 									mauste.setNimi(mausteNimi);
+									mauste.setNimi_eng(mausteNimiEng);
 									uudetMausteet.add(mauste);
 								}
 							}

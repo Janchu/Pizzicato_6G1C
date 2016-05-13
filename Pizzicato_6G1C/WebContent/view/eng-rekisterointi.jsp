@@ -17,8 +17,7 @@
 		<div id="lootavasen">
 			<div class="logo">
 
-				<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo"
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="EngListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 
 			</div>
 		</div>
@@ -30,7 +29,7 @@
 		</div>
 		<div id="lootaoikea">
 
-			<a href="LogoutServlet" class="button2">Logout</a>
+			<a href="LoginServlet" class="button2">Login</a>
 
 		</div>
 	</div>
@@ -89,43 +88,43 @@
 				%>
 				<p>
 				<label>First name: <span class="pakollinen">*</span></label> <input
-					type="text" name="kayttajaEtunimi" placeholder="Etunimi"
+					type="text" name="kayttajaEtunimi" placeholder="First name"
 					maxlength="30"
 					value="${uusiKayttaja.etunimi}" required>   Maximum 30 characters 
 				</p>
 				<p>
 				<label>Last name: <span class="pakollinen">*</span></label> <input
-					type="text" name="kayttajaSukunimi" placeholder="Sukunimi"
+					type="text" name="kayttajaSukunimi" placeholder="Last name"
 					maxlength="30"
 					value="${uusiKayttaja.sukunimi}" required>   Maximum 30 characters 
 				</p>
 				<p>
 				<label>Password: <span class="pakollinen">*</span></label> <input
-					type="text" name="kayttajaSalasana" placeholder="Salasana"
+					type="text" name="kayttajaSalasana" placeholder="Password"
 					maxlength="30"
 					value="${uusiKayttaja.salasana}" required>   Maximum 30 characters 
 				</p>
 				<p>
 				<label>Phone: <span class="pakollinen">*</span></label> <input
-					type="text" name="kayttajaPuh" placeholder="Puh"
+					type="text" name="kayttajaPuh" placeholder="Phone"
 					maxlength="10"
 					value="${uusiKayttaja.puh}" required>   Maximum 10 characters  
 				</p>
 				<p>
 				<label>Address: <span class="pakollinen">*</span></label> <input
-					type="text" name="kayttajaOsoite" placeholder="Osoite"
+					type="text" name="kayttajaOsoite" placeholder="Address"
 					maxlength="30"
 					value="${uusiKayttaja.osoite}" required>  Maximum 30 characters 
 				</p>
 				<p>
 				<label>Zip code: <span class="pakollinen">*</span></label> <input
-					type="text" name="kayttajaPostinro" placeholder="Postinro"
+					type="text" name="kayttajaPostinro" placeholder="Zip code"
 					maxlength="5"
 					value="${uusiKayttaja.postinro}" required>   Maximum 5 characters 
 				</p>
 				<p>
 				<label>Postal area: <span class="pakollinen">*</span></label> <input
-					type="text" name="kayttajaPostitmp" placeholder="Postitmp"
+					type="text" name="kayttajaPostitmp" placeholder="Postal area"
 					maxlength="30"
 					value="${uusiKayttaja.postitmp}" required>  Maximum 30 characters 
 				</p>
@@ -136,7 +135,7 @@
 					value="${uusiKayttaja.email}" required>   Maximum 60 characters  
 				</p>
 				
-				<br><input type="submit" class="button" value="Valmis!">
+				<br><input type="submit" class="button" value="Confirm">
 				 <a href="ListaaPizzatServlet" class="button">Cancel</a>
 			</fieldset>
 		</form>

@@ -152,8 +152,8 @@
 
 			<%-- seuraavassa koodinpätkässä on nappulat jes --%>
 			<input type="hidden" name="juomaId" value="<%=id%>">
-			<input type="submit" class="button" value="Juoma valmis!">
 			<a href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
+			<input type="submit" class="button" value="Tallenna">
 			</fieldset>
 		</form>
 	</div>

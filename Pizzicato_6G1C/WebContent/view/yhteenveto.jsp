@@ -9,6 +9,7 @@
 <%@ page import="pizzicato.model.Kayttaja"%>
 <jsp:useBean id="tilaus" scope="request" class="pizzicato.model.Tilaus" />
 <jsp:useBean id="tilaaja" scope="request" class="pizzicato.model.Kayttaja" />
+<jsp:useBean id="ostoskori" class="pizzicato.model.Tilaus" scope="request" />
 <html>
 <head>
 
@@ -57,7 +58,7 @@
 		<%=formatter.format(tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta()) %> <b>€</b> x
 		<%=tilaus.getTilausrivit().get(i).getLkm() %>
 		<br>
-		<%for (int j = 0; j < tilaus.getTilausrivit().get(i).getMaustelista().size(); j++) {%><%=tilaus.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %><%if (j+1 < tilaus.getTilausrivit().get(i).getMaustelista().size()) {%>,<%} %>
+		<%if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < tilaus.getTilausrivit().get(i).getMaustelista().size(); j++) {%><%=tilaus.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %><%if (j+1 < tilaus.getTilausrivit().get(i).getMaustelista().size()) {%>,<%}} %>
 		
 		
 		<% }

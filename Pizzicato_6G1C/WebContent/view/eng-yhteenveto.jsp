@@ -60,7 +60,7 @@
 		<%=formatter.format(tilaus.getTilausrivit().get(i).getTilattuTuote().getHinta()) %> <b>€</b> x
 		<%=tilaus.getTilausrivit().get(i).getLkm() %>
 		<br>
-		<%for (int j = 0; j < tilaus.getTilausrivit().get(i).getMaustelista().size(); j++) {%><%=tilaus.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %><%if (j+1 < tilaus.getTilausrivit().get(i).getMaustelista().size()) {%>,<%} %>
+		<%for (int j = 0; j < tilaus.getTilausrivit().get(i).getMaustelista().size(); j++) {%><%=tilaus.getTilausrivit().get(i).getMaustelista().get(j).getNimi_eng() %><%if (j+1 < tilaus.getTilausrivit().get(i).getMaustelista().size()) {%>,<%} %>
 		
 		
 		<% }
@@ -99,11 +99,10 @@
 		
 		<form method="post">
 		
-		<input type="submit" value="Finish Order" class="button2" onclick="return confirm('Ty')"> <a href="EngListaaPizzatServlet" class="button">Cancel</a>
+		 <a href="EngListaaPizzatServlet"><input type="button" class="button" value="Cancel"></a><input type="submit" value="Finish Order" class="button" onclick="return confirm('Thank you for your order!')">
+
 		</form>
 	</div>
-
-	<%-- footer_sisältö divillä pystyy liikuttamaan sisällön sijaintia ym. --%>
 
 	<div id="footer">
 		<div id="footer_sisältö">

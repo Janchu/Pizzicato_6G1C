@@ -128,11 +128,22 @@ public class TeeTilausServlet extends HttpServlet {
 		Tilaus tilaus = new Tilaus();
 		Kayttaja tilaaja = new Kayttaja();
 		
-		// Radiobuttoneilla valitut tiedot
-		tilaus.setToimitus(request.getParameter("toimitus"));
-		tilaus.setMaksutapa(request.getParameter("maksutapa"));
-
 		HashMap<String, String> errors = new HashMap<String, String>();
+		
+		// Radiobuttoneilla valitut tiedot
+		String toimitus = request.getParameter("toimitus");
+		if (toimitus == null) {
+			errors.put("toimitus", "Toimitustapa vaaditaan");
+		} else {
+			tilaus.setToimitus(toimitus);
+		}
+		String maksutapa = request.getParameter("maksutapa");
+		if (maksutapa == null) {
+			errors.put("maksutapa", "Maksutapa vaaditaan");
+		} else {
+			tilaus.setMaksutapa(maksutapa);
+		}
+
 
 		// Validoidaan etunimi
 		String etunimi = request.getParameter("etunimi");

@@ -25,8 +25,7 @@
 	<div id="logoloota">
 		<div id="lootavasen">
 			<div class="logo">
-				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo"
-					src="images/pizzalogofin.png" height="100%" width="100%"></a>
+				<a href="ListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 			</div>
 		</div>
 		<div id="lootakeski">

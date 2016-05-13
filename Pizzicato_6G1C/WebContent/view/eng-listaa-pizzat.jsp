@@ -71,7 +71,7 @@
 				<img src="images/ostoskoriicon.png" width="40" height="40"><%=ostoskori.getYhtlkm()%>
 				pcs, in total: <%=formatter.format(ostoskori.getYhthinta()) %> €
 				<div id="ostoskoributton4">
-					<a href="OstoskoriServlet">Shopping Cart</a>
+					<a href="EngOstoskoriServlet">Shopping Cart</a>
 				</div>
 			</div>
 

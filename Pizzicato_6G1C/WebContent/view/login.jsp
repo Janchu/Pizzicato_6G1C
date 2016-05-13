@@ -10,7 +10,7 @@
 <body>
 	<div id="loginloota">
 		<form method="post">
-			<h3>Käyttäjätunnus:</h3>
+			<h3>Sähköposti:</h3>
 			<input type="text" name="kayttajatunnus" required>
 			<h3>Salasana:</h3>
 			<input type="password" name="salasana" required> <br>
