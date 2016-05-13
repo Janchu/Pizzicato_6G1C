@@ -52,17 +52,18 @@ public class TilausDAO extends DataAccessObject {
 		PreparedStatement stmtSelect = null;
 		ResultSet rs = null;
 
-
 		try {
 			connection = getConnection();
 
-			stmtSelect = connection.prepareStatement("SELECT posti.postinro, posti.postitmp FROM posti WHERE postinro =?;");;
+			stmtSelect = connection
+					.prepareStatement("SELECT posti.postinro, posti.postitmp FROM posti WHERE postinro =?;");
+			;
 			stmtSelect.setString(1, tilaaja.getPostinro());
 			rs = stmtSelect.executeQuery();
-			
+
 			// Jos postinumeroa ei löydy
-			if(rs.next() == false) { 
-			
+			if (rs.next() == false) {
+
 				stmtInsert = connection
 						.prepareStatement("INSERT INTO posti(postinro, postitmp) VALUES (?,?);");
 				stmtInsert.setString(1, tilaaja.getPostinro());
@@ -70,8 +71,8 @@ public class TilausDAO extends DataAccessObject {
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
 			}
-			
-				if (tilaaja.getTyyppi().equalsIgnoreCase("asiakas")) {
+
+			if (tilaaja.getTyyppi().equalsIgnoreCase("asiakas")) {
 				stmtInsert = connection
 						.prepareStatement("INSERT INTO kayttaja (id, etunimi, sukunimi, salasana, tyyppi, osoite, puh, email, postinro) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?);");
 				stmtInsert.setString(1, tilaaja.getEtunimi());
@@ -83,55 +84,55 @@ public class TilausDAO extends DataAccessObject {
 				stmtInsert.setString(8, tilaaja.getPostinro());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
-				
-				}
 
+			}
 
-				stmtInsert = connection
-						.prepareStatement("INSERT INTO tilaus (id, tila, maksutapa, toimitus, lisatiedot, yhthinta, etunimi, sukunimi, osoite, puh, email, postinro, kayttaja_id, tilausaika) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
-				stmtInsert.setString(1, tilaus.getTila());
-				stmtInsert.setString(2, tilaus.getMaksutapa());
-				stmtInsert.setString(3, tilaus.getToimitus());
-				stmtInsert.setString(4, tilaus.getLisatiedot());
-				stmtInsert.setDouble(5, tilaus.getYhthinta());
-				stmtInsert.setString(6, tilaaja.getEtunimi());
-				stmtInsert.setString(7, tilaaja.getSukunimi());
-				stmtInsert.setString(8, tilaaja.getOsoite());
-				stmtInsert.setString(9, tilaaja.getPuh());
-				stmtInsert.setString(10, tilaaja.getEmail());
-				stmtInsert.setString(11, tilaaja.getPostinro());
-				if (tilaaja.getId() == 0) {
-					stmtInsert.setString(12, null);
-				}else {
+			stmtInsert = connection
+					.prepareStatement("INSERT INTO tilaus (id, tila, maksutapa, toimitus, lisatiedot, yhthinta, etunimi, sukunimi, osoite, puh, email, postinro, kayttaja_id, tilausaika) VALUES (last_insert_id(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			stmtInsert.setString(1, tilaus.getTila());
+			stmtInsert.setString(2, tilaus.getMaksutapa());
+			stmtInsert.setString(3, tilaus.getToimitus());
+			stmtInsert.setString(4, tilaus.getLisatiedot());
+			stmtInsert.setDouble(5, tilaus.getYhthinta());
+			stmtInsert.setString(6, tilaaja.getEtunimi());
+			stmtInsert.setString(7, tilaaja.getSukunimi());
+			stmtInsert.setString(8, tilaaja.getOsoite());
+			stmtInsert.setString(9, tilaaja.getPuh());
+			stmtInsert.setString(10, tilaaja.getEmail());
+			stmtInsert.setString(11, tilaaja.getPostinro());
+			if (tilaaja.getId() == 0) {
+				stmtInsert.setString(12, null);
+			} else {
 				stmtInsert.setInt(12, tilaaja.getId());
-				}
-				System.out.println(tilaaja.getId());
-				stmtInsert.setString(13, tilaus.getTilausaika());
-				System.out.println(tilaus.getTilausaika());
+			}
+			System.out.println(tilaaja.getId());
+			stmtInsert.setString(13, tilaus.getTilausaika());
+			System.out.println(tilaus.getTilausaika());
+			stmtInsert.executeUpdate();
+			stmtInsert.close();
+
+			for (int i = 0; i < tilaus.getTilausrivit().size(); i++) {
+				stmtInsert = connection
+						.prepareStatement("INSERT INTO tilausrivi (rivinumero, tilaus_id, lkm, tuote_id) VALUES (?, last_insert_id(), ?, ?);");
+				stmtInsert.setInt(1, tilaus.getTilausrivit().get(i)
+						.getRivinumero());
+				stmtInsert.setInt(2, tilaus.getTilausrivit().get(i).getLkm());
+				stmtInsert.setInt(3, tilaus.getTilausrivit().get(i)
+						.getTilattuTuote().getId());
 				stmtInsert.executeUpdate();
 				stmtInsert.close();
-				
 
-				for (int i = 0; i < tilaus.getTilausrivit().size(); i++) {
+				for (int j = 0; j < tilaus.getTilausrivit().size(); j++) {
 					stmtInsert = connection
-							.prepareStatement("INSERT INTO tilausrivi (rivinumero, tilaus_id, lkm, tuote_id) VALUES (?, last_insert_id(), ?, ?);");
-					stmtInsert.setInt(1, tilaus.getTilausrivit().get(i)
+							.prepareStatement("INSERT INTO tilausmauste (rivinumero, tilaus_id, mauste_id) VALUES(?,last_insert_id(), ?);");
+					stmtInsert.setInt(1, tilaus.getTilausrivit().get(j)
 							.getRivinumero());
-					stmtInsert.setInt(2, tilaus.getTilausrivit().get(i)
-							.getLkm());
-					stmtInsert.setInt(3, tilaus.getTilausrivit().get(i)
-							.getTilattuTuote().getId());
+					stmtInsert.setInt(2, tilaus.getTilausrivit().get(j)
+							.getMaustelista().get(j).getId());
 					stmtInsert.executeUpdate();
 					stmtInsert.close();
-					
 				}
-				for(int j = 0; j < tilaus.getTilausrivit().size(); j++) {
-				stmtInsert = connection.prepareStatement("INSERT INTO tilausmauste (rivinumero, tilaus_id, mauste_id) VALUES(?,last_insert_id(), ?);");
-				stmtInsert.setInt(1, tilaus.getTilausrivit().get(j).getRivinumero());
-				stmtInsert.setInt(2, tilaus.getTilausrivit().get(j).getMaustelista().get(j).getId());
-				stmtInsert.executeUpdate();
-				stmtInsert.close();
-				}
+			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -141,7 +142,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 
 	}
-	
+
 	public ArrayList<Tilaus> findAll2() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -171,7 +172,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 		return tilauslista;
 	}
-	
+
 	private Tilaus readTilaus2(ResultSet rs) {
 		try {
 			int tilausId = rs.getInt("tilausrivi.tilaus_id");
@@ -191,8 +192,6 @@ public class TilausDAO extends DataAccessObject {
 			tuote.setId(tuoteId);
 			tilausrivi.setTilattuTuote(tuote);
 			tilausrivit.add(tilausrivi);
-			
-			
 
 			return tilaus;
 
@@ -212,8 +211,6 @@ public class TilausDAO extends DataAccessObject {
 			double yhthinta = rs.getDouble("tilaus.yhthinta");
 			int yhtlkm = rs.getInt("tilausrivi.lkm");
 			String tilausaika = rs.getString("tilaus.tilausaika");
-
-			
 
 			return new Tilaus(id, tila, maksutapa, toimitus, lisatiedot,
 					tilausrivit, yhthinta, yhtlkm, tilausaika);

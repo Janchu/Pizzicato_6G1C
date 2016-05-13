@@ -24,15 +24,17 @@ import pizzicato.model.dao.TayteDAO;
 public class LisaaTayteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private RequestDispatcher jsp;
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// Luodaan TayteDAO ja ArrayList
 		TayteDAO taytedao = new TayteDAO();
 		ArrayList<Tayte> taytteet = taytedao.findAll();
 
+		// Luodaan tyhjä tayte-olio ettei request suutu
+		Tayte uusiTayte = new Tayte();
+
 		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		request.setAttribute("uusiTayte", uusiTayte);
 		request.setAttribute("taytteet", taytteet);
 
 		// Lähetetään jsp:lle
@@ -44,15 +46,11 @@ public class LisaaTayteServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		// Luodaan TayteDAO (ja decimalformat)
+		
+		// Luodaan TayteDAO ja decimalformat
 		TayteDAO taytedao = new TayteDAO();
-		ArrayList<Tayte> taytteet = taytedao.findAll();
-		ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 		DecimalFormat formatter = new DecimalFormat("#0.00");
-
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
-		request.setAttribute("taytteet", taytteet);
+		
 
 		RequestDispatcher jsp = getServletContext().getRequestDispatcher(
 				"/view/lisaa-tayte.jsp");
@@ -81,11 +79,12 @@ public class LisaaTayteServlet extends HttpServlet {
 			formatter.format(kilohinta);
 
 			try {
-				// Luodaan uusi tayte-olio kantaan vietäväksi
+				// Luodaan uusi tayte-olio parametrillisellä konstruktorilla
+				// kantaan vietäväksi
 				Tayte lisattavaTayte = new Tayte(id, nimi, nimi_eng, hinta,
 						kilohinta);
 
-				// Kutsutaan updateTayte metodia
+				// Kutsutaan addTayte metodia
 				taytedao.addTayte(lisattavaTayte);
 
 				// Palauteen käyttäjä taytelistan muokkaustilaan.
@@ -143,14 +142,15 @@ public class LisaaTayteServlet extends HttpServlet {
 			errors.put("nimi_eng", "Englanninkielinen nimi vaaditaan");
 		} else {
 			for (int i = 0; i < taytteet.size(); i++) {
-				if (nimi.equalsIgnoreCase(taytteet.get(i).getNimi())) {
-					errors.put("nimi_eng", "Englanninkielinen nimi on jo käytössä");
+				if (nimiEng.equalsIgnoreCase(taytteet.get(i).getNimi())) {
+					errors.put("nimi_eng",
+							"Englanninkielinen nimi on jo käytössä");
 				} else {
-					if (nimi.trim().length() > 20) {
+					if (nimiEng.trim().length() > 20) {
 						errors.put("nimi_eng", "Max 20 merkkiä");
 					} else {
 						Pattern p = Pattern.compile("^[a-zA-ZÅÄÖåäö\\- ]+$");
-						Matcher m = p.matcher(nimi);
+						Matcher m = p.matcher(nimiEng);
 						if (m.find() == false) {
 							errors.put("nimi_eng",
 									"Englanninkielinen nimi sisältää kiellettyjä merkkejä");
@@ -215,7 +215,7 @@ public class LisaaTayteServlet extends HttpServlet {
 			}
 		}
 		request.setAttribute("errors", errors);
-		request.setAttribute("uusTayte", uusiTayte);
+		request.setAttribute("uusiTayte", uusiTayte);
 
 		return errors;
 	}

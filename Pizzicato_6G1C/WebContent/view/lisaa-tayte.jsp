@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="pizzicato.model.Tayte"%>
 <%@page import="pizzicato.model.Pizza"%>
+<jsp:useBean id="uusiTayte" class="pizzicato.model.Tayte" scope="request" />
 <jsp:useBean id="errors" scope="request" type="java.util.HashMap" class="java.util.HashMap" />
 <html>
 <head>
@@ -78,7 +79,7 @@
 					<label>Täytteen nimi: <span class="pakollinen">*</span></label>
 						<input type="text" name="tayteNimi" placeholder="Täytteen nimi"
 						maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä"
-						required value="${uusiTayte.nimi}"> Max 20 merkkiä
+						required value="<%if(uusiTayte.getNimi() != null) { %><%=uusiTayte.getNimi()%><%}%>"> Max 20 merkkiä
 				</p>
 
 				<p>
@@ -86,21 +87,21 @@
 						class="pakollinen">*</span></label> <input type="text"
 						name="tayteNimi_eng" placeholder="Täytteen eng.nimi"
 						maxlength="20" title="Täytteen nimi saa olla max 20 merkkiä pitkä"
-						required value="${uusiTayte.nimi_eng}"> Max 20 merkkiä
+						required value="<%if(uusiTayte.getNimi_eng() != null) { %><%=uusiTayte.getNimi_eng()%><%}%>"> Max 20 merkkiä
 				</p>
 
 				<p>
 					<label>Täytteen hinta: <span class="pakollinen">*</span></label> <input
 						type="text" name="tayteHinta" placeholder="Täytteen hinta"
 						maxlength="5" step="any" min="0.50" max="10.00" required
-						value="${uusiTayte.hinta}"> Hinnan pitää olla 0,50 - 10,00
+						value="<%if(uusiTayte.getHinta() != 0) { %><%=uusiTayte.getHinta()%><%}%>"> Hinnan pitää olla 0,50 - 10,00
 				</p>
 
 				<p>
 					<label>Kilohinta: <span class="pakollinen">*</span></label> <input
 						type="text" name="tayteKilohinta" placeholder="Täytteen kilohinta"
 						maxlength="5" step="any" min="0.50" max="99.99" required
-						value="${uusiTayte.kilohinta}"> Hinnan pitää olla 0,50 - 99,99
+						value="<%if(uusiTayte.getKilohinta() != 0) { %><%=uusiTayte.getKilohinta()%><%}%>"> Hinnan pitää olla 0,50 - 99,99
 		
 				</p>
 
