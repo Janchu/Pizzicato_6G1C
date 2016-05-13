@@ -39,6 +39,14 @@ font-weight:bold;
 	background-color: rgba(0,0,0,0.6);
 }
 
+#otsikkoloota3 {
+	
+	width:72%;
+	margin-left:15%;
+	color:white;
+	background-color: rgba(0,0,0,0.6);
+}
+
 #otsikkoloota2 {
 	
 	padding:10px;
@@ -191,6 +199,19 @@ margin-left:15%;
     border: none;
     color: white;
     padding: 5px 10px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+	border-radius:10px;
+}
+
+.button5 {
+    background-color: #6FD630;
+    border:none;
+    color: white;
+    padding: 15px 15px;
+    font-size:20px;
     text-align: center;
     display: inline-block;
     margin: 4px 2px;

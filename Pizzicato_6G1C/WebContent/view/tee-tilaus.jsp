@@ -199,7 +199,7 @@
 								%>
 							</p>
 
-							<a href="OstoskoriServlet" class="button2">Edellinen</a> <input
+							<a href="OstoskoriServlet"><input type="button" class="button2" value="Edellinen"></a> <input
 								type="submit" value="Jatka tilausta" class="button2">
 
 						</fieldset>

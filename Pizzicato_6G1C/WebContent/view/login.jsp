@@ -20,7 +20,9 @@
 					out.println("<p>" + message + "</p>");
 				}
 			%>
+
 			<br> <a href="ListaaPizzatServlet"><input type="button" class="button" value="Peruuta"></a><input type="Submit" class="button" value="Kirjaudu sisään">
+
 		</form>
 	</div>
 </body>

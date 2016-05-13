@@ -144,8 +144,8 @@
 
 
 				</table><br>
-				<div id="ostoskorinabls"><a href="ListaaPizzatServlet" class="button2">Etusivulle</a>
-				<a href="TeeTilausServlet" class="button2">Jatka tilausta</a></div>
+				<div id="ostoskorinabls"><a href="ListaaPizzatServlet"><input type="button" class="button2" value="Peruuta"></a>
+				<a href="TeeTilausServlet"><input type="button" class="button2" value="Jatka tilausta"></a></div>
 				<%
 					}
 				%>
