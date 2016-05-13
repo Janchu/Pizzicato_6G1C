@@ -21,7 +21,7 @@
 				}
 			%>
 			<br> <input type="Submit" class="button2" value="Kirjaudu sisään"><a
-				href="ListaaPizzatServlet" class="button2">Peruuta</a>
+				href="ListaaPizzatServlet"><input type="submit" class="button2" value="Peruuta"></a>
 		</form>
 	</div>
 </body>

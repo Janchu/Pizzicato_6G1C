@@ -100,7 +100,7 @@
 					1.5
 				</p>
 				<br>
-				<a href="MuokkaaJuomalistaServlet" class="button">Peruuta</a>
+				<a href="MuokkaaJuomalistaServlet"><input type="button" class="button" value="Peruuta"></a>
 				<input type="submit" class="button" value="Tallenna">
 			</fieldset>
 		</form>

@@ -13,12 +13,14 @@
 <title>Hallinnointinäkymä</title>
 </head>
 <body>
-<div id="otsikkoloota">
-<p2 style="margin-left:5%;"><u>Hallinnointinäkymä</u></p2>
-		<a href="OmistajaListaaPizzatServlet" class="juomabutton"><p2>Edelliseen</p2></a>
+<div id="otsikkoloota3">
+<a href="OmistajaListaaPizzatServlet"><input type="button" class="button5" value="Edelliseen"></a>
+<p2 style="margin-left:30%;"><u>Hallinnointinäkymä</u></p2>
+<div id="hal_kirjautuminen">Tervetuloa, Outi  </span><a href="LogoutServlet" class="button2">Kirjaudu Ulos</a></div>
+		
 </div>
 <div id="hal_loota">
-<div id="hal_kirjautuminen">Tervetuloa, Outi  </span><a href="" class="button2">Kirjaudu Ulos</a></div>
+
 <a href="KokkiServlet" class="button3">Kokki</a>
 
 <a href="KuskiServlet" class="button3">Kuski</a>
