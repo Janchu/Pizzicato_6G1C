@@ -96,8 +96,7 @@
 								name="postitmp" value="<%if (request.getAttribute("postitmp") != null) { %><%=request.getAttribute("postitmp")%><%}%>"><%if (errors.get("postitmp") != null) {%><span class="error"><%=errors.get("postitmp") %></span><%} %>
 						</p>
 						<p>
-							<label>Additional Details: </label><textarea name="lisatiedot" rows="4" cols="50">
-						<%if (request.getAttribute("lisatiedot") != null) { %><%=request.getAttribute("lisatiedot")%><%}%></textarea><%if (errors.get("lisatiedot") != null) {%><span class="error"><%=errors.get("lisatiedot") %></span><%} %></p>
+							<label>Additional Details: </label><textarea name="lisatiedot" rows="4" cols="50"><%if (request.getAttribute("lisatiedot") != null) { %><%=request.getAttribute("lisatiedot")%><%}%></textarea><%if (errors.get("lisatiedot") != null) {%><span class="error"><%=errors.get("lisatiedot") %></span><%} %></p>
 						
 						<a href="EngListaaPizzatServlet"><input type="button" class="button" value="Front Page"></a> <input type="submit" value="Continue" class="button">
 						
