@@ -15,7 +15,7 @@
 <body>
 <div id="otsikkoloota3">
 <a href="OmistajaListaaPizzatServlet"><input type="button" class="button5" value="Edelliseen"></a>
-<p2 style="margin-left:30%;"><u>Hallinnointinäkymä</u></p2>
+<p2 style="margin-left:27%;"><u>Hallinnointinäkymä</u></p2>
 <div id="hal_kirjautuminen">Tervetuloa, Outi  </span><a href="LogoutServlet" class="button2">Kirjaudu Ulos</a></div>
 		
 </div>

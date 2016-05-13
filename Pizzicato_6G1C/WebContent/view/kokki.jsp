@@ -10,6 +10,7 @@
 <%@ page import="pizzicato.model.Tilaus"%>
 <%@ page import="pizzicato.model.Kayttaja"%>
 <%@ page import="pizzicato.model.Tilausrivi"%>
+<jsp:useBean id="tilaus" scope="request" class="pizzicato.model.Tilaus" />
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
 	scope="request" />
 <jsp:useBean id="tilaukset" type="java.util.ArrayList<Tilaus>"
@@ -24,11 +25,12 @@
 <title>Hallinnointinäkymä</title>
 </head>
 <body>
-	<div id="otsikkoloota">
-		<p2 style="margin-left:5%;"> <u>Hallinnointinäkymä</u></p2>
-		<a href="OmistajaListaaPizzatServlet" class="juomabutton"><p2>Edelliseen</p2></a>
+	<div id="otsikkoloota3">
+	<a href="OmistajaListaaPizzatServlet"><input type="button" class="button5" value="Edelliseen"></a>
+		<p2 style="margin-left:25%;"> <u>Hallinnointinäkymä</u></p2>
 	</div>
 	<div id="hal_loota">
+	<div id="hallinnointitaulukko">
 
 		<table>
 
@@ -47,7 +49,7 @@
 			<tr>
 				<td><%=tilaukset.get(i).getId()%></td>
 				<td><%=tilaukset.get(i).getTilausaika()%></td>
-				<td>
+				<td><%=pizzat.get(i).getNimi()%></td>
 					<%
 						for (int j = 0; j < tilaukset.get(i).getTilausrivit().size(); j++) {
 								for (int k = 0; k < pizzat.size(); k++) {
@@ -61,14 +63,32 @@
 							}
 					%>
 				</td>
+				<td> <%
+							for (int j = 0; j < pizzat.get(i).getTaytelista()
+												.size(); j++) {
+						%> <%=pizzat.get(i).getTaytelista().get(j)
+									.getNimi()%><%
+ 	if (j + 1 < pizzat.get(i).getTaytelista().size()) {
+ %>, <%
+ 	}
+ 				}
+ %></td>
 				<td></td>
-				<td></td>
-				<td></td>
+				<td><form><select>
+  <option value="kuljetukseen">Odottaa</option>
+  <option value="kuljetuksessa">Kuljetuksessa</option>
+  <option value="valmis">Valmis</option>
+</select>
+<input type="submit" value="Tallenna">
+</form></td>
+				
 			</tr>
 			<%
-				}
-			%>
+					
+				}	
+				%>
 		</table>
+	</div>
 	</div>
 </body>
 </html>
