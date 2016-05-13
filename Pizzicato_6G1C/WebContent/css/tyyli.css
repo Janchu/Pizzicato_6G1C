@@ -39,6 +39,27 @@ font-weight:bold;
 	background-color: rgba(0,0,0,0.6);
 }
 
+#otsikkoloota2 {
+	
+	padding:10px;
+	margin-top:10px;
+	height:60px;
+	width:72%;
+	margin-left:15%;
+	color:white;
+	background-color: rgba(0,0,0,0.6);
+}
+
+#otsikkoleft {
+	float:left;
+	margin-left:15%;
+}
+
+#otsikkoright {
+	float:right;
+	margin-right:2.4%;
+}
+
 /* scrollbar taulukon oikeassa reunassa*/
 #tablescoller {
 	overflow:auto;
@@ -274,6 +295,10 @@ div.pakollinenLoota {
 	
 }
 
+#ostoskorinabls {
+	margin-left:15%;
+}
+
 p4 	{font-size: 1vw;}
 	
 p2 {font-size: 2vw;}
@@ -424,6 +449,8 @@ top:0px;}
 height:22%;
 margin-left:0;}
 #otsikkoloota {width:100%;
+margin-left:0;}
+#otsikkoloota2 {width:100%;
 margin-left:0;}
 #loota1 {width:100%;
 margin-left:0;}

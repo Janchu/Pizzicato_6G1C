@@ -18,7 +18,7 @@
 <div id="lootavasen">
 <div class="logo">
 
-<a href="OmistajaListaaJuomatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
+<a href="OmistajaListaaPizzatServlet"><img alt="Pizzerian logo" src="images/pizzalogofin.png" height="100%" width="100%"></a>
 
 </div>
 </div>

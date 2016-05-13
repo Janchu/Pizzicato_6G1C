@@ -99,7 +99,8 @@
 		
 		<form method="post">
 		
-		<input type="submit" value="Finish Order" class="button2" onclick="return confirm('Ty')"> <a href="EngListaaPizzatServlet" class="button">Cancel</a>
+		<input type="submit" value="Finish Order" class="button2" onclick="return confirm('Thank you for your order!')">
+		<a href="EngListaaPizzatServlet" class="button">Cancel</a>
 		</form>
 	</div>
 

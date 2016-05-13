@@ -66,12 +66,12 @@
 		<%=formatter.format(ostoskori.getYhthinta())%>
 		€
 		<div id="ostoskoributton4">
-			<a href="OstoskoriServlet">Shopping Cart</a>
+			<a href="EngOstoskoriServlet">Shopping Cart</a>
 		</div>
 	</div>
 	
 	<div id="otsikkoloota">
-	<p2>Shopping Cart</p2>
+	<p2 style="margin-left:15%;">Shopping Cart</p2>
 	</div>
 
 	<%--- lootan sisällä on pääsisältö,  kuten pizzalista ja nappulat --%>
@@ -120,14 +120,11 @@
 						<td><% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.getTilausrivit().get(i).getMaustelista().size(); j++) {%> <%=ostoskori.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>
 						<td>
 							<form action="LisaaKoriinServlet" method="post">
-								<input type="hidden" value="<%=i%>" name="id"><input
-									type="submit" value=" + " name="lisaa">
+								<input type="hidden" value="<%=i%>" name="id"><input type="submit" value=" + " name="lisaa">
 							</form>
 							<form action="PoistaKoristaServlet" method="post">
-								<input type="hidden" value="<%=i%>" name="id"><input
-									type="submit" value=" - " name="poista">
+								<input type="hidden" value="<%=i%>" name="id"><input type="submit" value=" - " name="poista">
 							</form>
-							
 						</td>
 					</tr>
 					
@@ -143,8 +140,9 @@
 
 
 
-				</table><a href="EngListaaPizzatServlet" class="button2">Front Page</a> <a
-					href="EngTeeTilausServlet" class="button2">Continue the order</a>
+				</table>
+				<div id="ostoskorinabls"><a href="EngListaaPizzatServlet" class="button2">Front Page</a>
+				<a href="EngTeeTilausServlet" class="button2">Continue the order</a></div>
 				<%
 					}
 				%>

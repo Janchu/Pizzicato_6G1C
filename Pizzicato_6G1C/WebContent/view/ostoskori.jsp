@@ -71,7 +71,7 @@
 	</div>
 
 	<div id="otsikkoloota">
-		<p2 style="margin-left: 15%;">Ostoskori</p2>
+		<p2 style="margin-left:15%;">Ostoskori</p2>
 	</div>
 
 	<%--- lootan sisällä on pääsisältö,  kuten pizzalista ja nappulat --%>
@@ -143,8 +143,9 @@
 
 
 
-				</table><a href="ListaaPizzatServlet" class="button2">Etusivulle</a> <a
-					href="TeeTilausServlet" class="button2">Jatka tilausta</a>
+				</table>
+				<div id="ostoskorinabls"><a href="ListaaPizzatServlet" class="button2">Etusivulle</a>
+				<a href="TeeTilausServlet" class="button2">Jatka tilausta</a></div>
 				<%
 					}
 				%>

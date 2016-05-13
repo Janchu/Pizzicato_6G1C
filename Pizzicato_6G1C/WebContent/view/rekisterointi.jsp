@@ -30,7 +30,7 @@
 		</div>
 		<div id="lootaoikea">
 
-			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+			<a href="LoginServlet" class="button2">Login</a>
 
 		</div>
 	</div>
