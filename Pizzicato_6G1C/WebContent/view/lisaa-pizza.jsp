@@ -105,8 +105,7 @@
 					}
 				%>
 					
-				<br><input type="submit" class="button" value="Pizza valmis!">
-				 <a href="MuokkaaPizzalistaServlet" class="button">Peruuta</a>
+				<br><a href="MuokkaaPizzalistaServlet"><input type="button" class="button" value="Peruuta"></a><input type="submit" class="button" value="Pizza valmis!">
 			</fieldset>
 		</form>
 	</div>

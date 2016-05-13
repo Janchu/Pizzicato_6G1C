@@ -117,7 +117,7 @@
 						<td><b><%=ostoskori.getTilausrivit().get(i).getTilattuTuote().getNimi()%></b><br> <% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < taytteet.size(); j++) {%><%=taytteet.get(j).getNimi_eng() %><%if (j + 1 < pizzat.get(i).getTaytelista().size()) {%>, <% }}} %></td>
 						<td><%=formatter.format(ostoskori.getTilausrivit().get(i).getTilattuTuote().getHinta()) %></td>
 						<td><%=ostoskori.getTilausrivit().get(i).getLkm()%></td>
-						<td><% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.getTilausrivit().get(i).getMaustelista().size(); j++) {%> <%=ostoskori.getTilausrivit().get(i).getMaustelista().get(j).getNimi() %> <% }} %></td>
+						<td><% if (ostoskori.getTilausrivit().get(i).getTilattuTuote().getTyyppi().equalsIgnoreCase("pizza")) {%><% for (int j = 0; j < ostoskori.getTilausrivit().get(i).getMaustelista().size(); j++) {%> <%=ostoskori.getTilausrivit().get(i).getMaustelista().get(j).getNimi_eng() %> <% }} %></td>
 						<td>
 							<form action="LisaaKoriinServlet" method="post">
 								<input type="hidden" value="<%=i%>" name="id"><input
@@ -143,8 +143,8 @@
 
 
 
-				</table><a href="EngListaaPizzatServlet" class="button2">Front Page</a> <a
-					href="EngTeeTilausServlet" class="button2">Continue the order</a>
+				</table><a href="EngListaaPizzatServlet"><input type="button" class="button" value="Front Page"></a> <a
+					href="EngTeeTilausServlet"><input type="button" class="button" value="Continue"></a>
 				<%
 					}
 				%>

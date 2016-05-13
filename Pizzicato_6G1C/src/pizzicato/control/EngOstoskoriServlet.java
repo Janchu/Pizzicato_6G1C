@@ -128,8 +128,10 @@ public class EngOstoskoriServlet extends HttpServlet {
 								if (mausteId == maustelista.get(k).getId()) {
 									String mausteNimi = maustelista.get(k)
 											.getNimi();
+									String mausteNimiEng = maustelista.get(k).getNimi_eng();
 									Mauste mauste = new Mauste();
 									mauste.setNimi(mausteNimi);
+									mauste.setNimi_eng(mausteNimiEng);
 									uudetMausteet.add(mauste);
 								}
 							}

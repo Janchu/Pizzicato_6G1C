@@ -42,32 +42,6 @@ public class MausteDAO extends DataAccessObject {
 		return maustelista;
 	}
 	
-	public ArrayList<Mauste> findAllEng() {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		ArrayList<Mauste> maustelista = new ArrayList<Mauste>();
-		Mauste mauste = null;
-		
-		try {
-			conn = getConnection();
-			String sqlSelect = "SELECT id, nimi_eng, hinta FROM mauste;";
-			stmt = conn.prepareStatement(sqlSelect);
-			rs = stmt.executeQuery(sqlSelect);
-			
-			while(rs.next()) {
-				mauste = readMauste(rs);
-				maustelista.add(mauste);
-			}
-		}catch (SQLException e) {
-			throw new RuntimeException(e);
-		}finally {
-			close(rs, stmt, conn); 
-		}
-		return maustelista;
-			
-		}
-	
 	private Mauste readMauste(ResultSet rs) {
 		try {
 			// Haetaan yhden täytteen tiedot
