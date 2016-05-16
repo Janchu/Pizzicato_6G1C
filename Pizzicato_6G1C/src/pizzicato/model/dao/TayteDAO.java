@@ -59,7 +59,7 @@ public class TayteDAO extends DataAccessObject {
 	}
 
 	/**
-	 * Tuodaan lisattavaTayte-olio addTayte-metodille. Vied��n kantaan tiedot
+	 * Tuodaan lisattavaTayte-olio addTayte-metodille. Viedään kantaan tiedot
 	 * tayte- ja pizzatayte-tauluihin.
 	 * 
 	 * @param lisattavaTayte
@@ -68,8 +68,7 @@ public class TayteDAO extends DataAccessObject {
 	 */
 	public void addTayte(Tayte lisattavaTayte) throws SQLException {
 
-		// Alustetaan Connection ja PreparedStatement-oliot nulleiksi ennen
-		// try-catchia
+		// Alustetaan Connection ja PreparedStatement-oliot nulleiksi ennen try-catchia
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
 
@@ -84,7 +83,6 @@ public class TayteDAO extends DataAccessObject {
 			stmtInsert.setDouble(4, lisattavaTayte.getKilohinta());
 			stmtInsert.executeUpdate();
 			stmtInsert.close();
-
 		}
 
 		catch (SQLException e) {

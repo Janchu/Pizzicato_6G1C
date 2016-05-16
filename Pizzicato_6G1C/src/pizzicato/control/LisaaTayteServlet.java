@@ -26,16 +26,12 @@ public class LisaaTayteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// Luodaan TayteDAO ja ArrayList
-		TayteDAO taytedao = new TayteDAO();
-		ArrayList<Tayte> taytteet = taytedao.findAll();
 
 		// Luodaan tyhjä tayte-olio ettei request suutu
 		Tayte uusiTayte = new Tayte();
 
-		// ArrayList tallennetaan request-olioon jsp:lle vietäväksi
+		//  Tallennetaan Tayte-olio requestiin jsp:lle vietäväksi
 		request.setAttribute("uusiTayte", uusiTayte);
-		request.setAttribute("taytteet", taytteet);
 
 		// Lähetetään jsp:lle
 		String jsp = "/view/lisaa-tayte.jsp";
@@ -155,10 +151,10 @@ public class LisaaTayteServlet extends HttpServlet {
 							errors.put("nimi_eng",
 									"Englanninkielinen nimi sisältää kiellettyjä merkkejä");
 						} else {
-							String uusiNimi = nimiEng.replace('ä', 'a');
-							uusiNimi = nimi.replace('å', 'a');
-							uusiNimi = nimi.replace('ö', 'o');
-							uusiTayte.setNimi(uusiNimi.trim());
+							String uusiNimiEng = nimiEng.replace('ä', 'a');
+							uusiNimiEng = nimiEng.replace('å', 'a');
+							uusiNimiEng = nimiEng.replace('ö', 'o');
+							uusiTayte.setNimi_eng(uusiNimiEng.trim());
 						}
 					}
 				}
@@ -210,7 +206,7 @@ public class LisaaTayteServlet extends HttpServlet {
 					errors.put("kilohinta",
 							"Kilohinta sallittujen rajojen ulkopuolella");
 				} else {
-					uusiTayte.setHinta(kilohinta);
+					uusiTayte.setKilohinta(kilohinta);
 				}
 			}
 		}
