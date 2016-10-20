@@ -48,7 +48,6 @@
 			<span class="valkoinen">Tervetuloa, <%=kayttaja.getEtunimi() %></span>
 			<a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 		<% } else { %>
-			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a>
 			<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
 		<% } %>
 

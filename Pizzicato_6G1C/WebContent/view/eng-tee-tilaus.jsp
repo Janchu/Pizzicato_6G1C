@@ -37,7 +37,6 @@
 			<span class="valkoinen">Welcome, <%=kayttaja.getEtunimi() %></span>
 			<a href="LogoutServlet" class="button2">Logout</a>
 		<% } else { %>
-			<a href="EngRekisterointiServlet" class="button2">Register</a>
 			<a href="LoginServlet" class="button2">Login</a>
 		<% } %>
 

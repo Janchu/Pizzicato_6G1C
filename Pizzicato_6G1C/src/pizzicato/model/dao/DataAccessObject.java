@@ -14,7 +14,7 @@ public class DataAccessObject {
 
 		String username = Accounts.DBUSERNAME;
 		String password = Accounts.DBPASSWORD;
-		String url = "jdbc:mysql://localhost:3306/projekti?useUnicode=true&characterEncoding=utf-8";
+		String url = "jdbc:mysql://localhost:3306/pizzicato?useUnicode=true&characterEncoding=utf-8";
 
 		try {
 			Class.forName("org.mariadb.jdbc.Driver").newInstance();

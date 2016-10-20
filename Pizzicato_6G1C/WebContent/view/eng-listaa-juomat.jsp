@@ -44,8 +44,7 @@
 			<% 
 				} else { 
 			%>
-			<a href="EngRekisterointiServlet" class="button2">Register</a> <a
-				href="LoginServlet" class="button2">Login</a>
+			<a href="LoginServlet" class="button2">Login</a>
 			<% 
 				} 
 			%>

@@ -44,8 +44,7 @@
 			<%
 				} else {
 			%>
-			<a href="RekisterointiServlet" class="button2">Rekisteröidy</a> <a
-				href="LoginServlet" class="button2">Kirjaudu Sisään</a>
+				<a href="LoginServlet" class="button2">Kirjaudu Sisään</a>
 			<%
 				}
 			%>

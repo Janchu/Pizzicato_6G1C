@@ -32,7 +32,7 @@ Meilahti, 00270</p3>
 </div>
 
 <div id="lootaoikea">
-<span class="valkoinen">Tervetuloa, Outi  </span><a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
+<!--  <span class="valkoinen">Tervetuloa, Outi  </span> --> <a href="LogoutServlet" class="button2">Kirjaudu Ulos</a>
 		
 </div>
 
@@ -40,7 +40,6 @@ Meilahti, 00270</p3>
 
 <div id="otsikkoloota2">
 	<div id="otsikkoleft"><p2>Pizzalista</p2></div>
-	<div id="otsikkoright"><a href="HallinnointiServlet" class="button">Hallinnointinäkymä</a></div>
 	
 	
 	</div>
